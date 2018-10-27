@@ -1,0 +1,270 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_write_enable {} {
+  make nand2 -origin {300 120}
+  make inverter -origin {430 120}
+  make nand2 -origin {310 190}
+  make inverter -origin {430 190}
+  make nand2 -origin {310 270}
+  make inverter -origin {430 270}
+  make nand2 -origin {310 340}
+  make inverter -origin {430 340}
+  make nand2 -origin {310 410}
+  make inverter -origin {430 410}
+  make nand2 -origin {310 480}
+  make inverter -origin {430 480}
+  make nand2 -origin {310 560}
+  make inverter -origin {430 560}
+  make nand2 -origin {310 630}
+  make inverter -origin {430 630}
+  make nand2 -origin {310 700}
+  make inverter -origin {430 700}
+  make nand2 -origin {310 770}
+  make inverter -origin {430 770}
+  make nand2 -origin {310 850}
+  make inverter -origin {430 850}
+  make nand2 -origin {310 920}
+  make inverter -origin {430 920}
+  make nand2 -origin {310 990}
+  make inverter -origin {430 990}
+  make nand2 -origin {310 1060}
+  make inverter -origin {430 1060}
+  make nand2 -origin {310 1140}
+  make inverter -origin {430 1140}
+  make nand2 -origin {310 1210}
+  make inverter -origin {430 1210}
+  make nand2 -origin {300 1280}
+  make inverter -origin {420 1280}
+  make nand2 -origin {300 1350}
+  make inverter -origin {420 1350}
+  make nand2 -origin {300 1430}
+  make inverter -origin {420 1430}
+  make nand2 -origin {300 1500}
+  make inverter -origin {420 1500}
+  make nand2 -origin {300 1570}
+  make inverter -origin {420 1570}
+  make nand2 -origin {300 1640}
+  make inverter -origin {420 1640}
+  make nand2 -origin {300 1720}
+  make inverter -origin {420 1720}
+  make nand2 -origin {300 1790}
+  make inverter -origin {420 1790}
+  make nand2 -origin {300 1860}
+  make inverter -origin {420 1860}
+  make nand2 -origin {300 1930}
+  make inverter -origin {420 1930}
+  make nand2 -origin {300 2010}
+  make inverter -origin {420 2010}
+  make nand2 -origin {300 2080}
+  make inverter -origin {420 2080}
+  make nand2 -origin {300 2150}
+  make inverter -origin {420 2150}
+  make nand2 -origin {300 2220}
+  make inverter -origin {420 2220}
+  make nand2 -origin {300 2300}
+  make inverter -origin {420 2300}
+  make output -name {w[1]} -origin {480 120}
+  make output -name {w[2]} -origin {480 190}
+  make output -name {w[3]} -origin {480 270}
+  make output -name {w[4]} -origin {480 340}
+  make output -name {w[5]} -origin {480 410}
+  make output -name {w[6]} -origin {480 480}
+  make output -name {w[7]} -origin {480 560}
+  make output -name {w[8]} -origin {480 630}
+  make output -name {w[9]} -origin {480 700}
+  make output -name {w[10]} -origin {480 770}
+  make output -name {w[11]} -origin {480 850}
+  make output -name {w[12]} -origin {480 920}
+  make output -name {w[13]} -origin {480 990}
+  make output -name {w[14]} -origin {480 1060}
+  make output -name {w[15]} -origin {480 1140}
+  make output -name {w[16]} -origin {480 1210}
+  make output -name {w[17]} -origin {470 1280}
+  make output -name {w[18]} -origin {470 1350}
+  make output -name {w[19]} -origin {470 1430}
+  make output -name {w[20]} -origin {470 1500}
+  make output -name {w[21]} -origin {470 1570}
+  make output -name {w[22]} -origin {470 1640}
+  make output -name {w[23]} -origin {470 1720}
+  make output -name {w[24]} -origin {470 1790}
+  make output -name {w[25]} -origin {470 1860}
+  make output -name {w[26]} -origin {470 1930}
+  make output -name {w[27]} -origin {470 2010}
+  make output -name {w[28]} -origin {470 2080}
+  make output -name {w[29]} -origin {470 2150}
+  make output -name {w[30]} -origin {470 2220}
+  make output -name {w[31]} -origin {470 2300}
+  make input -name write_enable -origin {230 2390}
+  make input -name {decoder_output[1]} -origin {210 100}
+  make input -name {decoder_output[2]} -origin {210 170}
+  make input -name {decoder_output[3]} -origin {210 250}
+  make input -name {decoder_output[4]} -origin {210 320}
+  make input -name {decoder_output[5]} -origin {210 390}
+  make input -name {decoder_output[6]} -origin {210 460}
+  make input -name {decoder_output[7]} -origin {210 540}
+  make input -name {decoder_output[8]} -origin {210 610}
+  make input -name {decoder_output[9]} -origin {210 680}
+  make input -name {decoder_output[10]} -origin {210 750}
+  make input -name {decoder_output[11]} -origin {210 830}
+  make input -name {decoder_output[12]} -origin {210 900}
+  make input -name {decoder_output[13]} -origin {210 970}
+  make input -name {decoder_output[14]} -origin {210 1040}
+  make input -name {decoder_output[15]} -origin {210 1120}
+  make input -name {decoder_output[16]} -origin {210 1190}
+  make input -name {decoder_output[17]} -origin {200 1260}
+  make input -name {decoder_output[18]} -origin {200 1330}
+  make input -name {decoder_output[19]} -origin {200 1410}
+  make input -name {decoder_output[20]} -origin {200 1480}
+  make input -name {decoder_output[21]} -origin {200 1550}
+  make input -name {decoder_output[22]} -origin {200 1620}
+  make input -name {decoder_output[23]} -origin {200 1700}
+  make input -name {decoder_output[24]} -origin {200 1770}
+  make input -name {decoder_output[25]} -origin {200 1840}
+  make input -name {decoder_output[26]} -origin {200 1910}
+  make input -name {decoder_output[27]} -origin {200 1990}
+  make input -name {decoder_output[28]} -origin {200 2060}
+  make input -name {decoder_output[29]} -origin {200 2130}
+  make input -name {decoder_output[30]} -origin {200 2200}
+  make input -name {decoder_output[31]} -origin {200 2280}
+  make_wire 380 190 400 190
+  make_wire 210 170 290 170
+  make_wire 380 270 400 270
+  make_wire 210 250 290 250
+  make_wire 380 340 400 340
+  make_wire 210 320 290 320
+  make_wire 380 410 400 410
+  make_wire 210 390 290 390
+  make_wire 380 480 400 480
+  make_wire 210 460 290 460
+  make_wire 380 560 400 560
+  make_wire 210 540 290 540
+  make_wire 380 630 400 630
+  make_wire 210 610 290 610
+  make_wire 380 700 400 700
+  make_wire 210 680 290 680
+  make_wire 380 770 400 770
+  make_wire 210 750 290 750
+  make_wire 380 850 400 850
+  make_wire 210 830 290 830
+  make_wire 380 920 400 920
+  make_wire 210 900 290 900
+  make_wire 380 990 400 990
+  make_wire 210 970 290 970
+  make_wire 380 1060 400 1060
+  make_wire 210 1040 290 1040
+  make_wire 380 1140 400 1140
+  make_wire 210 1120 290 1120
+  make_wire 380 1210 400 1210
+  make_wire 210 1190 290 1190
+  make_wire 370 1280 390 1280
+  make_wire 200 1260 280 1260
+  make_wire 370 1350 390 1350
+  make_wire 200 1330 280 1330
+  make_wire 370 1430 390 1430
+  make_wire 200 1410 280 1410
+  make_wire 370 1500 390 1500
+  make_wire 200 1480 280 1480
+  make_wire 370 1570 390 1570
+  make_wire 200 1550 280 1550
+  make_wire 370 1640 390 1640
+  make_wire 200 1620 280 1620
+  make_wire 370 1720 390 1720
+  make_wire 200 1700 280 1700
+  make_wire 370 1790 390 1790
+  make_wire 200 1770 280 1770
+  make_wire 370 1860 390 1860
+  make_wire 200 1840 280 1840
+  make_wire 370 1930 390 1930
+  make_wire 200 1910 280 1910
+  make_wire 370 2010 390 2010
+  make_wire 200 1990 280 1990
+  make_wire 370 2080 390 2080
+  make_wire 200 2060 280 2060
+  make_wire 370 2150 390 2150
+  make_wire 200 2130 280 2130
+  make_wire 370 2220 390 2220
+  make_wire 200 2200 280 2200
+  make_wire 370 2300 390 2300
+  make_wire 200 2280 280 2280
+  make_wire 280 2320 230 2320
+  make_wire 230 2320 230 2390
+  make_wire 280 2240 230 2240
+  make_wire 280 2170 230 2170
+  make_wire 230 2240 230 2320
+  make_wire 280 2100 230 2100
+  make_wire 230 2170 230 2240
+  make_wire 280 2030 230 2030
+  make_wire 230 2100 230 2170
+  make_wire 280 1950 230 1950
+  make_wire 230 2030 230 2100
+  make_wire 280 1880 230 1880
+  make_wire 230 1950 230 2030
+  make_wire 280 1810 230 1810
+  make_wire 230 1880 230 1950
+  make_wire 280 1740 230 1740
+  make_wire 230 1740 230 1810
+  make_wire 230 1810 230 1880
+  make_wire 280 1660 230 1660
+  make_wire 280 1590 230 1590
+  make_wire 230 1660 230 1740
+  make_wire 280 1520 230 1520
+  make_wire 230 1590 230 1660
+  make_wire 280 1450 230 1450
+  make_wire 230 1520 230 1590
+  make_wire 230 1370 280 1370
+  make_wire 230 1450 230 1520
+  make_wire 280 1300 230 1300
+  make_wire 230 1370 230 1450
+  make_wire 290 1230 230 1230
+  make_wire 230 1300 230 1370
+  make_wire 290 1160 230 1160
+  make_wire 230 1230 230 1300
+  make_wire 290 1080 230 1080
+  make_wire 230 1160 230 1230
+  make_wire 290 1010 230 1010
+  make_wire 230 1010 230 1080
+  make_wire 230 1080 230 1160
+  make_wire 290 940 230 940
+  make_wire 290 870 230 870
+  make_wire 230 870 230 940
+  make_wire 230 940 230 1010
+  make_wire 290 790 230 790
+  make_wire 230 790 230 870
+  make_wire 290 720 230 720
+  make_wire 230 720 230 790
+  make_wire 290 650 230 650
+  make_wire 290 580 230 580
+  make_wire 230 650 230 720
+  make_wire 290 500 230 500
+  make_wire 230 580 230 650
+  make_wire 290 430 230 430
+  make_wire 230 500 230 580
+  make_wire 290 360 230 360
+  make_wire 230 430 230 500
+  make_wire 290 290 230 290
+  make_wire 230 360 230 430
+  make_wire 290 210 230 210
+  make_wire 230 290 230 360
+  make_wire 210 100 280 100
+  make_wire 370 120 400 120
+  make_wire 230 210 230 290
+  make_wire 230 210 230 140
+  make_wire 230 140 280 140
+}
+
+proc ICON_write_enable args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 -20} -name {decoder_output[31:1]}
+  icon_term -type input -origin {-100 0} -name write_enable
+  icon_term -type output -origin {100 -20} -name {w[31:1]}
+  icon_property -origin {-50 130} -type user -name name
+  icon_property -origin {-50 150} -type user -name M
+  icon_property -origin {-50 170} -type user -name dpc
+  icon_line -100 -70 -100 40 100 40 100 -70 -100 -70
+  icon_property -origin {40 -50} -size small -anchor e -label {write enable}
+  icon_property -origin {-20 -40} -size small -label {31 bits}
+  icon_property -origin {50 -20} -size small -label {w[31:1]}
+  icon_property -origin {-90 -20} -size small -label {dec_out[31:1]}
+  icon_property -origin {-90 0} -size small -label we
+}
+

@@ -1,0 +1,2 @@
+all:
+	gcc -o test *.c `pkg-config --libs --cflags gtk+-2.0 librsvg-2.0`

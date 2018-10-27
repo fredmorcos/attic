@@ -1,0 +1,100 @@
+#summary a list of decided features for OG
+
+=introduction=
+
+this page lists the decided features for OG listed by priority
+
+*note:* priorities will change over time as more features get completed
+
+=details=
+
+==1st==
+just to have a working application
+ * primitive shapes and text drawing
+   # lines
+   # circles
+   # squares and rectangles
+ * shape and text properties
+   # position
+   # color
+   # size
+   # edit with some dialogs and numbers
+ * adding and removing shapes and text
+ * connecting shapes
+ * load and save to files
+
+==2nd==
+ * support for layers
+   # overlay diagrams
+ * drag and drop moving and resizing shapes
+ * exporting and importing from/to svg and pictures
+   # other primitive shapes from picture or svg
+ * exporting and importing to/from dia or OG
+   # implementing open format OG
+ * usability
+   # accessibility
+   # ease of use
+   # internationalization
+ * stencils and complex shapes support
+ * zooming
+ * help system and documentation
+ * auto-resizing canvas
+
+==3rd==
+for MIE
+ * printing
+ * visually animating diffs between files
+   # diffs between documents
+   # look at adobe photoshop records
+ * semantic description and tagging of shapes and objects for disabled people
+ * built-in diagrams (also being easy modified for specific usage)
+
+==additional==
+ * document encryption and locking with password
+ * portability
+ * semantic description of shapes
+   # semantic relations between diagrams and shapes
+     # for processing (searching or filtering using information)
+   # saving with semantic information
+   # line or connector between shapes has a semantic meaning
+   # using semantic information with UML (example)
+   # make sure not to irritate the user with questions
+ * supporting other open diagram formats
+ * collaborative diagramming
+ * svg format with connectors
+ * semantically tagging and creating diagrams 
+   # with wizards
+ * export to formats supported by MS Powerpoint and OO impress
+ * support for the MS visio format
+ * snapping and smart connectors
+ * command shortcuts
+   # create shapes through keyboard commands (for disabled people)
+ * text to speech support
+ * notes
+ * plug-in system 
+   # plug-ins for specific usages (electrical engineering, materials, lighting, etc...)
+   # shape differentiation (differences between wires and lines)
+ * layouting for automatically reordering shapes (save space and ordered scene)
+ * creating complex shapes (photos) from pre-defined svgs
+ * mini map for large diagrams
+ * web interface
+
+==technical==
+ * scalability, speed and performance
+   # extensive profiling
+   # clipping and lazy redrawing
+   # look into lower level solutions
+   # multi-threaded rendering
+   # double/triple buffering
+   # offscreen rendering
+   # rendering only visible parts in files
+ * debugging
+ * object/state aware canvas
+   # layer support
+ * vector graphics support
+   # zooming, scaling and svg
+ * cmake or autotools?
+
+==more==
+ * user evaluation to test ease of use
+ 

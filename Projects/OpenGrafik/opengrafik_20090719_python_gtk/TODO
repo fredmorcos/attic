@@ -1,0 +1,7 @@
+*	DocumentManager should only care about the current open document (current selected tab), 
+	use a signal in the GtkNotebook when tabs are switched to switch the current document in
+	the document manager.
+*	Document shouldn't know anything about its filename, just its data representation.
+*	Eliminate _all_ Gtk warnings.
+*	Fix Document for loading and saving.
+

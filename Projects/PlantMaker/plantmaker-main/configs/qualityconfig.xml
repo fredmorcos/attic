@@ -1,0 +1,19 @@
+
+  <config>
+  <evaluator  finishLatePenalty="-2"
+              finishExactlyPenalty="2"
+              finishEarlyPenalty="-1"
+              powerUsageWeight="0"
+              craneIdleTimesWeight="0"
+              orderDeadlinesWeight="0"
+              zincUtilizationWeight="1"
+  />
+  
+  <optimizer  populationSize="20"
+              mutationRange="30"
+              iterations="40"
+              indivMutationRate="0.5"
+              selectionRate="1.0"
+  />
+  </config>
+  

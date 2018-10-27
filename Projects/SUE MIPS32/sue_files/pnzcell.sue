@@ -1,0 +1,61 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_pnzcell {} {
+  make output -name pout -origin {540 230}
+  make output -name nout -origin {530 430}
+  make output -name zout -origin {530 600}
+  make celltrans -origin {440 250}
+  make celltrans -origin {430 450}
+  make celltrans -origin {430 620}
+  make input -name w -origin {140 250}
+  make input -name {alu[31:0]} -origin {-270 540}
+  make AluOrOutput -origin {-10 620}
+  make name_net_s -name {ALU[31:0]} -origin {-210 280}
+  make name_net_s -name {ALU[31]} -origin {-240 190}
+  make name_net_s -name {ALU[31]} -origin {220 380}
+  make nor2 -origin {-110 210}
+  make Inverters32Bit -orient R270 -origin {-200 420}
+  make_wire 140 620 140 450
+  make_wire 330 620 140 620
+  make_wire 330 450 140 450
+  make_wire 340 250 140 250
+  make_wire 240 600 330 600
+  make_wire -40 210 250 210
+  make_wire 250 210 250 230
+  make_wire 250 230 340 230
+  make_wire 240 540 240 600
+  make_wire -240 190 -130 190
+  make_wire 220 380 220 430
+  make_wire 220 430 330 430
+  make_wire 100 540 100 290
+  make_wire 100 290 -160 290
+  make_wire -160 290 -160 230
+  make_wire 100 540 50 540
+  make_wire 100 540 240 540
+  make_wire -130 230 -160 230
+  make_wire 140 250 140 450
+  make_wire -210 540 -270 540
+  make_wire -210 540 -110 540
+  make_wire -210 280 -210 310
+  make_wire -210 510 -210 540
+}
+
+proc ICON_pnzcell args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 -40} -name {alu[31:0]}
+  icon_term -type input -origin {-100 0} -name w
+  icon_term -type output -origin {100 -20} -name nout
+  icon_term -type output -origin {100 -60} -name pout
+  icon_term -type output -origin {100 20} -name zout
+  icon_property -origin {-50 110} -type user -name name
+  icon_property -origin {-50 130} -type user -name M
+  icon_property -origin {-50 150} -type user -name dpc
+  icon_line -100 -80 -100 50 100 50 100 -80 -100 -80
+  icon_property -origin {-10 -40} -label PNZ
+  icon_property -origin {-90 -40} -label {alu[31:0]}
+  icon_property -origin {-90 0} -label w
+  icon_property -origin {90 -20} -anchor e -label nout
+  icon_property -origin {90 -60} -anchor e -label pout
+  icon_property -origin {90 20} -anchor e -label zout
+}
+

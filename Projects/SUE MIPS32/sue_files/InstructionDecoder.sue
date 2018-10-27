@@ -1,0 +1,79 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_InstructionDecoder {} {
+  make Mux -origin {230 290}
+  make decoder_2_4 -origin {560 30}
+  make name_net_s -name {t[0]} -origin {430 210}
+  make name_net_s -name {t[1:0]} -origin {310 10}
+  make name_net_s -name {t[1]} -origin {630 380}
+  make global -name vcc -origin {300 50}
+  make decoder_2_1_enable -origin {530 480}
+  make name_net_s -name {out[2]} -origin {360 500}
+  make name_net_s -name {out[3:0]} -origin {740 10}
+  make name_net_s -name {out[0]} -origin {840 190}
+  make name_net_s -name {out[3]} -origin {840 270}
+  make output -name BRANCH_UNIT_ACTIVATOR -origin {1150 270}
+  make output -name LOAD_UNIT_ACTIVATOR -origin {930 460}
+  make output -name STORE_UNIT_ACTIVATOR -origin {930 490}
+  make output -name ALU_UNIT_ACTIVATOR -origin {1150 190}
+  make input -name IR_OUT_31 -origin {40 250}
+  make input -name IR_OUT_29 -origin {40 230}
+  make input -name IR_OUT_30 -origin {40 210}
+  make input -name IR_OUT_27 -origin {40 460}
+  make global -name gnd -origin {1140 -10}
+  make name_net_s -name {out[1]} -origin {840 -10}
+  make inverter -origin {240 380}
+  make inverter -origin {160 380}
+  make inverter -origin {1010 -10}
+  make inverter -origin {930 -10}
+  make inverter -origin {1100 190}
+  make inverter -origin {1020 190}
+  make inverter -origin {1100 270}
+  make inverter -origin {1020 270}
+  make_wire 670 10 740 10
+  make_wire 130 230 40 230
+  make_wire 130 210 40 210
+  make_wire 310 10 470 10
+  make_wire 300 30 300 50
+  make_wire 300 30 470 30
+  make_wire 330 210 430 210
+  make_wire 630 490 930 490
+  make_wire 630 460 930 460
+  make_wire 40 460 430 460
+  make_wire 360 500 430 500
+  make_wire 290 380 630 380
+  make_wire 70 250 70 380
+  make_wire 70 380 130 380
+  make_wire 70 250 130 250
+  make_wire 70 250 40 250
+  make_wire 840 -10 900 -10
+  make_wire 1060 -10 1140 -10
+  make_wire 990 190 840 190
+  make_wire 840 270 990 270
+}
+
+proc ICON_InstructionDecoder args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-210 -10} -name IR_OUT_27
+  icon_term -type input -origin {-210 10} -name IR_OUT_29
+  icon_term -type input -origin {-210 30} -name IR_OUT_30
+  icon_term -type input -origin {-210 50} -name IR_OUT_31
+  icon_term -type output -origin {210 -10} -name ALU_UNIT_ACTIVATOR
+  icon_term -type output -origin {210 10} -name BRANCH_UNIT_ACTIVATOR
+  icon_term -type output -origin {210 30} -name LOAD_UNIT_ACTIVATOR
+  icon_term -type output -origin {210 50} -name STORE_UNIT_ACTIVATOR
+  icon_property -origin {220 180} -type user -name name
+  icon_property -origin {220 200} -type user -name M
+  icon_property -origin {220 220} -type user -name dpc
+  icon_line -210 -80 -210 70 210 70 210 -80 -210 -80
+  icon_property -origin {-200 -10} -label IR_OUT_27
+  icon_property -origin {-200 10} -label IR_OUT_29
+  icon_property -origin {-200 30} -label IR_OUT_30
+  icon_property -origin {-200 50} -label IR_OUT_31
+  icon_property -origin {200 -10} -anchor e -label ALU_UNIT_ACTIVATOR
+  icon_property -origin {200 10} -anchor e -label BRANCH_UNIT_ACTIVATOR
+  icon_property -origin {200 30} -anchor e -label LOAD_UNIT_ACTIVATOR
+  icon_property -origin {200 50} -anchor e -label STORE_UNIT_ACTIVATOR
+  icon_property -origin {-120 -50} -label {Main Instruction Decoder}
+}
+

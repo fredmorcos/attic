@@ -1,0 +1,12 @@
+<plant zincBreakTime="20" craneMoveTime="1" numberOfCranes="3">
+	<machine canUnhook="False" name="stripper" quantity="2" precedence="False"/>
+	<machine canUnhook="False" name="degreaser" quantity="1" precedence="False"/>
+	<machine canUnhook="False" name="pickler" quantity="2" precedence="False"/>
+	<machine canUnhook="False" name="rinser" quantity="2" precedence="False"/>
+	<machine canUnhook="False" name="fluxer" quantity="2" precedence="False"/>
+	<machine canUnhook="False" name="dryer" quantity="2" precedence="False"/>
+	<machine canUnhook="False" name="kettle" quantity="2" precedence="False"/>
+	<machine canUnhook="False" name="quencher" quantity="2" precedence="False"/>
+	<machine canUnhook="False" name="passivator" quantity="2" precedence="False"/>
+	<machine canUnhook="False" name="postrinser" quantity="2" precedence="False"/>
+</plant>

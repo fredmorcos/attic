@@ -1,0 +1,22 @@
+module mymodule
+
+int myfunction(int a, int b)
+{
+	int x
+	int y
+	int z
+	x = 5 + 5
+	y = a + b
+	z = x + y
+	ret z
+}
+
+import mymodule
+
+main
+{
+	int a
+	a = myfunction(2, 2)
+	print a
+}
+

@@ -1,0 +1,14 @@
+should be run as root or with sudo
+
+kernel modules:
+acpi-cpufreq
+cpufreq_conservative
+
+tools:
+hdparm
+wireless_tools
+ethtool
+udisks
+
+what you can also do:
+add "pcie_aspm=force pcie_ports=native hpet=force" (without quotes) to your kernel boot parameters

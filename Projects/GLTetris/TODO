@@ -1,0 +1,3 @@
+* rotation (code is there, just positions need to be set)
+* line animation when removed (fade out? or broken pieces? a la kwin compositor)
+* improve (rewrite?) line removal code

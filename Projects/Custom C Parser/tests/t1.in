@@ -1,0 +1,13 @@
+{
+foo: 1,
+bar: 2,
+baba: 2.3333,
+bbb: -23,
+baz: {
+ prop1: "hello",
+ prop2: @baz.prop1,
+ prop3: ^baz.prop2
+ }
+ ,
+ foob:-234.555
+ }

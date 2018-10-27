@@ -1,0 +1,11 @@
+extends ../account
+
+block account-tab-content
+  p.lead Profile display name
+  p Lorem ipsum cillum proident aliquip nulla exercitation voluptate mollit.
+  p Your current display name is: <strong>username</strong>
+  form(method="post", action="#{form_url}")
+    .input-prepend.input-append.input-block
+      label.add-on(for="displayname"): i.icon-user
+      input(name="displayname", type="text", placeholder="Your new display name")
+      button.btn.btn-medium(type="submit") Update

@@ -1,0 +1,69 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_Mux32Bit8to1 {} {
+  make mux42132bbits -origin {510 420}
+  make mux32bit221 -origin {740 480}
+  make mux42132bbits -origin {510 590}
+  make output -name {out[31:0]} -origin {840 400}
+  make input -name {A[31:0]} -origin {300 330}
+  make input -name {s[1:0]} -origin {300 580}
+  make input -name {s[2]} -origin {300 610}
+  make input -name {B[31:0]} -origin {300 350}
+  make input -name {C[31:0]} -origin {300 370}
+  make input -name {D[31:0]} -origin {300 390}
+  make input -name {E[31:0]} -origin {300 500}
+  make input -name {F[31:0]} -origin {300 520}
+  make input -name {G[31:0]} -origin {300 540}
+  make input -name {H[31:0]} -origin {300 560}
+  make_wire 360 560 300 560
+  make_wire 360 520 300 520
+  make_wire 360 540 300 540
+  make_wire 360 500 300 500
+  make_wire 340 580 360 580
+  make_wire 300 580 340 580
+  make_wire 340 410 360 410
+  make_wire 340 410 340 580
+  make_wire 300 370 360 370
+  make_wire 300 390 360 390
+  make_wire 300 330 360 330
+  make_wire 300 350 360 350
+  make_wire 680 520 680 610
+  make_wire 580 400 640 400
+  make_wire 580 330 580 400
+  make_wire 580 420 640 420
+  make_wire 580 420 580 500
+  make_wire 300 610 680 610
+  make_wire 560 330 580 330
+  make_wire 560 500 580 500
+}
+
+proc ICON_Mux32Bit8to1 args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 -80} -name {A[31:0]}
+  icon_term -type input -origin {-100 -60} -name {B[31:0]}
+  icon_term -type input -origin {-100 -40} -name {C[31:0]}
+  icon_term -type input -origin {-100 -20} -name {D[31:0]}
+  icon_term -type input -origin {-100 0} -name {E[31:0]}
+  icon_term -type input -origin {-100 20} -name {F[31:0]}
+  icon_term -type input -origin {-100 40} -name {G[31:0]}
+  icon_term -type input -origin {-100 60} -name {H[31:0]}
+  icon_term -type output -origin {100 0} -name {out[31:0]}
+  icon_term -type input -origin {-10 100} -orient R270 -name {s[2:0]}
+  icon_property -origin {-70 210} -type user -name name
+  icon_property -origin {-70 230} -type user -name M
+  icon_property -origin {-70 250} -type user -name dpc
+  icon_line -100 -110 -100 100 100 100 100 -110 -100 -110
+  icon_property -origin {-90 -80} -size small -label {A[31:0]}
+  icon_property -origin {-90 -60} -size small -label {B[31:0]}
+  icon_property -origin {-90 -40} -size small -label {C[31:0]}
+  icon_property -origin {-90 -20} -size small -label {D[31:0]}
+  icon_property -origin {-90 0} -size small -label {E[31:0]}
+  icon_property -origin {-90 20} -size small -label {F[31:0]}
+  icon_property -origin {-90 40} -size small -label {G[31:0]}
+  icon_property -origin {-90 60} -size small -label {H[31:0]}
+  icon_property -origin {-20 90} -size small -label {s[2:0]}
+  icon_property -origin {100 0} -size small -anchor e -label {out[31:0]}
+  icon_property -origin {-40 -20} -label {Mux 32 bit}
+  icon_property -origin {-20 0} -label {8 to 1}
+}
+

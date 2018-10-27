@@ -1,0 +1,13 @@
+{
+    "title":       "Instruction Memory",
+    "toplevel":    false,
+    "image_file":  "sbn-mem.svg",
+
+    "postprocess": true,
+    "pp_command":  "dia %IN% -t svg -e %OUT%",
+
+    "elements": {
+	"%DATA1%": "__inst_mem",
+	"%DATA2%": "__lit_inst_mem"
+    }
+}

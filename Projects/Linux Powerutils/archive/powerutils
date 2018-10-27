@@ -1,0 +1,53 @@
+#!/bin/sh
+
+version=1
+link="http://github.com/fredmorcos/powerutils"
+basedir=$(cd $(dirname ${BASH_SOURCE[0]}) && pwd)
+
+logfile=/tmp/powerutils.log
+modules="cpufreq"
+
+source_common () {
+    for module in $modules; do
+	module_filename=$basedir/powerutils-$module
+	
+	if [ -r $module_filename ]; then
+	    . $module_filename
+	    log "loaded module $module from $module_filename"
+	else
+	    log "module $module not found or not readable from $module_filename"
+	fi
+    done
+}
+
+log () {
+    echo $1 >> $logfile
+}
+
+performance () {
+    log "$(date)"
+    source_common
+}
+
+powersave () {
+    log "$(date)"
+    source_common
+}
+
+for arg in $@; do
+    if [[ "$arg" == "--help" ]]; then
+	echo "usage: powerutils [--help | --version |"
+	echo "                   --performance | --powersave]"
+	echo
+	echo "  --help         show this help"
+	echo "  --version      show version information"
+	echo "  --performance  set to maximum performance"
+	echo "  --powersave    set to maximum powersave"
+    elif [[ "$arg" == "--version" ]]; then
+	echo "powerutils v$version -- $link"
+    elif [[ "$arg" == "--performance" ]]; then
+	performance
+    elif [[ "$arg" == "--powersave" ]]; then
+	powersave
+    fi
+done

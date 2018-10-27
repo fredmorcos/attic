@@ -1,0 +1,7 @@
+set NETLIST_CACHE(celltrans,cells) {{icon nmos {}} {icon inverter has_schematic}}
+set netlist_props verilog
+set netlist_level 1000
+set NETLIST_CACHE(celltrans,version) MMI_SUE4.4.0
+set NETLIST_CACHE(celltrans) {{module celltrans (in, out0, w);} {	input		in;} {	input		w;} {	output		out0;} { } {	wire		net_2;} {	wire		net_1;} { } {	not #0 inv(out0, net_2);} {	not #0 inv_1(net_2, out0);} {	not #0 inv_2(net_1, in);} {	nmos n(net_2,net_1,w);} {} {endmodule		// celltrans} {}}
+set NETLIST_CACHE(celltrans,names) {{570 410 {0 inv}} {580 490 {0 inv_1}} {610 490 {0 out0}} {660 440 {1 out0}} {400 450 {0 n}} {620 410 {0 out0}} {530 490 {0 net_2}} {540 410 {0 net_2}} {400 390 {1 w} {2 w}} {440 450 {0 net_2}} {360 450 {0 net_1} {1 net_1}} {280 450 {0 in}} {210 450 {1 in}} {310 450 {0 inv_2}}}
+set NETLIST_CACHE(celltrans,wires) {{440 410 540 410 net_2} {440 490 530 490 net_2} {620 410 660 410 out0} {610 490 660 490 out0} {440 410 440 450 net_2} {440 450 440 490 net_2} {210 450 280 450 in} {660 440 660 490 out0} {660 410 660 440 out0}}

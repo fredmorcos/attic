@@ -1,0 +1,7 @@
+set NETLIST_CACHE(cell,cells) {{icon nmos {}} {icon inverter has_schematic}}
+set netlist_props verilog
+set netlist_level 1000
+set NETLIST_CACHE(cell,version) MMI_SUE4.4.0
+set NETLIST_CACHE(cell) {{module cell (in, out0, r1, w);} {	input		in;} {	input		r1;} {	input		w;} {	output		out0;} { } {	wire		net_2;} {	wire		net_3;} {	wire		net_1;} { } {	not #0 inv(net_2, net_1);} {	not #0 inv_1(net_1, net_2);} {	not #0 inv_2(net_3, in);} {	nmos n(net_1,net_3,w);} {	nmos n_1(out0,net_2,r1);} {} {endmodule		// cell} {}}
+set NETLIST_CACHE(cell,names) {{290 -170 {0 n}} {550 -210 {0 net_2}} {330 -170 {0 net_1}} {170 -170 {0 in}} {590 -210 {0 n_1}} {200 -170 {0 inv_2}} {430 -210 {0 net_1}} {420 -130 {0 net_1}} {630 -210 {1 out0} {2 out0}} {460 -210 {0 inv}} {470 -130 {0 inv_1}} {250 -170 {0 net_3} {1 net_3}} {590 -270 {1 r1} {2 r1}} {290 -230 {1 w} {2 w}} {510 -210 {0 net_2}} {500 -130 {0 net_2}} {100 -170 {1 in}}}
+set NETLIST_CACHE(cell,wires) {{330 -210 430 -210 net_1} {330 -130 420 -130 net_1} {510 -210 550 -210 net_2} {500 -130 550 -130 net_2} {330 -210 330 -170 net_1} {330 -170 330 -130 net_1} {550 -210 550 -130 net_2} {100 -170 170 -170 in}}

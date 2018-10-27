@@ -1,0 +1,7 @@
+set NETLIST_CACHE(FiveOnes,cells) {{icon inverter has_schematic}}
+set netlist_props verilog
+set netlist_level 1000
+set NETLIST_CACHE(FiveOnes,version) MMI_SUE4.4.0
+set NETLIST_CACHE(FiveOnes) {{module FiveOnes (out);} {	output	[4:0]	out;} { } {	wire		net_2;} {	wire		net_3;} {	wire		net_4;} {	wire		net_5;} {	wire		net_1;} { } {	not #0 inv(net_3, 1'b1);} {	not #0 inv_1(out[0], net_3);} {	not #0 inv_2(net_2, 1'b1);} {	not #0 inv_3(out[1], net_2);} {	not #0 inv_4(net_1, 1'b1);} {	not #0 inv_5(out[2], net_1);} {	not #0 inv_6(net_5, 1'b1);} {	not #0 inv_7(out[3], net_5);} {	not #0 inv_8(net_4, 1'b1);} {	not #0 inv_9(out[4], net_4);} {} {endmodule		// FiveOnes} {}}
+set NETLIST_CACHE(FiveOnes,names) {{650 580 {0 inv_6}} {580 500 {0 inv_5}} {650 610 {0 1'b1} {2 1'b1}} {510 500 {0 inv_3}} {650 530 {0 net_5} {1 net_5}} {650 450 {0 out[3]} {2 out[3]}} {440 580 {0 inv}} {720 580 {0 inv_8}} {440 610 {0 1'b1} {2 1'b1}} {650 500 {0 inv_7}} {720 610 {0 1'b1} {2 1'b1}} {440 530 {0 net_3} {1 net_3}} {720 530 {0 net_4} {1 net_4}} {440 450 {0 out[0]} {2 out[0]}} {580 580 {0 inv_4}} {720 450 {0 out[4]} {2 out[4]}} {510 580 {0 inv_2}} {580 610 {0 1'b1} {2 1'b1}} {440 500 {0 inv_1}} {510 610 {0 1'b1} {2 1'b1}} {580 530 {0 net_1} {1 net_1}} {720 500 {0 inv_9}} {510 530 {0 net_2} {1 net_2}} {580 450 {0 out[2]} {2 out[2]}} {510 450 {0 out[1]} {2 out[1]}}}
+set NETLIST_CACHE(FiveOnes,wires) {}

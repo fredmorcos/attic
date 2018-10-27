@@ -1,0 +1,36 @@
+<!-- Generator: GNU source-highlight 2.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900">	This file is part of cv-a1.</font></i>
+
+<i><font color="#9A1900">	Copyright (C) 2008	Frederic-Gerald Morcos </font></i><u><font color="#0000FF">&lt;fred.morcos@gmail.com&gt;</font></u>
+
+<i><font color="#9A1900">	cv-a1 is free software: you can redistribute it and/or modify</font></i>
+<i><font color="#9A1900">	it under the terms of the GNU General Public License as published by</font></i>
+<i><font color="#9A1900">	the Free Software Foundation, either version 3 of the License, or</font></i>
+<i><font color="#9A1900">	(at your option) any later version.</font></i>
+
+<i><font color="#9A1900">	cv-a1 is distributed in the hope that it will be useful,</font></i>
+<i><font color="#9A1900">	but WITHOUT ANY WARRANTY; without even the implied warranty of</font></i>
+<i><font color="#9A1900">	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</font></i>
+<i><font color="#9A1900">	GNU General Public License for more details.</font></i>
+
+<i><font color="#9A1900">	You should have received a copy of the GNU General Public License</font></i>
+<i><font color="#9A1900">	along with cv-a1.  If not, see </font></i><u><font color="#0000FF">&lt;http://www.gnu.org/licenses/&gt;</font></u><i><font color="#9A1900">.</font></i>
+<i><font color="#9A1900">*/</font></i>
+
+<b><font color="#000080">#ifndef</font></b> __UI_BUILDER_H__
+<b><font color="#000080">#define</font></b> __UI_BUILDER_H__
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;gtk/gtk.h&gt;</font>
+
+<font color="#009900">void</font>			<b><font color="#000000">ui_init</font></b><font color="#990000">();</font>
+<font color="#009900">void</font>			<b><font color="#000000">ui_destroy</font></b><font color="#990000">();</font>
+GtkWidget		<font color="#990000">*</font><b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font>gchar <font color="#990000">*);</font>
+GtkAction		<font color="#990000">*</font><b><font color="#000000">ui_get_action</font></b><font color="#990000">(</font>gchar <font color="#990000">*);</font>
+
+<b><font color="#000080">#endif</font></b>	<i><font color="#9A1900">/* __UI_BUILDER_H__ */</font></i>
+
+</tt></pre>

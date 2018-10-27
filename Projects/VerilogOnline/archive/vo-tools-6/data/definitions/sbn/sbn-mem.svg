@@ -1,0 +1,33 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: fig2dev Version 3.2 Patchlevel 5c -->
+<!-- CreationDate: Fri Mar 25 09:32:59 2011 -->
+<!-- Magnification: 1.000 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="9.0in" height="7.3in" viewBox="1188 1188 10824 8724">
+<g style="stroke-width:.025in; fill:none">
+<!-- Line: box -->
+<rect x="1200" y="1200" width="10800" height="8700" rx="105" 
+style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="12000,2100
+1200,2100
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="6600,2100
+6600,9900
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Text -->
+<text xml:space="preserve" x="6599" y="1800" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">%TITLE%</text>
+<!-- Text -->
+<text xml:space="preserve" x="6900" y="2625" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="start">%DATA2%</text>
+<!-- Text -->
+<text xml:space="preserve" x="1500" y="2625" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="start">%DATA1%</text>
+</g>
+</svg>

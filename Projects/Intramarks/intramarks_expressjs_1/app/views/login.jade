@@ -1,0 +1,21 @@
+extends _layout
+
+block content
+  article.container
+    .row
+      h2.page-title= title
+      .span4.offset4
+        .inner-container.navbar-inner
+          form#login-form(method="post", action="/login")
+            .input-prepend.input-block
+              label.add-on(for="email"): i.icon-envelope
+              input.span4#email(name="email", type="text", placeholder="Email")
+            .input-prepend.input-block
+              label.add-on(for="password"): i.icon-lock
+              input.span4#password(name="password", type="password", placeholder="Password")
+            .controls
+              button.btn.btn-primary(type="submit") Login
+              a.btn.btn-link.btn-mini(href="#") Reset password
+          .push-extra
+            p.lead Don't have an account yet?
+            p: a.btn.btn-success.btn-large(href="/sign-up") Sign-up, it's free!

@@ -1,0 +1,7 @@
+set NETLIST_CACHE(CUMuxSelect,cells) {{icon nor2 has_schematic} {icon nand2 has_schematic} {icon inverter has_schematic}}
+set netlist_props verilog
+set netlist_level 1000
+set NETLIST_CACHE(CUMuxSelect,version) MMI_SUE4.4.0
+set NETLIST_CACHE(CUMuxSelect) {{module CUMuxSelect (L, S, T0, T3, s);} {	input		L;} {	input		S;} {	input		T0;} {	input		T3;} {	output	[1:0]	s;} { } {	wire		net_2;} {	wire		net_3;} {	wire		net_4;} {	wire		net_1;} { } {	assign net_4 = !(L || S);} {	not #0 inv(net_2, net_4);} {	assign #0 net_1 = !(net_2 && T3);} {	not #0 inv_1(s[1], net_1);} {	not #0 inv_2(net_3, T0);} {	not #0 inv_3(s[0], net_3);} {} {endmodule		// CUMuxSelect} {}}
+set NETLIST_CACHE(CUMuxSelect,names) {{580 470 {0 inv_1}} {290 430 {0 L} {2 L}} {630 470 {0 s[1]} {2 s[1]}} {550 470 {0 net_1} {1 net_1}} {470 370 {0 s[0]} {2 s[0]}} {290 470 {0 S} {2 S}} {390 370 {0 net_3} {1 net_3}} {420 370 {0 inv_3}} {340 370 {0 inv_2}} {260 370 {1 T0}} {460 450 {0 net_2} {1 net_2}} {380 450 {0 net_4} {1 net_4}} {410 450 {0 inv}} {310 370 {0 T0}} {460 490 {0 T3} {2 T3}}}
+set NETLIST_CACHE(CUMuxSelect,wires) {{260 370 310 370 T0}}

@@ -1,0 +1,80 @@
+[package]
+name = "example-project"
+version = "0.1.0"
+authors = ["Fred Morcos <fred.morcos@gmail.com>"]
+
+# [lib]
+# name = "example"
+# path = "src/lib.rs"
+
+# [[bin]]
+# name = "example-cli"
+# path = "src/example-cli.rs"
+
+# [lib]
+# name = "libexample"
+# path = "src/lib.rs"
+
+# [[bin]]
+# name = "example"
+# path = "src/main.rs"
+
+# [profile.dev]
+# opt-level = 0
+# debug = true
+# lto = false
+# codegen-units = 32
+# incremental = true
+#
+# [profile.test]
+# opt-level = 0
+# debug = true
+# lto = false
+# codegen-units = 32
+# incremental = false
+#
+# [profile.doc]
+# opt-level = 0
+# debug = true
+# lto = false
+# codegen-units = 32
+# incremental = false
+#
+# [profile.bench]
+# opt-level = 3
+# debug = true
+# debug-assertions = false
+# panic = 'abort'
+# lto = true
+# codegen-units = 1
+# incremental = false
+#
+# [profile.release]
+# opt-level = 3
+# debug = false
+# debug-assertions = false
+# panic = 'abort'
+# lto = true
+# codegen-units = 1
+# incremental = false
+
+# For poor Windows
+# [target.x86_64-pc-windows-msvc]
+# rustflags = ["-C target-feature=+crt-static"]
+# [target.i686-pc-windows-msvc]
+# rustflags = ["-C target-feature=+crt-static"]
+
+[dependencies]
+# serde = "*"
+# serde_json = "*"
+# serde_derive = "*"
+# structopt = "*"
+# structopt-derive = "*"
+# fnv = "*"
+
+# debug-rs = "*"
+# petgraph = "*"
+# derive_builder = "*"
+# tabwriter = "*"
+# natord = "*"
+# error-chain = "*"

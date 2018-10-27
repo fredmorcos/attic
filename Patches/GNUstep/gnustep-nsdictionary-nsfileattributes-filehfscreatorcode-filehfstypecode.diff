@@ -1,0 +1,41 @@
+Index: Source/NSFileManager.m
+===================================================================
+--- Source/NSFileManager.m	(revision 28236)
++++ Source/NSFileManager.m	(working copy)
+@@ -2340,17 +2340,17 @@
+ /**
+  *  Returns HFS creator attribute (OS X).
+  */
+-- (int) fileHFSCreatorCode
++- (unsigned int) fileHFSCreatorCode
+ {
+-  return [[self objectForKey: NSFileHFSCreatorCode] intValue];
++  return [[self objectForKey: NSFileHFSCreatorCode] unsignedIntValue];
+ }
+ 
+ /**
+  *  Returns HFS type code attribute (OS X).
+  */
+-- (int) fileHFSTypeCode
++- (unsigned int) fileHFSTypeCode
+ {
+-  return [[self objectForKey: NSFileHFSTypeCode] intValue];
++  return [[self objectForKey: NSFileHFSTypeCode] unsignedIntValue];
+ }
+ 
+ /**
+Index: Headers/Foundation/NSFileManager.h
+===================================================================
+--- Headers/Foundation/NSFileManager.h	(revision 28236)
++++ Headers/Foundation/NSFileManager.h	(working copy)
+@@ -454,8 +454,8 @@
+ @interface NSDictionary(NSFileAttributes)
+ - (NSDate*) fileCreationDate;
+ - (BOOL) fileExtensionHidden;
+-- (int) fileHFSCreatorCode;
+-- (int) fileHFSTypeCode;
++- (unsigned int) fileHFSCreatorCode;
++- (unsigned int) fileHFSTypeCode;
+ - (BOOL) fileIsAppendOnly;
+ - (BOOL) fileIsImmutable;
+ - (unsigned long long) fileSize;

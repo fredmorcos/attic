@@ -1,0 +1,2 @@
+project (BLING)
+add_subdirectory (src)

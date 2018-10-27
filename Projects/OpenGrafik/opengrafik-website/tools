@@ -1,0 +1,21 @@
+#summary decided toolkits, sdks, etc... to use to build opengrafik
+
+= Introduction =
+
+here we list the candidates for use to build opengrafik and decide which to use. things like compilers, gui toolkit, source management, ide, etc... should go here.
+
+= Details =
+
+==source management==
+ * cmake
+   # supports pkg-config?
+   # internationalization and accessibility?
+   # fast
+   # easy to write cmake files.
+ * autotools
+
+==toolkits==
+ * openoffice sdk
+ * gnome framework
+   # libglade/gtkbuilder!
+     # will it be this way? or just code?

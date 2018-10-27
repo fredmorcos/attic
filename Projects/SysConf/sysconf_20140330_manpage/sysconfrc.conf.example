@@ -1,0 +1,349 @@
+# This program is free software. It comes without any warranty, to
+# the extent permitted by applicable law. You can redistribute it
+# and/or modify it under the terms of the Do What The Fuck You Want
+# To Public License, Version 2, as published by Sam Hocevar. See
+# http://sam.zoy.org/wtfpl/COPYING for more details.
+
+# Since this file is a bash script in its own right, use at your own
+# risk.
+
+# These are the categories of settings in this file:
+# *_set     -> whether the change the setting at all
+# *_value   -> the value to change the setting to
+# *_files   -> kernel /sys or /proc files to change
+# *_modules -> kernel module(s) to load before applying the setting
+
+# NOTE: When editing the settings in this file, keep in mind that the
+# most relevant variables to edit are the *_set and *_value variable.
+
+# CAUTION: DO NOT EDIT *_files OR *_modules SETTINGS UNLESS YOU REALLY
+# KNOW WHAT YOU'RE DOING.
+
+# It makes sense to have the logs output to /var/log/sysconf.log since
+# sysconf isn't constantly logging (nor running at all for that
+# matter). Set to /dev/stderr or /dev/stdout to get console output.
+# log_output=/var/log/sysconf.log
+log_output=/dev/stderr		# for debugging
+
+# Scheduler Multi-Core awareness and Scheduler Simultaneous
+# Multi-Threading awareness can help improve performance or
+# powersaving. MC tells the scheduler to utilize cores in one
+# processor package first before scheduling processes to other
+# processor packages. SMT tells the scheduler to utilize "thread
+# siblings" of one processor core before scheduling processes to other
+# cores.
+#
+# MC/SMT Values:
+#   0 = No power saving, good load balancing (performance)
+#   1 = Fill a core/package for long-running processes
+#   2 = Bias task wakeups to semi-idle package (powersaving)
+#
+# Default is 2 for both MC snd SMT
+scheduler_mc_set=1
+scheduler_mc_value=2
+scheduler_mc_files=/sys/devices/system/cpu/sched_mc_power_savings
+scheduler_smt_set=1
+scheduler_smt_value=2
+scheduler_smt_files=/sys/devices/system/cpu/sched_smt_power_savings
+
+# CPU Frequency Scaling is a feature to set processor frequency. A
+# processor running at a lower frequency consumes less power but is
+# also slower and vice-versa for a processor running at a higher
+# frequency. The Linux kernel supports on-demand scaling, which
+# automatically sets the processor frequency to a higher value when
+# the system is under load (when needed) and sets it back
+# automatically to a lowe when the system is idle.
+#
+# Values:
+#   powersave   = low power consumption, slower processing power
+#   performance = high speed, but higher power consumption
+#   ondemand    = scaling is done dynamically when needed
+#
+# Default is ondemand
+cpufreq_set=1
+cpufreq_value=ondemand
+cpufreq_files=/sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+cpufreq_modules="acpi-cpufreq cpufreq_powersave cpufreq_ondemand
+                 cpufreq_performance"
+
+# SysRq is a magic key combination that can be used to send emergency
+# commands to the Linux kernel. As an example, in the case where X
+# freezes and the system doesn't respond to any keystrokes (for
+# switching to a tty), the user can hit Alt-SysRq-R,E,I,S,U,B to
+# safely reboot the machine.
+#
+# Values:
+#   0 = disable
+#   1 = enable
+#
+# Default is 1 (to enable)
+sysrq_set=1
+sysrq_value=1
+sysrq_files=/proc/sys/kernel/sysrq
+
+# Swappiness is the tendency for the kernel to start swapping memory
+# to disk. On a system with plenty of ram, this should be minimized to
+# reduce disk access and increase responsiveness (especially on
+# desktops and laptops).
+#
+# Values:
+#   0-100% where   0 = do not swap at all
+#                100 = always swap
+#
+# Default is 1 (1%)
+swappiness_set=1
+swappiness_value=1
+swappiness_files=/proc/sys/vm/swappiness
+
+# Virtual File System (VFS) Cache Pressure sets the tendency of the
+# kernel to reclaim file and directory entry information. The higher
+# the value, the more the kernel will reclaim (and free) the cache
+# which might help improve memory consumption at the cost of slower
+# file and directory re-reads.
+#
+# Values:
+#     0 = never reclaim cache space
+#   > 0 = reclaim more and more aggressively
+#
+# Default is 50
+vfs_cache_pressure_set=1
+vfs_cache_pressure_value=50
+vfs_cache_pressure_files=/proc/sys/vm/vfs_cache_pressure
+
+# Laptop mode sets the kernel to delay disk writes while rotational
+# disks are spun down to delay the spinup until more data needs to be
+# written and thus save some power.
+#
+# Values:
+#   0-5 where 0 = disable, do not delay at all
+#             5 = delay for as long as possible
+#
+# Default is 0
+#
+# NOTE: if you experience an annoying clicking sound coming from the
+# hard drives, this value might be a good candidate to experiment
+# with.
+laptop_mode_set=1
+laptop_mode_value=0
+laptop_mode_files=/proc/sys/vm/laptop_mode
+
+# Non-Maskable Interrupts are a type of interrupts that cannot be
+# disabled or avoided. The Linux kernel sets up a watchdog timer to
+# issue NMIs periodically, which is useful in the case of a kernel
+# lockup, since the interrupt will be able to wake the kernel at a
+# different code path (ie, to generate a debug message about the
+# lockup). The NMI Watchdog timer can increase power consumption since
+# it wakes up the system more than needed for normal operation,
+# disabling it can save some power at the cost of not being able to
+# generate a debug message if the system gets locked up.
+#
+# Values:
+#   0 = disable
+#   1 = enable
+#
+# Default is 0 (to disable)
+nmi_watchdog_set=1
+nmi_watchdog_value=0
+nmi_watchdog_files=/proc/sys/kernel/nmi_watchdog
+
+# PCI-Express Active State Power Management is a feature to send PCI-E
+# links into powersave mode when unused. As a result of that, devices
+# connected to the link also go into powersave mode, resulting in high
+# power savings. The downside is that a delay is introduced to power
+# up the link and devices when needed.
+#
+# Values:
+#   default     = leave decision to the firmware
+#   powersave   = maximum powersaving
+#   performance = maximum performance
+#
+# Default is powersave
+#
+# NOTE: Some BIOSes do not properly advertise support for PCI-E ASPM,
+# "pcie_aspm=force" can be added to the kernel command line arguments
+# to force support for PCI-E ASPM. This might work properly on some
+# systems or result in lockups on other systems, so it is advised to
+# experiment. "pcie_aspm=off" can be added instead to completely turn
+# off ASPM for PCI-E links and devices.
+pcie_aspm_set=1
+pcie_aspm_value=powersave
+pcie_aspm_files=/sys/module/pcie_aspm/parameters/policy
+
+# Killing certain unused processes that are causing too many wake-ups
+# can prove useful in reducing power consumption, especially if such
+# processes are not generally useful to the user or the system. USE
+# WITH CARE.
+#
+# Value:
+#   List of processes to kill, separated by spaces.
+#
+# Default is "bootlogd minilogd"
+processes_kill_set=1
+processes_kill_value="bootlogd minilogd"
+
+# Unloading certain kernel modules can reduce device utilization - and
+# sometimes even complete shut-down of devices - and may result in
+# reduced power consumption. Unload kernel modules for devices you are
+# not using regularly. USE WITH CARE.
+#
+# Value:
+#   List of kernel modules to be unloaded, separated by spaces.
+#
+# Default is "pcmcia yenta_socket ohci_hcd uhci_hcd uvcvideo
+#             pcspkr mei hci_usb btusb bluetooth videodev"
+unload_kmod_set=1
+unload_kmod_value="pcmcia yenta_socket ohci_hcd uhci_hcd uvcvideo
+                   pcspkr mei hci_usb btusb bluetooth videodev
+                   sdhci"
+
+# Stopping UDisks from polling at removable media devices like CD-ROM
+# and DVD devices can help reduce system wake-ups and can result in
+# reduced power consumption.
+udisks_stop_polling_set=1
+
+# Wake-on-LAN is a networking features that allows a machine
+# on a network to be started up when a message is received, typically
+# send from another machine on the same local network. Disabling
+# wake-on-LAN can reduce power consumption.
+#
+# Value:
+#   List of network interface device names, separated by spaces.
+#
+# Default is "eth0 wlan0"
+wol_disable_set=1
+wol_disable_value="eth0 wlan0"
+
+# Putting unused bluetooth interfaces down can reduce power
+# consumption.
+#
+# Value:
+#   List of bluetooth interfaces to put down, separated by spaces.
+#
+# Default is "hci0"
+bluetooth_down_set=1
+bluetooth_down_value="hci0"
+
+# Putting unused network interfaces down can reduce power consumption.
+#
+# Value:
+#   List of network interfaces to put down, separated by spaces.
+#
+# Default is "eth0"
+network_iface_down_set=1
+network_iface_down_value="eth0"
+
+# Many network adapters are running at 1 Gbit/s speeds, which is
+# common nowadays in desktop and laptop machines. Reducing the
+# adapter's speed to 100 or even 10 Mbit/s can save a significant
+# amount of power at a cost of increased latency. This latency might
+# not be acceptable for network gaming but is negligible for web
+# browsing (since the internet connection is probably already much
+# slower than the network adapter speed).
+#
+# Value (interface list):
+#   List of network interfaces to affect, separated by spaces.
+#
+# Default is "eth0 wlan0"
+#
+# Values (speeds):
+#   auto = adapter and switch will find the highest speed
+#   1000 = try to force a 1 Gbit/s speed
+#   100  = try to force a 100 Mbit/s speed
+#   10   = try to force a 10 Mbit/s speed
+#
+# Values can be set per-interface in interface-specific variables
+# network_speed_value_* where * is the interface name.
+#
+# Default is 100
+network_speed_set=1
+network_speed_value="eth0 wlan0"
+network_speed_value_eth0=100
+network_speed_value_wlan0=100
+
+# Wifi power saving (ps-polling, transmit power scaling, etc) can
+# significantly reduce power consumption at the cost of latency
+# (negligible for web browsing, but visible when network
+# gaming). Also, older access points may not support client adapter
+# power saving, if you experience signal drops, either update the
+# firmware on your access point or disable wifi power saving.
+#
+# Value (interface list):
+#   List of network interfaces to affect, separated by spaces.
+#
+# Default is "wlan0"
+#
+# Values:
+#   pspoll:
+#     1-5 = 1 is the lowest power saving, 5 the highest
+#     off = disable ps-polling altogether
+#
+# Default is 5
+#
+#   txradio:
+#     on  = enable the radio
+#     off = disable the radio
+#
+# Default is on
+#
+#   txpower:
+#     auto  = enable power control
+#     fixed = disable power control
+#
+# Default is auto
+#
+#   power:
+#     on  = enable power management
+#     off = disable power management
+wifi_power_set=1
+wifi_power_value="wlan0"
+wifi_power_pspoll_wlan0=5
+wifi_power_txradio_wlan0=on
+wifi_power_txpower_wlan0=auto
+wifi_power_power_wlan0=on
+
+# SATA Agressive Link Power Management can help reduce power
+# consumption for SATA device links (like disk drives). When there is
+# no data to be transfered (during idleness), the link is
+# automatically put into a low power mode, and only brought up to
+# speed when needed.
+#
+# Values:
+#   min_power       = minimum power consumption at idleness
+#   max_performance = unconditional maximum performance
+#
+# Default is min_power
+sata_alpm_set=1
+sata_alpm_value=min_power
+sata_alpm_files=/sys/class/scsi_host/host*/link_power_management_policy
+
+# Sound cards and their respective controllers can be automatically
+# put into powersave mode to reduce power consumption when not in use.
+#
+# Value:
+#   on  = enable powersaving
+#   off = disable powersaving
+#
+# Default is on
+#
+# Value (delay):
+#   amount of idle time before enabling powersaving (in seconds)
+#
+# Default is 10
+audio_powersave_set=1
+audio_powersave_value=on
+audio_powersave_delay=10
+audio_powersave_files=/sys/module/snd_*/parameters/power_save
+audio_powersave_controller_files=/sys/module/snd_*/parameters/power_save_controller
+
+# Runtime Power Management can be used to reduce power consumption by
+# dynamically putting devices that support Runtime PM to sleep when
+# idle and waking them up as needed.
+#
+# Values:
+#   auto = dynamic power management
+#   on   = set devices as always on
+#
+# Default is auto
+runtime_pm_set=1
+runtime_pm_value=auto
+runtime_pm_files=/sys/*/*/power/control

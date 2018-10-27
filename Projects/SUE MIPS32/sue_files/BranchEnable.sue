@@ -1,0 +1,70 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_BranchEnable {} {
+  make nand2 -origin {450 410}
+  make inverter -origin {550 410}
+  make inverter -origin {720 430}
+  make nor2 -origin {620 430}
+  make nand2 -origin {790 450}
+  make input -name BC -origin {180 530}
+  make input -name BU -origin {180 550}
+  make output -name BE -origin {940 450}
+  make nand2 -origin {200 340}
+  make input -name Z -origin {180 360}
+  make nand2 -origin {200 410}
+  make input -name N -origin {180 430}
+  make nand2 -origin {200 480}
+  make input -name P -origin {180 500}
+  generate nor2 nor3 -ninputs 3
+  make nor3 -WP 4 -origin {360 390}
+  make inverter -origin {890 450}
+  make input -name {IR[0]} -origin {180 320}
+  make input -name {IR[1]} -origin {180 390}
+  make input -name {IR[2]} -origin {180 460}
+  make input -name T3 -origin {180 570}
+  make_wire 290 340 290 370
+  make_wire 270 340 290 340
+  make_wire 290 370 340 370
+  make_wire 290 390 290 410
+  make_wire 270 410 290 410
+  make_wire 290 390 340 390
+  make_wire 270 480 300 480
+  make_wire 300 480 300 410
+  make_wire 300 410 340 410
+  make_wire 430 430 360 430
+  make_wire 180 530 360 530
+  make_wire 360 430 360 530
+  make_wire 390 450 390 550
+  make_wire 600 450 390 450
+  make_wire 180 550 390 550
+  make_wire 410 470 410 570
+  make_wire 770 470 410 470
+  make_wire 180 570 410 570
+}
+
+proc ICON_BranchEnable args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 10} -name BC
+  icon_term -type input -origin {-100 30} -name BU
+  icon_term -type input -origin {-100 -100} -name {IR[2:0]}
+  icon_term -type output -origin {100 -80} -name BE
+  icon_term -type input -origin {-10 60} -orient R270 -name N
+  icon_term -type input -origin {-30 60} -orient R270 -name P
+  icon_term -type input -origin {10 60} -orient R270 -name Z
+  icon_term -type input -origin {-100 50} -name T3
+  icon_property -origin {-70 160} -type user -name name
+  icon_property -origin {-70 180} -type user -name M
+  icon_property -origin {-70 200} -type user -name dpc
+  icon_line -100 -120 -100 60 100 60 100 -120 -100 -120
+  icon_property -origin {-90 10} -label BC
+  icon_property -origin {-90 30} -label BU
+  icon_property -origin {-90 -100} -label {IR[2:0]}
+  icon_property -origin {-10 50} -anchor e -rotate 1 -label N
+  icon_property -origin {-30 50} -anchor e -rotate 1 -label P
+  icon_property -origin {-90 50} -label T3
+  icon_property -origin {10 50} -anchor e -rotate 1 -label Z
+  icon_property -origin {90 -80} -anchor e -label BE
+  icon_property -origin {-20 -40} -label Branch
+  icon_property -origin {-20 -20} -label Enable
+}
+

@@ -1,0 +1,3 @@
+known bugs:
+
+* changing the color, doesn't support all color codes, something's wrong with gtk. FIXED

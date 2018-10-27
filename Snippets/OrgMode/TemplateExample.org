@@ -1,0 +1,87 @@
+#+TITLE:    The Design and Implementation of Backy
+
+#+AUTHOR:   Fred Morcos
+#+EMAIL:    fred.morcos@gmail.com
+
+#+LANGUAGE: English
+#+DATE:
+
+* Introduction
+This is a document that explains the backup system Backy.
+
+** This is a sub-part of the introduction
+This is some  text under the first sub-part. But  this sentence is too
+long and we should use =fill-mode= to organize it!
+
+** And this is another sub-part
+This is some text under the second sub-part
+
+** This is a new sub-part!
+Here is some math in Latex syntax: $2^{34}$.
+
+* The Preprocessor Template
+#+name: template
+#+headers: :var src="ERROR" :var values="()"
+#+begin_src emacs-lisp
+  (let ((lookup (read values)))
+    "Replaces  each first  field in  VALUES with  its corresponding
+     second field in src."
+    (replace-regexp-in-string
+     "{{[^}]+}}"
+     (lambda (p)
+       (let ((name (intern (substring p 2 -2))))
+         (format "%s" (or (cadr (assoc name lookup)) name))))
+     src))
+#+end_src
+
+* Includes and Defines
+#+name: includes
+#+begin_src C
+  #include <stdbool.h>
+  #include <stdio.h>
+  #include <stdlib.h>
+  #include <bsd/bsd.h>
+#+end_src
+
+#+name: defines
+#+begin_src C
+  #define attr_unused     __attribute__((unused))
+  #define attr_cleanup(x) __attribute__((cleanup(x)))
+#+end_src
+
+* The Generic Linked List Implementation
+#+name: linked-list
+#+begin_example C
+  #ifndef GUARD_{{type}}_list
+  #define GUARD_{{type}}_list
+
+  struct {{type}}_linked_list {
+    {{type}} element;
+    struct {{type}}_linked_list *next;
+  };
+
+  typedef struct {{type}}_linked_list {{type}}_list;
+
+  #endif
+#+end_example
+
+* The Main Implementation
+#+name: main
+#+begin_src C :tangle main.c :noweb yes
+  <<includes>>
+  <<defines>>
+
+  <<template(src=linked-list, values="((type int))")>>
+  <<template(src=linked-list, values="((type int))")>>
+  <<template(src=linked-list, values="((type char))")>>
+
+  int main (attr_unused int argc, attr_unused char **argv) {
+    int_list list_of_numbers;
+    char_list like_a_string;
+    printf("Foobar\n");
+    return 0;
+  }
+#+end_src
+
+* Conclusion
+And this is the end of the program.

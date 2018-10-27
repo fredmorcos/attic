@@ -1,0 +1,14 @@
+* Add state saving/loading in /var/tmp, This way we can show what is
+  enabled/disabled and show some status (ie, webcam and bluetooth
+  kernel modules come to mind)
+
+* Add enable/disable vs. low_power/dynamic/high_perf parameters
+
+* Add [low|high]_power_[startup|shutdown] or states for
+  booting/shutting down to avoid corner case issues on some hardware
+  (quirk files?)
+
+* Add hibernate/sleep and ac/battery states too?
+
+* Fix USB Human Interface Devices (HIDs) from sleeping (or increase
+  sleep timeout dramatically)

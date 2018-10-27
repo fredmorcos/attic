@@ -1,0 +1,427 @@
+<!-- Generator: GNU source-highlight 2.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900">	This file is part of cv-a1.</font></i>
+
+<i><font color="#9A1900">	Copyright (C) 2008	Frederic-Gerald Morcos </font></i><u><font color="#0000FF">&lt;fred.morcos@gmail.com&gt;</font></u>
+
+<i><font color="#9A1900">	cv-a1 is free software: you can redistribute it and/or modify</font></i>
+<i><font color="#9A1900">	it under the terms of the GNU General Public License as published by</font></i>
+<i><font color="#9A1900">	the Free Software Foundation, either version 3 of the License, or</font></i>
+<i><font color="#9A1900">	(at your option) any later version.</font></i>
+
+<i><font color="#9A1900">	cv-a1 is distributed in the hope that it will be useful,</font></i>
+<i><font color="#9A1900">	but WITHOUT ANY WARRANTY; without even the implied warranty of</font></i>
+<i><font color="#9A1900">	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</font></i>
+<i><font color="#9A1900">	GNU General Public License for more details.</font></i>
+
+<i><font color="#9A1900">	You should have received a copy of the GNU General Public License</font></i>
+<i><font color="#9A1900">	along with cv-a1.  If not, see </font></i><u><font color="#0000FF">&lt;http://www.gnu.org/licenses/&gt;</font></u><i><font color="#9A1900">.</font></i>
+<i><font color="#9A1900">*/</font></i>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"cv-stuff.h"</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;cv.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;highgui.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;glib.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;math.h&gt;</font>
+
+<b><font color="#000080">#define</font></b> TYPE CV_32FC1
+
+<b><font color="#0000FF">static</font></b> IplImage <font color="#990000">*</font>image<font color="#990000">;</font>		<i><font color="#9A1900">/* currently set image */</font></i>
+
+<i><font color="#9A1900">/**</font></i>
+<i><font color="#9A1900"> * Creates a window and loads an image from filename</font></i>
+<i><font color="#9A1900"> * into it.</font></i>
+<i><font color="#9A1900"> */</font></i>
+<font color="#009900">void</font> <b><font color="#000000">cv_stuff_window</font></b><font color="#990000">(</font><font color="#009900">char</font> <font color="#990000">*</font>filename<font color="#990000">)</font> <font color="#FF0000">{</font>
+	<b><font color="#000000">cv_stuff_destroy</font></b><font color="#990000">();</font>
+	image <font color="#990000">=</font> <b><font color="#000000">cvLoadImage</font></b><font color="#990000">(</font>filename<font color="#990000">,</font> <font color="#990000">-</font><font color="#993399">1</font><font color="#990000">);</font>
+	<b><font color="#000000">cvNamedWindow</font></b><font color="#990000">(</font><font color="#FF0000">"Image"</font><font color="#990000">,</font> CV_WINDOW_AUTOSIZE<font color="#990000">);</font>
+	<b><font color="#000000">cvShowImage</font></b><font color="#990000">(</font><font color="#FF0000">"Image"</font><font color="#990000">,</font> image<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+<i><font color="#9A1900">/**</font></i>
+<i><font color="#9A1900"> * Destroys and releases the image memory if there </font></i>
+<i><font color="#9A1900"> * is any.</font></i>
+<i><font color="#9A1900"> */</font></i>
+<font color="#009900">void</font> <b><font color="#000000">cv_stuff_destroy</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(</font>image<font color="#990000">)</font> <b><font color="#000000">cvReleaseImage</font></b><font color="#990000">(&amp;</font>image<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+<i><font color="#9A1900">/**</font></i>
+<i><font color="#9A1900"> * Reloads the image data into the window.</font></i>
+<i><font color="#9A1900"> */</font></i>
+<font color="#009900">void</font> <b><font color="#000000">cv_stuff_reload</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(!</font>image<font color="#990000">)</font> <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+
+	<b><font color="#000000">cvShowImage</font></b><font color="#990000">(</font><font color="#FF0000">"Image"</font><font color="#990000">,</font> image<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+<i><font color="#9A1900">/**</font></i>
+<i><font color="#9A1900"> * Saves image data to a filename.</font></i>
+<i><font color="#9A1900"> */</font></i>
+<font color="#009900">void</font> <b><font color="#000000">cv_stuff_save_image</font></b><font color="#990000">(</font><font color="#009900">char</font> <font color="#990000">*</font>filename<font color="#990000">)</font> <font color="#FF0000">{</font>
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(</font>image<font color="#990000">)</font> <b><font color="#000000">cvSaveImage</font></b><font color="#990000">(</font>filename<font color="#990000">,</font> image<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+<i><font color="#9A1900">/**</font></i>
+<i><font color="#9A1900"> * Checks if the window is still open, if not, </font></i>
+<i><font color="#9A1900"> * then free the image.</font></i>
+<i><font color="#9A1900"> */</font></i>
+<font color="#009900">void</font> <b><font color="#000000">cv_stuff_check</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(!</font>image<font color="#990000">)</font> <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+
+	<font color="#009900">void</font> <font color="#990000">*</font>handle<font color="#990000">;</font>
+
+	handle <font color="#990000">=</font> <b><font color="#000000">cvGetWindowHandle</font></b><font color="#990000">(</font><font color="#FF0000">"Image"</font><font color="#990000">);</font>
+
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(!</font>handle<font color="#990000">)</font>
+		<b><font color="#000000">cv_stuff_destroy</font></b><font color="#990000">();</font>
+<font color="#FF0000">}</font>
+
+<i><font color="#9A1900">/**</font></i>
+<i><font color="#9A1900"> * Inverts an image (gets its negative) by </font></i>
+<i><font color="#9A1900"> * going over all pixels in the image data</font></i>
+<i><font color="#9A1900"> * and doing a val = 255 - val.</font></i>
+<i><font color="#9A1900"> */</font></i>
+<font color="#009900">void</font> <b><font color="#000000">cv_stuff_negate1</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
+	<b><font color="#000000">cv_stuff_check</font></b><font color="#990000">();</font>
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(!</font>image<font color="#990000">)</font> <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+
+	<font color="#009900">int</font>		w<font color="#990000">,</font>		<i><font color="#9A1900">/* width */</font></i> 
+			h<font color="#990000">,</font> 		<i><font color="#9A1900">/* height */</font></i>
+			s<font color="#990000">,</font> 		<i><font color="#9A1900">/* step */</font></i>
+			c<font color="#990000">,</font>		<i><font color="#9A1900">/* channels */</font></i>
+			i<font color="#990000">,</font>		<i><font color="#9A1900">/* i counter */</font></i>
+			j<font color="#990000">,</font>		<i><font color="#9A1900">/* j counter */</font></i>
+			k<font color="#990000">,</font>		<i><font color="#9A1900">/* k counter */</font></i>
+			p<font color="#990000">;</font>		<i><font color="#9A1900">/* pos in array */</font></i>
+	uchar	<font color="#990000">*</font>d<font color="#990000">;</font>		<i><font color="#9A1900">/* image data */</font></i>
+
+	w <font color="#990000">=</font> image<font color="#990000">-&gt;</font>width<font color="#990000">;</font>
+	h <font color="#990000">=</font> image<font color="#990000">-&gt;</font>height<font color="#990000">;</font>
+	s <font color="#990000">=</font> image<font color="#990000">-&gt;</font>widthStep<font color="#990000">;</font>
+	c <font color="#990000">=</font> image<font color="#990000">-&gt;</font>nChannels<font color="#990000">;</font>
+	d <font color="#990000">=</font> <font color="#990000">(</font>uchar <font color="#990000">*)</font>image<font color="#990000">-&gt;</font>imageData<font color="#990000">;</font>
+
+	<i><font color="#9A1900">/**</font></i>
+<i><font color="#9A1900">	 * Invert every pixel in the image. Deals </font></i>
+<i><font color="#9A1900">	 * with the image as a 2D matrix with </font></i>
+<i><font color="#9A1900">	 * direct access.</font></i>
+<i><font color="#9A1900">	 */</font></i>
+	<b><font color="#0000FF">for</font></b> <font color="#990000">(</font>i <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> h<font color="#990000">;</font> i<font color="#990000">++)</font>
+		<b><font color="#0000FF">for</font></b> <font color="#990000">(</font>j <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> j <font color="#990000">&lt;</font> w<font color="#990000">;</font> j<font color="#990000">++)</font>
+			<b><font color="#0000FF">for</font></b> <font color="#990000">(</font>k <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> k <font color="#990000">&lt;</font> c<font color="#990000">;</font> k<font color="#990000">++)</font> <font color="#FF0000">{</font>
+				p <font color="#990000">=</font> i <font color="#990000">*</font> s <font color="#990000">+</font> j <font color="#990000">*</font> c <font color="#990000">+</font> k<font color="#990000">;</font>
+				d<font color="#990000">[</font>p<font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">255</font> <font color="#990000">-</font> d<font color="#990000">[</font>p<font color="#990000">];</font>
+			<font color="#FF0000">}</font>
+
+	<b><font color="#000000">cv_stuff_reload</font></b><font color="#990000">();</font>
+<font color="#FF0000">}</font>
+
+
+
+<i><font color="#9A1900">/**</font></i>
+<i><font color="#9A1900"> * Inverts an image (gets its negative) by </font></i>
+<i><font color="#9A1900"> * going over all pixels in the image data</font></i>
+<i><font color="#9A1900"> * and doing a val = 255 - val.</font></i>
+<i><font color="#9A1900"> */</font></i>
+<font color="#009900">void</font> <b><font color="#000000">cv_stuff_negate2</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
+	<b><font color="#000000">cv_stuff_check</font></b><font color="#990000">();</font>
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(!</font>image<font color="#990000">)</font> <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+
+	<font color="#009900">int</font>		w<font color="#990000">,</font>		<i><font color="#9A1900">/* width */</font></i> 
+			h<font color="#990000">,</font> 		<i><font color="#9A1900">/* height */</font></i>
+			s<font color="#990000">,</font> 		<i><font color="#9A1900">/* step */</font></i>
+			c<font color="#990000">,</font>		<i><font color="#9A1900">/* channels */</font></i>
+			i<font color="#990000">,</font>		<i><font color="#9A1900">/* i counter */</font></i>
+			j<font color="#990000">,</font>		<i><font color="#9A1900">/* j counter */</font></i>
+			k<font color="#990000">,</font>		<i><font color="#9A1900">/* k counter */</font></i>
+			p<font color="#990000">;</font>		<i><font color="#9A1900">/* pos in array */</font></i>
+	uchar	<font color="#990000">*</font>d<font color="#990000">;</font>		<i><font color="#9A1900">/* image data */</font></i>
+
+	w <font color="#990000">=</font> image<font color="#990000">-&gt;</font>width<font color="#990000">;</font>
+	h <font color="#990000">=</font> image<font color="#990000">-&gt;</font>height<font color="#990000">;</font>
+	s <font color="#990000">=</font> image<font color="#990000">-&gt;</font>widthStep<font color="#990000">;</font>
+	c <font color="#990000">=</font> image<font color="#990000">-&gt;</font>nChannels<font color="#990000">;</font>
+	d <font color="#990000">=</font> <font color="#990000">(</font>uchar <font color="#990000">*)</font>image<font color="#990000">-&gt;</font>imageData<font color="#990000">;</font>
+
+	<i><font color="#9A1900">/**</font></i>
+<i><font color="#9A1900">	 * Another way to get the inverse of an image,</font></i>
+<i><font color="#9A1900">	 * though slower. Deals with the image as a </font></i>
+<i><font color="#9A1900">	 * 2D matrix with indirect access.</font></i>
+<i><font color="#9A1900">	 */</font></i>	
+	CvScalar pixel<font color="#990000">;</font>
+	<b><font color="#0000FF">for</font></b> <font color="#990000">(</font>i <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> w<font color="#990000">;</font> i<font color="#990000">++)</font>
+		<b><font color="#0000FF">for</font></b> <font color="#990000">(</font>j <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> j <font color="#990000">&lt;</font> h<font color="#990000">;</font> j<font color="#990000">++)</font> <font color="#FF0000">{</font>
+			pixel <font color="#990000">=</font> <b><font color="#000000">cvGet2D</font></b><font color="#990000">(</font>image<font color="#990000">,</font> j<font color="#990000">,</font> i<font color="#990000">);</font>
+			<b><font color="#0000FF">for</font></b> <font color="#990000">(</font>k <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> k <font color="#990000">&lt;</font> c<font color="#990000">;</font> k<font color="#990000">++)</font>
+				pixel<font color="#990000">.</font>val<font color="#990000">[</font>k<font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">255</font> <font color="#990000">-</font> pixel<font color="#990000">.</font>val<font color="#990000">[</font>k<font color="#990000">];</font>
+			<b><font color="#000000">cvSet2D</font></b><font color="#990000">(</font>image<font color="#990000">,</font> j<font color="#990000">,</font> i<font color="#990000">,</font> pixel<font color="#990000">);</font>
+		<font color="#FF0000">}</font>
+
+	<b><font color="#000000">cv_stuff_reload</font></b><font color="#990000">();</font>
+<font color="#FF0000">}</font>
+
+<i><font color="#9A1900">/**</font></i>
+<i><font color="#9A1900"> * Inverts an image (gets its negative) by </font></i>
+<i><font color="#9A1900"> * going over all pixels in the image data</font></i>
+<i><font color="#9A1900"> * and doing a val = 255 - val.</font></i>
+<i><font color="#9A1900"> */</font></i>
+<font color="#009900">void</font> <b><font color="#000000">cv_stuff_negate3</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
+	<b><font color="#000000">cv_stuff_check</font></b><font color="#990000">();</font>
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(!</font>image<font color="#990000">)</font> <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+
+	<font color="#009900">int</font>		w<font color="#990000">,</font>		<i><font color="#9A1900">/* width */</font></i> 
+			h<font color="#990000">,</font> 		<i><font color="#9A1900">/* height */</font></i>
+			c<font color="#990000">,</font>		<i><font color="#9A1900">/* channels */</font></i>
+			i<font color="#990000">;</font>		<i><font color="#9A1900">/* counter */</font></i>
+	uchar	<font color="#990000">*</font>d<font color="#990000">;</font>		<i><font color="#9A1900">/* image data */</font></i>
+
+	w <font color="#990000">=</font> image<font color="#990000">-&gt;</font>width<font color="#990000">;</font>
+	h <font color="#990000">=</font> image<font color="#990000">-&gt;</font>height<font color="#990000">;</font>
+	c <font color="#990000">=</font> image<font color="#990000">-&gt;</font>nChannels<font color="#990000">;</font>
+	d <font color="#990000">=</font> <font color="#990000">(</font>uchar <font color="#990000">*)</font>image<font color="#990000">-&gt;</font>imageData<font color="#990000">;</font>
+
+	<i><font color="#9A1900">/**</font></i>
+<i><font color="#9A1900">	 * Invert every pixel in the image. Deals </font></i>
+<i><font color="#9A1900">	 * with the image as a 1D matrix.</font></i>
+<i><font color="#9A1900">	 */</font></i>
+	<b><font color="#0000FF">for</font></b> <font color="#990000">(</font>i <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> h <font color="#990000">*</font> w <font color="#990000">*</font> c<font color="#990000">;</font> i<font color="#990000">++)</font>
+		d<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> <font color="#993399">255</font> <font color="#990000">-</font> d<font color="#990000">[</font>i<font color="#990000">];</font>
+
+	<b><font color="#000000">cv_stuff_reload</font></b><font color="#990000">();</font>
+<font color="#FF0000">}</font>
+
+<i><font color="#9A1900">/**</font></i>
+<i><font color="#9A1900"> * Receives the position of a pixel in float and interpolates </font></i>
+<i><font color="#9A1900"> * its intensity value (for each channel) using the </font></i>
+<i><font color="#9A1900"> * neighboring pixels.</font></i>
+<i><font color="#9A1900"> */</font></i>
+CvScalar <b><font color="#000000">interpolate </font></b><font color="#990000">(</font>IplImage <font color="#990000">*</font>image<font color="#990000">,</font> <font color="#009900">float</font> x<font color="#990000">,</font> <font color="#009900">float</font> y<font color="#990000">)</font> <font color="#FF0000">{</font>
+	<font color="#009900">int</font> xf <font color="#990000">=</font> <b><font color="#000000">floorf</font></b><font color="#990000">(</font>x<font color="#990000">),</font>		<i><font color="#9A1900">/* left */</font></i>
+		xc <font color="#990000">=</font> <b><font color="#000000">ceilf</font></b><font color="#990000">(</font>x<font color="#990000">),</font>		<i><font color="#9A1900">/* right */</font></i>
+		yf <font color="#990000">=</font> <b><font color="#000000">floorf</font></b><font color="#990000">(</font>y<font color="#990000">),</font>		<i><font color="#9A1900">/* top */</font></i>
+		yc <font color="#990000">=</font> <b><font color="#000000">ceilf</font></b><font color="#990000">(</font>y<font color="#990000">);</font>		<i><font color="#9A1900">/* bottom */</font></i>
+
+	<font color="#009900">double</font> l <font color="#990000">=</font> x <font color="#990000">-</font> xf<font color="#990000">,</font>		<i><font color="#9A1900">/* left */</font></i>
+		   r <font color="#990000">=</font> xc <font color="#990000">-</font> x<font color="#990000">,</font>		<i><font color="#9A1900">/* right */</font></i>
+		   u <font color="#990000">=</font> y <font color="#990000">-</font> yf<font color="#990000">,</font>		<i><font color="#9A1900">/* up */</font></i>
+		   d <font color="#990000">=</font> yc <font color="#990000">-</font> y<font color="#990000">;</font>		<i><font color="#9A1900">/* down */</font></i>
+
+	<font color="#009900">int</font>	k<font color="#990000">;</font>					<i><font color="#9A1900">/* channels counter */</font></i>
+
+	<font color="#009900">double</font> v_up<font color="#990000">,</font>			<i><font color="#9A1900">/* vertical interpolation, up */</font></i>
+		   v_down<font color="#990000">;</font>			<i><font color="#9A1900">/* vertical interpolation, down */</font></i>
+
+	CvScalar res<font color="#990000">;</font>
+
+	<b><font color="#0000FF">for</font></b> <font color="#990000">(</font>k <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> k <font color="#990000">&lt;</font> image<font color="#990000">-&gt;</font>nChannels<font color="#990000">;</font> k<font color="#990000">++)</font> <font color="#FF0000">{</font>
+		v_up <font color="#990000">=</font> <font color="#990000">(</font>l <font color="#990000">*</font> <b><font color="#000000">cvGet2D</font></b><font color="#990000">(</font>image<font color="#990000">,</font> xc<font color="#990000">,</font> yf<font color="#990000">).</font>val<font color="#990000">[</font>k<font color="#990000">])</font> <font color="#990000">+</font> <font color="#990000">(</font>r <font color="#990000">*</font> <b><font color="#000000">cvGet2D</font></b><font color="#990000">(</font>image<font color="#990000">,</font> xf<font color="#990000">,</font> yf<font color="#990000">).</font>val<font color="#990000">[</font>k<font color="#990000">]);</font>
+		v_down <font color="#990000">=</font> <font color="#990000">(</font>l <font color="#990000">*</font> <b><font color="#000000">cvGet2D</font></b><font color="#990000">(</font>image<font color="#990000">,</font> xc<font color="#990000">,</font> yc<font color="#990000">).</font>val<font color="#990000">[</font>k<font color="#990000">])</font> <font color="#990000">+</font> <font color="#990000">(</font>r <font color="#990000">*</font> <b><font color="#000000">cvGet2D</font></b><font color="#990000">(</font>image<font color="#990000">,</font> xf<font color="#990000">,</font> yc<font color="#990000">).</font>val<font color="#990000">[</font>k<font color="#990000">]);</font>
+		res<font color="#990000">.</font>val<font color="#990000">[</font>k<font color="#990000">]</font> <font color="#990000">=</font> <font color="#990000">(</font>u <font color="#990000">*</font> v_down<font color="#990000">)</font> <font color="#990000">+</font> <font color="#990000">(</font>d <font color="#990000">*</font> v_up<font color="#990000">);</font>
+	<font color="#FF0000">}</font>
+
+	<b><font color="#0000FF">return</font></b> res<font color="#990000">;</font>
+<font color="#FF0000">}</font>
+
+<i><font color="#9A1900">/**</font></i>
+<i><font color="#9A1900"> * Rotates an image around point (x, y) by angle. Uses </font></i>
+<i><font color="#9A1900"> * OpenCV built-in functions to do so. Unused.</font></i>
+<i><font color="#9A1900"> */</font></i>
+<font color="#009900">void</font> <b><font color="#000000">cv_stuff_rotate_opencv</font></b><font color="#990000">(</font><font color="#009900">int</font> x<font color="#990000">,</font> <font color="#009900">int</font> y<font color="#990000">,</font> <font color="#009900">double</font> angle<font color="#990000">)</font> <font color="#FF0000">{</font>
+	<b><font color="#000000">cv_stuff_check</font></b><font color="#990000">();</font>
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(!</font>image<font color="#990000">)</font> <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+
+	IplImage		<font color="#990000">*</font>tmp<font color="#990000">;</font>
+	CvPoint2D32f	rot_point<font color="#990000">;</font>
+	CvMat			<font color="#990000">*</font>rot_matrix<font color="#990000">;</font>
+
+	rot_point <font color="#990000">=</font> <b><font color="#000000">cvPoint2D32f</font></b><font color="#990000">(</font>x<font color="#990000">,</font> y<font color="#990000">);</font>
+	rot_matrix <font color="#990000">=</font> <b><font color="#000000">cvCreateMat</font></b><font color="#990000">(</font><font color="#993399">2</font><font color="#990000">,</font> <font color="#993399">3</font><font color="#990000">,</font> CV_32FC1<font color="#990000">);</font>
+	<b><font color="#000000">cv2DRotationMatrix</font></b><font color="#990000">(</font>rot_point<font color="#990000">,</font> angle<font color="#990000">,</font> <font color="#993399">1.0</font><font color="#990000">,</font> rot_matrix<font color="#990000">);</font>
+
+	tmp <font color="#990000">=</font> <b><font color="#000000">cvCloneImage</font></b><font color="#990000">(</font>image<font color="#990000">);</font>
+	<b><font color="#000000">cvWarpAffine</font></b><font color="#990000">(</font>tmp<font color="#990000">,</font> image<font color="#990000">,</font> rot_matrix<font color="#990000">,</font> 
+			CV_INTER_LINEAR <font color="#990000">+</font> CV_WARP_FILL_OUTLIERS<font color="#990000">,</font> <b><font color="#000000">cvScalarAll</font></b><font color="#990000">(</font><font color="#993399">0</font><font color="#990000">));</font>
+
+	<b><font color="#000000">cvReleaseImage</font></b><font color="#990000">(&amp;</font>tmp<font color="#990000">);</font>
+	<b><font color="#000000">cv_stuff_reload</font></b><font color="#990000">();</font>
+<font color="#FF0000">}</font>
+
+<i><font color="#9A1900">/**</font></i>
+<i><font color="#9A1900"> * Rotates an image around point (x, y) by angle</font></i>
+<i><font color="#9A1900"> * manually. First creates a translation matrix to </font></i>
+<i><font color="#9A1900"> * move the data by (-x, -y). Then creates a rotation</font></i>
+<i><font color="#9A1900"> * matrix to rotate by angle then translates back by </font></i>
+<i><font color="#9A1900"> * (x, y). Then, it multiplies the three matrices </font></i>
+<i><font color="#9A1900"> * together and gets the inverse to get the intensity </font></i>
+<i><font color="#9A1900"> * of the original pixel into the destination one.</font></i>
+<i><font color="#9A1900"> * Interpolation is used in the last process to smooth </font></i>
+<i><font color="#9A1900"> * the resulting image.</font></i>
+<i><font color="#9A1900"> */</font></i>
+<font color="#009900">void</font> <b><font color="#000000">cv_stuff_rotate</font></b><font color="#990000">(</font><font color="#009900">int</font> y<font color="#990000">,</font> <font color="#009900">int</font> x<font color="#990000">,</font> <font color="#009900">double</font> angle<font color="#990000">)</font> <font color="#FF0000">{</font>
+	<b><font color="#000000">cv_stuff_check</font></b><font color="#990000">();</font>
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(!</font>image<font color="#990000">)</font> <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+
+	<font color="#009900">int</font> i<font color="#990000">,</font> j<font color="#990000">;</font>
+	<font color="#009900">float</font> a <font color="#990000">=</font> angle <font color="#990000">*</font> M_PI <font color="#990000">/</font> <font color="#993399">180</font><font color="#990000">;</font>
+	<font color="#009900">float</font> src_p<font color="#990000">[</font><font color="#993399">3</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#FF0000">{</font><font color="#993399">0</font><font color="#990000">,</font> <font color="#993399">0</font><font color="#990000">,</font> <font color="#993399">1</font><font color="#FF0000">}</font><font color="#990000">;</font>
+	<font color="#009900">float</font> dst_p<font color="#990000">[</font><font color="#993399">3</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#FF0000">{</font><font color="#993399">0</font><font color="#990000">,</font> <font color="#993399">0</font><font color="#990000">,</font> <font color="#993399">1</font><font color="#FF0000">}</font><font color="#990000">;</font>
+	<font color="#009900">float</font> inv_m<font color="#990000">[</font><font color="#993399">3</font><font color="#990000">][</font><font color="#993399">3</font><font color="#990000">];</font>
+	<font color="#009900">float</font> rot_m<font color="#990000">[</font><font color="#993399">3</font><font color="#990000">][</font><font color="#993399">3</font><font color="#990000">]</font> <font color="#990000">=</font> <font color="#FF0000">{</font>
+		<font color="#FF0000">{</font><b><font color="#000000">cos</font></b><font color="#990000">(</font>a<font color="#990000">),</font>		<font color="#990000">-</font><b><font color="#000000">sin</font></b><font color="#990000">(</font>a<font color="#990000">),</font>	<font color="#990000">((</font><font color="#993399">1</font> <font color="#990000">-</font> <b><font color="#000000">cos</font></b><font color="#990000">(</font>a<font color="#990000">))</font> <font color="#990000">*</font> x<font color="#990000">)</font> <font color="#990000">+</font> <font color="#990000">(</font><b><font color="#000000">sin</font></b><font color="#990000">(</font>a<font color="#990000">)</font> <font color="#990000">*</font> y<font color="#990000">)</font><font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font><b><font color="#000000">sin</font></b><font color="#990000">(</font>a<font color="#990000">),</font>		<b><font color="#000000">cos</font></b><font color="#990000">(</font>a<font color="#990000">),</font>		<font color="#990000">(</font><b><font color="#000000">sin</font></b><font color="#990000">(</font>a<font color="#990000">)</font> <font color="#990000">*</font> <font color="#990000">-</font>x<font color="#990000">)</font> <font color="#990000">+</font> <font color="#990000">((</font><font color="#993399">1</font> <font color="#990000">-</font> <b><font color="#000000">cos</font></b><font color="#990000">(</font>a<font color="#990000">))</font> <font color="#990000">*</font> y<font color="#990000">)</font><font color="#FF0000">}</font><font color="#990000">,</font>
+		<font color="#FF0000">{</font><font color="#993399">0</font><font color="#990000">,</font>				<font color="#993399">0</font><font color="#990000">,</font>			<font color="#993399">1</font><font color="#FF0000">}}</font><font color="#990000">;</font>
+
+	CvMat rot_mat <font color="#990000">=</font> <b><font color="#000000">cvMat</font></b><font color="#990000">(</font><font color="#993399">3</font><font color="#990000">,</font> <font color="#993399">3</font><font color="#990000">,</font> TYPE<font color="#990000">,</font> rot_m<font color="#990000">);</font>
+	CvMat inv_mat <font color="#990000">=</font> <b><font color="#000000">cvMat</font></b><font color="#990000">(</font><font color="#993399">3</font><font color="#990000">,</font> <font color="#993399">3</font><font color="#990000">,</font> TYPE<font color="#990000">,</font> inv_m<font color="#990000">);</font>
+	CvMat src_pnt <font color="#990000">=</font> <b><font color="#000000">cvMat</font></b><font color="#990000">(</font><font color="#993399">3</font><font color="#990000">,</font> <font color="#993399">1</font><font color="#990000">,</font> TYPE<font color="#990000">,</font> src_p<font color="#990000">);</font>
+	CvMat dst_pnt <font color="#990000">=</font> <b><font color="#000000">cvMat</font></b><font color="#990000">(</font><font color="#993399">3</font><font color="#990000">,</font> <font color="#993399">1</font><font color="#990000">,</font> TYPE<font color="#990000">,</font> dst_p<font color="#990000">);</font>
+	IplImage <font color="#990000">*</font>tmp <font color="#990000">=</font> <b><font color="#000000">cvCloneImage</font></b><font color="#990000">(</font>image<font color="#990000">);</font>
+	CvScalar pixel<font color="#990000">;</font>
+
+	<b><font color="#000000">cvInvert</font></b><font color="#990000">(&amp;</font>rot_mat<font color="#990000">,</font> <font color="#990000">&amp;</font>inv_mat<font color="#990000">,</font> CV_LU<font color="#990000">);</font>
+
+	<b><font color="#0000FF">for</font></b> <font color="#990000">(</font>i <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> tmp<font color="#990000">-&gt;</font>height<font color="#990000">;</font> i<font color="#990000">++)</font>
+		<b><font color="#0000FF">for</font></b> <font color="#990000">(</font>j <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> j <font color="#990000">&lt;</font> tmp<font color="#990000">-&gt;</font>width<font color="#990000">;</font> j<font color="#990000">++)</font> <font color="#FF0000">{</font>
+			dst_p<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">=</font> i<font color="#990000">;</font>
+			dst_p<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#990000">=</font> j<font color="#990000">;</font>
+
+			<b><font color="#000000">cvMatMul</font></b><font color="#990000">(&amp;</font>inv_mat<font color="#990000">,</font> <font color="#990000">&amp;</font>dst_pnt<font color="#990000">,</font> <font color="#990000">&amp;</font>src_pnt<font color="#990000">);</font>
+
+			src_p<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">=</font> <b><font color="#000000">cvGetReal2D</font></b><font color="#990000">(&amp;</font>src_pnt<font color="#990000">,</font> <font color="#993399">0</font><font color="#990000">,</font> <font color="#993399">0</font><font color="#990000">);</font>
+			src_p<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#990000">=</font> <b><font color="#000000">cvGetReal2D</font></b><font color="#990000">(&amp;</font>src_pnt<font color="#990000">,</font> <font color="#993399">1</font><font color="#990000">,</font> <font color="#993399">0</font><font color="#990000">);</font>
+
+			<b><font color="#0000FF">if</font></b> <font color="#990000">(</font>src_p<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">&gt;=</font> <font color="#993399">0</font> <font color="#990000">&amp;&amp;</font> src_p<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">]</font> <font color="#990000">&lt;</font> tmp<font color="#990000">-&gt;</font>height <font color="#990000">-</font> <font color="#993399">1</font> <font color="#990000">&amp;&amp;</font>
+					src_p<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#990000">&gt;=</font> <font color="#993399">0</font> <font color="#990000">&amp;&amp;</font> src_p<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#990000">&lt;</font> tmp<font color="#990000">-&gt;</font>width <font color="#990000">-</font> <font color="#993399">1</font><font color="#990000">)</font> <font color="#FF0000">{</font>
+
+				<b><font color="#0000FF">if</font></b> <font color="#990000">(</font><b><font color="#000000">isFloat</font></b><font color="#990000">(</font>src_p<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">])</font> <font color="#990000">||</font> <b><font color="#000000">isFloat</font></b><font color="#990000">(</font>src_p<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]))</font>
+					pixel <font color="#990000">=</font> <b><font color="#000000">interpolate</font></b><font color="#990000">(</font>tmp<font color="#990000">,</font> src_p<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">],</font> src_p<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]);</font>
+				<b><font color="#0000FF">else</font></b>
+					pixel <font color="#990000">=</font> <b><font color="#000000">cvGet2D</font></b><font color="#990000">(</font>tmp<font color="#990000">,</font> src_p<font color="#990000">[</font><font color="#993399">0</font><font color="#990000">],</font> src_p<font color="#990000">[</font><font color="#993399">1</font><font color="#990000">]);</font>
+			<font color="#FF0000">}</font>
+			<b><font color="#0000FF">else</font></b>
+				pixel <font color="#990000">=</font> <b><font color="#000000">CV_RGB</font></b><font color="#990000">(</font><font color="#993399">0</font><font color="#990000">,</font> <font color="#993399">0</font><font color="#990000">,</font> <font color="#993399">0</font><font color="#990000">);</font>
+			<b><font color="#000000">cvSet2D</font></b><font color="#990000">(</font>image<font color="#990000">,</font> i<font color="#990000">,</font> j<font color="#990000">,</font> pixel<font color="#990000">);</font>
+		<font color="#FF0000">}</font>
+
+	<b><font color="#000000">cvReleaseImage</font></b><font color="#990000">(&amp;</font>tmp<font color="#990000">);</font>
+	<b><font color="#000000">cv_stuff_reload</font></b><font color="#990000">();</font>
+<font color="#FF0000">}</font>
+
+<i><font color="#9A1900">/**</font></i>
+<i><font color="#9A1900"> * Returns TRUE if f is a floating point number and FALSE otherwise.</font></i>
+<i><font color="#9A1900"> */</font></i>
+gboolean <b><font color="#000000">isFloat </font></b><font color="#990000">(</font><font color="#009900">float</font> f<font color="#990000">)</font> <font color="#FF0000">{</font>
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(</font>f <font color="#990000">==</font> <b><font color="#000000">floorf</font></b><font color="#990000">(</font>f<font color="#990000">))</font> <b><font color="#0000FF">return</font></b> FALSE<font color="#990000">;</font>
+	<b><font color="#0000FF">return</font></b> TRUE<font color="#990000">;</font>
+<font color="#FF0000">}</font>
+
+<i><font color="#9A1900">/**</font></i>
+<i><font color="#9A1900"> * Upsamples the image by replicating pixels * factor.</font></i>
+<i><font color="#9A1900"> */</font></i>
+<font color="#009900">void</font> <b><font color="#000000">cv_stuff_upsample</font></b><font color="#990000">(</font>gboolean replication<font color="#990000">,</font> <font color="#009900">double</font> factor<font color="#990000">)</font> <font color="#FF0000">{</font>
+	<b><font color="#000000">cv_stuff_check</font></b><font color="#990000">();</font>
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(!</font>image <font color="#990000">||</font> factor <font color="#990000">==</font> <font color="#993399">0.0</font><font color="#990000">)</font> <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+
+	CvSize		orig_size<font color="#990000">;</font>
+	IplImage	<font color="#990000">*</font>tmp<font color="#990000">;</font>
+	<font color="#009900">int</font>			i<font color="#990000">,</font>
+				j<font color="#990000">,</font>
+				x <font color="#990000">=</font> <font color="#990000">-</font><font color="#993399">1</font><font color="#990000">,</font>		<i><font color="#9A1900">/* cached floori */</font></i>
+				y <font color="#990000">=</font> <font color="#990000">-</font><font color="#993399">1</font><font color="#990000">,</font>		<i><font color="#9A1900">/* cached floorj */</font></i>
+				floori<font color="#990000">,</font>		<i><font color="#9A1900">/* new i */</font></i>
+				floorj<font color="#990000">;</font>		<i><font color="#9A1900">/* new j */</font></i>
+	CvScalar	pixel<font color="#990000">;</font>		<i><font color="#9A1900">/* current/cached pixel */</font></i>
+
+	orig_size <font color="#990000">=</font> <b><font color="#000000">cvGetSize</font></b><font color="#990000">(</font>image<font color="#990000">);</font>
+	tmp <font color="#990000">=</font> <b><font color="#000000">cvCloneImage</font></b><font color="#990000">(</font>image<font color="#990000">);</font>
+	image <font color="#990000">=</font> <b><font color="#000000">cvCreateImage</font></b><font color="#990000">(</font>
+			<b><font color="#000000">cvSize</font></b><font color="#990000">(</font>orig_size<font color="#990000">.</font>width <font color="#990000">*</font> factor<font color="#990000">,</font> 
+				orig_size<font color="#990000">.</font>height <font color="#990000">*</font> factor<font color="#990000">),</font> 
+			tmp<font color="#990000">-&gt;</font>depth<font color="#990000">,</font> tmp<font color="#990000">-&gt;</font>nChannels<font color="#990000">);</font>
+
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(</font>replication<font color="#990000">)</font> <font color="#FF0000">{</font>
+		<i><font color="#9A1900">/**</font></i>
+<i><font color="#9A1900">		 * Loop over the destination image and gets the </font></i>
+<i><font color="#9A1900">		 * corresponding intensity position from the </font></i>
+<i><font color="#9A1900">		 * source image then applies it to the pixels </font></i>
+<i><font color="#9A1900">		 * in the destination image.</font></i>
+<i><font color="#9A1900">		 */</font></i>
+		<b><font color="#0000FF">for</font></b><font color="#990000">(</font>i <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> image<font color="#990000">-&gt;</font>width<font color="#990000">;</font> i<font color="#990000">++)</font> <font color="#FF0000">{</font>
+			<b><font color="#0000FF">for</font></b><font color="#990000">(</font>j <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font> j <font color="#990000">&lt;</font> image<font color="#990000">-&gt;</font>height<font color="#990000">;</font> j<font color="#990000">++)</font> <font color="#FF0000">{</font>
+				floori <font color="#990000">=</font> <b><font color="#000000">floor</font></b><font color="#990000">(</font>i <font color="#990000">/</font> factor<font color="#990000">);</font>
+				floorj <font color="#990000">=</font> <b><font color="#000000">floor</font></b><font color="#990000">(</font>j <font color="#990000">/</font> factor<font color="#990000">);</font>
+
+				<i><font color="#9A1900">/**</font></i>
+<i><font color="#9A1900">				 * If we're going to get the same pixel </font></i>
+<i><font color="#9A1900">				 * again as the last iteration, don't do </font></i>
+<i><font color="#9A1900">				 * so, use the already cached pixel.</font></i>
+<i><font color="#9A1900">				 */</font></i>
+				<b><font color="#0000FF">if</font></b> <font color="#990000">(</font>floori <font color="#990000">!=</font> x <font color="#990000">||</font> floorj <font color="#990000">!=</font> y<font color="#990000">)</font> <font color="#FF0000">{</font>
+					pixel <font color="#990000">=</font> <b><font color="#000000">cvGet2D</font></b><font color="#990000">(</font>tmp<font color="#990000">,</font> floorj<font color="#990000">,</font> floori<font color="#990000">);</font>
+					x <font color="#990000">=</font> floori<font color="#990000">;</font>
+					y <font color="#990000">=</font> floorj<font color="#990000">;</font>
+				<font color="#FF0000">}</font>
+
+				<b><font color="#000000">cvSet2D</font></b><font color="#990000">(</font>image<font color="#990000">,</font> j<font color="#990000">,</font> i<font color="#990000">,</font> pixel<font color="#990000">);</font>
+			<font color="#FF0000">}</font>
+		<font color="#FF0000">}</font>
+	<font color="#FF0000">}</font>
+
+	<b><font color="#000000">cvReleaseImage</font></b><font color="#990000">(&amp;</font>tmp<font color="#990000">);</font>
+	<b><font color="#000000">cv_stuff_reload</font></b><font color="#990000">();</font>
+<font color="#FF0000">}</font>
+
+<i><font color="#9A1900">/**</font></i>
+<i><font color="#9A1900"> * Upsamples the image using built-in functions in OpenCV, either </font></i>
+<i><font color="#9A1900"> * by replication or interpolation depending on the boolean value </font></i>
+<i><font color="#9A1900"> * given to replication.</font></i>
+<i><font color="#9A1900"> */</font></i>
+<font color="#009900">void</font> <b><font color="#000000">cv_stuff_upsample_opencv</font></b><font color="#990000">(</font>gboolean replication<font color="#990000">,</font> <font color="#009900">double</font> factor<font color="#990000">)</font> <font color="#FF0000">{</font>
+	<b><font color="#000000">cv_stuff_check</font></b><font color="#990000">();</font>
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(!</font>image <font color="#990000">||</font> factor <font color="#990000">==</font> <font color="#993399">0.0</font><font color="#990000">)</font> <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+
+	CvSize		orig_size<font color="#990000">;</font>
+	IplImage	<font color="#990000">*</font>tmp<font color="#990000">;</font>
+
+	orig_size <font color="#990000">=</font> <b><font color="#000000">cvGetSize</font></b><font color="#990000">(</font>image<font color="#990000">);</font>
+	tmp <font color="#990000">=</font> <b><font color="#000000">cvCloneImage</font></b><font color="#990000">(</font>image<font color="#990000">);</font>
+	image <font color="#990000">=</font> <b><font color="#000000">cvCreateImage</font></b><font color="#990000">(</font>
+			<b><font color="#000000">cvSize</font></b><font color="#990000">(</font>orig_size<font color="#990000">.</font>width <font color="#990000">*</font> factor<font color="#990000">,</font> 
+				orig_size<font color="#990000">.</font>height <font color="#990000">*</font> factor<font color="#990000">),</font> 
+			tmp<font color="#990000">-&gt;</font>depth<font color="#990000">,</font> tmp<font color="#990000">-&gt;</font>nChannels<font color="#990000">);</font>
+
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(</font>replication<font color="#990000">)</font>
+		<b><font color="#000000">cvResize</font></b><font color="#990000">(</font>tmp<font color="#990000">,</font> image<font color="#990000">,</font> CV_INTER_NN<font color="#990000">);</font>
+	<b><font color="#0000FF">else</font></b>
+		<b><font color="#000000">cvResize</font></b><font color="#990000">(</font>tmp<font color="#990000">,</font> image<font color="#990000">,</font> CV_INTER_LINEAR<font color="#990000">);</font>
+
+	<b><font color="#000000">cvReleaseImage</font></b><font color="#990000">(&amp;</font>tmp<font color="#990000">);</font>
+	<b><font color="#000000">cv_stuff_reload</font></b><font color="#990000">();</font>
+<font color="#FF0000">}</font>
+
+<i><font color="#9A1900">/**</font></i>
+<i><font color="#9A1900"> * Scales the image to size (width, height) using interpolation </font></i>
+<i><font color="#9A1900"> * by using built-in OpenCV functions.</font></i>
+<i><font color="#9A1900"> */</font></i>
+<font color="#009900">void</font> <b><font color="#000000">cv_stuff_scale</font></b><font color="#990000">(</font><font color="#009900">int</font> width<font color="#990000">,</font> <font color="#009900">int</font> height<font color="#990000">)</font> <font color="#FF0000">{</font>
+	<b><font color="#000000">cv_stuff_check</font></b><font color="#990000">();</font>
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(!</font>image<font color="#990000">)</font> <b><font color="#0000FF">return</font></b><font color="#990000">;</font>
+
+	IplImage	<font color="#990000">*</font>tmp<font color="#990000">;</font>
+
+	tmp <font color="#990000">=</font> <b><font color="#000000">cvCloneImage</font></b><font color="#990000">(</font>image<font color="#990000">);</font>
+	image <font color="#990000">=</font> <b><font color="#000000">cvCreateImage</font></b><font color="#990000">(</font>
+			<b><font color="#000000">cvSize</font></b><font color="#990000">(</font>width<font color="#990000">,</font> height<font color="#990000">),</font> 
+			tmp<font color="#990000">-&gt;</font>depth<font color="#990000">,</font> tmp<font color="#990000">-&gt;</font>nChannels<font color="#990000">);</font>
+	<b><font color="#000000">cvResize</font></b><font color="#990000">(</font>tmp<font color="#990000">,</font> image<font color="#990000">,</font> CV_INTER_CUBIC<font color="#990000">);</font>
+
+	<b><font color="#000000">cvReleaseImage</font></b><font color="#990000">(&amp;</font>tmp<font color="#990000">);</font>
+	<b><font color="#000000">cv_stuff_reload</font></b><font color="#990000">();</font>
+<font color="#FF0000">}</font>
+
+</tt></pre>

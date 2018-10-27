@@ -1,0 +1,40 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_CUMuxSelect {} {
+  make nor2 -origin {310 450}
+  make inverter -origin {410 450}
+  make nand2 -origin {480 470}
+  make inverter -origin {580 470}
+  make inverter -origin {340 370}
+  make inverter -origin {420 370}
+  make input -name T0 -origin {260 370}
+  make input -name L -origin {290 430}
+  make input -name S -origin {290 470}
+  make output -name {s[0]} -origin {470 370}
+  make output -name {s[1]} -origin {630 470}
+  make input -name T3 -origin {460 490}
+  make CUMuxSelect -origin {790 670}
+  make_wire 260 370 310 370
+  make_text -origin {220 300} -text {CU Mux Select}
+}
+
+proc ICON_CUMuxSelect args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 -40} -name L
+  icon_term -type input -origin {-100 -20} -name S
+  icon_term -type input -origin {-100 0} -name T0
+  icon_term -type output -origin {100 -20} -name {s[1:0]}
+  icon_term -type input -origin {-100 20} -name T3
+  icon_property -origin {-50 110} -type user -name name
+  icon_property -origin {-50 130} -type user -name M
+  icon_property -origin {-50 150} -type user -name dpc
+  icon_line -100 -80 -100 80 100 80 100 -80 -100 -80
+  icon_property -origin {-90 -40} -label L
+  icon_property -origin {-90 -20} -label S
+  icon_property -origin {-90 0} -label T0
+  icon_property -origin {-90 20} -label T3
+  icon_property -origin {100 -20} -anchor e -label {s[1:0]}
+  icon_property -origin {-30 -10} -label {CU Mux}
+  icon_property -origin {-20 10} -label Select
+}
+

@@ -1,0 +1,83 @@
+doctype 5
+html
+  head
+    meta(charset='utf-8')
+    link(rel='stylesheet', href='/resources/css/bootstrap.css')
+    link(rel='stylesheet', href='/resources/css/styles.css')
+    link(rel='stylesheet', href='/resources/css/responsive.css')
+    meta(name="viewport", content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1")
+    meta(name="apple-mobile-web-app-capable", content="yes")
+    script(src='/resources/scripts/libs/modernizr.js')
+    title #{locals.app_name} | #{title}
+  body(class='#{id}')
+    #header.navbar.navbar-static-top
+      .navbar-inner
+        .container
+          h1.brand: a(href="/") #{locals.app_name}
+          a.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          ul.nav.pull-right
+            li.dropdown
+              a.dropdown-toggle(data-toggle="dropdown", href="#")
+                img(src='/resources/medias/images/avatar.32x32.png', width='16', height='16')
+                | &nbsp; username &nbsp;
+                span.caret
+              ul.dropdown-menu
+                li: a(href="/account")
+                  i.icon-user
+                  | &nbsp; Account
+                li.dropdown-submenu
+                  a(tabindex="-1", href="/bookmarks")
+                    i.icon-bookmark
+                    | &nbsp; Bookmarks
+                  ul.dropdown-menu
+                    li: a(tabindex="-1", href="#") Private
+                    li: a(tabindex="-1", href="#") Public
+                    li.divider
+                    li: a(tabindex="-1", href="#") All
+                li.dropdown-submenu
+                  a(tabindex="-1", href="/organizations")
+                    i.icon-star
+                    | &nbsp; Organizations
+                  ul.dropdown-menu
+                    li: a(tabindex="-1", href="/organizations/DIGITAS") DIGITAS
+                    li: a(tabindex="-1", href="/organizations/fuborg") fuborg
+                    li: a(tabindex="-1", href="/organizations/bebbozpam") bebbozpam
+                li: a(href="#")
+                  i.icon-exclamation-sign
+                  | &nbsp; Alerts
+                li: a(href="#")
+                  i.icon-wrench
+                  | &nbsp; Settings
+                li.divider
+                li: a(href="/logout")
+                  i.icon-off
+                  | &nbsp; Logout
+          if(typeof nav !== "undefined")
+            .nav-collapse.collapse
+              ul.nav
+                each item in nav
+                  li(class=item.active): a(href='#{item.url}')= item.name
+    .container
+      #content
+        if(typeof messages !== "undefined")
+          each msg in messages
+            .alert(class='alert-'+msg.type)
+              button(type="button", class="close", data-dismiss="alert") &times;
+              strong #{msg.type}:
+              | &nbsp; #{msg.content}
+        block content
+    footer#footer
+      .container
+        ul.nav.nav-pills.inline
+          li: a(href="/about") About
+          li: a(href="/contact") Contact
+          li: a(href="/privacy") Privacy
+          li: a(href="/terms") Terms
+        p Copyrights 2012 #{locals.app_name}. All rights reserved.
+    block extras
+    script(src='/resources/scripts/libs/jquery.js')
+    script(src='/resources/scripts/plugins/jquery.bootstrap.js')
+    script(src='/resources/scripts/app.js')

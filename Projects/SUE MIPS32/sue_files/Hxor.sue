@@ -1,0 +1,52 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_Hxor {} {
+  make inverter -origin {360 410}
+  make inverter -WP 6 -WN 3 -origin {610 410}
+  make output -name out -origin {690 410}
+  make input -name in1 -origin {240 270}
+  make input -name in2 -origin {240 490}
+  make inverter -origin {360 340}
+  make xgate -orient RY -origin {470 490}
+  make xgate -orient RY -origin {470 340}
+  make Hxor -origin {690 520}
+  make_wire 300 560 470 560
+  make_wire 470 560 470 520
+  make_wire 330 410 300 410
+  make_wire 500 340 540 340
+  make_wire 540 490 500 490
+  make_wire 580 410 540 410
+  make_wire 660 410 690 410
+  make_wire 330 340 270 340
+  make_wire 270 490 240 490
+  make_wire 270 490 440 490
+  make_wire 300 410 300 560
+  make_wire 410 410 470 410
+  make_wire 410 340 440 340
+  make_wire 300 270 300 410
+  make_wire 270 490 270 340
+  make_wire 470 300 470 270
+  make_wire 540 340 540 410
+  make_wire 540 410 540 490
+  make_wire 470 370 470 410
+  make_wire 470 410 470 450
+  make_wire 240 270 300 270
+  make_wire 300 270 470 270
+  make_text -origin {250 210} -text {XOR Gate}
+}
+
+proc ICON_Hxor args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}}}
+  icon_term -type input -origin {-40 -20} -name in1
+  icon_term -type input -origin {-40 20} -name in2
+  icon_term -type output -origin {50 0} -name out
+  icon_property -origin {-50 70} -type user -name name
+  icon_property -origin {-50 90} -type user -name M
+  icon_arc -50 -30 60 110 -start 35 -extent 50
+  icon_arc -40 -30 -20 30 -start 270 -extent 180
+  icon_line -30 -30 10 -30
+  icon_line -30 30 10 30
+  icon_arc -50 -110 60 30 -start 275 -extent 50
+  icon_arc -50 -30 -30 30 -start 270 -extent 180
+}
+

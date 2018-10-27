@@ -1,0 +1,2 @@
+powerconf is a single-knob tool for power management on Linux systems,
+influenced by the lack of simplicity in sysconf.

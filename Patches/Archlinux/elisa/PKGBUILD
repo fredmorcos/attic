@@ -1,0 +1,20 @@
+# $Id: PKGBUILD,v 1.7 2008/03/07 14:31:57 bjorn Exp $
+# Contributor:sickhate <sickhate@tux-linux.net>
+# Maintainer: Bjorn Lindeijer <bjorn lindeijer nl>
+pkgname=elisa
+pkgver=0.3.4
+pkgrel=1
+pkgdesc="An open source cross-platform media center solution"
+arch=('i686' 'x86_64')
+url="http://www.fluendo.com/elisa/pigment.php"
+license=('GPL')
+depends=('twisted-web' 'pygtk' 'python-pigment>=0.3.3' \
+         'gstreamer0.10-python' 'setuptools')
+makedepends=('setuptools')
+source=(http://elisa.fluendo.com/static/download/$pkgname/$pkgname-$pkgver.tar.gz)
+md5sums=('695519f283a6d0fafac494ac5f1947fa')
+
+build() {
+  cd $startdir/src/$pkgname-$pkgver
+  python setup.py install --root=$startdir/pkg || return 1
+} 

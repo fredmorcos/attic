@@ -1,0 +1,148 @@
+/*
+ * SBN machine with hardwired FSM control
+ * (c) Volker Strumpen
+ * 
+ * modified to halt execution 
+ * if result address is C all fff's 
+ * i.e. ff for fwidth=8
+ * by Martin Polak
+ */
+module sbn (clk, state, PC, a, b);
+   parameter fwidth = 8;   // field width of sbn operand
+   parameter dwidth = 32;
+   input               clk;
+   output [2:0]        state;
+   output [fwidth-1:0] PC;
+   output [dwidth-1:0] a, b;
+
+   parameter iwidth = 4 * fwidth; 
+   
+   reg [iwidth-1:0]  imem[0:((1<<fwidth)-1)];
+   reg [dwidth-1:0]  dmem[0:((1<<fwidth)-1)];
+
+   reg [dwidth-1:0]  X, Y;
+   reg [fwidth-1:0]  PC;
+   reg [iwidth-1:0]  IR;
+
+   wire [iwidth-1:0] insn;
+   wire [dwidth-1:0] data, asubb;
+   wire [fwidth-1:0] addr, PCp1, A, B, C, D;
+   wire              altb, stp;
+   reg [1:0] 	     da;
+   
+   reg [2:0] 	     state, nextstate;
+   
+   parameter S0 = 3'b000;
+   parameter S1 = 3'b001;
+   parameter S2 = 3'b010;
+   parameter S3 = 3'b011;
+   parameter S4 = 3'b100;
+   parameter S5 = 3'b101;
+   parameter S6 = 3'b111;
+
+   // datapath
+   assign insn  = imem[PC];
+   assign data  = dmem[addr];
+   assign a     = X;   // for monitoring
+   assign b     = Y;   // for monitoring
+   
+   assign asubb = X - Y;
+   assign altb  = asubb[dwidth-1];
+
+	
+   assign PCp1  = PC + 1;
+   assign A     = IR[(4*fwidth-1):(3*fwidth)];
+   assign B     = IR[(3*fwidth-1):(2*fwidth)];
+   assign C     = IR[(2*fwidth-1):fwidth];
+   assign D     = IR[fwidth-1:0];         
+
+   assign stp   = (C == ~{fwidth{1'b0}}) ? 1 : 0;
+   assign addr  = (da == 2'b00) ? A : ((da == 2'b01) ? B : C);
+      
+   integer 	    i;
+
+   always @ (posedge clk)
+     case (state) // action at end of state cycle
+       S0: begin
+             IR <= insn;
+ 	     da <= 2'b00;
+           end
+       S1: begin
+	     X  <= data;
+ 	     da <= 2'b01;
+           end
+       S2: begin
+             Y  <= data;
+             da <= 2'b10;
+	   end
+       S3: dmem[addr] <= asubb;
+       S4: PC <= D;
+       S5: PC <= PCp1;
+       S6: begin
+	   $display("program caused halt with value %d\n",asubb);
+	   $display("dmem:");
+	   for (i=0; i<16; i=i+1)
+	     $display("%d %d", i, dmem[i]);
+
+	   $finish;
+           end
+    endcase       
+
+   // state register
+   always @ (posedge clk)
+     state <= nextstate;
+
+   // next state logic
+   always @ (state or altb or stp)
+     case (state)
+       S0:           nextstate = S1;
+       S1:           nextstate = S2;
+       S2: if (stp ) nextstate = S6;
+           else      nextstate = S3;
+       S3: if (altb) nextstate = S4;
+           else      nextstate = S5;
+       default:      nextstate = S0;
+     endcase
+   
+   initial begin
+      $readmemh("sbn.p", imem);
+      $readmemh("sbn.d", dmem);
+      PC = 0;
+      state = 0;
+          
+      $display("imem:");
+      for (i=0; i<32; i=i+1)
+	$display("%d %h", i, imem[i]);
+
+      $display("dmem:");       
+      for (i=0; i<16; i=i+1)
+	$display("%d %d", i, dmem[i]);
+      
+   end
+endmodule
+
+module top;
+   reg clk;
+   parameter fwidth = 8;   // field width of sbn operand
+   parameter dwidth = 32;
+   
+   
+   wire [2:0] state;
+   wire [fwidth-1:0] pc;
+   wire [dwidth-1:0] a, b;   
+   
+   sbn #(fwidth,dwidth) mach1 (clk, state, pc, a, b);
+
+   always @ (clk or state or pc or a or b)
+	$display ("%b  %d    %d  %d %d", clk, state, pc, a, b);
+   
+   initial
+     begin
+	clk = 0;
+	$display("clk state pc  a  b");
+     end
+  
+   always
+     #10 clk = ~clk;
+   
+endmodule   

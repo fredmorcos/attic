@@ -1,0 +1,5 @@
+Make socket calls more efficient
+Reduce initial chunk size of children dir
+Implement netrecvlen() to receive X bytes from the network before returning
+Rework vector implementation to accomodate external pointers after reallocations
+Add extra condition around getopt() with '?'

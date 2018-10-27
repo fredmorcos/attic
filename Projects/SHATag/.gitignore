@@ -1,0 +1,4 @@
+flycheck_*.plist
+*.o
+shatag
+testfile*

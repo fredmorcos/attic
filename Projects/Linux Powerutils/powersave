@@ -1,0 +1,338 @@
+#!/bin/bash
+# Public domain. Fred Morcos (fred dot morcos at gmail dot com)
+
+### Configuration variables
+
+# Linux-Powersave-Scripts scriplets (or "modules") to use
+SCRIPTLETS="processor processes vm_writeback nmi_watchdog \
+            pcie_aspm laptop_mode udisks usb wireless     \
+            ethernet sata journal_commit disks devices    \
+            audio runtime scheduler atime hugepage"
+
+# Processes to kill
+PROCESSES_KILL="bootlogd minilogd"
+
+# Primary disks will be running all the time (sys, home)
+DISKS_PRIMARY="sda"
+
+# Secondary disks are those that are rarely used (media)
+DISKS_SECONDARY="sdb"
+
+# Wireless devices
+WLAN_DEVS="wlan0"
+
+# Ethernet devices
+ETH_DEVS="eth0"
+
+### Routines
+
+processor () {
+    modprobe acpi-cpufreq
+    modprobe cpufreq_powersave
+    modprobe cpufreq_ondemand
+
+    scaling_govs=/sys/devices/system/cpu/*/cpufreq/scaling_governor
+
+    low_gov=powersave
+    dyn_gov=ondemand
+    max_gov=ondemand
+
+    for i in $scaling_govs; do
+    	case $1 in
+	    low) echo $low_gov > $i ;;
+	    dyn) echo $dyn_gov > $i ;;
+	    max) echo $max_gov > $i ;;
+    	    *)   echo "processor: bad param" ;;
+    	esac
+    done
+}
+
+processes () {
+    for i in $PROCESSES_KILL; do
+    	killall $i &>/dev/null
+    done
+}
+
+disks () {
+    case $1 in
+    	low | dyn)
+    	    for i in $DISKS_PRIMARY; do
+    		if [ -e /dev/$i ]; then
+		    hdparm -a 256 -A 1 -S 50 -B 200 -K 1 /dev/$i &>/dev/null
+    		fi
+    	    done
+
+    	    for i in $DISKS_SECONDARY; do
+    		if [ -e /dev/$i ]; then
+		    hdparm -a 256 -A 1 -S 10 -B 200 -K 1 /dev/$i &>/dev/null
+    		fi
+    	    done
+    	    ;;
+    	max)
+    	    for i in $DISKS_PRIMARY; do
+    		if [ -e /dev/$i ]; then
+		    hdparm -a 256 -A 1 -S 255 -B 255 -K 1 /dev/$i &>/dev/null
+    		fi
+    	    done
+
+    	    for i in $DISKS_SECONDARY; do
+    		if [ -e /dev/$i ]; then
+		    hdparm -a 256 -A 1 -S 50 -B 200 -K 1 /dev/$i &>/dev/null
+    		fi
+    	    done
+    	    ;;
+    	*) echo "disks: bad param" ;;
+    esac
+}
+
+vm_writeback () {
+    writeback=/proc/sys/vm/dirty_writeback_centisecs
+    expire=/proc/sys/vm/dirty_expire_centisecs
+
+    case $1 in
+	low)
+	    echo 6000 >	$writeback # 60 seconds
+	    echo 6000 >	$expire	   # 60 seconds
+	    ;;
+	dyn)
+	    echo 3000 >	$writeback # 30 seconds
+	    echo 3000 >	$expire	   # 30 seconds
+	    ;;
+	max)
+	    echo 1000 >	$writeback # 10 seconds
+	    echo 1000 >	$expire	   # 10 seconds
+	    ;;
+	*) echo "vm_writeback: bad param" ;;
+    esac
+}
+
+nmi_watchdog () {
+    echo 0 > /proc/sys/kernel/nmi_watchdog # echo 1 for performance?
+}
+
+pcie_aspm () {
+    file=/sys/module/pcie_aspm/parameters/policy
+
+    case $1 in
+    	low | dyn) echo powersave   > $file ;;
+    	max)       echo performance > $file ;;
+    	*) echo "pcie_aspm: bad param" ;;
+    esac
+}
+
+laptop_mode () {
+    file=/proc/sys/vm/laptop_mode
+
+    case $1 in
+    	low) echo 5 > $file ;;
+    	dyn) echo 3 > $file ;;
+    	max) echo 0 > $file ;;
+    	*) "laptop_mode: bad param" ;;
+    esac
+}
+
+udisks () {
+    udisks --inhibit-all-polling &>/dev/null
+}
+
+usb () {
+    usb_power=/sys/bus/usb/devices/*/power/
+
+    for i in $usb_power/control; do
+    	case $1 in
+    	    low | dyn) echo "auto" > $i ;;
+    	    max)       echo "on"   > $i ;;
+    	    *) echo "usb: bad param" ;;
+    	esac
+    done
+
+    for i in $usb_power/autosuspend_delay_ms; do
+    	echo 10000 > $i
+    done
+}
+
+wireless () {
+    for i in $WLAN_DEVS; do
+    	case $1 in
+    	    low | dyn)
+    		iwconfig $i txpower auto
+    		iwconfig $i power on
+    		# iwconfig $i power saving 3
+    		# iwconfig $i power timeout 100m
+    		# iwconfig $i power all
+
+    		# iwpriv $i set_power 5
+    		;;
+    	    max)
+    		iwconfig $i txpower fixed
+    		iwconfig $i power on
+    		# iwconfig $i power saving 1
+    		# iwconfig $i power timeout 100m
+    		# iwconfig $i power all
+
+    		# iwpriv $i set_power 0
+    		;;
+    	    *) "wireless: bad param" ;;
+    	esac
+    done
+}
+
+ethernet () {
+    for i in $ETH_DEVS; do
+    	ethtool -s $i wol d
+    done
+}
+
+sata () {
+    sata_links=/sys/class/scsi_host/host*/link_power_management_policy
+
+    for i in $sata_links; do
+    	case $1 in
+	    low | dyn) echo min_power       > $i ;;
+	    max)       echo max_performance > $i ;;
+    	    *) echo "sata: bad param" ;;
+    	esac
+    done
+}
+
+devices () {
+    device_controls=$(find /sys/bus/*/devices/*/power/control | grep -vi usb)
+
+    for i in $device_controls; do
+    	case $1 in
+    	    low | dyn) echo auto > $i ;;
+    	    max)       echo on   > $i ;;
+    	    *) echo "devices: bad param" ;;
+    	esac
+    done
+}
+
+audio () {
+    controllers=/sys/module/snd_*/parameters/power_save_controller
+    devices=/sys/module/snd_*/parameters/power_save
+
+    case $1 in
+    	low | dyn)
+    	    for i in $controllers; do
+    		echo Y > $i
+    	    done
+
+    	    for i in $devices; do
+    		echo 1 > $i
+    	    done
+    	    ;;
+    	max)
+    	    for i in $controllers; do
+    		echo N > $i
+    	    done
+
+    	    for i in $devices; do
+    		echo 0 > $i
+    	    done
+    	    ;;
+    	*) echo "audio: bad param" ;;
+    esac
+}
+
+runtime () {
+    device_controls=/sys/devices/*/power/control
+
+    for i in $device_controls; do
+    	case $1 in
+    	    low | dyn) echo auto > $i ;;
+    	    max)       echo on   > $i ;;
+    	    *) "runtime: bad param" ;;
+    	esac
+    done
+}
+
+scheduler () {
+    smt=/sys/devices/system/cpu/sched_smt_power_savings
+    mc=/sys/devices/system/cpu/sched_mc_power_savings
+
+    if [ ! -w $smt ]; then
+    	smt=/dev/null
+    fi
+
+    if [ ! -w $mc ]; then
+    	mc=/dev/null
+    fi
+
+    case $1 in
+    	low)
+    	    echo 2 > $smt
+    	    echo 2 > $mc
+    	    ;;
+    	dyn)
+    	    echo 1 > $smt
+    	    echo 1 > $mc
+    	    ;;
+    	max)
+    	    echo 0 > $smt
+    	    echo 0 > $mc
+    	    ;;
+    	*) echo "scheduler: bad param" ;;
+    esac
+}
+
+journal_commit () {
+    while read DEV MOUNT FSTYPE REST; do
+	case $1 in
+	    low)
+		if [ $FSTYPE == ext3 ]; then
+		    mount -o remount,commit=600 $DEV
+		fi
+
+		if [ $FSTYPE == ext4 ]; then
+		    mount -o remount,commit=600 $DEV
+		fi
+		;;
+	    dyn)
+		if [ $FSTYPE == ext3 ]; then
+		    mount -o remount,commit=300 $DEV
+		fi
+
+		if [ $FSTYPE == ext4 ]; then
+		    mount -o remount,commit=300 $DEV
+		fi
+		;;
+	    max)
+		if [ $FSTYPE == ext3 ]; then
+		    mount -o remount,commit=0 $DEV
+		fi
+
+		if [ $FSTYPE == ext4 ]; then
+		    mount -o remount,commit=0 $DEV
+		fi
+		;;
+	    *) echo "journal_commit: bad param" ;;
+	esac
+    done < /proc/mounts
+}
+
+atime () {
+    while read DEV MOUNT FSTYPE REST; do
+	if [ $FSTYPE == ext3 ]; then
+	    mount -o remount,noatime,nodiratime,norelatime $DEV
+	fi
+
+	if [ $FSTYPE == ext4 ]; then
+	    mount -o remount,noatime,nodiratime,norelatime $DEV
+	fi
+    done < /proc/mounts
+}
+
+hugepage () {
+    hugepage_file=/sys/kernel/mm/transparent_hugepage/
+    echo madvise > $hugepage_file/enabled
+    echo madvise > $hugepage_file/defrag
+}
+
+case $1 in
+    low | dyn | max)
+	for i in $SCRIPTLETS; do
+	    $i $1
+	done
+	;;
+    *) echo "bad param: powersave [low|dyn|max]" ;;
+esac

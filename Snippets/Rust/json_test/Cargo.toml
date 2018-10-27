@@ -1,0 +1,9 @@
+[package]
+name = "json_test"
+version = "0.1.0"
+authors = ["Fred Morcos <fred.morcos@gmail.com>"]
+
+[dependencies]
+serde = "*"
+serde_json = "*"
+serde_derive = "*"

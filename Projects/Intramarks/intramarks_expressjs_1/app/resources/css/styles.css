@@ -1,0 +1,177 @@
+@import url("http://fonts.googleapis.com/css?family=Raleway:900,200,400,700");
+html, body {
+  min-height: 100%;
+  height: 100%; }
+
+body > .container {
+  position: relative; }
+
+#header {
+  margin-bottom: 70px; }
+  #header > .navbar-inner {
+    border: 0 none;
+    border-bottom: 1px solid #AAA;
+    -webkit-box-shadow: 0 0 0;
+    -moz-box-shadow: 0 0 0;
+    box-shadow: 0 0 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0; }
+  #header h1.brand {
+    font-family: "Raleway", arial;
+    font-weight: 700;
+    padding: 0;
+    margin: 0 20px 0 0; }
+    #header h1.brand a:hover {
+      text-decoration: none; }
+
+#content {
+  margin-bottom: 20px; }
+  #content > .alert strong {
+    text-transform: capitalize; }
+  #content .page-title {
+    text-align: right;
+    color: #005580;
+    text-shadow: 1px 1px 0 #FFF;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px dotted #AAA; }
+  #content .alt-container {
+    background: #efefef;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px; }
+  #content .small-text {
+    font-size: 11px;
+    margin-bottom: 20px; }
+  #content form label {
+    margin-bottom: 0; }
+  #content form .controls {
+    text-align: center; }
+  #content form .input-block {
+    margin-bottom: 20px;
+    text-align: center; }
+  #content form .btn-primary {
+    margin-right: 10px; }
+  #content .span4 form .input-block input {
+    width: 218px; }
+  #content .span4 form .input-block textarea {
+    margin: 0;
+    min-width: 218px;
+    max-width: 218px;
+    max-height: 218px;
+    width: 218px; }
+  #content .push-extra {
+    text-align: center; }
+    #content .push-extra p:last-child {
+      margin-bottom: 0; }
+  #content .inner-container {
+    padding: 20px;
+    box-sizing: border-box; }
+  #content .btn-group {
+    position: relative;
+    display: inline-block;
+    font-size: 0;
+    white-space: nowrap;
+    vertical-align: middle; }
+
+#login-form {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #AAA; }
+
+#footer {
+  text-align: center;
+  padding: 30px 0;
+  margin-top: 70px;
+  border-top: 1px solid #E5E5E5;
+  background-color: whiteSmoke; }
+  #footer ul {
+    text-align: center; }
+    #footer ul li {
+      display: inline-block;
+      float: inherit; }
+  #footer p {
+    color: #AAA;
+    font-size: 11px; }
+
+/* account */
+.account .account-nav {
+  padding: 10px 0;
+  background: #FFF; }
+  .account .account-nav ul ul li.active a {
+    color: black;
+    text-decoration: none; }
+  .account .account-nav li.danger.active a {
+    background-color: #9d261d; }
+.account #content form .controls,
+.account #content form .input-block {
+  text-align: left; }
+.account .page-title {
+  display: none; }
+
+/* plans */
+.plans span.alert.info {
+  text-align: center; }
+.plans .container ul.thumbnails li {
+  text-align: center; }
+  .plans .container ul.thumbnails li h3 {
+    margin-top: 0;
+    line-height: 1; }
+.plans .container table .val {
+  text-align: right; }
+
+/* about */
+.about .media {
+  padding-top: 30px;
+  margin-top: 20px;
+  border-top: 1px solid #AAA; }
+  .about .media .nav {
+    margin-bottom: 0; }
+
+/* sign-up */
+.sign-up .page-title {
+  display: none; }
+.sign-up .readme ul {
+  margin-bottom: 20px; }
+
+/* contact */
+.contact .page-title {
+  display: none; }
+
+/* login */
+.login .page-title {
+  display: none; }
+
+/* index */
+.index > .container {
+  width: 100%;
+  max-width: 100%; }
+.index #header {
+  margin-bottom: 0; }
+.index .index-push {
+  padding: 20px 0 0 0;
+  background: url(../medias/images/index-bg.jpg) no-repeat 50% 80px #060403;
+  min-height: 620px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 0; }
+  .index .index-push h1, .index .index-push p {
+    text-align: right;
+    color: #FFF; }
+
+/* faq */
+.faq .item {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px dotted #AAA; }
+  .faq .item .lead {
+    margin-bottom: 20px;
+    line-height: 1;
+    display: inline-block; }
+  .faq .item p:last-child {
+    margin-bottom: 0; }

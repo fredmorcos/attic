@@ -1,0 +1,107 @@
+/*
+ * This file is a basic example of how a .gob file would be constructed,
+ * how to add data members, properties and methods
+ */
+requires 2.0.0
+
+%{
+#include <time.h>
+#include "my-person.h"
+#include "my-person-private.h"
+%}
+
+class My:Person from G:Object {
+        /* the name of the person */
+        private char *name = {g_strdup(_("Nobody"))}
+                destroywith g_free;
+        property STRING name
+                (nick = _("Name"),
+                 blurb = _("Name of the person"),
+                 default_value = _("Nobody"),
+                 /* Export get/set functions for this property */
+                 export,
+                 /* link to the data memeber 'name' */
+                 link);
+
+        /* date of birth as a time_t */
+        private long dob = 0;
+        property LONG dob
+                (nick = _("Date of birth"),
+                 blurb = _("Date of birth of the person"),
+                 minimum = 0,
+                 maximum = LONG_MAX,
+                 default_value = 0,
+                 export)
+                /* We could use 'link' as above, but the code below
+                 * shows how to do this without linking */
+                set {
+                        self->_priv->dob = g_value_get_long (VAL);
+                }
+                get {
+                        g_value_set_long (VAL, self->_priv->dob);
+                };
+
+        /* date of death as a time_t */
+        private long dod = 0;
+        property LONG dod
+                (nick = _("Date of death"),
+                 blurb = _("Date of death of the person"),
+                 minimum = 0,
+                 maximum = LONG_MAX,
+                 default_value = 0,
+                 export,
+                 link);
+
+        /* number of rounds in our shotgun */
+        private int rounds_in_shotgun = 0;
+
+        /* when the person gets born, sends out a signal, the caller
+           of the signal should provide the date of birth */
+        signal last NONE (LONG)
+        void
+        birth (self, long dob)
+        {
+                g_object_set (G_OBJECT (self),
+                              "dob", dob);
+        }
+        
+        /* when the person dies, sends out a signal, the caller
+           of the signal should provide the date of death */
+        signal last NONE (LONG)
+        void
+        death (self, long dod)
+        {
+                g_object_set (G_OBJECT (self),
+                              "dod", dod);
+        }
+
+        public
+        void
+        load_shotgun (self)
+        {
+                /* add a round to our shotgun */
+                self->_priv->rounds_in_shotgun++;
+        }
+
+        public
+        void
+        shoot_oneself_in_the_head (self)
+        {
+                if (self->_priv->rounds_in_shotgun == 0) {
+                        g_warning (_("No rounds in the shotgun!"));
+                        return;
+                }
+                
+                /* one round was fired */
+                self->_priv->rounds_in_shotgun--;
+
+                /* death is imminent if we shoot oneself in the head */
+                death (self, (long)time (NULL));
+        }
+
+        public GObject *
+        new (void)
+        {
+                return (GObject *)GET_NEW;
+        }
+}

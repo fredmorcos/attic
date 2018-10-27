@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+welcome to markr!
+
+<form action="{{ url_for('bookmarkPost') }}" method="post">
+  <label for="url">url</label>
+  <input id="url" type="url" name="url">
+  <button type="button">add</button>
+</form>
+{% endblock %}

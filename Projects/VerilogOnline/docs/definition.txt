@@ -1,0 +1,89 @@
+The definition file is a description file in JSON [1] format that
+describes a certain machine, or machine component (along with
+sub-components). This file contains properties of the machine (or the
+components) along with all references to its simple elements and
+complex sub-elements.
+
+Definition files can (and usually will force you to) reference other
+definition files by name (without the extension). In turn, the
+sub-element definition files will refer to others, and so on.
+
+There is a small difference to make between a toplevel definition file
+and a normal one. The difference is auto-detected by the machine-gen
+parser which uses the name of the machine given to simulate to find
+the corresponding toplevel definition file (toplevel/overall machine
+view).
+
+Generally, a definition file (whether toplevel or not) follows the
+following structure:
+
+	  {
+	    properties
+	    elements
+	    external_elements
+	  }
+
+The PROPERTIES section includes:
+
+    TITLE      	   The title of the component (and the title of the
+    	       	   machine in case of toplevel).
+
+    IMAGE      	   The image representing the component (or the
+    	       	   machine in case of toplevel).
+
+The TOPLEVEL-PROPERTIES section includes:
+
+    TIME_INDEX     The column index of the time value (from the
+               	   simulation [2] output).
+
+    CLK_INDEX      The column index of the clk value (from the
+                   simulation [2] output).
+
+    SIMULATOR      The simulator binary [3] or in special cases (such
+               	   as Verilog simulation, the simulation
+               	   interpreter).
+
+    MACHINE        The machine description file (in case of a Verilog
+    		   simulation, the code that implements the machine).
+
+    ASSEMBLER      The assembler [5] used to generate program and data 
+                   files (along with their debug representations) for
+                   the machine.
+
+    HAS_DEBUG	   Indicates whether the assembler outputs "debug"
+                   code (which is a line-by-line equivalent of machine
+                   code with the user's assembly code). See [5].
+
+    SINGLE_MEM	   Indicates whether the machine has a single memory
+                   for data and instructions. The assembler
+                   implementation has to conform with this.
+
+The ELEMENTS section includes tuples of the form:
+
+    "STR-PATTERN": [INDEX, BOOL]
+
+    where STR-PATTERN represents the string pattern that matches
+    against the pattern in the image file, index represents the column
+    index used to retrieve the value from the simulation output for
+    that specific element and bool represents whether the element is
+    togglable in case of interactive output (whether clicking on a
+    wire or register enables/disables tracking of its value).
+
+The EXTERNAL_ELEMENTS section includes tuples of the form:
+
+    "STR-PATTERN": "NAME"
+
+    where STR-PATTERN represents the string pattern that matches
+    against the pattern in the image file for that sub-component and
+    NAME represents the filename where to find the definition for that
+    sub-component without the JSON extension.
+
+Extra sections can be added as needed but will not be interpreted by
+the machine-gen parser.
+
+------
+[1] http://www.json.org/
+[2] docs/simulation.txt
+[3] docs/overview.txt
+[4] docs/images.txt
+[5] docs/assembler.txt

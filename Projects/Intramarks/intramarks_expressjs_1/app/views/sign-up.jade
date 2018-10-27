@@ -1,0 +1,44 @@
+extends _layout
+
+block content
+  article.container
+    .row
+      .span3.offset2.readme
+        .inner-container
+          h2.page-title= title
+          p.lead You are signing up for our Free plan; This plan includes:
+          ul
+            li
+              span.label.label-info
+                | 100
+              |  Private Bookmark
+            li
+              span.label.label-info
+                | 100
+              |  Public Bookmark
+            li
+              span.label.label-info
+                | unlimited
+              |  Lists
+            li
+              span.label.label-info
+                |  1
+              |  Organization
+          p.small-text by signing up you agree to our <a href="/terms">terms and conditions</a> and our <a href="/privacy">privacy policy</a>.
+      .span4.offset1
+        .inner-container.navbar-inner
+          form#login-form(method="post", action="/sign-up")
+            .input-prepend.input-block
+              label.add-on(for="username"): i.icon-user
+              input#username(name="username", type="text", placeholder="Username")
+            .input-prepend.input-block
+              label.add-on(for="password"): i.icon-lock
+              input#password(name="password", type="password", placeholder="Password")
+            .input-prepend.input-block
+              label.add-on(for="email"): i.icon-envelope
+              input#email(name="email", type="text", placeholder="Email")
+            .controls
+              button.btn.btn-large(type="submit") Sign-up
+          .push-extra
+            p.lead Already have an account?
+            p: a.btn.btn-success(href="/login") Login

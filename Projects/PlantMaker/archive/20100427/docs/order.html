@@ -1,0 +1,156 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module order</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>order</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/personal/workspace/plantmaker/order.py">/personal/workspace/plantmaker/order.py</a></font></td></tr></table>
+    <p><tt>This&nbsp;module&nbsp;provides&nbsp;classes&nbsp;to&nbsp;build&nbsp;an&nbsp;<a href="#OrderList">OrderList</a>&nbsp;for&nbsp;input&nbsp;to&nbsp;a&nbsp;plant,<br>
+including&nbsp;the&nbsp;<a href="#Order">Order</a>&nbsp;instances&nbsp;and&nbsp;their&nbsp;<a href="#Recipe">Recipe</a>&nbsp;instances.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="xml.dom.minidom.html">xml.dom.minidom</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="order.html#Order">Order</a>
+</font></dt><dt><font face="helvetica, arial"><a href="order.html#OrderList">OrderList</a>
+</font></dt><dt><font face="helvetica, arial"><a href="order.html#Recipe">Recipe</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Order">class <strong>Order</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;class&nbsp;provides&nbsp;an&nbsp;<a href="#Order">Order</a>&nbsp;with&nbsp;id,&nbsp;deadline&nbsp;and&nbsp;recipe.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Order-__init__"><strong>__init__</strong></a>(self, id<font color="#909090">=0</font>, deadline<font color="#909090">=0</font>)</dt><dd><tt>id&nbsp;is&nbsp;a&nbsp;unique&nbsp;int&nbsp;for&nbsp;the&nbsp;<a href="#Order">Order</a>.<br>
+deadline&nbsp;is&nbsp;the&nbsp;int&nbsp;deadline&nbsp;for&nbsp;the&nbsp;<a href="#Order">Order</a>.<br>
+recipe&nbsp;is&nbsp;the&nbsp;<a href="#Recipe">Recipe</a>&nbsp;instance&nbsp;for&nbsp;the&nbsp;order.</tt></dd></dl>
+
+<dl><dt><a name="Order-toXml"><strong>toXml</strong></a>(self, xmlDoc)</dt><dd><tt>Converts&nbsp;the&nbsp;<a href="#Order">Order</a>&nbsp;to&nbsp;an&nbsp;XML&nbsp;description&nbsp;and&nbsp;returns&nbsp;the&nbsp;XML&nbsp;tree<br>
+node.&nbsp;XmlDoc&nbsp;is&nbsp;the&nbsp;document&nbsp;to&nbsp;create&nbsp;the&nbsp;tree&nbsp;element&nbsp;from.</tt></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="Order-fromXml"><strong>fromXml</strong></a>(element)</dt><dd><tt>A&nbsp;static&nbsp;method&nbsp;that&nbsp;creates&nbsp;an&nbsp;<a href="#Order">Order</a>&nbsp;instance&nbsp;from&nbsp;an&nbsp;XML&nbsp;tree&nbsp;node<br>
+and&nbsp;returns&nbsp;it.&nbsp;The&nbsp;number&nbsp;of&nbsp;children&nbsp;(<a href="#Recipe">Recipe</a>&nbsp;instances)&nbsp;of&nbsp;the&nbsp;node&nbsp;<br>
+have&nbsp;to&nbsp;be&nbsp;exactly&nbsp;one&nbsp;since&nbsp;each&nbsp;<a href="#Order">Order</a>&nbsp;can&nbsp;only&nbsp;have&nbsp;a&nbsp;single&nbsp;<a href="#Recipe">Recipe</a>.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="OrderList">class <strong>OrderList</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;class&nbsp;provides&nbsp;a&nbsp;list&nbsp;of&nbsp;<a href="#Order">Order</a>&nbsp;instances.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="OrderList-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>orders&nbsp;is&nbsp;a&nbsp;list&nbsp;of&nbsp;<a href="#Order">Order</a>&nbsp;instances.</tt></dd></dl>
+
+<dl><dt><a name="OrderList-addOrder"><strong>addOrder</strong></a>(self, order)</dt><dd><tt>Adds&nbsp;an&nbsp;<a href="#Order">Order</a>&nbsp;to&nbsp;the&nbsp;<a href="#OrderList">OrderList</a>.&nbsp;The&nbsp;<a href="#Order">Order</a>&nbsp;instance&nbsp;and&nbsp;the&nbsp;<a href="#Order">Order</a>.id&nbsp;<br>
+cannot&nbsp;be&nbsp;already&nbsp;in&nbsp;the&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="OrderList-toXml"><strong>toXml</strong></a>(self)</dt><dd><tt>Creates&nbsp;an&nbsp;XML&nbsp;tree&nbsp;node&nbsp;element&nbsp;of&nbsp;the&nbsp;<a href="#OrderList">OrderList</a>&nbsp;instance&nbsp;and&nbsp;returns<br>
+it.</tt></dd></dl>
+
+<dl><dt><a name="OrderList-toXmlFile"><strong>toXmlFile</strong></a>(self, filename)</dt><dd><tt>Exports&nbsp;the&nbsp;<a href="#OrderList">OrderList</a>&nbsp;instance&nbsp;to&nbsp;an&nbsp;xml&nbsp;file&nbsp;(str&nbsp;filename).</tt></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="OrderList-fromXml"><strong>fromXml</strong></a>(xmlDoc)</dt><dd><tt>A&nbsp;static&nbsp;method&nbsp;that&nbsp;creates&nbsp;an&nbsp;<a href="#OrderList">OrderList</a>&nbsp;instance&nbsp;from&nbsp;an&nbsp;XML&nbsp;tree<br>
+node&nbsp;and&nbsp;returns&nbsp;it.</tt></dd></dl>
+
+<dl><dt><a name="OrderList-fromXmlFile"><strong>fromXmlFile</strong></a>(filename)</dt><dd><tt>A&nbsp;static&nbsp;method&nbsp;that&nbsp;loads&nbsp;an&nbsp;<a href="#OrderList">OrderList</a>&nbsp;from&nbsp;a&nbsp;file&nbsp;(str&nbsp;filename)&nbsp;and&nbsp;<br>
+returns&nbsp;an&nbsp;instance.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Recipe">class <strong>Recipe</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>This&nbsp;class&nbsp;provides&nbsp;a&nbsp;<a href="#Recipe">Recipe</a>&nbsp;for&nbsp;an&nbsp;<a href="#Order">Order</a>.&nbsp;It&nbsp;is&nbsp;a&nbsp;list&nbsp;(or&nbsp;dictionary)&nbsp;of&nbsp;<br>
+tuples&nbsp;(str&nbsp;machineName,&nbsp;int&nbsp;timeAtMachine).<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Recipe-__getitem__"><strong>__getitem__</strong></a>(self, key)</dt><dd><tt>Returns&nbsp;the&nbsp;time&nbsp;in&nbsp;the&nbsp;<a href="#Recipe">Recipe</a>&nbsp;at&nbsp;Machine&nbsp;with&nbsp;name&nbsp;key.</tt></dd></dl>
+
+<dl><dt><a name="Recipe-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>recipe&nbsp;is&nbsp;a&nbsp;list&nbsp;(or&nbsp;dictionary)&nbsp;that&nbsp;contains&nbsp;the&nbsp;tuples&nbsp;of&nbsp;time&nbsp;<br>
+information&nbsp;for&nbsp;the&nbsp;<a href="#Recipe">Recipe</a>.</tt></dd></dl>
+
+<dl><dt><a name="Recipe-__setitem__"><strong>__setitem__</strong></a>(self, key, value)</dt><dd><tt>Adds&nbsp;a&nbsp;<a href="#Recipe">Recipe</a>&nbsp;item&nbsp;(a&nbsp;tuple&nbsp;of&nbsp;(str&nbsp;machineName,&nbsp;int&nbsp;time))&nbsp;to&nbsp;the&nbsp;<br>
+<a href="#Recipe">Recipe</a>&nbsp;list&nbsp;(or&nbsp;dictionary).&nbsp;It&nbsp;will&nbsp;not&nbsp;add&nbsp;the&nbsp;item&nbsp;if&nbsp;machineName&nbsp;<br>
+is&nbsp;already&nbsp;in&nbsp;the&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="Recipe-calcMinProcTime"><strong>calcMinProcTime</strong></a>(self, machineName<font color="#909090">=None</font>)</dt><dd><tt>This&nbsp;method&nbsp;calculates&nbsp;the&nbsp;minimum&nbsp;processing&nbsp;time&nbsp;of&nbsp;the&nbsp;<a href="#Recipe">Recipe</a>&nbsp;<br>
+starting&nbsp;from&nbsp;Machine&nbsp;with&nbsp;machineName&nbsp;(Considers&nbsp;the&nbsp;constant&nbsp;plant<br>
+delays&nbsp;for&nbsp;the&nbsp;crane&nbsp;movement&nbsp;time&nbsp;between&nbsp;machines).</tt></dd></dl>
+
+<dl><dt><a name="Recipe-indexOfMachine"><strong>indexOfMachine</strong></a>(self, machineName)</dt><dd><tt>Returns&nbsp;the&nbsp;index&nbsp;of&nbsp;the&nbsp;Machine&nbsp;with&nbsp;machineName&nbsp;in&nbsp;the&nbsp;recipe&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="Recipe-toXml"><strong>toXml</strong></a>(self, xmlDoc)</dt><dd><tt>Converts&nbsp;the&nbsp;<a href="#Recipe">Recipe</a>&nbsp;to&nbsp;an&nbsp;XML&nbsp;description&nbsp;and&nbsp;returns&nbsp;the&nbsp;XML&nbsp;tree<br>
+node.&nbsp;XmlDoc&nbsp;is&nbsp;the&nbsp;document&nbsp;to&nbsp;create&nbsp;the&nbsp;tree&nbsp;element&nbsp;from.</tt></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="Recipe-fromXml"><strong>fromXml</strong></a>(element)</dt><dd><tt>A&nbsp;static&nbsp;method&nbsp;that&nbsp;creates&nbsp;a&nbsp;<a href="#Recipe">Recipe</a>&nbsp;instance&nbsp;from&nbsp;an&nbsp;XML&nbsp;tree&nbsp;node<br>
+and&nbsp;returns&nbsp;it.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>CraneMoveTime</strong> = 1</td></tr></table>
+</body></html>

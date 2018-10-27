@@ -1,0 +1,62 @@
+#+title: The Design and Implementation of Backy
+
+#+author: Fred Morcos
+#+email:  fred.morcos@gmail.com
+
+#+language: English
+#+date:
+
+* Introduction
+
+Backy is a UNIX-style daemon and client to synchronize two directories
+over a network.   It is very similar to =rsync=.   The difference with
+backy is that:
+
++ It is a hobby and an experiment with literate programming.
++ It tries hard to do as little as possible, correctly.
++ It  pushes most of  the work to the  client, making it  suitable for
+  low-end backup servers.
+
+** Potential future work
+
++ Optional authentication, encryption and compression.
++ Optional support for file and directory permissions.
+
+The reasons that I'd like seemingly essential features like encryption
+to stay  optional in Backy is  that many low-end devices  do not offer
+any acceleration for their operations.
+
+Another reason is that, as  an example, encryption and compression can
+be  safely  implemented   as  plugins  with  a   very  minor  constant
+performance hit (loading the plugin) and only activated when needed.
+
+** Dependencies
+
+Backy is written in Chicken Scheme as a literate program in Emacs, Org
+Mode and Babel.
+
+* Implementation
+
+** The server-side daemon
+
+The daemon  starts by  reading command  line arguments  and validating
+them. The following arguments are *required*:
+
++ A network _port_ to listen on.
++ A _directory_ to synchronize onto.
+
+And the following arguments are *optional*:
+
++ A network _address_ to listen on.
++ A  _safe_ (dry run) flag,  which will prohibit any  modifications to
+  the filesystem.
++ A _detach_ (fork) flag, to detach from the running terminal.
++ A _keep_ flag, which puts the daemon into an infinite loop, enabling
+  multiple consecutive synchronizations.
+
+#+begin_src scheme
+  (declare (uses args))
+
+  (define opts
+    (list (args:)))
+#+end_src

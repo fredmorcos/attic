@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE gsmarkup>
+<gsmarkup>
+	<objects>
+		<menu type="main">
+			<menu title="Document">
+				<menuItem title="New" keyEquivalent="n" action="newDocument:" 
+					target="#NSOwner"/>
+			</menu>
+			<menuItem title="Quit" keyEquivalent="q" action="terminate:" 
+				target="#NSApp"/>
+		</menu>
+	</objects>
+</gsmarkup>
+

@@ -1,0 +1,9 @@
+{
+    "title":    "Memory",
+    "image":    "mem-image.json",
+    "mem_name": "MEM",
+
+    "mem_elements": {
+	"%MEM%": "PROG"
+    }
+}

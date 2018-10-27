@@ -1,0 +1,28 @@
+Documenting functions, methods, classes and structs:
+
+/**
+ * Summary of upcoming code.
+ *
+ * Description of upcoming code.
+ *
+ * Authors:		Me <me@email.com>, You <you@email.com>
+ * Version:		1.2b
+ * Date:		May 7, 2009
+ * Bugs:		Any known bugs.
+ * Deprecated:	Replaced by function/class/struct X.
+ * Params:
+ *				X = for this.
+ *				Y = for that.
+ * Throws:		XException on failure.
+ * Returns:		Returns X.
+ * History:
+ * 				Initial version.
+ *				Fixed bug x.
+ * See_Also:
+ *				http://seealsourl.com/seealso
+ *				function/class/struct X.
+ * Examples:
+ * --
+ * func();
+ * --
+ */

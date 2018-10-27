@@ -1,0 +1,12 @@
+#!/bin/bash
+
+function usage {
+    _hvlt_fastest_sort --help
+    exit
+}
+
+if [[ "$1" == "--help" ]]; then
+    usage
+fi
+
+hvlt_load | _hvlt_fastest_sort $@

@@ -1,0 +1,506 @@
+<!-- Generator: GNU source-highlight 2.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><b><font color="#000080">&lt;?xml</font></b> <font color="#009900">version</font><font color="#990000">=</font><font color="#FF0000">"1.0"</font><b><font color="#000080">?&gt;</font></b>
+<b><font color="#0000FF">&lt;glade-interface&gt;</font></b>
+  <i><font color="#9A1900">&lt;!-- interface-requires gtk+ 2.14 --&gt;</font></i>
+  <i><font color="#9A1900">&lt;!-- interface-naming-policy project-wide --&gt;</font></i>
+  <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkWindow"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"mainWindow"</font><b><font color="#0000FF">&gt;</font></b>
+    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"border_width"</font><b><font color="#0000FF">&gt;</font></b>5<b><font color="#0000FF">&lt;/property&gt;</font></b>
+    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"title"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>CV - A1<b><font color="#0000FF">&lt;/property&gt;</font></b>
+    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"resizable"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"icon_name"</font><b><font color="#0000FF">&gt;</font></b>applications-graphics<b><font color="#0000FF">&lt;/property&gt;</font></b>
+    <b><font color="#0000FF">&lt;child&gt;</font></b>
+      <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkVBox"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"vbox1"</font><b><font color="#0000FF">&gt;</font></b>
+        <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+        <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"spacing"</font><b><font color="#0000FF">&gt;</font></b>5<b><font color="#0000FF">&lt;/property&gt;</font></b>
+        <b><font color="#0000FF">&lt;child&gt;</font></b>
+          <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkMenuBar"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"menubar1"</font><b><font color="#0000FF">&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;child&gt;</font></b>
+              <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkMenuItem"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"menuitem1"</font><b><font color="#0000FF">&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>_File<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"use_underline"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;child&gt;</font></b>
+                  <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkMenu"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"menu1"</font><b><font color="#0000FF">&gt;</font></b>
+                    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                    <b><font color="#0000FF">&lt;child&gt;</font></b>
+                      <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkImageMenuItem"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"menuOpen"</font><b><font color="#0000FF">&gt;</font></b>
+                        <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font><b><font color="#0000FF">&gt;</font></b>gtk-open<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                        <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                        <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"use_underline"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                        <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"use_stock"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                      <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+                    <b><font color="#0000FF">&lt;/child&gt;</font></b>
+                    <b><font color="#0000FF">&lt;child&gt;</font></b>
+                      <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkImageMenuItem"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"menuSave"</font><b><font color="#0000FF">&gt;</font></b>
+                        <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font><b><font color="#0000FF">&gt;</font></b>gtk-save<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                        <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                        <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"use_underline"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                        <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"use_stock"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                      <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+                    <b><font color="#0000FF">&lt;/child&gt;</font></b>
+                    <b><font color="#0000FF">&lt;child&gt;</font></b>
+                      <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkSeparatorMenuItem"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"separatormenuitem1"</font><b><font color="#0000FF">&gt;</font></b>
+                        <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                      <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+                    <b><font color="#0000FF">&lt;/child&gt;</font></b>
+                    <b><font color="#0000FF">&lt;child&gt;</font></b>
+                      <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkImageMenuItem"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"menuQuit"</font><b><font color="#0000FF">&gt;</font></b>
+                        <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font><b><font color="#0000FF">&gt;</font></b>gtk-quit<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                        <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                        <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"use_underline"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                        <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"use_stock"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                      <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+                    <b><font color="#0000FF">&lt;/child&gt;</font></b>
+                  <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+                <b><font color="#0000FF">&lt;/child&gt;</font></b>
+              <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+            <b><font color="#0000FF">&lt;/child&gt;</font></b>
+            <b><font color="#0000FF">&lt;child&gt;</font></b>
+              <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkMenuItem"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"menuitem4"</font><b><font color="#0000FF">&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>_Help<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"use_underline"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;child&gt;</font></b>
+                  <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkMenu"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"menu3"</font><b><font color="#0000FF">&gt;</font></b>
+                    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                    <b><font color="#0000FF">&lt;child&gt;</font></b>
+                      <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkImageMenuItem"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"menuAbout"</font><b><font color="#0000FF">&gt;</font></b>
+                        <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font><b><font color="#0000FF">&gt;</font></b>gtk-about<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                        <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                        <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"use_underline"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                        <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"use_stock"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                      <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+                    <b><font color="#0000FF">&lt;/child&gt;</font></b>
+                  <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+                <b><font color="#0000FF">&lt;/child&gt;</font></b>
+              <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+            <b><font color="#0000FF">&lt;/child&gt;</font></b>
+          <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+          <b><font color="#0000FF">&lt;packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"expand"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"fill"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>0<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+        <b><font color="#0000FF">&lt;/child&gt;</font></b>
+        <b><font color="#0000FF">&lt;child&gt;</font></b>
+          <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkHBox"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"hbox4"</font><b><font color="#0000FF">&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"spacing"</font><b><font color="#0000FF">&gt;</font></b>5<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"homogeneous"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;child&gt;</font></b>
+              <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkButton"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"negateButton1"</font><b><font color="#0000FF">&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"can_focus"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"receives_default"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>Negate Method 1<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+              <b><font color="#0000FF">&lt;packing&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>0<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;/child&gt;</font></b>
+            <b><font color="#0000FF">&lt;child&gt;</font></b>
+              <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkButton"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"negateButton2"</font><b><font color="#0000FF">&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"can_focus"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"receives_default"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>Negate Method 2<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+              <b><font color="#0000FF">&lt;packing&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>1<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;/child&gt;</font></b>
+            <b><font color="#0000FF">&lt;child&gt;</font></b>
+              <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkButton"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"negateButton3"</font><b><font color="#0000FF">&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"can_focus"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"receives_default"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>Negate Method 3<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+              <b><font color="#0000FF">&lt;packing&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>2<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;/child&gt;</font></b>
+          <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+          <b><font color="#0000FF">&lt;packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>1<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+        <b><font color="#0000FF">&lt;/child&gt;</font></b>
+        <b><font color="#0000FF">&lt;child&gt;</font></b>
+          <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkLabel"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"label1"</font><b><font color="#0000FF">&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>Rotate<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+          <b><font color="#0000FF">&lt;packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"expand"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"fill"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>2<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+        <b><font color="#0000FF">&lt;/child&gt;</font></b>
+        <b><font color="#0000FF">&lt;child&gt;</font></b>
+          <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkHBox"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"hbox1"</font><b><font color="#0000FF">&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"spacing"</font><b><font color="#0000FF">&gt;</font></b>5<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;child&gt;</font></b>
+              <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkLabel"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"label2"</font><b><font color="#0000FF">&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>X<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+              <b><font color="#0000FF">&lt;packing&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"expand"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"fill"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>0<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;/child&gt;</font></b>
+            <b><font color="#0000FF">&lt;child&gt;</font></b>
+              <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkSpinButton"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"rotateXSpin"</font><b><font color="#0000FF">&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"can_focus"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"adjustment"</font><b><font color="#0000FF">&gt;</font></b>0 0 1000 1 10 0<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+              <b><font color="#0000FF">&lt;packing&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>1<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;/child&gt;</font></b>
+          <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+          <b><font color="#0000FF">&lt;packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"expand"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"fill"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>3<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+        <b><font color="#0000FF">&lt;/child&gt;</font></b>
+        <b><font color="#0000FF">&lt;child&gt;</font></b>
+          <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkHBox"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"hbox2"</font><b><font color="#0000FF">&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"spacing"</font><b><font color="#0000FF">&gt;</font></b>5<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;child&gt;</font></b>
+              <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkLabel"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"label3"</font><b><font color="#0000FF">&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>Y<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+              <b><font color="#0000FF">&lt;packing&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"expand"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"fill"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>0<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;/child&gt;</font></b>
+            <b><font color="#0000FF">&lt;child&gt;</font></b>
+              <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkSpinButton"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"rotateYSpin"</font><b><font color="#0000FF">&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"can_focus"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"adjustment"</font><b><font color="#0000FF">&gt;</font></b>0 0 1000 1 10 0<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+              <b><font color="#0000FF">&lt;packing&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>1<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;/child&gt;</font></b>
+          <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+          <b><font color="#0000FF">&lt;packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"expand"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"fill"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>4<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+        <b><font color="#0000FF">&lt;/child&gt;</font></b>
+        <b><font color="#0000FF">&lt;child&gt;</font></b>
+          <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkHBox"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"hbox3"</font><b><font color="#0000FF">&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"spacing"</font><b><font color="#0000FF">&gt;</font></b>5<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;child&gt;</font></b>
+              <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkLabel"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"label4"</font><b><font color="#0000FF">&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>Angle<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+              <b><font color="#0000FF">&lt;packing&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"expand"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"fill"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>0<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;/child&gt;</font></b>
+            <b><font color="#0000FF">&lt;child&gt;</font></b>
+              <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkSpinButton"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"rotateAngleSpin"</font><b><font color="#0000FF">&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"can_focus"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"adjustment"</font><b><font color="#0000FF">&gt;</font></b>0 -180 180 1 10 0<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"digits"</font><b><font color="#0000FF">&gt;</font></b>2<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+              <b><font color="#0000FF">&lt;packing&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>1<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;/child&gt;</font></b>
+          <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+          <b><font color="#0000FF">&lt;packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"expand"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"fill"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>5<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+        <b><font color="#0000FF">&lt;/child&gt;</font></b>
+        <b><font color="#0000FF">&lt;child&gt;</font></b>
+          <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkHBox"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"hbox8"</font><b><font color="#0000FF">&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"spacing"</font><b><font color="#0000FF">&gt;</font></b>5<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"homogeneous"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;child&gt;</font></b>
+              <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkButton"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"rotateButtonCV"</font><b><font color="#0000FF">&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"can_focus"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"receives_default"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>Rotate (OpenCV)<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+              <b><font color="#0000FF">&lt;packing&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>0<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;/child&gt;</font></b>
+            <b><font color="#0000FF">&lt;child&gt;</font></b>
+              <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkButton"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"rotateButton"</font><b><font color="#0000FF">&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"can_focus"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"receives_default"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>Rotate<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+              <b><font color="#0000FF">&lt;packing&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>1<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;/child&gt;</font></b>
+          <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+          <b><font color="#0000FF">&lt;packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>6<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+        <b><font color="#0000FF">&lt;/child&gt;</font></b>
+        <b><font color="#0000FF">&lt;child&gt;</font></b>
+          <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkLabel"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"label5"</font><b><font color="#0000FF">&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>Upsample<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+          <b><font color="#0000FF">&lt;packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"expand"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"fill"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>7<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+        <b><font color="#0000FF">&lt;/child&gt;</font></b>
+        <b><font color="#0000FF">&lt;child&gt;</font></b>
+          <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkRadioButton"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"replicationRadio"</font><b><font color="#0000FF">&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"can_focus"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"receives_default"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"active"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"draw_indicator"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>Replication<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+          <b><font color="#0000FF">&lt;packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>8<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+        <b><font color="#0000FF">&lt;/child&gt;</font></b>
+        <b><font color="#0000FF">&lt;child&gt;</font></b>
+          <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkRadioButton"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"interpolationRadio"</font><b><font color="#0000FF">&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"can_focus"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"receives_default"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"active"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"draw_indicator"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"group"</font><b><font color="#0000FF">&gt;</font></b>replicationRadio<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>Interpolation<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+          <b><font color="#0000FF">&lt;packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>9<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+        <b><font color="#0000FF">&lt;/child&gt;</font></b>
+        <b><font color="#0000FF">&lt;child&gt;</font></b>
+          <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkHBox"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"hbox5"</font><b><font color="#0000FF">&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"spacing"</font><b><font color="#0000FF">&gt;</font></b>5<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;child&gt;</font></b>
+              <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkLabel"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"label7"</font><b><font color="#0000FF">&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>Factor<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+              <b><font color="#0000FF">&lt;packing&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"expand"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"fill"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>0<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;/child&gt;</font></b>
+            <b><font color="#0000FF">&lt;child&gt;</font></b>
+              <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkSpinButton"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"upsampleFactorSpin"</font><b><font color="#0000FF">&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"can_focus"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"adjustment"</font><b><font color="#0000FF">&gt;</font></b>0 0 100 1 10 0<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"digits"</font><b><font color="#0000FF">&gt;</font></b>2<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+              <b><font color="#0000FF">&lt;packing&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>1<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;/child&gt;</font></b>
+          <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+          <b><font color="#0000FF">&lt;packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"expand"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"fill"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>10<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+        <b><font color="#0000FF">&lt;/child&gt;</font></b>
+        <b><font color="#0000FF">&lt;child&gt;</font></b>
+          <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkHBox"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"hbox9"</font><b><font color="#0000FF">&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"spacing"</font><b><font color="#0000FF">&gt;</font></b>5<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"homogeneous"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;child&gt;</font></b>
+              <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkButton"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"upsampleButtonCV"</font><b><font color="#0000FF">&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"can_focus"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"receives_default"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>Upsample (OpenCV)<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+              <b><font color="#0000FF">&lt;packing&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>0<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;/child&gt;</font></b>
+            <b><font color="#0000FF">&lt;child&gt;</font></b>
+              <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkButton"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"upsampleButton"</font><b><font color="#0000FF">&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"can_focus"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"receives_default"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>Upsample<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+              <b><font color="#0000FF">&lt;packing&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>1<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;/child&gt;</font></b>
+          <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+          <b><font color="#0000FF">&lt;packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>11<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+        <b><font color="#0000FF">&lt;/child&gt;</font></b>
+        <b><font color="#0000FF">&lt;child&gt;</font></b>
+          <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkLabel"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"label8"</font><b><font color="#0000FF">&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>Scale<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+          <b><font color="#0000FF">&lt;packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"expand"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"fill"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>12<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+        <b><font color="#0000FF">&lt;/child&gt;</font></b>
+        <b><font color="#0000FF">&lt;child&gt;</font></b>
+          <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkHBox"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"hbox6"</font><b><font color="#0000FF">&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"spacing"</font><b><font color="#0000FF">&gt;</font></b>5<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;child&gt;</font></b>
+              <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkLabel"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"label9"</font><b><font color="#0000FF">&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>Width<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+              <b><font color="#0000FF">&lt;packing&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"expand"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"fill"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>0<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;/child&gt;</font></b>
+            <b><font color="#0000FF">&lt;child&gt;</font></b>
+              <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkSpinButton"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"scaleWidthSpin"</font><b><font color="#0000FF">&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"can_focus"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"adjustment"</font><b><font color="#0000FF">&gt;</font></b>0 0 1000 1 10 0<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+              <b><font color="#0000FF">&lt;packing&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>1<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;/child&gt;</font></b>
+          <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+          <b><font color="#0000FF">&lt;packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"expand"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"fill"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>13<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+        <b><font color="#0000FF">&lt;/child&gt;</font></b>
+        <b><font color="#0000FF">&lt;child&gt;</font></b>
+          <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkHBox"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"hbox7"</font><b><font color="#0000FF">&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"spacing"</font><b><font color="#0000FF">&gt;</font></b>5<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;child&gt;</font></b>
+              <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkLabel"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"label10"</font><b><font color="#0000FF">&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>Height<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+              <b><font color="#0000FF">&lt;packing&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"expand"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"fill"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>0<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;/child&gt;</font></b>
+            <b><font color="#0000FF">&lt;child&gt;</font></b>
+              <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkSpinButton"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"scaleHeightSpin"</font><b><font color="#0000FF">&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"can_focus"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"adjustment"</font><b><font color="#0000FF">&gt;</font></b>0 0 1000 1 10 0<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+              <b><font color="#0000FF">&lt;packing&gt;</font></b>
+                <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>1<b><font color="#0000FF">&lt;/property&gt;</font></b>
+              <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;/child&gt;</font></b>
+          <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+          <b><font color="#0000FF">&lt;packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"expand"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"fill"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>14<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+        <b><font color="#0000FF">&lt;/child&gt;</font></b>
+        <b><font color="#0000FF">&lt;child&gt;</font></b>
+          <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkButton"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"scaleButton"</font><b><font color="#0000FF">&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"can_focus"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"receives_default"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"label"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>Scale<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+          <b><font color="#0000FF">&lt;packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"expand"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"fill"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>15<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+        <b><font color="#0000FF">&lt;/child&gt;</font></b>
+      <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+    <b><font color="#0000FF">&lt;/child&gt;</font></b>
+  <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+  <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkAboutDialog"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"aboutDialog"</font><b><font color="#0000FF">&gt;</font></b>
+    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"border_width"</font><b><font color="#0000FF">&gt;</font></b>5<b><font color="#0000FF">&lt;/property&gt;</font></b>
+    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"title"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>About<b><font color="#0000FF">&lt;/property&gt;</font></b>
+    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"destroy_with_parent"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"type_hint"</font><b><font color="#0000FF">&gt;</font></b>normal<b><font color="#0000FF">&lt;/property&gt;</font></b>
+    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"skip_taskbar_hint"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"skip_pager_hint"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"transient_for"</font><b><font color="#0000FF">&gt;</font></b>mainWindow<b><font color="#0000FF">&lt;/property&gt;</font></b>
+    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"program_name"</font><b><font color="#0000FF">&gt;</font></b>CV - A1<b><font color="#0000FF">&lt;/property&gt;</font></b>
+    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"version"</font><b><font color="#0000FF">&gt;</font></b>0.1<b><font color="#0000FF">&lt;/property&gt;</font></b>
+    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"copyright"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>Copyright (C) 2008 Frederic Morcos<b><font color="#0000FF">&lt;/property&gt;</font></b>
+    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"comments"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>Showcasing OpenCV Features<b><font color="#0000FF">&lt;/property&gt;</font></b>
+    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"website"</font><b><font color="#0000FF">&gt;</font></b>http://fredmorcos.googlecode.com/<b><font color="#0000FF">&lt;/property&gt;</font></b>
+    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"website_label"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>http://fredmorcos.googlecode.com/<b><font color="#0000FF">&lt;/property&gt;</font></b>
+    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"license"</font> <font color="#009900">translatable</font><font color="#990000">=</font><font color="#FF0000">"yes"</font><b><font color="#0000FF">&gt;</font></b>Licensed under the GPLv3.<b><font color="#0000FF">&lt;/property&gt;</font></b>
+    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"authors"</font><b><font color="#0000FF">&gt;</font></b>Frederic Morcos <b><font color="#000080">&amp;lt;</font></b>fred.morcos@gmail.com<b><font color="#000080">&amp;gt;</font></b><b><font color="#0000FF">&lt;/property&gt;</font></b>
+    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"documenters"</font><b><font color="#0000FF">&gt;</font></b>Frederic Morcos <b><font color="#000080">&amp;lt;</font></b>fred.morcos@gmail.com<b><font color="#000080">&amp;gt;</font></b><b><font color="#0000FF">&lt;/property&gt;</font></b>
+    <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"artists"</font><b><font color="#0000FF">&gt;&lt;/property&gt;</font></b>
+    <b><font color="#0000FF">&lt;child</font></b> <font color="#009900">internal-child</font><font color="#990000">=</font><font color="#FF0000">"vbox"</font><b><font color="#0000FF">&gt;</font></b>
+      <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkVBox"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"dialog-vbox1"</font><b><font color="#0000FF">&gt;</font></b>
+        <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+        <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"spacing"</font><b><font color="#0000FF">&gt;</font></b>2<b><font color="#0000FF">&lt;/property&gt;</font></b>
+        <b><font color="#0000FF">&lt;child&gt;</font></b>
+          <b><font color="#0000FF">&lt;placeholder/&gt;</font></b>
+        <b><font color="#0000FF">&lt;/child&gt;</font></b>
+        <b><font color="#0000FF">&lt;child</font></b> <font color="#009900">internal-child</font><font color="#990000">=</font><font color="#FF0000">"action_area"</font><b><font color="#0000FF">&gt;</font></b>
+          <b><font color="#0000FF">&lt;widget</font></b> <font color="#009900">class</font><font color="#990000">=</font><font color="#FF0000">"GtkHButtonBox"</font> <font color="#009900">id</font><font color="#990000">=</font><font color="#FF0000">"dialog-action_area1"</font><b><font color="#0000FF">&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"visible"</font><b><font color="#0000FF">&gt;</font></b>True<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"layout_style"</font><b><font color="#0000FF">&gt;</font></b>end<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+          <b><font color="#0000FF">&lt;packing&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"expand"</font><b><font color="#0000FF">&gt;</font></b>False<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"pack_type"</font><b><font color="#0000FF">&gt;</font></b>end<b><font color="#0000FF">&lt;/property&gt;</font></b>
+            <b><font color="#0000FF">&lt;property</font></b> <font color="#009900">name</font><font color="#990000">=</font><font color="#FF0000">"position"</font><b><font color="#0000FF">&gt;</font></b>0<b><font color="#0000FF">&lt;/property&gt;</font></b>
+          <b><font color="#0000FF">&lt;/packing&gt;</font></b>
+        <b><font color="#0000FF">&lt;/child&gt;</font></b>
+      <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+    <b><font color="#0000FF">&lt;/child&gt;</font></b>
+  <b><font color="#0000FF">&lt;/widget&gt;</font></b>
+<b><font color="#0000FF">&lt;/glade-interface&gt;</font></b>
+</tt></pre>

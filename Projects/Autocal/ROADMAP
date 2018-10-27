@@ -1,0 +1,19 @@
+0.1:
+* initially working command line version
+
+0.1.1:
+* basic working user interface
+
+0.1.2:
+* better optimization techniques
+* better evaluation functions
+* refactoring of ui code
+* refactoring of optimization code
+
+later:
+* sorting of tasks in output schedule
+* automatic detection of heuristic parameters
+* parsing/converting to and from UNIX time
+* add possibility of simultaneous tasks
+* ability to add gaps between tasks
+* ability to add deadline margin

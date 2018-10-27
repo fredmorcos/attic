@@ -1,0 +1,65 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_ALU_UNIT {} {
+  make pnzcell -origin {1210 -400}
+  make ALU -origin {690 -220}
+  make cell32trans -origin {400 -430}
+  make cell32trans -origin {400 -330}
+  make input -name {ALU_OP[2:0]} -origin {540 -200}
+  make input -name PNZ_WE -origin {1110 -400}
+  make input -name LATCH_WE -origin {190 -410}
+  make input -name {R1[31:0]} -origin {-40 -450}
+  make input -name {R2[31:0]} -origin {-40 -350}
+  make output -name ALU_OVERFLOW -origin {830 -220}
+  make output -name P_OUT -origin {1310 -460}
+  make output -name N_OUT -origin {1310 -420}
+  make output -name Z_OUT -origin {1310 -380}
+  make output -orient R270 -name {ALU_RESULT[31:0]} -origin {890 -610}
+  make_wire 500 -340 520 -340
+  make_wire 500 -440 530 -440
+  make_wire 960 -440 1110 -440
+  make_wire 240 -310 300 -310
+  make_wire 240 -410 240 -310
+  make_wire 190 -410 240 -410
+  make_wire 240 -410 300 -410
+  make_wire 960 -440 960 -260
+  make_wire 520 -250 540 -250
+  make_wire 520 -340 520 -250
+  make_wire 530 -290 540 -290
+  make_wire 530 -440 530 -290
+  make_wire 300 -450 -40 -450
+  make_wire 300 -350 -40 -350
+  make_wire 890 -260 830 -260
+  make_wire 890 -260 960 -260
+  make_wire 890 -610 890 -260
+}
+
+proc ICON_ALU_UNIT args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-170 -10} -name {ALU_OP[2:0]}
+  icon_term -type input -origin {-170 -60} -name LATCH_WE
+  icon_term -type input -origin {-170 30} -name PNZ_WE
+  icon_term -type input -origin {-170 -110} -name {R1[31:0]}
+  icon_term -type input -origin {-170 -90} -name {R2[31:0]}
+  icon_term -type output -origin {180 90} -name ALU_OVERFLOW
+  icon_term -type output -origin {180 -80} -name N_OUT
+  icon_term -type output -origin {180 -120} -name P_OUT
+  icon_term -type output -origin {180 -40} -name Z_OUT
+  icon_term -type output -origin {180 50} -name {ALU_RESULT[31:0]}
+  icon_property -origin {270 300} -type user -name name
+  icon_property -origin {270 320} -type user -name M
+  icon_property -origin {270 340} -type user -name dpc
+  icon_line -170 -150 -170 160 180 160 180 -150 -170 -150
+  icon_property -origin {170 -80} -anchor e -label N_OUT
+  icon_property -origin {170 -120} -anchor e -label P_OUT
+  icon_property -origin {170 -40} -anchor e -label Z_OUT
+  icon_property -origin {-160 -10} -label {ALU_OP[2:0]}
+  icon_property -origin {-160 -60} -label LATCH_WE
+  icon_property -origin {-160 30} -label PNZ_WE
+  icon_property -origin {-160 -110} -label {R1[31:0]}
+  icon_property -origin {-160 -90} -label {R2[31:0]}
+  icon_property -origin {170 90} -anchor e -label ALU_OVERFLOW
+  icon_property -origin {-160 140} -label {ALU MODULE}
+  icon_property -origin {170 50} -anchor e -label {ALU_RESULT[31:0]}
+}
+

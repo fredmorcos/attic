@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Movie_database>
+    <movie id="id1">
+        <title> titanic</title>
+        <year>1996</year>
+        <director>XXX</director>
+        <major_actors>
+            <actor>Leonardo dicapreo</actor>
+            <actriss>kate winslet</actriss>
+        </major_actors>
+        <country>usa</country>
+        <language> english</language>
+        <production_company>xxx</production_company>
+    </movie>
+    <user username="christine" password="christy">
+        <name>
+            <f_name>christine</f_name>
+            <l_name>maher</l_name>
+        </name>
+        <adress>26 tarablus st</adress>
+        <email>kouki510@gmail.com</email>
+    </user>
+    <user username="Fred" password="fifo">
+        <name>
+            <f_name>fredo</f_name>
+            <l_name>morcos</l_name>
+        </name>
+        <adress>heliopolis</adress>
+        <email>fred.gamil</email>
+    </user>
+    <user username="Nano" password="narnar">
+        <name>
+            <f_name>nardine</f_name>
+            <l_name>basta</l_name>
+        </name>
+        <adress>helio</adress>
+        <email>nardine.basta</email>
+    </user>
+</Movie_database>

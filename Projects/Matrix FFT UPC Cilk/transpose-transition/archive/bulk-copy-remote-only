@@ -1,0 +1,41 @@
+void transpose_remote_out(int i0, int i1, int j0, int j1)
+{
+  int i, j;
+  void *dstlist[JLS], *wsrclist[JLS];
+  float data[JLS][ILS], tmp;
+
+  /* === READ IN BUFFER === */
+  /* m[] are addrs, no remote calls */
+  for (j = j0; j < j1; j++) {
+    srclist[j - j0] = &m[j][i0];
+    dstlist[j - j0] = &data[j - j0][0];
+  }
+
+  upc_memget_ilist(j1 - j0, dstlist, SO_F * (i1 - i0),
+  		   j1 - j0, srclist, SO_F * (i1 - i0));
+
+  if (T == 1) print_matrix(data, j1 - j0, i1 - i0);
+
+  for (i = i0; i < i1; i++)
+    for (j = j0; j < j1; j++) {
+  	tmp = m[i][j];
+  	m[i][j] = data[j - j0][i - i0];
+  	data[j - j0][i - i0] = tmp;
+  	swaps[T]++;
+      }
+
+  if (T == 1) print_matrix(data, j1 - j0, i1 - i0);
+
+  for (j = j0; j < j1; j++) {
+    wsrclist[j - j0] = &data[j - j0][0];
+    wdstlist[j - j0] = &m[j][i0];
+  }
+
+  if (T == 1) print_matrix(m, N, N);
+
+  /* === WRITE OUT BUFFER === */
+  upc_memput_ilist(j1 - j0, wdstlist, SO_F * (i1 - i0),
+		   j1 - j0, wsrclist, SO_F * (i1 - i0));
+
+  if (T == 1) print_matrix(m, N, N);
+}

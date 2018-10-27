@@ -1,0 +1,121 @@
+# SUE version MMI_SUE4.2.7
+
+proc SCHEMATIC_FA {} {
+  make nmos -W 4 -origin {430 370}
+  make nmos -W 4 -origin {250 450}
+  make nmos -W 4 -origin {430 450}
+  make nmos -W 4 -origin {610 450}
+  make nmos -W 4 -origin {810 370}
+  make nmos -W 4 -origin {810 450}
+  make nmos -W 4 -origin {810 530}
+  make nmos -W 4 -origin {-250 370}
+  make nmos -W 4 -origin {-320 450}
+  make nmos -W 4 -origin {-150 450}
+  make nmos -W 4 -origin {40 370}
+  make nmos -W 4 -origin {40 450}
+  make inverter -WP 8 -WN 4 -origin {870 330}
+  make inverter -WP 8 -WN 4 -origin {860 680}
+  make pmos -W 8 -origin {250 210}
+  make pmos -W 8 -origin {430 210}
+  make pmos -W 8 -origin {610 210}
+  make pmos -W 8 -origin {430 290}
+  make pmos -W 8 -origin {810 210}
+  make pmos -W 8 -origin {810 290}
+  make pmos -W 8 -origin {810 130}
+  make pmos -W 8 -origin {-320 210}
+  make pmos -W 8 -origin {-150 210}
+  make pmos -W 8 -origin {-250 290}
+  make pmos -W 8 -origin {40 290}
+  make pmos -W 8 -origin {40 210}
+  make input -name a -origin {190 210}
+  make input -name a -origin {190 450}
+  make input -name a -origin {750 130}
+  make input -orient RY -name a -origin {750 530}
+  make input -name a -origin {-380 210}
+  make input -name a -origin {-380 450}
+  make input -name a -origin {-20 210}
+  make input -orient RY -name a -origin {-20 450}
+  make input -name b -origin {370 210}
+  make input -name b -origin {370 450}
+  make input -name b -origin {750 210}
+  make input -orient RY -name b -origin {750 450}
+  make input -name b -origin {-200 210}
+  make input -name b -origin {-200 450}
+  make input -name b -origin {-20 290}
+  make input -orient RY -name b -origin {-20 370}
+  make input -name c -origin {550 210}
+  make input -name c -origin {550 450}
+  make input -name c -origin {750 290}
+  make input -orient RY -name c -origin {750 370}
+  make input -name c -origin {-380 330}
+  make output -name sum -origin {930 330}
+  make output -name cout -origin {920 680}
+  make FA -origin {660 810}
+  make global -orient RXY -name vdd -origin {-250 170}
+  make global -name gnd -origin {-250 490}
+  make global -orient RXY -name vdd -origin {40 170}
+  make global -name gnd -origin {40 490}
+  make global -orient RXY -name vdd -origin {430 170}
+  make global -name gnd -origin {430 490}
+  make global -orient RXY -name vdd -origin {810 90}
+  make global -name gnd -origin {810 570}
+  make title_bar -owner tutorial -origin {-50 840}
+  generate name_net_s name_net -cell name_net
+  make name_net -name cout_L -origin {100 330}
+  make name_net -name sum_L -origin {580 330}
+  make_wire 250 250 430 250
+  make_wire 430 250 610 250
+  make_wire 430 170 250 170
+  make_wire 430 170 610 170
+  make_wire 250 490 430 490
+  make_wire 430 490 610 490
+  make_wire 430 410 250 410
+  make_wire 430 410 610 410
+  make_wire 810 330 840 330
+  make_wire 580 330 810 330
+  make_wire 580 330 430 330
+  make_wire -320 250 -250 250
+  make_wire -250 170 -320 170
+  make_wire -320 490 -250 490
+  make_wire -250 410 -320 410
+  make_wire -310 330 -380 330
+  make_wire -250 170 -150 170
+  make_wire -250 250 -150 250
+  make_wire -250 490 -150 490
+  make_wire -250 410 -150 410
+  make_wire 100 680 830 680
+  make_wire 920 330 930 330
+  make_wire 910 680 920 680
+  make_wire 100 330 40 330
+  make_wire 100 330 370 330
+  make_wire 100 330 100 680
+  make_wire 370 290 370 330
+  make_wire 370 330 370 370
+  make_wire -250 330 40 330
+  make_wire -310 290 -310 330
+  make_wire -310 330 -310 370
+  make_wire -210 450 -200 450
+  make_wire -210 210 -200 210
+  make_text -origin {-350 70} -text {Full Adder (FA) } -size large
+}
+
+proc ICON_FA args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}}}
+  icon_term -type input -origin {-100 -20} -name a
+  icon_term -type input -origin {-100 0} -name b
+  icon_term -type input -origin {-100 20} -name c
+  icon_term -type output -origin {100 -10} -name sum
+  icon_term -type output -origin {100 20} -name cout
+  icon_property -origin {-160 110} -type user -name name
+  icon_line -100 -50 -100 50 100 50 100 -50 -100 -50
+  icon_property -origin {-20 0} -size large -label FA
+  icon_property -origin {-90 -20} -label a
+  icon_property -origin {-90 0} -label b
+  icon_property -origin {-90 20} -label c
+  icon_property -origin {90 -10} -anchor e -label sum
+  icon_property -origin {90 20} -anchor e -label cout
+  icon_property -origin {-160 170} -type auto -name verilog -text {FA [unique_name "" $name FA]
+(.a($a), .b($b), .c($c), .sum($sum), 
+.cout($cout))\;}
+}
+

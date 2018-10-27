@@ -1,0 +1,30 @@
+This directory contains all projects, testbeds, trials and prototypes
+for the Computer Architecture Simulator.
+
+archive/ contains older versionso of the project with some very early
+trials.
+
+cas-v0-18042011/ contains the earliest working "milestone" for the
+project.
+
+cas-v1/ contains the second working "milestone" with better
+client-side drawing of machines, a desktop version of the client-side
+viewer and a fig+machine_definition "compiler".
+
+cas-v2/ contains the work-in-progress for a better fig parser, better
+client-side machine drawing and a veriwell dump file parser. This is
+still in the works and the goal is to make defining machines
+(including the verilog code) much simpler.
+
+fig-ref/ contains the fig format (version 3.2) documentation, a
+complete fig parser (from cas-v2) and a "translator" for the Rapahel
+client-side javascript drawing library (used in cas-v2).
+
+machine-web* directories contain code for rendering machines on
+client-side web browsers.
+
+web-tests contains some fig files and code to render machines on web
+browsers, used for testing special cases as well as fig parsing.
+
+web-trials contains code for trials with web browser drawing
+libraries.

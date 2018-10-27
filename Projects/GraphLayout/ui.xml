@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<interface>
+  <requires lib="gtk+" version="2.16"/>
+  <!-- interface-naming-policy project-wide -->
+  <object class="GtkWindow" id="main_window">
+    <property name="border_width">5</property>
+    <property name="title" translatable="yes">Graph Layout</property>
+    <property name="default_width">900</property>
+    <property name="default_height">600</property>
+    <property name="mnemonics_visible">False</property>
+    <child>
+      <placeholder/>
+    </child>
+  </object>
+</interface>

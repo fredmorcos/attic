@@ -1,0 +1,13 @@
+Dependencies:
+
+Gtk+				gtk.org
+OpenCV				opencvlibrary.sourceforge.net
+CMake				cmake.org
+GCC-Objective-C
+
+Building and Running:
+chmod +x build.sh
+./build.sh
+cd build
+./cv2 <image-filename>
+

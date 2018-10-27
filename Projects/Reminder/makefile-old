@@ -1,0 +1,24 @@
+CC = gcc
+# CFLAGS = -Wall -Werror -Os -std=c99
+CFLAGS = -Wall -Werror -std=c99 -g
+LDFLAGS = -lm
+
+OBJECTS = rem-main.o \
+	rem-utils.o \
+	rem-list.o \
+	rem-task.o \
+	rem-manager.o
+
+TARGET = reminder
+
+all: $(OBJECTS)
+	$(CC) $(LDFLAGS) $^ -o $(TARGET)
+
+rem-main.o: rem-main.c
+rem-utils.o: rem-utils.c
+rem-list.o: rem-list.c
+rem-task.o: rem-task.c
+rem-manager.o: rem-manager.c
+
+clean:
+	rm -rf $(OBJECTS) $(TARGET)

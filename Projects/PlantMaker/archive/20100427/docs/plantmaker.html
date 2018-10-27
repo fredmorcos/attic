@@ -1,0 +1,64 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module plantmaker</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>plantmaker</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/personal/workspace/plantmaker/plantmaker.py">/personal/workspace/plantmaker/plantmaker.py</a></font></td></tr></table>
+    <p><tt>This&nbsp;module&nbsp;provides&nbsp;the&nbsp;main&nbsp;entry&nbsp;to&nbsp;the&nbsp;program.&nbsp;Provides&nbsp;helper&nbsp;functions<br>
+to&nbsp;create,&nbsp;edit&nbsp;and&nbsp;run&nbsp;Plant&nbsp;instances,&nbsp;Recipe&nbsp;instances,&nbsp;OrderList&nbsp;instances<br>
+as&nbsp;well&nbsp;as&nbsp;the&nbsp;scheduler.<br>
+commands&nbsp;provides&nbsp;a&nbsp;dict&nbsp;of&nbsp;tuples&nbsp;that&nbsp;map&nbsp;from&nbsp;an&nbsp;str&nbsp;representation&nbsp;to&nbsp;<br>
+either&nbsp;a&nbsp;help&nbsp;str&nbsp;or&nbsp;to&nbsp;a&nbsp;function&nbsp;pointer,&nbsp;it&nbsp;is&nbsp;used&nbsp;to&nbsp;generalize&nbsp;resolution<br>
+of&nbsp;both&nbsp;cases&nbsp;when&nbsp;calling&nbsp;the&nbsp;program&nbsp;with&nbsp;command&nbsp;line&nbsp;arguments.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="xml.dom.minidom.html">xml.dom.minidom</a><br>
+</td><td width="25%" valign=top><a href="posixpath.html">posixpath</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top><a href="unittest.html">unittest</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-addMachine"><strong>addMachine</strong></a>(args)</dt><dd><tt>Adds&nbsp;a&nbsp;Machine&nbsp;to&nbsp;a&nbsp;Plant&nbsp;with&nbsp;plantName.</tt></dd></dl>
+ <dl><dt><a name="-addOrder"><strong>addOrder</strong></a>(args)</dt><dd><tt>Adds&nbsp;an&nbsp;Order&nbsp;along&nbsp;with&nbsp;its&nbsp;Recipe&nbsp;to&nbsp;an&nbsp;OrderList.</tt></dd></dl>
+ <dl><dt><a name="-createOrderList"><strong>createOrderList</strong></a>(args)</dt><dd><tt>Creates&nbsp;a&nbsp;new&nbsp;OrderList&nbsp;file&nbsp;with&nbsp;orderListName.</tt></dd></dl>
+ <dl><dt><a name="-createPlant"><strong>createPlant</strong></a>(args)</dt><dd><tt>Creates&nbsp;a&nbsp;new&nbsp;Plant&nbsp;XML&nbsp;file&nbsp;from&nbsp;the&nbsp;plantName.</tt></dd></dl>
+ <dl><dt><a name="-orderListExists"><strong>orderListExists</strong></a>(orderListName)</dt><dd><tt>Constructs&nbsp;the&nbsp;OrderList&nbsp;filename&nbsp;from&nbsp;str&nbsp;orderListName&nbsp;and&nbsp;returns&nbsp;it&nbsp;if&nbsp;<br>
+the&nbsp;file&nbsp;exists,&nbsp;if&nbsp;it&nbsp;doesn't,&nbsp;an&nbsp;Exception&nbsp;is&nbsp;thrown.</tt></dd></dl>
+ <dl><dt><a name="-orderListNoExists"><strong>orderListNoExists</strong></a>(orderListName)</dt><dd><tt>Constructs&nbsp;the&nbsp;OrderList&nbsp;filename&nbsp;from&nbsp;str&nbsp;orderListName&nbsp;and&nbsp;returns&nbsp;it&nbsp;if&nbsp;<br>
+the&nbsp;file&nbsp;doesn't&nbsp;exist,&nbsp;if&nbsp;it&nbsp;does,&nbsp;an&nbsp;Exception&nbsp;is&nbsp;thrown.</tt></dd></dl>
+ <dl><dt><a name="-plantFileExists"><strong>plantFileExists</strong></a>(plantName)</dt><dd><tt>Constructs&nbsp;the&nbsp;Plant&nbsp;filename&nbsp;from&nbsp;str&nbsp;plantName&nbsp;and&nbsp;returns&nbsp;it&nbsp;if&nbsp;the&nbsp;file&nbsp;<br>
+exists,&nbsp;if&nbsp;it&nbsp;doesn't,&nbsp;an&nbsp;Exception&nbsp;is&nbsp;thrown.</tt></dd></dl>
+ <dl><dt><a name="-plantFileNoExists"><strong>plantFileNoExists</strong></a>(plantName)</dt><dd><tt>Constructs&nbsp;the&nbsp;Plant&nbsp;filename&nbsp;from&nbsp;str&nbsp;plantName&nbsp;and&nbsp;returns&nbsp;it&nbsp;if&nbsp;the&nbsp;file&nbsp;<br>
+doesn't&nbsp;exist,&nbsp;if&nbsp;it&nbsp;does,&nbsp;an&nbsp;Exception&nbsp;is&nbsp;thrown.</tt></dd></dl>
+ <dl><dt><a name="-schedule"><strong>schedule</strong></a>(args)</dt><dd><tt>Runs&nbsp;the&nbsp;Scheduler&nbsp;with&nbsp;the&nbsp;OrderList&nbsp;from&nbsp;orderListName&nbsp;on&nbsp;the&nbsp;Plant<br>
+with&nbsp;plantName.</tt></dd></dl>
+ <dl><dt><a name="-showHelp"><strong>showHelp</strong></a>()</dt><dd><tt>Shows&nbsp;help&nbsp;data&nbsp;from&nbsp;the&nbsp;commands&nbsp;dict.</tt></dd></dl>
+ <dl><dt><a name="-showPlant"><strong>showPlant</strong></a>(args)</dt><dd><tt>Print&nbsp;the&nbsp;XML&nbsp;description&nbsp;of&nbsp;a&nbsp;Plant&nbsp;from&nbsp;plantName.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>CraneMoveTime</strong> = 1<br>
+<strong>EndMargin</strong> = 1<br>
+<strong>MachineMargin</strong> = 1<br>
+<strong>Unassigned</strong> = Unassigned<br>
+<strong>commands</strong> = {'add-machine': (&lt;function addMachine&gt;, ['plant-name', 'machine-name', 'machine-quantity', 'machine-self-precedence', 'machine-can-unhook'], 'Add a machine to a plant'), 'add-order': (&lt;function addOrder&gt;, ['order-list-name', 'plant-name', 'order-id', 'order-deadline'], 'Add an order to an order list'), 'create-order-list': (&lt;function createOrderList&gt;, ['order-list-name'], 'Create a new order list'), 'create-plant': (&lt;function createPlant&gt;, ['plant-name'], 'Create a new plant'), 'schedule': (&lt;function schedule&gt;, ['plant-name', 'order-list-name'], 'Compute a schedule for an order list on a plant'), 'show-plant': (&lt;function showPlant&gt;, ['plant-name'], 'Show plant information')}</td></tr></table>
+</body></html>

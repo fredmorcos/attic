@@ -1,0 +1,8 @@
+*.o
+*.p
+*.d
+*.lp
+*.ld
+output
+parser.h
+sbnasm

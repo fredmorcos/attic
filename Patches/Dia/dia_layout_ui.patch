@@ -1,0 +1,98 @@
+Index: app/commands.c
+===================================================================
+--- app/commands.c	(revision 4082)
++++ app/commands.c	(working copy)
+@@ -1146,6 +1146,10 @@
+   layer_dialog_show();
+ }
+ 
++void objects_layout_callback (GtkAction *action)
++{
++	g_print("I've been clicked!!!\n");
++}
+ 
+ void
+ objects_align_h_callback (GtkAction *action)
+Index: app/commands.h
+===================================================================
+--- app/commands.h	(revision 4082)
++++ app/commands.h	(working copy)
+@@ -75,6 +75,7 @@
+ void objects_unparent_children_callback (GtkAction *action);
+ void objects_group_callback             (GtkAction *action);
+ void objects_ungroup_callback           (GtkAction *action);
++void objects_layout_callback			(GtkAction *action);
+ void objects_align_h_callback           (GtkAction *action);
+ void objects_align_v_callback           (GtkAction *action);
+ 
+Index: app/menus.c
+===================================================================
+--- app/menus.c	(revision 4082)
++++ app/menus.c	(working copy)
+@@ -174,6 +174,8 @@
+     { "ObjectsUnparent", NULL, N_("_Unparent"), "<control><shift>L", NULL, G_CALLBACK (objects_unparent_callback) },
+     { "ObjectsUnparentchildren", NULL, N_("_Unparent Children"), NULL, NULL, G_CALLBACK (objects_unparent_children_callback) },
+ 
++	{ "ObjectsLayout", NULL, N_("Layout"), "<alt><shift>F", NULL, G_CALLBACK (objects_layout_callback) },
++
+     { "ObjectsAlign", NULL, N_("Align"), NULL, NULL, NULL },
+       { "ObjectsAlignLeft", GTK_STOCK_JUSTIFY_LEFT, NULL, "<alt><shift>L", NULL, G_CALLBACK (objects_align_h_callback) },
+       { "ObjectsAlignCenter", GTK_STOCK_JUSTIFY_CENTER, NULL, "<alt><shift>C", NULL, G_CALLBACK (objects_align_h_callback) },
+@@ -1208,6 +1210,8 @@
+     items->unparent = gtk_action_group_get_action (actions, "ObjectsUnparent");
+     items->unparent_children = gtk_action_group_get_action (actions, "ObjectsUnparentchildren");
+ 
++	items->layout = gtk_action_group_get_action (actions, "ObjectsLayout");
++
+     items->align_h_l = gtk_action_group_get_action (actions, "ObjectsAlignLeft");
+     items->align_h_c = gtk_action_group_get_action (actions, "ObjectsAlignCenter");
+     items->align_h_r = gtk_action_group_get_action (actions, "ObjectsAlignRight");
+Index: app/menus.h
+===================================================================
+--- app/menus.h	(revision 4082)
++++ app/menus.h	(working copy)
+@@ -55,6 +55,8 @@
+   GtkAction *unparent;
+   GtkAction *unparent_children;
+ 
++  GtkAction *layout;
++
+   GtkAction *align_h_l;
+   GtkAction *align_h_c;
+   GtkAction *align_h_r;
+Index: data/display-ui.xml
+===================================================================
+--- data/display-ui.xml	(revision 4082)
++++ data/display-ui.xml	(working copy)
+@@ -85,6 +85,7 @@
+ 			<menuitem name="ObjectsUnparent" action="ObjectsUnparent" />
+ 			<menuitem name="ObjectsUnparentchildren" action="ObjectsUnparentchildren" />
+ 			<separator name="ObjectsSep3" />
++			<menuitem name="ObjectsLayout" action="ObjectsLayout" />
+ 			<menu name="ObjectsAlign" action="ObjectsAlign">
+ 				<menuitem name="ObjectsAlignLeft" action="ObjectsAlignLeft" />
+ 				<menuitem name="ObjectsAlignCenter" action="ObjectsAlignCenter" />
+Index: data/integrated-ui.xml
+===================================================================
+--- data/integrated-ui.xml	(revision 4082)
++++ data/integrated-ui.xml	(working copy)
+@@ -99,6 +99,7 @@
+ 			<menuitem name="ObjectsUnparent" action="ObjectsUnparent" />
+ 			<menuitem name="ObjectsUnparentchildren" action="ObjectsUnparentchildren" />
+ 			<separator name="ObjectsSep3" />
++			<menuitem name="ObjectsLayout" action="ObjectsLayout" />
+ 			<menu name="ObjectsAlign" action="ObjectsAlign">
+ 				<menuitem name="ObjectsAlignLeft" action="ObjectsAlignLeft" />
+ 				<menuitem name="ObjectsAlignCenter" action="ObjectsAlignCenter" />
+Index: data/popup-ui.xml
+===================================================================
+--- data/popup-ui.xml	(revision 4082)
++++ data/popup-ui.xml	(working copy)
+@@ -84,6 +84,7 @@
+ 			<menuitem name="ObjectsUnparent" action="ObjectsUnparent" />
+ 			<menuitem name="ObjectsUnparentchildren" action="ObjectsUnparentchildren" />
+ 			<separator name="ObjectsSep3" />
++			<menuitem name="ObjectsLayout" action="ObjectsLayout" />
+ 			<menu name="ObjectsAlign" action="ObjectsAlign">
+ 				<menuitem name="ObjectsAlignLeft" action="ObjectsAlignLeft" />
+ 				<menuitem name="ObjectsAlignCenter" action="ObjectsAlignCenter" />

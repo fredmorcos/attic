@@ -1,0 +1,11 @@
+{
+    "title":    "Instruction Memory",
+    "image":    "sbn-mem.dia",
+    "is_mem":   true,
+    "mem_name": "IMEM",
+
+    "mem_elements": {
+	"%DATA1%": "PROG",
+	"%DATA2%": "DPROG"
+    }
+}

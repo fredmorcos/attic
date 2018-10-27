@@ -1,0 +1,30 @@
+<order-list>
+	<order deadline="29" id="1">
+		<recipe>
+			<machine name="stripper" time="2"/>
+			<machine name="degreaser" time="2"/>
+			<machine name="pickler" time="2"/>
+			<machine name="rinser" time="2"/>
+			<machine name="fluxer" time="2"/>
+			<machine name="dryer" time="2"/>
+			<machine name="kettle" time="2"/>
+			<machine name="quencher" time="2"/>
+			<machine name="passivator" time="2"/>
+			<machine name="postrinser" time="2"/>
+		</recipe>
+	</order>
+	<order deadline="29" id="2">
+		<recipe>
+			<machine name="stripper" time="2"/>
+			<machine name="degreaser" time="2"/>
+			<machine name="pickler" time="2"/>
+			<machine name="rinser" time="2"/>
+			<machine name="fluxer" time="2"/>
+			<machine name="dryer" time="2"/>
+			<machine name="kettle" time="2"/>
+			<machine name="quencher" time="2"/>
+			<machine name="passivator" time="2"/>
+			<machine name="postrinser" time="2"/>
+		</recipe>
+	</order>
+</order-list>

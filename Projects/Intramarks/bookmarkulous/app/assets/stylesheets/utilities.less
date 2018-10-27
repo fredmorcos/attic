@@ -1,0 +1,75 @@
+//
+// Utility classes
+// --------------------------------------------------
+
+
+// Quick floats
+.pull-right {
+  float: right;
+}
+.pull-left {
+  float: left;
+}
+
+// Toggling content
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+
+// Visibility
+.invisible {
+  visibility: hidden;
+}
+
+// For Affix plugin
+.affix {
+  position: fixed;
+}
+
+.shadowed{
+  &:before{
+    content:"";
+    z-index:-1;
+    position:absolute;
+    bottom:15px;
+    left:10px;
+    width:50%;
+    height:30px;
+    box-shadow:0 15px 10px rgba(0, 0, 0, 0.7);
+    .rotate(-1deg);
+  }
+
+  &:after{
+    content:"";
+    position:absolute;
+    z-index:-1;
+    bottom:15px;
+    right:10px;
+    width:50%;
+    height:30px;
+    box-shadow:0 15px 10px rgba(0, 0, 0, 0.7);
+    .rotate(1deg);
+  }
+}
+
+.features{
+  margin-bottom:20px;
+  p.lead{
+    padding-bottom:10px;
+    border-bottom:1px solid @borderColor;
+    color:#333;
+  }
+}
+
+.ico.xxl{
+  font-size:300px;
+  .rotate(10deg);
+  opacity:0.1;
+  position: absolute;
+  top:85px;
+  left:50%;
+  margin-left:-300px;
+}

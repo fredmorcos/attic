@@ -1,0 +1,38 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_zero_register {} {
+  make nmos -orient R90 -origin {320 250}
+  make nmos -orient R90 -origin {320 460}
+  make output -name out1 -origin {420 250}
+  make output -name out2 -origin {410 460}
+  make input -name r1 -origin {320 120}
+  make input -name r2 -origin {320 350}
+  make global -name gnd -origin {210 320}
+  make global -name gnd -origin {220 510}
+  make_wire 360 460 410 460
+  make_wire 360 250 420 250
+  make_wire 220 510 220 460
+  make_wire 220 460 280 460
+  make_wire 210 320 210 250
+  make_wire 210 250 280 250
+  make_wire 320 120 320 190
+  make_wire 320 350 320 400
+}
+
+proc ICON_zero_register args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 -80} -name r1
+  icon_term -type input -origin {-100 -60} -name r2
+  icon_term -type output -origin {100 -80} -name out1
+  icon_term -type output -origin {100 -60} -name out2
+  icon_property -origin {-50 70} -type user -name name
+  icon_property -origin {-50 90} -type user -name M
+  icon_property -origin {-50 110} -type user -name dpc
+  icon_line -100 -110 -100 -20 100 -20 100 -110 -100 -110
+  icon_property -origin {-50 -40} -label zero_register
+  icon_property -origin {-90 -80} -label r1
+  icon_property -origin {-90 -60} -label r2
+  icon_property -origin {40 -80} -label out1
+  icon_property -origin {40 -60} -label out2
+}
+

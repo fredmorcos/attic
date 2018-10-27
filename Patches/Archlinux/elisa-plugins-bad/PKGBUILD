@@ -1,0 +1,18 @@
+# Contributor: Timm Preetz <timm@preetz.us>
+pkgname=elisa-plugins-bad
+pkgver=0.3.4
+pkgrel=1
+pkgdesc="The 'good' plugins for the Elisa media center."
+arch=('i686' 'x86_64')
+url="http://elisa.fluendo.com/"
+license=('GPL')
+depends=('elisa' 'gstreamer0.10-bad')
+makedepends=('setuptools')
+source=(http://elisa.fluendo.com/static/download/elisa/$pkgname-$pkgver.tar.gz)
+md5sums=('a874fa4cba9ba6373fa47ab6f1b769fa')
+
+build() {
+	cd $startdir/src/$pkgname-$pkgver
+	python setup.py install --root=$startdir/pkg || return 1
+	rm $startdir/pkg/usr/lib/python2.5/site-packages/elisa/plugins/__init__.py*
+}

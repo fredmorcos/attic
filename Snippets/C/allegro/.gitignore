@@ -1,0 +1,8 @@
+*.o
+*~
+.#*
+\#*
+allegro-test
+gmon.out
+scan_clang
+callgrind*

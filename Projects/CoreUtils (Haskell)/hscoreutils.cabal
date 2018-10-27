@@ -1,0 +1,83 @@
+name:               hscoreutils
+version:            0.1.0.0
+synopsis:           UNIX core utilities implemented in Haskell
+homepage:           https://github.com/fredmorcos/hscoreutils.git
+license:            BSD3
+license-file:       LICENSE
+author:             Fred Morcos
+maintainer:         fred.morcos@gmail.com
+copyright:          2014 (c) Fred Morcos
+category:           System
+build-type:         Simple
+extra-source-files: README.md
+cabal-version:      >=1.10
+
+executable cat
+  main-is:          Cat.hs
+  build-depends:    base >=4.6 && <4.7
+  default-language: Haskell2010
+  ghc-options:      -Wall
+
+executable tac
+  main-is:          Tac.hs
+  build-depends:    base >=4.6 && <4.7
+  default-language: Haskell2010
+  ghc-options:      -Wall
+  other-extensions: CPP
+  cpp-options:      -DTAC
+
+executable echo-1
+  main-is:          Echo-1.hs
+  build-depends:    base >=4.6 && <4.7
+  default-language: Haskell2010
+  ghc-options:      -Wall
+
+executable echo-2
+  main-is:          Echo-2.hs
+  build-depends:    base >=4.6 && <4.7
+  default-language: Haskell2010
+  ghc-options:      -Wall
+
+executable false
+  main-is:          False.hs
+  build-depends:    base >=4.6 && <4.7
+  default-language: Haskell2010
+  ghc-options:      -Wall
+
+executable head
+  main-is:          Head.hs
+  build-depends:    base >=4.6 && <4.7
+  default-language: Haskell2010
+  ghc-options:      -Wall
+
+executable tail
+  main-is:          Tail.hs
+  build-depends:    base >=4.6 && <4.7
+  default-language: Haskell2010
+  ghc-options:      -Wall
+  other-extensions: CPP
+  cpp-options:      -DTAIL
+
+executable true
+  main-is:          True.hs
+  build-depends:    base >=4.6 && <4.7
+  default-language: Haskell2010
+  ghc-options:      -Wall
+
+executable uniq
+  main-is:          Uniq.hs
+  build-depends:    base >=4.6 && <4.7
+  default-language: Haskell2010
+  ghc-options:      -Wall
+
+executable yes
+  main-is:          Yes.hs
+  build-depends:    base >=4.6 && <4.7
+  default-language: Haskell2010
+  ghc-options:      -Wall
+
+executable basename
+  main-is:          Basename.hs
+  build-depends:    base >=4.6 && <4.7, filepath
+  default-language: Haskell2010
+  ghc-options:      -Wall

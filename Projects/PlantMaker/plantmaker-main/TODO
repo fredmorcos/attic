@@ -1,0 +1,23 @@
+[ ] split different packages into different programs
+	[ ] scheduler
+	[ ] optimizer
+	[ ] simulator
+	[ ] evaluator
+	[ ] controller
+[ ] enable piping input/output of different programs
+[ ] command line parameters for each program
+[ ] main input should be through piping
+[ ] implement a standard input/output text/ascii format
+[ ] implement loading/saving of object instances from format
+[ ] use properties getter/setter methods in all classes
+[ ] take benchmarks out and into scripts instead
+[ ] have a library of common stuff
+[ ] fix any bugs/regressions
+[ ] improve performance and scalability
+[ ] implement more stuff, especially into optimizer
+[ ] re-implement simulator
+
+[ ] quantity and unhooking bug in scheduler
+[ ] quantity in simulator (use int instead of node)
+[ ] avoid re-calculating minimum processing time in order
+[ ] deal with breaks as tuple of start and duration in machine

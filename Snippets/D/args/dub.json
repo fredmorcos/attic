@@ -1,0 +1,8 @@
+{
+	"name": "pet",
+	"description": "The Personal Expense Tracker",
+	"copyright": "Copyright © 2014, Fred Morcos",
+	"authors": ["Fred Morcos <fred.morcos@gmail.com>"],
+	"dependencies": {
+	}
+}

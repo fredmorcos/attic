@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=AutoCal
+Comment=Automatic Calendar and Event Management
+Exec=autocal
+Terminal=false
+Type=Application
+StartupNotify=true
+Icon=autocal
+Categories=Qt;Office;Utility;

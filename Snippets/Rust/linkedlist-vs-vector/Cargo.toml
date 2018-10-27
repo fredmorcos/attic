@@ -1,0 +1,31 @@
+[package]
+name = "ll_vs_vec"
+version = "0.1.0"
+authors = ["Fred Morcos <fred.morcos@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+cpuprofiler = "0.0.3"
+
+[dev-dependencies]
+criterion = "0.2.5"
+
+[[bench]]
+name = "bench"
+harness = false
+
+[[bin]]
+name = "vector_iter"
+doc = false
+
+[[bin]]
+name = "vector_index"
+doc = false
+
+[[bin]]
+name = "vector_unchecked"
+doc = false
+
+[[bin]]
+name = "linkedlist"
+doc = false

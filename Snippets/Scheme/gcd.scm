@@ -1,0 +1,5 @@
+(define (gcd a b)
+  (cond ((or (= a 1) (= b 1)) 1)
+	((= a b) a)
+	((> a b) (gcd (- a b) b))
+	((< a b) (gcd a (- b a)))))

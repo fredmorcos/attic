@@ -1,0 +1,18 @@
+upc matrix transpose
+    single element access
+    	   upc-forall (BS=1, BS=N/NT)
+	   for	      (BS=1, BS=N/NT)
+    bulk access
+           memget/put (sync/async)
+		single line
+		multiple lines (ilist)
+    tiling/mutli-dimensional "blocking"
+    processor assignment
+    collective communication
+
+later:
+	rectangular matrixes
+	even and odd sizes of N, M and NT
+	combinations of BS
+	cache-oblivious local transpose
+	cilkification of local transposes

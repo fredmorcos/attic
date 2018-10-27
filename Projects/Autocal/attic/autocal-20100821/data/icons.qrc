@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>action-add.png</file>
+        <file>action-remove.png</file>
+        <file>action-save.png</file>
+        <file>action-load.png</file>
+        <file>action-quit.png</file>
+        <file>action-run.png</file>
+        <file>action-info.png</file>
+    </qresource>
+</RCC>

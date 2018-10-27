@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/icons" >
+        <file>qdfs_16.png</file>
+        <file>qdfs.svg</file>
+    </qresource>
+</RCC>

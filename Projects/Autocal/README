@@ -1,0 +1,14 @@
+Usage:
+------
+
+AutoCal accepts input from standard input (stdin) in a simple custom format. An
+example format is in examples/ and should followed exactly (autocal doesn't try
+to be as flexible as possible with the syntax).
+
+Example:
+./autocal.py < mycalendar.acf
+
+The input file should be piped through stdin. Any errors will be output through
+stderr and any output will be shown through stdout.
+
+Command line arguments can be found using ./autocal.py --help

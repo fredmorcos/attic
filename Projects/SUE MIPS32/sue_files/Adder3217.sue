@@ -1,0 +1,60 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_Adder3217 {} {
+  make ripple8 -origin {0 520}
+  make ripple8 -origin {620 440}
+  make ripple8 -origin {310 480}
+  make ripple8 -origin {930 400}
+  make input -name {b[7:0]} -origin {-100 460}
+  make input -name {b[15:8]} -origin {210 420}
+  make input -name {b[23:16]} -origin {520 380}
+  make input -name {b[31:24]} -origin {830 340}
+  make output -name {y[7:0]} -origin {100 460}
+  make output -name {y[15:8]} -origin {410 420}
+  make output -name {y[23:16]} -origin {720 380}
+  make output -name {y[31:24]} -origin {1030 340}
+  make output -name cout -origin {1030 320}
+  make name_net_s -name {a[31:17]} -origin {130 670}
+  make global -name gnd -origin {-220 690}
+  make global -name gnd -origin {-180 530}
+  make name_net_s -name {a[31:24]} -origin {760 320}
+  make name_net_s -name {a[23:16]} -origin {470 270}
+  make input -name {a[16]} -origin {330 630}
+  make name_net_s -name {a[16]} -origin {530 630}
+  make input -name {a[7:0]} -origin {-100 440}
+  make input -name {a[15:8]} -origin {210 400}
+  make DoubleInverter -origin {410 650}
+  make Inverters15Bit -origin {-50 760}
+  make_wire 410 400 520 400
+  make_wire 720 360 830 360
+  make_wire 100 440 210 440
+  make_wire -180 530 -180 480
+  make_wire -180 480 -100 480
+  make_wire 830 320 760 320
+  make_wire 470 270 470 360
+  make_wire 470 360 520 360
+  make_wire 330 630 350 630
+  make_wire 480 630 530 630
+  make_wire -220 680 -220 690
+  make_wire -220 680 -150 680
+  make_wire 130 670 130 680
+  make_wire 50 680 130 680
+}
+
+proc ICON_Adder3217 args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 -30} -name {a[16:0]}
+  icon_term -type input -origin {-100 20} -name {b[31:0]}
+  icon_term -type output -origin {100 -30} -name cout
+  icon_term -type output -origin {100 20} -name {y[31:0]}
+  icon_property -origin {-50 120} -type user -name name
+  icon_property -origin {-50 140} -type user -name M
+  icon_property -origin {-50 160} -type user -name dpc
+  icon_line -100 -50 -100 40 100 40 100 -50 -100 -50
+  icon_property -origin {-40 -10} -label adder3217
+  icon_property -origin {100 -30} -anchor e -label cout
+  icon_property -origin {100 20} -anchor e -label {y[31:0]}
+  icon_property -origin {-100 -30} -label {a[16:0]}
+  icon_property -origin {-100 20} -label {b[31:0]}
+}
+

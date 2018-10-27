@@ -1,0 +1,128 @@
+Index: main.c
+===================================================================
+--- main.c	(revision 7)
++++ main.c	(working copy)
+@@ -2,8 +2,14 @@
+ #include <clutter-cairo/clutter-cairo.h>
+ #include <stdlib.h>
+ #include <librsvg/rsvg.h>
++#include <math.h>
+ 
+ static void timeline_new_frame (ClutterTimeline *timeline, gint frame_num, gpointer data);
++static void bounce_animation (ClutterTimeline *timeline, gint frame_num, gpointer data);
++static void bounce_animation_sin (ClutterTimeline *timeline, gint frame_num, gpointer data);
++static void bounce_animation_sin_squeeze (ClutterTimeline *timeline, gint frame_num, gpointer data);
++static void opacity_animation_sin (ClutterTimeline *timeline, gint frame_num, gpointer data);
++static void zoom_animation_sin (ClutterTimeline *timeline, gint frame_num, gpointer data);
+ 
+ typedef struct _SVGTexture {
+ 	RsvgHandle *handle;
+@@ -13,6 +19,7 @@
+ 	int scaling;
+ 	int rotation_x, rotation_y, rotation_z;
+ 	char *text;
++	int speed;
+ } SVGTexture;
+ 
+ int main (int argc, char *argv[])
+@@ -27,19 +34,21 @@
+ 	clutter_stage_set_color (CLUTTER_STAGE (stage), &default_color);
+ 	clutter_actor_set_size (stage, 800, 600);
+ 	
+-	timeline = clutter_timeline_new (20, 60);
++	timeline = clutter_timeline_new (20, 20);
+ 	clutter_timeline_set_loop (timeline, TRUE);
+ 	clutter_timeline_start (timeline);
+ 	
+ 	svg->handle = rsvg_handle_new_from_file ("heart.svg", NULL);
+ 	rsvg_handle_get_dimensions (svg->handle, &(svg->size));
+-	svg->scaling = 20;
++	svg->scaling = 2;
+ 	svg->rotation_x = 0;
+ 	svg->rotation_y = 0;
+ 	svg->rotation_z = 0;
+ 	svg->text = "100";
++	svg->speed = 0;
+ 	svg->texture = clutter_cairo_new ((int) (svg->size.width * svg->scaling), 
+-			(int) (svg->size.height * svg->scaling));
++			(int) (svg->size.height * svg->scaling));\
++			
+ 	svg->drawing = clutter_cairo_create (CLUTTER_CAIRO (svg->texture));
+ 	cairo_scale (svg->drawing, svg->scaling, svg->scaling);
+ 	rsvg_handle_render_cairo (svg->handle, svg->drawing);
+@@ -54,14 +63,14 @@
+ 	g_signal_connect (G_OBJECT (stage), "key_press_event", 
+ 					  G_CALLBACK (clutter_main_quit), NULL);
+ 	g_signal_connect (G_OBJECT (timeline), "new_frame", 
+-					  G_CALLBACK (timeline_new_frame), (gpointer) svg);
++					  G_CALLBACK (bounce_animation_sin_squeeze), (gpointer) svg);
+ 	
+ 	clutter_container_add_actor (CLUTTER_CONTAINER (stage), svg->texture);
+ //	WE HAVE TO FIX THIS, USING AN EXPOSE EVENT AND REDRAWING USING CAIRO
+ //	INSTEAD OF LETTING SCALE (DRAW) IT.
+ //	clutter_actor_set_size (svg->texture, 400, 400);
+ //	clutter_actor_set_scale (svg->texture, 0.1, 0.1);
+-	clutter_actor_set_position (svg->texture, 30, 30);
++	clutter_actor_set_position (svg->texture, 100, 100);
+ //	clutter_actor_set_anchor_point (svg->texture, (gint)((svg->size.width * svg->scaling) / 2), 
+ //			(gint)((svg->size.height * svg->scaling) / 2));
+ //	clutter_actor_set_opacity (svg->texture, 100);
+@@ -122,3 +131,58 @@
+ 			((SVGTexture *) data)->rotation_z, clutter_actor_get_width (((SVGTexture *) data)->texture) / 2, 
+ 			clutter_actor_get_height (((SVGTexture *) data)->texture) / 2, 0);
+ }
++
++
++static void bounce_animation (ClutterTimeline *timeline, gint frame_num, gpointer data)
++{
++	gint xold, yold;
++	clutter_actor_get_position (((SVGTexture *) data)->texture, &xold, &yold);
++	if (yold <20)
++	{	// accelerate
++		((SVGTexture *) data)->speed +=1;
++	}
++	else
++	{	// decelerate
++		((SVGTexture *) data)->speed -=2;
++	}
++	clutter_actor_set_position (((SVGTexture *) data)->texture, xold, yold+((SVGTexture *) data)->speed);
++}
++
++
++static void opacity_animation_sin (ClutterTimeline *timeline, gint frame_num, gpointer data)
++{
++	double n_frames = clutter_timeline_get_n_frames (timeline);
++	double opacity = sin ((((double)frame_num)/n_frames)*M_PI*2.0)+1;
++	clutter_actor_set_opacity (((SVGTexture *) data)->texture, opacity*127);
++}
++
++static void bounce_animation_sin (ClutterTimeline *timeline, gint frame_num, gpointer data)
++{
++	double n_frames = clutter_timeline_get_n_frames (timeline);
++	double opacity = sin ((((double)frame_num)/n_frames)*M_PI*2.0)+1;
++	opacity*=12;
++	clutter_actor_set_position (((SVGTexture *) data)->texture, 0, opacity);
++}
++
++static void bounce_animation_sin_squeeze (ClutterTimeline *timeline, gint frame_num, gpointer data)
++{
++	//also still doesn't look as it should.
++	double n_frames = clutter_timeline_get_n_frames (timeline);
++	double opacity = sin ((((double)frame_num)/n_frames)*M_PI*2.0)+1;
++	opacity*=12;
++	clutter_actor_set_position (((SVGTexture *) data)->texture, 0, opacity);
++	if (opacity>20)
++	{
++		clutter_actor_set_scale (((SVGTexture *) data)->texture, 1, 1-(opacity-20)*0.3/6);
++	}
++}
++
++
++static void zoom_animation_sin (ClutterTimeline *timeline, gint frame_num, gpointer data)
++{
++	// not yet fully developped. doesn't look as it should.
++	double n_frames = clutter_timeline_get_n_frames (timeline);
++	double opacity = sin ((((double)frame_num)/n_frames)*M_PI*2.0)+1;
++	opacity*=50;
++	clutter_actor_set_depth (((SVGTexture *) data)->texture, opacity);
++}

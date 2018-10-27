@@ -1,0 +1,18 @@
+HC ?= ghc
+HCFLAGS ?= --make
+
+SRC = Main.hs
+HIF = $(SRC:.hs=.hi)
+OBJ = $(SRC:.hs=.o)
+BIN = pet
+
+.PHONY: all default clean
+
+default: all
+all: $(BIN)
+
+$(BIN): $(SRC)
+	$(HC) $(HCFLAGS) $^ -o $@
+
+clean:
+	rm -rf $(HIF) $(OBJ) $(BIN)

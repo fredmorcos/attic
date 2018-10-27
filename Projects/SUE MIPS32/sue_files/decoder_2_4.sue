@@ -1,0 +1,105 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_decoder_2_4 {} {
+  make inverter -origin {240 210}
+  make inverter -origin {240 290}
+  make inverter -origin {240 380}
+  make inverter -origin {240 560}
+  generate nand2 nand3 -ninputs 3
+  make nand3 -WN 2 -origin {360 250}
+  make nand3 -WN 2 -origin {360 400}
+  make nand3 -WN 2 -origin {360 540}
+  make nand3 -WN 2 -origin {360 650}
+  make input -name E -origin {140 740}
+  make inverter -origin {520 250}
+  make inverter -origin {520 400}
+  make inverter -origin {510 540}
+  make inverter -origin {510 650}
+  make input -name {a[0]} -origin {130 130}
+  make input -name {a[1]} -origin {130 160}
+  make output -name {out[0]} -origin {650 260}
+  make output -name {out[1]} -origin {650 400}
+  make output -name {out[2]} -origin {640 520}
+  make output -name {out[3]} -origin {640 640}
+  make_wire 290 210 310 210
+  make_wire 310 210 310 260
+  make_wire 310 260 330 260
+  make_wire 330 260 330 250
+  make_wire 330 250 340 250
+  make_wire 130 160 130 290
+  make_wire 290 290 320 290
+  make_wire 320 290 320 230
+  make_wire 320 230 340 230
+  make_wire 210 380 160 380
+  make_wire 160 380 160 130
+  make_wire 160 130 130 130
+  make_wire 160 130 180 130
+  make_wire 290 380 340 380
+  make_wire 340 400 280 400
+  make_wire 280 400 280 410
+  make_wire 140 410 140 290
+  make_wire 140 290 130 290
+  make_wire 140 290 210 290
+  make_wire 210 560 160 560
+  make_wire 160 560 160 410
+  make_wire 160 410 280 410
+  make_wire 160 410 140 410
+  make_wire 290 560 310 560
+  make_wire 310 560 310 540
+  make_wire 310 540 340 540
+  make_wire 340 520 190 520
+  make_wire 190 520 190 210
+  make_wire 190 210 180 210
+  make_wire 190 210 210 210
+  make_wire 340 630 140 630
+  make_wire 140 630 140 410
+  make_wire 340 650 90 650
+  make_wire 90 650 90 190
+  make_wire 90 190 180 190
+  make_wire 180 190 180 130
+  make_wire 180 190 180 210
+  make_wire 280 740 280 670
+  make_wire 340 560 320 560
+  make_wire 320 560 320 670
+  make_wire 320 670 280 670
+  make_wire 320 670 340 670
+  make_wire 340 420 130 420
+  make_wire 130 420 130 720
+  make_wire 130 720 190 720
+  make_wire 190 720 190 740
+  make_wire 190 740 140 740
+  make_wire 190 740 280 740
+  make_wire 340 270 330 270
+  make_wire 330 270 330 740
+  make_wire 330 740 280 740
+  make_wire 430 250 490 250
+  make_wire 490 400 430 400
+  make_wire 430 540 480 540
+  make_wire 430 650 480 650
+  make_wire 570 250 620 250
+  make_wire 620 250 620 260
+  make_wire 620 260 650 260
+  make_wire 570 400 650 400
+  make_wire 560 540 600 540
+  make_wire 600 540 600 520
+  make_wire 600 520 640 520
+  make_wire 560 650 600 650
+  make_wire 600 650 600 640
+  make_wire 600 640 640 640
+}
+
+proc ICON_decoder_2_4 args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-90 -20} -name {a[1:0]}
+  icon_term -type input -origin {-90 0} -name E
+  icon_term -type output -origin {110 -20} -name {out[3:0]}
+  icon_property -origin {-40 130} -type user -name name
+  icon_property -origin {-40 150} -type user -name M
+  icon_property -origin {-40 170} -type user -name dpc
+  icon_line -90 -50 -90 30 110 30 110 -50 -90 -50
+  icon_property -origin {-40 -40} -label {2x4 decoder}
+  icon_property -origin {-80 -20} -label {a[1:0]}
+  icon_property -origin {-80 0} -label e
+  icon_property -origin {30 -20} -label {out[3:0]}
+}
+

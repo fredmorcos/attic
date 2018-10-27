@@ -1,0 +1,12 @@
+<plant zincBreakTime="5" craneMoveTime="2" numberOfCranes="3">
+	<machine canUnhook="False" name="M1" quantity="2" capacity="False">
+		<break start="10" duration="5"/>
+	</machine>
+	<machine canUnhook="True" name="M2" quantity="1" capacity="False"/>
+	<machine canUnhook="False" name="M3" quantity="3" capacity="True">
+		<break start="5" duration="2"/>
+		<break start="15" duration="5"/>
+	</machine>
+	<machine canUnhook="False" name="M4" quantity="2" capacity="False"/>
+</plant>
+

@@ -1,0 +1,15 @@
+task :default => [:test]
+
+directory "db"
+
+task :test do
+     ruby "tests/bookmarks_tests.rb"
+end
+
+task :run_db => "db" do
+     sh "mongod --smallfiles --dbpath db &>db/mongod.log"
+end
+
+task :clean do
+     sh "rm -rf db/"
+end

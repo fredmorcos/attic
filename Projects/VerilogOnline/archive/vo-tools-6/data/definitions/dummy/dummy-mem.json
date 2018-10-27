@@ -1,0 +1,10 @@
+{
+    "title": "Memory",
+    "image": "dummy-mem-image.json",
+    "is_mem": true,
+    "mem_name": "DMEM",
+
+    "mem_elements": {
+	"%DATA%": "PROG"
+    }
+}

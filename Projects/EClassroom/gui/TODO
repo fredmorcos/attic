@@ -1,0 +1,5 @@
+* add popup menus for lists ONLY when admin
+* add other special tabs/panels for instructor and moderator
+* put columns to the table lists
+* fix administrator_user_accounts_panel.java integration with control.java
+	> can merge all panels into 1 file: control.java

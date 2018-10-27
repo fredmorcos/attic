@@ -1,0 +1,17 @@
+(define (half-even x)
+  (cond ((= x 0) 0)
+	(else (+ 1 (half-even (- x 2))))))
+
+(define (half x)
+  (cond ((or (= x 0) (= x 1)) 0)
+	((= x 2) 1)
+	((odd? x) (half-even (- x 1)))
+	((even? x) (half-even x))
+	(else (begin (display "half-error") (newline)))))
+
+(define (fastmul x y)
+  (cond ((or (= x 0) (= y 0)) 0)
+	((= x 1) y)
+	((= y 1) x)
+	((even? y) (fastmul (+ x x) (half y)))
+	((odd? y) (+ x (fastmul x (- y 1))))))

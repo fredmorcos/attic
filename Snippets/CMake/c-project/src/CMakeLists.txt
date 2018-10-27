@@ -1,0 +1,19 @@
+link_directories(
+	${XLIB_LIBRARY_DIRS}
+	${XEXT_LIBRARY_DIRS}
+	${CAIRO_LIBRARY_DIRS}
+)
+include_directories(
+	${XLIB_INCLUDE_DIRS}
+	${XEXT_INCLUDE_DIRS}
+	${CAIRO_INCLUDE_DIRS}
+)
+add_executable(grafer 
+	main.c
+)
+target_link_libraries(grafer
+	${XLIB_LIBRARIES}
+	${XEXT_LIBRARIES}
+	${CAIRO_LIBRARIES}
+)
+

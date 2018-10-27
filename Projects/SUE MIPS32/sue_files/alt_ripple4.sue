@@ -1,0 +1,47 @@
+# SUE version MMI_SUE4.2.7
+
+proc SCHEMATIC_alt_ripple4 {} {
+  make input -orient R90 -name {b[3:0]} -origin {550 160}
+  make input -orient R90 -name {a[3:0]} -origin {570 130}
+  make input -orient RXY -name cin -origin {800 150}
+  make output -orient RXY -name cout -origin {360 410}
+  make FA -orient R90 -name {[3:0]} -origin {570 290}
+  make output -orient R90 -name {sum[3:0]} -origin {580 440}
+  make alt_ripple4 -origin {850 410}
+  make name_net_s -name {cout_int[2:0],cin} -origin {720 150}
+  make name_net_s -orient RY -name {cout,cout_int[2:0]} -origin {460 410}
+  make title_bar -owner tutorial -origin {450 640}
+  make_wire 550 390 550 410
+  make_wire 580 390 580 440
+  make_wire 550 160 550 190
+  make_wire 570 130 570 190
+  make_wire 590 150 590 190
+  make_wire 720 150 800 150
+  make_wire 720 150 590 150
+  make_wire 360 410 460 410
+  make_wire 460 410 550 410
+  make_text -origin {180 -10} -text {Alternative 4-bit ripple-carry adder made from 4 cascaded Fuil Adders (FA)
+using a bused icon and bus concatenation.}
+  make_text -origin {180 -80} -text alt_ripple4 -size large
+}
+
+proc ICON_alt_ripple4 args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}}}
+  icon_term -type input -origin {-60 -110} -orient R90X -name {b[3:0]}
+  icon_term -type input -origin {60 -110} -orient R90X -name {a[3:0]}
+  icon_term -type output -origin {0 90} -orient R90X -name {sum[3:0]}
+  icon_term -type input -origin {150 40} -orient RXY -name cin
+  icon_term -type output -origin {-150 40} -orient RXY -name cout
+  icon_property -origin {-170 270} -type user -name name
+  icon_line -150 -110 -150 90 150 90 150 -110 -150 -110
+  icon_property -origin {0 -20} -size large -anchor center -label alt_ripple4
+  icon_property -origin {80 -90} -anchor e -label {a[3:0]}
+  icon_property -origin {-40 -90} -anchor e -label {b[3:0]}
+  icon_property -origin {140 40} -anchor e -label cin
+  icon_property -origin {-140 40} -label cout
+  icon_property -origin {-40 70} -label {sum[3:0]}
+  icon_property -origin {-170 330} -type auto -name verilog -text {alt_ripple4 [unique_name "" $name alt_ripple4]
+(.b(${b[3:0]}), .a(${a[3:0]}), .cin($cin), .sum(${sum[3:0]}), 
+.cout($cout))\;}
+}
+

@@ -1,0 +1,4 @@
+env = Environment()
+env.CFile('src/lexer.lex')
+env.Program(target = 'tintconf', source = Glob('src/*.c'))
+

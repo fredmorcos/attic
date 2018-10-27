@@ -1,0 +1,43 @@
+we can use veriwell's command line interface to step through a program and retrieve variable information
+at every step.
+
+command-line argument -s to get into interactive mode
+
+'.' to continue (no more stepping)
+',' to single step with trace
+';' to single step without trace
+':' to get current position in (line)
+
+$display and $showvars can be used
+
+-f <commandfile> reads commands and input files from filename
+-i <inputfile>   reads interactive commands from file, this should be used with the -s option
+-t               to enable trace mode
+-l <logfile>     changes log output to filename
+
+the $display and $showvars are most interesting, since we can get values of variables at every step.
+the problem is that veriwell steps through irrelevant (for the students) parts of the machine program,
+this can be solved by having the relevant variables declared in the .drawing file for the machine,
+where we can filter the values of the variables we want, in this case we need to keep stepping until
+any "relevant" variable changes (then redraw/reload the page, possibly with highlighting the changed 
+node or wire). there is another problem that arises, where a relevant machine cycle doesn't change
+anything in the variables - can't think of a solution for that.
+
+an example format for the .drawing file may be as follows:
+
+######## start of machine drawing file ########
+
+name:myfirstmachine
+desc:myfirstmachine description
+desc_file:verilog-file.v
+steps:5000
+clock_varname:clk
+
+node name value x y                                    # comment 1
+node name value x y                                    # comment 2
+wire src_node_name dst_node_name value                 # connects 2 nodes that are already declared
+node name value x y                                    # comment 3
+wire src_node_name dst_node_name value                 # connects 2 nodes that are already declared
+node name value x y                                    # comment 4
+
+######## end of machine drawing file ########

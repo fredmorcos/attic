@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE gsmarkup>
+<gsmarkup>
+	<objects>
+		<menu type="main">
+			<menuItem title="OpenGrafik">
+				<menu title="OpenGrafik" type="apple">
+					<menuItem title="Quit OpenGrafik" keyEquivalent="q" 
+						action="terminate:" target="#NSApp"/>
+				</menu>
+			</menuItem>
+		</menu>
+	</objects>
+</gsmarkup>
+

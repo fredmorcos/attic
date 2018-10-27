@@ -1,0 +1,8 @@
+*.diff
+*.patch
+*.o
+*.gml
+graph_draw
+graph_layout
+graph_gen
+

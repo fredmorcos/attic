@@ -1,0 +1,6 @@
+Support CEC input
+Support omxplayer dbus interface
+Load file list into file pane along with info in info pane
+Support downloading rating and posters from online services
+Support inotify over selected directory
+Improve performance

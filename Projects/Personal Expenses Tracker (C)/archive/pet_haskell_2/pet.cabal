@@ -1,0 +1,30 @@
+name:                pet
+version:             0.0.1
+synopsis:            Personal Expense Tracker
+author:              Fred Morcos
+maintainer:          fred.morcos@gmail.com
+category:            Web
+build-type:          Simple
+cabal-version:       >=1.18
+
+executable pet
+  main-is:             Main.hs
+  -- other-modules:
+  build-depends:       base
+                     , wai
+                     , warp
+                     , http-types
+                     , resourcet
+                     , scotty
+                     , text
+                     , bytestring
+                     , blaze-html
+                     , persistent
+                     , persistent-template
+                     , persistent-sqlite
+                     , monad-logger
+                     , heroku
+                     , transformers
+                     , wai-middleware-static
+                     , wai-extra
+                     , time

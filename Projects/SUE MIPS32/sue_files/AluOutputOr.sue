@@ -1,0 +1,161 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_AluOutputOr {} {
+  make nor2 -origin {240 190}
+  make nor2 -origin {240 290}
+  make nor2 -origin {240 370}
+  make nor2 -origin {240 470}
+  make nor2 -origin {240 560}
+  make nor2 -origin {240 660}
+  make nor2 -origin {240 740}
+  make nor2 -origin {240 840}
+  make nor2 -origin {240 930}
+  make nor2 -origin {240 1030}
+  make nor2 -origin {240 1110}
+  make nor2 -origin {240 1210}
+  make nor2 -origin {240 1300}
+  make nor2 -origin {240 1400}
+  make nor2 -origin {240 1480}
+  make nor2 -origin {240 1580}
+  make nor2 -origin {440 500}
+  make nor2 -origin {440 600}
+  make nor2 -origin {440 680}
+  make nor2 -origin {440 780}
+  make nor2 -origin {440 870}
+  make nor2 -origin {400 1520}
+  make nor2 -origin {440 1070}
+  make nor2 -origin {470 1150}
+  make nor2 -origin {600 560}
+  make nor2 -origin {600 730}
+  make nor2 -origin {590 930}
+  make nor2 -origin {700 1170}
+  make nor2 -origin {750 590}
+  make nor2 -origin {800 930}
+  make nor2 -origin {960 780}
+  make output -name o -origin {1030 780}
+  make input -name {a[0]} -origin {220 170}
+  make input -name {a[1]} -origin {220 210}
+  make input -name {a[2]} -origin {220 270}
+  make input -name {a[3]} -origin {220 310}
+  make input -name {a[4]} -origin {220 350}
+  make input -name {a[5]} -origin {220 390}
+  make input -name {a[6]} -origin {220 450}
+  make input -name {a[7]} -origin {220 490}
+  make input -name {a[8]} -origin {220 540}
+  make input -name {a[9]} -origin {220 580}
+  make input -name {a[10]} -origin {220 640}
+  make input -name {a[11]} -origin {220 680}
+  make input -name {a[12]} -origin {220 720}
+  make input -name {a[13]} -origin {220 760}
+  make input -name {a[14]} -origin {220 820}
+  make input -name {a[15]} -origin {220 860}
+  make input -name {a[16]} -origin {220 910}
+  make input -name {a[17]} -origin {220 950}
+  make input -name {a[18]} -origin {220 1010}
+  make input -name {a[19]} -origin {220 1050}
+  make input -name {a[20]} -origin {220 1090}
+  make input -name {a[21]} -origin {220 1130}
+  make input -name {a[22]} -origin {220 1190}
+  make input -name {a[23]} -origin {220 1230}
+  make input -name {a[24]} -origin {220 1280}
+  make input -name {a[25]} -origin {220 1320}
+  make input -name {a[26]} -origin {220 1380}
+  make input -name {a[27]} -origin {220 1420}
+  make input -name {a[28]} -origin {220 1460}
+  make input -name {a[29]} -origin {220 1500}
+  make input -name {a[30]} -origin {220 1560}
+  make input -name {a[31]} -origin {220 1600}
+  make_wire 310 190 380 190
+  make_wire 380 190 380 480
+  make_wire 380 480 420 480
+  make_wire 310 290 360 290
+  make_wire 360 290 360 520
+  make_wire 360 520 420 520
+  make_wire 310 370 350 370
+  make_wire 350 370 350 580
+  make_wire 350 580 420 580
+  make_wire 310 470 340 470
+  make_wire 340 470 340 620
+  make_wire 340 620 420 620
+  make_wire 310 560 330 560
+  make_wire 330 560 330 660
+  make_wire 330 660 420 660
+  make_wire 310 660 320 660
+  make_wire 320 660 320 700
+  make_wire 320 700 420 700
+  make_wire 310 740 380 740
+  make_wire 380 740 380 760
+  make_wire 380 760 420 760
+  make_wire 310 840 360 840
+  make_wire 360 840 360 800
+  make_wire 360 800 420 800
+  make_wire 310 930 380 930
+  make_wire 380 930 380 850
+  make_wire 380 850 420 850
+  make_wire 310 1030 390 1030
+  make_wire 390 1030 390 890
+  make_wire 390 890 420 890
+  make_wire 310 1110 370 1110
+  make_wire 370 1110 370 1050
+  make_wire 310 1210 390 1210
+  make_wire 310 1300 400 1300
+  make_wire 420 1050 370 1050
+  make_wire 390 1090 420 1090
+  make_wire 390 1090 390 1210
+  make_wire 400 1130 450 1130
+  make_wire 400 1130 400 1300
+  make_wire 310 1400 420 1400
+  make_wire 420 1400 420 1170
+  make_wire 420 1170 450 1170
+  make_wire 310 1500 380 1500
+  make_wire 310 1480 310 1500
+  make_wire 310 1580 340 1580
+  make_wire 340 1580 340 1540
+  make_wire 340 1540 380 1540
+  make_wire 510 580 580 580
+  make_wire 510 580 510 600
+  make_wire 580 500 580 540
+  make_wire 510 500 580 500
+  make_wire 510 750 580 750
+  make_wire 580 680 580 710
+  make_wire 510 680 580 680
+  make_wire 510 750 510 780
+  make_wire 560 910 570 910
+  make_wire 510 950 570 950
+  make_wire 560 870 560 910
+  make_wire 510 870 560 870
+  make_wire 510 950 510 1070
+  make_wire 470 1520 540 1520
+  make_wire 540 1190 680 1190
+  make_wire 540 1190 540 1520
+  make_wire 680 1150 540 1150
+  make_wire 670 570 730 570
+  make_wire 670 560 670 570
+  make_wire 670 730 670 610
+  make_wire 670 610 730 610
+  make_wire 660 930 710 930
+  make_wire 710 930 710 910
+  make_wire 710 910 780 910
+  make_wire 770 1170 840 1170
+  make_wire 840 1170 840 1040
+  make_wire 840 1040 690 1040
+  make_wire 690 1040 690 950
+  make_wire 690 950 780 950
+  make_wire 870 800 940 800
+  make_wire 870 800 870 930
+  make_wire 820 590 860 590
+  make_wire 860 590 860 760
+  make_wire 860 760 940 760
+}
+
+proc ICON_AluOutputOr args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 -10} -name {a[31:0]}
+  icon_term -type output -origin {100 -10} -name o
+  icon_property -origin {-50 140} -type user -name name
+  icon_property -origin {-50 160} -type user -name M
+  icon_property -origin {-50 180} -type user -name dpc
+  icon_line -100 -40 -100 20 100 20 100 -40 -100 -40
+  icon_property -origin {-50 -20} -label {alu or gate}
+}
+

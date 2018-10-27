@@ -1,0 +1,663 @@
+Index: app/commands.c
+===================================================================
+--- app/commands.c	(revision 4102)
++++ app/commands.c	(working copy)
+@@ -1159,7 +1159,6 @@
+   layer_dialog_show();
+ }
+ 
+-
+ void
+ objects_align_h_callback (GtkAction *action)
+ {
+Index: app/autolayout-force.c
+===================================================================
+--- app/autolayout-force.c	(revision 0)
++++ app/autolayout-force.c	(revision 0)
+@@ -0,0 +1,152 @@
++/* Dia -- an diagram creation/manipulation program -*- c -*-
++ * 
++ * This is the user interface for automatic layouting.
++ * 
++ * Copyright (C) 2008 Frederic-Gerald Morcos <fred.mrocos@gmail.com>
++ * 
++ * This program is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation; either version 2 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program; if not, write to the Free Software
++ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
++ */
++
++#include "autolayout-force.h"
++
++#include <gtk/gtk.h>
++#include <math.h>
++
++#include "lib/autolayout.h"
++#include "diagram.h"
++#include "object_ops.h"
++#include "connectionpoint_ops.h"
++#include "geometry.h"
++#include "commands.h"
++
++#define DISTANCE_MAX 5.0
++
++static void layout_settings_changed(GtkRange *range, gpointer user_data);
++void layout_setup_ui(GtkWidget *dialog, Diagram *diagram);
++
++void objects_layout_callback (GtkAction *action)
++{
++	DDisplay	*display;
++	Diagram		*diagram;
++	GtkWidget	*dialog;
++
++	if (!(display = ddisplay_active())) return;
++	diagram = display->diagram;
++	
++	if (!(dialog = g_object_get_data (
++			G_OBJECT (display->shell), "objects-layout-dialog"))) {
++		dialog = gtk_dialog_new_with_buttons (_("Automatic Layout"), 
++			GTK_WINDOW (display->shell), GTK_DIALOG_DESTROY_WITH_PARENT, 
++			GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE, NULL);
++		
++		layout_setup_ui(dialog, diagram);
++ 	}
++	g_object_set_data (G_OBJECT (display->shell), 
++						"objects-layout-dialog", dialog);
++	gtk_dialog_run (GTK_DIALOG (dialog));
++}
++
++void layout_setup_ui(GtkWidget *dialog, Diagram *diagram)
++{
++	GtkWidget	*vbox, *distance_hbox, *spacing_hbox, *distance_label, 
++				*distance_scale, *spacing_label, *spacing_scale;
++	LayoutData	*data = g_malloc(sizeof(LayoutData));
++	
++	g_signal_connect(G_OBJECT (dialog), "response", 
++		G_CALLBACK(gtk_widget_hide), NULL);
++	g_signal_connect(G_OBJECT(dialog), "delete_event",
++		G_CALLBACK(gtk_widget_hide), NULL);
++	g_signal_connect(GTK_OBJECT(dialog), "delete_event",
++		G_CALLBACK(gtk_true), NULL);
++	
++	vbox = GTK_DIALOG(dialog)->vbox;
++				
++	distance_label = gtk_label_new("Distance:");
++	distance_scale = gtk_hscale_new_with_range(0.1, DISTANCE_MAX, 0.1);
++	gtk_widget_set_size_request(distance_scale, 200, -1);
++	gtk_range_set_value(GTK_RANGE(distance_scale), 2.0);
++	gtk_scale_set_value_pos(GTK_SCALE(distance_scale), GTK_POS_RIGHT);
++	g_object_set_data (G_OBJECT(dialog), "layout-distance", distance_scale);
++	
++	spacing_label = gtk_label_new("Spacing:");
++	spacing_scale = gtk_hscale_new_with_range(0.1, 5.0, 0.1);
++	gtk_widget_set_size_request(spacing_scale, 200, -1);
++	gtk_range_set_value(GTK_RANGE(spacing_scale), 2.0);
++	gtk_scale_set_value_pos(GTK_SCALE(spacing_scale), GTK_POS_RIGHT);
++	g_object_set_data (G_OBJECT(dialog), "layout-spacing", spacing_scale);
++
++	data->distance = distance_scale;
++	data->spacing = spacing_scale;
++	data->diagram = diagram;
++	
++	g_signal_connect(G_OBJECT(distance_scale), "value_changed", 
++						G_CALLBACK(layout_settings_changed), 
++						(gpointer) data);
++	g_signal_connect(G_OBJECT(spacing_scale), "value_changed", 
++						G_CALLBACK(layout_settings_changed), 
++						(gpointer) data);
++	
++	distance_hbox = gtk_hbox_new(FALSE, 5);
++	gtk_box_pack_start(GTK_BOX(distance_hbox), distance_label, FALSE, FALSE, 5);
++	gtk_box_pack_start(GTK_BOX(distance_hbox), distance_scale, TRUE, TRUE, 5);
++	
++	spacing_hbox = gtk_hbox_new(FALSE, 5);
++	gtk_box_pack_start(GTK_BOX(spacing_hbox), spacing_label, FALSE, FALSE, 5);
++	gtk_box_pack_start(GTK_BOX(spacing_hbox), spacing_scale, TRUE, TRUE, 5);
++	
++	gtk_box_pack_start(GTK_BOX(vbox), distance_hbox, TRUE, TRUE, 5);
++	gtk_box_pack_start(GTK_BOX(vbox), spacing_hbox, TRUE, TRUE, 5);
++	
++	gtk_widget_show_all(vbox);
++	g_signal_emit_by_name(distance_scale, "value_changed", (gpointer) data);
++}
++
++static void layout_settings_changed(GtkRange *range, gpointer user_data)
++{
++	LayoutData	*data = (LayoutData *)user_data;
++	gdouble		distance = gtk_range_get_value(GTK_RANGE(data->distance)),
++				spacing = gtk_range_get_value(GTK_RANGE(data->spacing));
++	Diagram		*diagram = data->diagram;
++	Point		result;
++	GList		*selected = DIA_DIAGRAM_DATA(diagram)->selected;
++	int			i = 0;
++	
++	distance = abs(DISTANCE_MAX + 0.1 - distance);
++	
++	if (selected)
++	{
++		/* avoid an infinite loop */
++		while (i < 1000)
++		{
++			/* see lib/autlayout.{h,c} */
++			result = layout_force(selected, spacing, distance, 0.2, 0.5);
++			
++			/* did all movement stop? */
++			if (result.x < 1.0 && result.y < 1.0)
++				break;
++				
++			i++;
++		}
++		
++		diagram_update_connections_selection(diagram);
++		view_show_all_callback(NULL);
++		
++		/* redraw the changes made from layout_force() */
++/*		object_add_updates_list(selected, diagram);
++		diagram_update_connections_selection(diagram);
++		diagram_flush(diagram);
++*/
++	}
++}
+Index: app/autolayout-force.h
+===================================================================
+--- app/autolayout-force.h	(revision 0)
++++ app/autolayout-force.h	(revision 0)
+@@ -0,0 +1,37 @@
++/* Dia -- an diagram creation/manipulation program -*- c -*-
++ * 
++ * This is the user interface for automatic layouting.
++ * 
++ * Copyright (C) 2008 Frederic-Gerald Morcos <fred.mrocos@gmail.com>
++ * 
++ * This program is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation; either version 2 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program; if not, write to the Free Software
++ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
++ */
++
++#ifndef AUTOLAYOUT_FORCE_H_
++#define AUTOLAYOUT_FORCE_H_
++
++#include <gtk/gtk.h>
++
++#include "diagram.h"
++
++typedef struct _LayoutData
++{
++	Diagram		*diagram;
++	GtkWidget	*distance, *spacing;
++} LayoutData;
++
++void objects_layout_callback(GtkAction *action);
++
++#endif /* AUTOLAYOUT_FORCE_H_ */
+Index: app/Makefile.am
+===================================================================
+--- app/Makefile.am	(revision 4102)
++++ app/Makefile.am	(working copy)
+@@ -83,6 +83,8 @@
+ oafinfo_DATA = $(dia_oafinfo)
+ 
+ dia_core_files = \
++		autolayout-force.h \
++		autolayout-force.c \
+ 	    exit_dialog.h \
+ 	    exit_dialog.c \
+ 	    diagram.c \
+Index: app/menus.c
+===================================================================
+--- app/menus.c	(revision 4102)
++++ app/menus.c	(working copy)
+@@ -44,6 +44,7 @@
+ #include "dia-app-icons.h"
+ #include "widgets.h"
+ #include "preferences.h"
++#include "autolayout-force.h"
+ 
+ #define DIA_STOCK_GROUP "dia-stock-group"
+ #define DIA_STOCK_UNGROUP "dia-stock-ungroup"
+@@ -176,6 +177,8 @@
+     { "ObjectsUnparent", NULL, N_("_Unparent"), "<control><shift>L", NULL, G_CALLBACK (objects_unparent_callback) },
+     { "ObjectsUnparentchildren", NULL, N_("_Unparent Children"), NULL, NULL, G_CALLBACK (objects_unparent_children_callback) },
+ 
++	{ "ObjectsLayout", NULL, N_("Layout"), "<alt><shift>F", NULL, G_CALLBACK (objects_layout_callback) },
++
+     { "ObjectsAlign", NULL, N_("Align"), NULL, NULL, NULL },
+       { "ObjectsAlignLeft", GTK_STOCK_JUSTIFY_LEFT, NULL, "<alt><shift>L", NULL, G_CALLBACK (objects_align_h_callback) },
+       { "ObjectsAlignCenter", GTK_STOCK_JUSTIFY_CENTER, NULL, "<alt><shift>C", NULL, G_CALLBACK (objects_align_h_callback) },
+@@ -1210,6 +1213,8 @@
+     items->unparent = gtk_action_group_get_action (actions, "ObjectsUnparent");
+     items->unparent_children = gtk_action_group_get_action (actions, "ObjectsUnparentchildren");
+ 
++	items->layout = gtk_action_group_get_action (actions, "ObjectsLayout");
++
+     items->align_h_l = gtk_action_group_get_action (actions, "ObjectsAlignLeft");
+     items->align_h_c = gtk_action_group_get_action (actions, "ObjectsAlignCenter");
+     items->align_h_r = gtk_action_group_get_action (actions, "ObjectsAlignRight");
+Index: app/menus.h
+===================================================================
+--- app/menus.h	(revision 4102)
++++ app/menus.h	(working copy)
+@@ -55,6 +55,8 @@
+   GtkAction *unparent;
+   GtkAction *unparent_children;
+ 
++  GtkAction *layout;
++
+   GtkAction *align_h_l;
+   GtkAction *align_h_c;
+   GtkAction *align_h_r;
+Index: lib/autolayout.c
+===================================================================
+--- lib/autolayout.c	(revision 0)
++++ lib/autolayout.c	(revision 0)
+@@ -0,0 +1,274 @@
++/* Dia -- an diagram creation/manipulation program -*- c -*-
++ * 
++ * This is where automatic layouting happens.
++ * 
++ * Copyright (C) 2008 Frederic-Gerald Morcos <fred.mrocos@gmail.com>
++ * 
++ * This program is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation; either version 2 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program; if not, write to the Free Software
++ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
++ */
++
++/* 
++ * TODO:
++ * 1. Use something else other than a GList for the lists.
++ * 		It is too slow O(n) for nearly _everything_.
++ * 2. Integrate the "graph" properties into DiaObject so we don't 
++ * 		have to rebuild a graph from the diagram everytime we call 
++ * 		layout_force().
++ * 3. Currently the algorithm is O(n^2), we can use the Barnes-Hut 
++ * 		method to have O(n log n).
++ * 4. Get mass normalization into the diagram code so we avoid an 
++ * 		O(n) everytime we call layout_force(). -DONE, no need for 
++ * 		mass normalization. The original area size of objects works 
++ * 		just fine.
++ */
++
++#include "autolayout.h"
++#include "geometry.h"
++
++#include <math.h>
++
++/* 
++ * 1. create a graph object made up of the currently selected objects
++ * 2. layout the graph using a force-directed method
++ * 3. free the graph (without freeing the dia objects!)
++ * 
++ * returns a boolean of whether to stop re-running (TRUE) or to continue 
++ * running (FALSE). see app/commands.c objects_layout_callback().
++ */
++Point layout_force (GList *selected, gdouble repulsion_const,
++					gdouble attraction_const, gdouble timestep,
++					gdouble damping)
++{
++	Graph		*diagram = create_graph_from_list(selected);
++	GList		*cur_node = diagram->nodes,
++				*oth_node = NULL,
++				*cur_edge = NULL;
++	DiaObject	*cur_node_dia_object;
++	Point		p,
++				energy,
++				*new_pos = g_malloc(sizeof(Point));
++	
++	energy.x = 0.0;
++	energy.y = 0.0;
++	
++	while (cur_node)
++	{
++		((Node *)cur_node->data)->netforce.x = 0.0;
++		((Node *)cur_node->data)->netforce.y = 0.0;
++		
++		/* repulsion */
++		oth_node = diagram->nodes;
++		while (oth_node)
++		{
++			if (((Node *)cur_node->data)->object != 
++				((Node *)oth_node->data)->object)
++			{
++				p = repulsion(repulsion_const, 
++								(Node *)cur_node->data, 
++								(Node *)oth_node->data);
++				((Node *)cur_node->data)->netforce.x += p.x;
++				((Node *)cur_node->data)->netforce.y += p.y;
++			}
++			
++			oth_node = oth_node->next;
++		}
++		
++		/* attraction */
++		cur_edge = diagram->edges;
++		while (cur_edge)
++		{
++			if (((Node *)cur_node->data)->object == 
++				((Edge *)cur_edge->data)->pointA ||
++				((Node *)cur_node->data)->object == 
++				((Edge *)cur_edge->data)->pointB)
++			{
++				p = attraction(attraction_const, 
++								(Node *)cur_node->data, 
++								(Edge *)cur_edge->data);
++				((Node *)cur_node->data)->netforce.x += p.x;
++				((Node *)cur_node->data)->netforce.y += p.y;
++			}
++			
++			cur_edge = cur_edge->next;
++		}
++		
++		/* node velocity */
++		((Node *)cur_node->data)->velocity.x += 
++			(timestep * ((Node *)cur_node->data)->netforce.x) * damping;
++		((Node *)cur_node->data)->velocity.y += 
++			(timestep * ((Node *)cur_node->data)->netforce.y) * damping;
++		
++		cur_node_dia_object = ((Node *)cur_node->data)->object;
++		
++		/* node object position */
++		new_pos->x = cur_node_dia_object->position.x + 
++			(timestep * ((Node *)cur_node->data)->velocity.x);
++		new_pos->y = cur_node_dia_object->position.y + 
++			(timestep * ((Node *)cur_node->data)->velocity.y);
++		cur_node_dia_object->ops->move(cur_node_dia_object, new_pos);
++		
++		energy.x += ((Node *)cur_node->data)->size * 
++			(pow(((Node *)cur_node->data)->velocity.x, 2) / 2);
++		energy.y += ((Node *)cur_node->data)->size * 
++			(pow(((Node *)cur_node->data)->velocity.y, 2) / 2);
++
++		cur_node = cur_node->next;
++	}
++	
++	g_free(new_pos);
++	graph_free(diagram);
++	return energy;
++}
++
++/* hooke attraction */
++Point attraction(double constant, Node *n, Edge *e)
++{
++	Point	p;
++	Node	*a = g_malloc(sizeof(Node)),
++			*b = g_malloc(sizeof(Node));
++	
++	if (e->pointA == n->object)
++	{
++		a->object = e->pointA;
++		b->object = e->pointB;
++	}
++	else
++	{
++		a->object = e->pointB;
++		b->object = e->pointA;
++	}
++	
++	p.x = -constant * (a->object->position.x - b->object->position.x);
++	p.y = -constant * (a->object->position.y - b->object->position.y);
++	
++	g_free(a);
++	g_free(b);
++	
++	return p;
++}
++
++/* coulomb repulsion */
++Point repulsion(double constant, Node *n1, Node *n2)
++{	
++	Point	p;
++	double	masses, dx, dy, denom, numer, forcex, forcey;
++	
++	masses = n1->size * n2->size;
++	dx = n1->object->position.x - n2->object->position.x;
++	dy = n1->object->position.y - n2->object->position.y;
++	denom = pow(dx * dx + dy * dy, 3 / 2);
++	
++	/* avoid division by zero if two nodes are at the same position */
++	if (denom == 0.0)
++		denom = 0.5;
++	
++	numer = masses * constant;
++	forcex = (numer * dx) / denom;
++	forcey = (numer * dy) / denom;
++	
++	p.x = forcex;
++	p.y = forcey;
++	
++	return p;
++}
++
++/* 
++ * 1. iterate over the selected objects
++ * 2. create two lists, one for "connections/lines" (edges)
++ * 		and another for "normal" objects (nodes)
++ * 3. return the graph made up of these object lists
++ */
++Graph *create_graph_from_list(GList *list)
++{
++	Graph		*tmp;
++	Edge		*etmp = NULL;
++	Node		*ntmp = NULL;
++	Rectangle	r;
++	
++	tmp = g_malloc(sizeof(Graph));
++	tmp->edges = NULL;
++	tmp->nodes = NULL;
++	
++	while (list)
++	{
++		if (graph_type_from_object(list->data) == GRAPH_OBJECT_TYPE_EDGE)
++		{
++			/* 
++			 * basically, if one of the handles in the "connection" 
++			 * isn't connected to anything, then using it for layout 
++			 * is pointless. so here we only add fully connected 
++			 * "connections" to our graph.
++			 */
++			if (((DiaObject *)list->data)->handles[0]->connected_to && 
++				((DiaObject *)list->data)->handles[1]->connected_to)
++			{
++				etmp = g_malloc(sizeof(Edge));
++				etmp->object = list->data;
++				etmp->pointA = etmp->object->handles[0]->connected_to->object;
++				etmp->pointB = etmp->object->handles[1]->connected_to->object;
++				tmp->edges = g_list_append(tmp->edges, etmp);
++			}
++		}
++		else
++		{
++			ntmp = g_malloc(sizeof(Node));
++			ntmp->object = list->data;
++			ntmp->netforce.x = 0.0;
++			ntmp->netforce.y = 0.0;
++			ntmp->velocity.x = 0.0;
++			ntmp->velocity.y = 0.0;
++			r = ((DiaObject *)list->data)->bounding_box;
++			ntmp->size = (r.right - r.left) * (r.bottom - r.top);
++			tmp->nodes = g_list_append(tmp->nodes, ntmp);
++		}
++			
++		list = g_list_next(list);
++	}
++	
++	return tmp;
++}
++
++/* check if an object can be an edge (connection) and return so */
++GraphObjectType graph_type_from_object(DiaObject *object)
++{
++	if (g_str_equal(object->type->name, "Standard - Line") ||
++			g_str_equal(object->type->name, "Standard - Arc") ||
++			g_str_equal(object->type->name, "Standard - ZigZagLine") ||
++			g_str_equal(object->type->name, "Standard - PolyLine") ||
++			g_str_equal(object->type->name, "Standard - BezierLine"))
++		return GRAPH_OBJECT_TYPE_EDGE;
++	else
++		return GRAPH_OBJECT_TYPE_NODE;
++}
++
++/* free the nodes and edges lists _without_ freeing the dia objects */
++void graph_free(Graph *graph)
++{
++	while (graph->nodes)
++	{
++		g_free(graph->nodes->data);
++		graph->nodes = g_list_next(graph->nodes);
++	}
++	
++	while (graph->edges)
++	{
++		g_free(graph->edges->data);
++		graph->edges = g_list_next(graph->edges);
++	}
++	
++	g_list_free(graph->nodes);
++	g_list_free(graph->edges);
++	g_free(graph);
++}
+Index: lib/autolayout.h
+===================================================================
+--- lib/autolayout.h	(revision 0)
++++ lib/autolayout.h	(revision 0)
+@@ -0,0 +1,63 @@
++/* Dia -- an diagram creation/manipulation program -*- c -*-
++ * 
++ * This is where automatic layouting happens.
++ * 
++ * Copyright (C) 2008 Frederic-Gerald Morcos <fred.mrocos@gmail.com>
++ * 
++ * This program is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation; either version 2 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program; if not, write to the Free Software
++ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
++ */
++
++#ifndef AUTOLAYOUT_H
++#define AUTOLAYOUT_H
++
++#include <glib.h>
++
++#include "object.h"
++#include "geometry.h"
++
++typedef enum _GraphObjectType {
++	GRAPH_OBJECT_TYPE_EDGE = 0,
++	GRAPH_OBJECT_TYPE_NODE
++} GraphObjectType;
++
++typedef struct _Edge {
++	DiaObject	*object, 	/* the "connection" object */
++				*pointA, 	/* the first connected object */
++				*pointB;	/* the second connected object */
++} Edge;
++
++typedef struct _Node {
++	DiaObject	*object;	/* the shape */
++	Point		netforce,	/* force vector affecting the node */
++				velocity;	/* speed vector of the node */
++	double		size;		/* size of the object, width * height */
++} Node;
++
++typedef struct _Graph {
++	GList	*edges,			/* list of "connectors" to layout */
++			*nodes;			/* list of shapes to layout */
++} Graph;
++
++Point layout_force (GList *list, double repulsion_const,
++					double attraction_const, double timestep,
++					double damping);
++					
++Graph *create_graph_from_list(GList *list);
++void graph_free(Graph *graph);
++Point attraction(double constant, Node *n, Edge *e);
++Point repulsion(double constant, Node *n1, Node *n2);
++GraphObjectType graph_type_from_object(DiaObject *object);
++
++#endif	/* AUTOLAYOUT_H */
+Index: lib/Makefile.am
+===================================================================
+--- lib/Makefile.am	(revision 4102)
++++ lib/Makefile.am	(working copy)
+@@ -142,6 +142,8 @@
+ 		dia_svg.c \
+ 		autoroute.c \
+ 		autoroute.h \
++		autolayout.c \
++		autolayout.h \
+ 		parent.c \
+ 		parent.h \
+ 		render_pixmap.h \
+Index: data/display-ui.xml
+===================================================================
+--- data/display-ui.xml	(revision 4102)
++++ data/display-ui.xml	(working copy)
+@@ -85,6 +85,7 @@
+ 			<menuitem name="ObjectsUnparent" action="ObjectsUnparent" />
+ 			<menuitem name="ObjectsUnparentchildren" action="ObjectsUnparentchildren" />
+ 			<separator name="ObjectsSep3" />
++			<menuitem name="ObjectsLayout" action="ObjectsLayout" />
+ 			<menu name="ObjectsAlign" action="ObjectsAlign">
+ 				<menuitem name="ObjectsAlignLeft" action="ObjectsAlignLeft" />
+ 				<menuitem name="ObjectsAlignCenter" action="ObjectsAlignCenter" />
+Index: data/integrated-ui.xml
+===================================================================
+--- data/integrated-ui.xml	(revision 4102)
++++ data/integrated-ui.xml	(working copy)
+@@ -99,6 +99,7 @@
+ 			<menuitem name="ObjectsUnparent" action="ObjectsUnparent" />
+ 			<menuitem name="ObjectsUnparentchildren" action="ObjectsUnparentchildren" />
+ 			<separator name="ObjectsSep3" />
++			<menuitem name="ObjectsLayout" action="ObjectsLayout" />
+ 			<menu name="ObjectsAlign" action="ObjectsAlign">
+ 				<menuitem name="ObjectsAlignLeft" action="ObjectsAlignLeft" />
+ 				<menuitem name="ObjectsAlignCenter" action="ObjectsAlignCenter" />
+Index: data/popup-ui.xml
+===================================================================
+--- data/popup-ui.xml	(revision 4102)
++++ data/popup-ui.xml	(working copy)
+@@ -84,6 +84,7 @@
+ 			<menuitem name="ObjectsUnparent" action="ObjectsUnparent" />
+ 			<menuitem name="ObjectsUnparentchildren" action="ObjectsUnparentchildren" />
+ 			<separator name="ObjectsSep3" />
++			<menuitem name="ObjectsLayout" action="ObjectsLayout" />
+ 			<menu name="ObjectsAlign" action="ObjectsAlign">
+ 				<menuitem name="ObjectsAlignLeft" action="ObjectsAlignLeft" />
+ 				<menuitem name="ObjectsAlignCenter" action="ObjectsAlignCenter" />

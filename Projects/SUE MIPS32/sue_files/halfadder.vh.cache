@@ -1,0 +1,7 @@
+set NETLIST_CACHE(halfadder,cells) {{schematic Hxor} {icon inverter has_schematic} {icon nand2 has_schematic}}
+set netlist_props verilog
+set netlist_level 1000
+set NETLIST_CACHE(halfadder,version) MMI_SUE4.4.0
+set NETLIST_CACHE(halfadder) {{module halfadder (a, b, cout, s);} {	input		a;} {	input		b;} {	output		cout;} {	output		s;} { } {	wire		net_1;} { } {	assign #0 net_1 = !(a && b);} {	not #0 inv(cout, net_1);} {	Hxor Hxor(.in1(a), .in2(b), .out(s));} {} {endmodule		// halfadder} {}}
+set NETLIST_CACHE(halfadder,names) {{370 430 {0 b}} {500 410 {0 net_1}} {330 390 {1 a}} {460 540 {0 s}} {320 430 {1 b}} {410 540 {0 Hxor}} {370 390 {0 a}} {460 410 {0 net_1}} {370 520 {0 a}} {580 410 {0 cout} {2 cout}} {530 410 {0 inv}} {370 560 {0 b}} {490 540 {1 s}}}
+set NETLIST_CACHE(halfadder,wires) {{460 410 500 410 net_1} {340 520 370 520 a} {340 390 340 520 a} {330 390 340 390 a} {340 390 370 390 a} {330 560 370 560 b} {330 430 330 560 b} {330 430 370 430 b} {320 430 330 430 b} {460 540 490 540 s}}

@@ -1,0 +1,42 @@
+#+TITLE: fred's
+#+SUBTITLE: ramblings and randoms
+#+AUTHOR: Fred Morcos
+#+EMAIL: fred.morcos@gmail.com
+#+LANGUAGE: en
+
+#+OPTIONS: num:0 toc:1
+#+HTML_DOCTYPE: html5
+
+#+begin_export html
+<style>
+div { width: 40em; }
+div,h1,h2 { margin-left: auto; margin-right: auto; }
+.title,.subtitle { text-align: left; }
+#table-of-contents > h2 { font-size: initial; }
+#text-table-of-contents ul li { list-style-type: none }
+</style>
+#+end_export
+
+* [2017-03-22] This is a test title
+
+This is a test text.
+
+#+BEGIN_SRC C :results output :exports both
+#include <stdio.h>
+
+int main (int argc, char *argv[]) {
+  printf("Hello, world!\n");
+  return 0;
+}
+#+END_SRC
+
+#+RESULTS:
+: Hello, world!
+
+** This is a subtitle
+
+Some text
+
+** Another subtitle
+
+Some more text

@@ -1,0 +1,11 @@
+line x0 y0 x1 y1		// indicates a line between ( x0, y0 ) and ( x1, y0 )
+
+point x0 y0				// indicates a point at x0 y0
+
+rect x0 y0 x1 y1		// indicates a rectangle between ( x0, y0 ) and ( x1, y0 )
+
+circle x0 y0 radius		// indicates a circle with center ate ( x0, y0 ) and radius
+
+fill x0 y0				// indicates that the filling tool was clicked at ( x0, y0 )
+
+color R G B				// indicates the change of the color to R G B

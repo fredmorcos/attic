@@ -1,0 +1,48 @@
+﻿#labels Phase-Implementation,Phase-Design,Featured,Deprecated
+= Notes =
+Would someone please take a look at the design of the Pluggable protocol and the Transformable (Resizable, Movable, Rotatable) protocols, keeping in mind the concepts of both layers and groups.
+
+= Interfaces - Model =
+== Document: NSObject ==
+ * array of layers
+ * array of groups
+ * grid instance
+
+== BaseObject: NSObject ==
+ * *DONE* NSRect rectangular area of object
+ * *DONE* int rotation
+ * *DONE* follows Transformable
+ * *DONE* parent
+ * *DONE* visible
+ * *DONE* selected
+ * *DONE* rect
+ * *DONE* layer
+
+ * *DONE* - render;
+ * *DONE* - draw;
+
+== Layer: BaseObject ==
+ * *DONE* array of shapes
+
+== Shape: BaseObject ==
+ * array of Group parentGroups;
+
+== Group: Layer ==
+ * *DONE* overload methods from Layer with groups' behavior. in other words, same api as layers but different implementation and visual behavior.
+
+= Protocols =
+ * Resizable
+ * Movable
+ * Rotatable
+ * Transformable <Resizable, Movable, Rotatable>
+ * Serializable to XML
+
+= Plugins =
+ * Distributed Objects
+ * We should define a formal Protocol for plugins (Pluggable.h)
+
+= Shapes XML Format =
+ * Provide primitive shapes (line, rect, circle, triangle, bezier, ...)
+ * Provide variable values ($x, $y for (x,y) position, $width, $height)
+
+= Diagram Document Format =

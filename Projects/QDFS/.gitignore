@@ -1,0 +1,8 @@
+*.user
+moc_*
+*.o
+ui_*
+qrc_*
+Makefile
+qdfs
+

@@ -1,0 +1,15 @@
+$def with (showmsg)
+<html>
+	<title>Todo Manager - Register</title>
+	<body>
+		Register:
+		<form method="POST" action="register">
+			$if showmsg:
+				Username already in use.<br/>
+			Username <input type="text" name="username"/>
+			<br/>
+			Password <input type="password" name="password"/>
+			<input type="submit" value="Register"/>
+		</form>
+	</body>
+</html>

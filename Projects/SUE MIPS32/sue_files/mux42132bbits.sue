@@ -1,0 +1,49 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_mux42132bbits {} {
+  make mux32bit221 -origin {410 220}
+  make mux32bit221 -origin {410 500}
+  make mux32bit221 -origin {770 400}
+  make input -name {a[31:0]} -origin {310 140}
+  make input -name {b[31:0]} -origin {310 160}
+  make input -name {c[31:0]} -origin {310 420}
+  make input -name {d[31:0]} -origin {310 440}
+  make output -name {y[31:0]} -origin {870 320}
+  make input -name {s[0]} -origin {190 510}
+  make input -orient R270 -name {s[1]} -origin {710 440}
+  make_wire 580 340 670 340
+  make_wire 510 420 580 420
+  make_wire 580 340 580 420
+  make_wire 580 140 580 320
+  make_wire 510 140 580 140
+  make_wire 580 320 670 320
+  make_wire 190 280 350 280
+  make_wire 350 260 350 280
+  make_wire 190 560 350 560
+  make_wire 190 280 190 510
+  make_wire 190 510 190 560
+  make_wire 350 560 350 540
+}
+
+proc ICON_mux42132bbits args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-150 -90} -name {a[31:0]}
+  icon_term -type input -origin {-150 -70} -name {b[31:0]}
+  icon_term -type input -origin {-150 -50} -name {c[31:0]}
+  icon_term -type input -origin {-150 -30} -name {d[31:0]}
+  icon_term -type input -origin {-150 -10} -name {s[1:0]}
+  icon_term -type output -origin {50 -90} -name {y[31:0]}
+  icon_property -origin {-100 60} -type user -name name
+  icon_property -origin {-100 80} -type user -name M
+  icon_property -origin {-100 100} -type user -name dpc
+  icon_line -150 -130 -150 10 50 10 50 -130 -150 -130
+  icon_property -origin {-50 -30} -label {4 to 1 32 bit}
+  icon_property -origin {-10 -10} -label mux
+  icon_property -origin {-140 -10} -label {s[1:0]}
+  icon_property -origin {-140 -90} -label {a[31:0]}
+  icon_property -origin {-140 -70} -label {b[31:0]}
+  icon_property -origin {-140 -50} -label {c[31:0]}
+  icon_property -origin {-140 -30} -label {d[31:0]}
+  icon_property -origin {40 -90} -anchor e -label {y[31:0]}
+}
+

@@ -1,0 +1,116 @@
+extends _layout
+
+block content
+  article.container
+    h2.page-title= title
+    p.lead For users:
+    ul.thumbnails
+      li.span4
+        .thumbnail.navbar-inner
+          .inner-container
+            h3 Free
+            p Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+            table.table.table-condensed
+              thead
+                tr
+                  th Features
+                  th.val Qty.
+              tbody
+                tr
+                  td Number of bookmarks
+                  td.val 20
+            p: a.btn.btn-primary.btn-danger.btn-large Downgrade
+      li.span4
+        .thumbnail.navbar-inner
+          .inner-container
+            h3 Pro
+              small
+                |  (2&euro; / month)
+            p Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+            table.table.table-condensed
+              thead
+                tr
+                  th Features
+                  th.val Qty.
+              tbody
+                tr
+                  td Number of bookmarks
+                  td.val 100
+            p: a.btn.btn-primary.btn-warning.disabled.btn-large Current plan
+      li.span4
+        .thumbnail.navbar-inner
+          .inner-container
+            h3 Guru
+              small
+                |  (5&euro; / month)
+            p Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+            table.table.table-condensed
+              thead
+                tr
+                  th Features
+                  th.val Qty.
+              tbody
+                tr
+                  td Number of bookmarks
+                  td.val 500
+            p: a.btn.btn-primary.btn-success.btn-large Upgrade
+    p.lead For organizations:
+    ul.thumbnails
+      li.span4
+        .thumbnail.navbar-inner
+          .inner-container
+            h3 Free
+            p Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+            table.table.table-condensed
+              thead
+                tr
+                  th Features
+                  th.val Qty.
+              tbody
+                tr
+                  td Number of users
+                  td.val 20
+                tr
+                  td Number of bookmarks
+                  td.val 400
+            p: a.btn.btn-primary.btn-large Create an organization!
+      li.span4
+        .thumbnail.navbar-inner
+          .inner-container
+            h3 "Plan B"
+              small
+                |  (2&euro; / month)
+            p Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+            table.table.table-condensed
+              thead
+                tr
+                  th Features
+                  th.val Qty.
+              tbody
+                tr
+                  td Number of users
+                  td.val 100
+                tr
+                  td Number of bookmarks
+                  td.val 2000
+            p: a.btn.btn-primary.btn-success.btn-large Upgrade
+      li.span4
+        .thumbnail.navbar-inner
+          .inner-container
+            h3 Ultimate
+              small
+                |  (5&euro; / month)
+            p Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+            table.table.table-condensed
+              thead
+                tr
+                  th Features
+                  th.val Qty.
+              tbody
+                tr
+                  td Number of users
+                  td.val 500
+                tr
+                  td Number of bookmarks
+                  td.val 10000
+            p: a.btn.btn-primary.btn-success.btn-large Upgrade

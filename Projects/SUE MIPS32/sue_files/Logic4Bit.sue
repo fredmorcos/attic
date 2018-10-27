@@ -1,0 +1,55 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_Logic4Bit {} {
+  make Mux4to1 -origin {510 380}
+  make input -name a -origin {140 290}
+  make input -name b -origin {100 320}
+  make nand2 -origin {220 300}
+  make inverter -origin {320 300}
+  make output -name y -origin {610 300}
+  make input -orient R270 -name {s[0]} -origin {460 420}
+  make input -orient R270 -name {s[1]} -origin {490 420}
+  make nor2 -origin {220 380}
+  make inverter -origin {320 380}
+  make inverter -origin {310 590}
+  make Hxor -origin {230 490}
+  make Hxor -origin {230 590}
+  make_wire 200 290 200 280
+  make_wire 140 290 200 290
+  make_wire 370 300 410 300
+  make_wire 370 380 370 320
+  make_wire 370 320 410 320
+  make_wire 100 320 200 320
+  make_wire 140 360 200 360
+  make_wire 100 400 200 400
+  make_wire 140 470 190 470
+  make_wire 100 510 190 510
+  make_wire 280 490 380 490
+  make_wire 380 490 380 340
+  make_wire 380 340 410 340
+  make_wire 140 570 190 570
+  make_wire 140 290 140 360
+  make_wire 140 360 140 470
+  make_wire 140 470 140 570
+  make_wire 100 610 190 610
+  make_wire 100 320 100 400
+  make_wire 100 400 100 510
+  make_wire 100 510 100 610
+  make_wire 360 590 390 590
+  make_wire 390 590 390 360
+  make_wire 390 360 410 360
+}
+
+proc ICON_Logic4Bit args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 -80} -name a
+  icon_term -type input -origin {-100 -60} -name b
+  icon_term -type output -origin {100 -80} -name y
+  icon_term -type input -origin {-60 40} -orient R270 -name {s[1:0]}
+  icon_property -origin {-50 70} -type user -name name
+  icon_property -origin {-50 90} -type user -name M
+  icon_property -origin {-50 110} -type user -name dpc
+  icon_line -100 -150 -100 40 100 40 100 -150 -100 -150
+  icon_property -origin {-70 -110} -label {1-bit Logic}
+}
+

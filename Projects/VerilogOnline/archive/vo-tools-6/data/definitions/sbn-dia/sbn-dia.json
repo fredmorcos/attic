@@ -1,0 +1,28 @@
+{
+    "title":        "SBN Machine",
+    "simulator":    "veriwell",
+    "machine":      "sbn.v",
+    "image":        "sbn.dia",
+    "assembler":    "sbnasm",
+    "debug_info":   true,
+    "single_mem":   false,
+
+    "elements": {
+	"%PC%":      [0,  true],
+	"%X%":       [1,  true],
+	"%Y%":       [2,  true],
+	"%A%":       [3,  true],
+	"%B%":       [4,  true],
+	"%C%":       [5,  true],
+	"%D%":       [6,  true],
+	"%IR%":      [7,  true],
+	"%ADDRESS%": [8, true],
+	"%X-Y%":     [9, true],
+	"%ADDOUT%":  [10, true]
+    },
+
+    "external_elements": {
+	"%DMEM%":    "sbn-dmem",
+	"%IMEM%":    "sbn-imem"
+    }
+}

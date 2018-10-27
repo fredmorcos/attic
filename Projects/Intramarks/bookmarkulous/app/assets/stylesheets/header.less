@@ -1,0 +1,54 @@
+#header{
+  margin-bottom:30px;
+  padding-bottom:10px;
+  border-bottom:1px solid @borderColor;
+  background-color: #fff;
+  h1{
+    display:inline-block;
+    line-height:1;
+    font-size:46px;
+    a{
+      color:#333;
+      &:hover{text-decoration: none;}
+    }
+    .ico{
+      margin-right:8px;
+      color:#08c;
+      font-weight:100;
+      font-size:20px;
+      vertical-align: middle;
+      width:20px;
+      height:20px;
+      line-height:20px;
+      display:inline-block;
+      border-radius:100%;
+      padding:5px;
+      text-align: center;
+      background:#eee;
+    }
+    small{
+      cursor: default;
+      color:@linkColor;
+      font-size:15px;
+      display:block;
+      margin:3px 0 0 0;
+      line-height:1;
+      &:before{
+        content:"—";
+        margin-right:10px;
+      }
+    }
+  }
+  .login{
+    padding-top:22px;
+    text-align: right;
+    >span{
+      margin-right:10px;
+    }
+    span,
+    button{
+      display:inline-block;
+      vertical-align: middle;
+    }
+  }
+}

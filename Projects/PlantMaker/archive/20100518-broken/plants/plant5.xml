@@ -1,0 +1,15 @@
+<plant zincBreakTime="420" craneMoveTime="360" numberOfCranes="7">
+	<machine canUnhook="True" name="ZincStripping" quantity="1" precedence="False"/>
+	<machine canUnhook="True" name="Degreasing" quantity="2" precedence="False"/>
+	<machine canUnhook="True" name="Pickling" quantity="8" precedence="False"/>
+	<machine canUnhook="False" name="Rinsing1" quantity="1" precedence="False"/>
+	<machine canUnhook="False" name="Rinsing2" quantity="1" precedence="False"/>
+	<machine canUnhook="False" name="Rinsing3" quantity="1" precedence="False"/>
+	<machine canUnhook="False" name="Flux" quantity="1" precedence="False"/>
+	<machine canUnhook="False" name="Drier" quantity="4" precedence="True"/>
+	<machine canUnhook="False" name="ZincKettle" quantity="1" precedence="False"/>
+	<machine canUnhook="False" name="Cooling" quantity="1" precedence="False"/>
+	<machine canUnhook="False" name="Quenching" quantity="1" precedence="False"/>
+	<machine canUnhook="False" name="Passivation" quantity="1" precedence="False"/>
+	<machine canUnhook="False" name="PostRinsing" quantity="1" precedence="False"/>
+</plant>

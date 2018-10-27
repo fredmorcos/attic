@@ -1,0 +1,220 @@
+<!-- Generator: GNU source-highlight 2.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900">	This file is part of cv-a1.</font></i>
+
+<i><font color="#9A1900">	Copyright (C) 2008	Frederic-Gerald Morcos </font></i><u><font color="#0000FF">&lt;fred.morcos@gmail.com&gt;</font></u>
+
+<i><font color="#9A1900">	cv-a1 is free software: you can redistribute it and/or modify</font></i>
+<i><font color="#9A1900">	it under the terms of the GNU General Public License as published by</font></i>
+<i><font color="#9A1900">	the Free Software Foundation, either version 3 of the License, or</font></i>
+<i><font color="#9A1900">	(at your option) any later version.</font></i>
+
+<i><font color="#9A1900">	cv-a1 is distributed in the hope that it will be useful,</font></i>
+<i><font color="#9A1900">	but WITHOUT ANY WARRANTY; without even the implied warranty of</font></i>
+<i><font color="#9A1900">	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</font></i>
+<i><font color="#9A1900">	GNU General Public License for more details.</font></i>
+
+<i><font color="#9A1900">	You should have received a copy of the GNU General Public License</font></i>
+<i><font color="#9A1900">	along with cv-a1.  If not, see </font></i><u><font color="#0000FF">&lt;http://www.gnu.org/licenses/&gt;</font></u><i><font color="#9A1900">.</font></i>
+<i><font color="#9A1900">*/</font></i>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"callbacks.h"</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"ui-builder.h"</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"cv-stuff.h"</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;gtk/gtk.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;string.h&gt;</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;math.h&gt;</font>
+
+<font color="#009900">void</font> <b><font color="#000000">replicationRadio_toggle</font></b><font color="#990000">(</font>GtkToggleButton <font color="#990000">*</font>button<font color="#990000">,</font> gpointer data<font color="#990000">)</font> <font color="#FF0000">{</font>
+	GtkWidget <font color="#990000">*</font>upsampleButton<font color="#990000">;</font>
+
+	upsampleButton <font color="#990000">=</font> <b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"upsampleButton"</font><font color="#990000">);</font>
+	<b><font color="#000000">gtk_widget_set_sensitive</font></b><font color="#990000">(</font>upsampleButton<font color="#990000">,</font> 
+			<b><font color="#000000">gtk_toggle_button_get_active</font></b><font color="#990000">(</font>button<font color="#990000">));</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">scaleButton_click</font></b><font color="#990000">(</font>GtkButton <font color="#990000">*</font>button<font color="#990000">,</font> gpointer data<font color="#990000">)</font> <font color="#FF0000">{</font>
+	<font color="#009900">int</font>		height<font color="#990000">,</font>
+			width<font color="#990000">;</font>
+
+	height <font color="#990000">=</font> <b><font color="#000000">gtk_spin_button_get_value_as_int</font></b><font color="#990000">(</font>
+			<b><font color="#000000">GTK_SPIN_BUTTON</font></b><font color="#990000">(</font>
+				<b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"scaleHeightSpin"</font><font color="#990000">)));</font>
+	width <font color="#990000">=</font> <b><font color="#000000">gtk_spin_button_get_value_as_int</font></b><font color="#990000">(</font>
+			<b><font color="#000000">GTK_SPIN_BUTTON</font></b><font color="#990000">(</font>
+				<b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"scaleWidthSpin"</font><font color="#990000">)));</font>
+
+	<b><font color="#000000">cv_stuff_scale</font></b><font color="#990000">(</font>width<font color="#990000">,</font> height<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">upsampleButtonCV_click</font></b><font color="#990000">(</font>GtkButton <font color="#990000">*</font>button<font color="#990000">,</font> gpointer data<font color="#990000">)</font> <font color="#FF0000">{</font>
+	gboolean	replication<font color="#990000">;</font>
+	<font color="#009900">double</font>		factor<font color="#990000">;</font>
+
+	replication <font color="#990000">=</font> <b><font color="#000000">gtk_toggle_button_get_active</font></b><font color="#990000">(</font>
+			<b><font color="#000000">GTK_TOGGLE_BUTTON</font></b><font color="#990000">(</font>
+				<b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"replicationRadio"</font><font color="#990000">)));</font>
+	factor <font color="#990000">=</font> <b><font color="#000000">gtk_spin_button_get_value</font></b><font color="#990000">(</font>
+			<b><font color="#000000">GTK_SPIN_BUTTON</font></b><font color="#990000">(</font>
+				<b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"upsampleFactorSpin"</font><font color="#990000">)));</font>
+
+	<b><font color="#000000">cv_stuff_upsample_opencv</font></b><font color="#990000">(</font>replication<font color="#990000">,</font> factor<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">upsampleButton_click</font></b><font color="#990000">(</font>GtkButton <font color="#990000">*</font>button<font color="#990000">,</font> gpointer data<font color="#990000">)</font> <font color="#FF0000">{</font>
+	gboolean			replication<font color="#990000">;</font>
+	<font color="#009900">double</font>				factor<font color="#990000">;</font>
+	GtkMessageDialog	<font color="#990000">*</font>dialog<font color="#990000">;</font>
+
+	replication <font color="#990000">=</font> <b><font color="#000000">gtk_toggle_button_get_active</font></b><font color="#990000">(</font>
+			<b><font color="#000000">GTK_TOGGLE_BUTTON</font></b><font color="#990000">(</font>
+				<b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"replicationRadio"</font><font color="#990000">)));</font>
+	factor <font color="#990000">=</font> <b><font color="#000000">gtk_spin_button_get_value</font></b><font color="#990000">(</font>
+			<b><font color="#000000">GTK_SPIN_BUTTON</font></b><font color="#990000">(</font>
+				<b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"upsampleFactorSpin"</font><font color="#990000">)));</font>
+
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(</font><b><font color="#000000">isFloat</font></b><font color="#990000">(</font>factor<font color="#990000">))</font> <font color="#FF0000">{</font>
+		factor <font color="#990000">=</font> <b><font color="#000000">floor</font></b><font color="#990000">(</font>factor<font color="#990000">);</font>
+		dialog <font color="#990000">=</font> <b><font color="#000000">gtk_message_dialog_new</font></b><font color="#990000">(</font>
+				<b><font color="#000000">GTK_WINDOW</font></b><font color="#990000">(</font><b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"mainWindow"</font><font color="#990000">)),</font>
+				GTK_DIALOG_DESTROY_WITH_PARENT<font color="#990000">,</font>
+				GTK_MESSAGE_INFO<font color="#990000">,</font>
+				GTK_BUTTONS_OK<font color="#990000">,</font>
+				<font color="#FF0000">"Factor will be rounded to %.1f."</font><font color="#990000">,</font>
+				factor<font color="#990000">);</font>
+		<b><font color="#000000">gtk_dialog_run</font></b><font color="#990000">(</font><b><font color="#000000">GTK_DIALOG</font></b><font color="#990000">(</font>dialog<font color="#990000">));</font>
+		<b><font color="#000000">gtk_widget_destroy</font></b><font color="#990000">(</font><b><font color="#000000">GTK_WIDGET</font></b><font color="#990000">(</font>dialog<font color="#990000">));</font>
+	<font color="#FF0000">}</font>
+
+	<b><font color="#000000">cv_stuff_upsample</font></b><font color="#990000">(</font>replication<font color="#990000">,</font> factor<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">rotateButton_click</font></b><font color="#990000">(</font>GtkButton <font color="#990000">*</font>button<font color="#990000">,</font> gpointer data<font color="#990000">)</font> <font color="#FF0000">{</font>
+	<font color="#009900">int</font>		x<font color="#990000">,</font>
+			y<font color="#990000">;</font>
+	<font color="#009900">double</font>	angle<font color="#990000">;</font>
+
+	x <font color="#990000">=</font> <b><font color="#000000">gtk_spin_button_get_value_as_int</font></b><font color="#990000">(</font>
+			<b><font color="#000000">GTK_SPIN_BUTTON</font></b><font color="#990000">(</font>
+				<b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"rotateXSpin"</font><font color="#990000">)));</font>
+	y <font color="#990000">=</font> <b><font color="#000000">gtk_spin_button_get_value_as_int</font></b><font color="#990000">(</font>
+			<b><font color="#000000">GTK_SPIN_BUTTON</font></b><font color="#990000">(</font>
+				<b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"rotateYSpin"</font><font color="#990000">)));</font>
+	angle <font color="#990000">=</font> <b><font color="#000000">gtk_spin_button_get_value</font></b><font color="#990000">(</font>
+			<b><font color="#000000">GTK_SPIN_BUTTON</font></b><font color="#990000">(</font>
+				<b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"rotateAngleSpin"</font><font color="#990000">)));</font>
+
+	<b><font color="#000000">cv_stuff_rotate</font></b><font color="#990000">(</font>x<font color="#990000">,</font> y<font color="#990000">,</font> angle<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">rotateButtonCV_click</font></b><font color="#990000">(</font>GtkButton <font color="#990000">*</font>button<font color="#990000">,</font> gpointer data<font color="#990000">)</font> <font color="#FF0000">{</font>
+	<font color="#009900">int</font>		x<font color="#990000">,</font>
+			y<font color="#990000">;</font>
+	<font color="#009900">double</font>	angle<font color="#990000">;</font>
+
+	x <font color="#990000">=</font> <b><font color="#000000">gtk_spin_button_get_value_as_int</font></b><font color="#990000">(</font>
+			<b><font color="#000000">GTK_SPIN_BUTTON</font></b><font color="#990000">(</font>
+				<b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"rotateXSpin"</font><font color="#990000">)));</font>
+	y <font color="#990000">=</font> <b><font color="#000000">gtk_spin_button_get_value_as_int</font></b><font color="#990000">(</font>
+			<b><font color="#000000">GTK_SPIN_BUTTON</font></b><font color="#990000">(</font>
+				<b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"rotateYSpin"</font><font color="#990000">)));</font>
+	angle <font color="#990000">=</font> <b><font color="#000000">gtk_spin_button_get_value</font></b><font color="#990000">(</font>
+			<b><font color="#000000">GTK_SPIN_BUTTON</font></b><font color="#990000">(</font>
+				<b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"rotateAngleSpin"</font><font color="#990000">)));</font>
+
+	<b><font color="#000000">cv_stuff_rotate_opencv</font></b><font color="#990000">(</font>x<font color="#990000">,</font> y<font color="#990000">,</font> angle<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">negateButton1_click</font></b><font color="#990000">(</font>GtkButton <font color="#990000">*</font>button<font color="#990000">,</font> gpointer data<font color="#990000">)</font> <font color="#FF0000">{</font>
+	<b><font color="#000000">cv_stuff_negate1</font></b><font color="#990000">();</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">negateButton3_click</font></b><font color="#990000">(</font>GtkButton <font color="#990000">*</font>button<font color="#990000">,</font> gpointer data<font color="#990000">)</font> <font color="#FF0000">{</font>
+	<b><font color="#000000">cv_stuff_negate3</font></b><font color="#990000">();</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">negateButton2_click</font></b><font color="#990000">(</font>GtkButton <font color="#990000">*</font>button<font color="#990000">,</font> gpointer data<font color="#990000">)</font> <font color="#FF0000">{</font>
+	<b><font color="#000000">cv_stuff_negate2</font></b><font color="#990000">();</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">menuAbout_activate</font></b><font color="#990000">(</font>GtkMenuItem <font color="#990000">*</font>item<font color="#990000">,</font> gpointer data<font color="#990000">)</font> <font color="#FF0000">{</font>
+	GtkWidget	<font color="#990000">*</font>aboutDialog<font color="#990000">;</font>
+
+	aboutDialog <font color="#990000">=</font> <b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"aboutDialog"</font><font color="#990000">);</font>
+
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(</font><b><font color="#000000">gtk_dialog_run</font></b><font color="#990000">(</font><b><font color="#000000">GTK_DIALOG</font></b><font color="#990000">(</font>aboutDialog<font color="#990000">))</font> <font color="#990000">==</font> 
+			GTK_RESPONSE_CANCEL<font color="#990000">)</font>
+		<b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>aboutDialog<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">menuOpen_activate</font></b><font color="#990000">(</font>GtkMenuItem <font color="#990000">*</font>item<font color="#990000">,</font> gpointer data<font color="#990000">)</font> <font color="#FF0000">{</font>
+	GtkWidget		<font color="#990000">*</font>openDialog<font color="#990000">;</font>
+	GtkFileFilter	<font color="#990000">*</font>filter<font color="#990000">;</font>
+	<font color="#009900">char</font>			<font color="#990000">*</font>filename<font color="#990000">;</font>
+
+	filter <font color="#990000">=</font> <b><font color="#000000">gtk_file_filter_new</font></b><font color="#990000">();</font>
+	<b><font color="#000000">gtk_file_filter_add_pattern</font></b><font color="#990000">(</font>filter<font color="#990000">,</font> <font color="#FF0000">"*.png"</font><font color="#990000">);</font>
+	<b><font color="#000000">gtk_file_filter_add_pattern</font></b><font color="#990000">(</font>filter<font color="#990000">,</font> <font color="#FF0000">"*.bmp"</font><font color="#990000">);</font>
+
+	openDialog <font color="#990000">=</font> <b><font color="#000000">gtk_file_chooser_dialog_new</font></b><font color="#990000">(</font>
+			<font color="#FF0000">"Open Image"</font><font color="#990000">,</font>
+			<b><font color="#000000">GTK_WINDOW</font></b><font color="#990000">(</font><b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"mainWindow"</font><font color="#990000">)),</font>
+			GTK_FILE_CHOOSER_ACTION_OPEN<font color="#990000">,</font>
+			GTK_STOCK_CANCEL<font color="#990000">,</font> GTK_RESPONSE_CANCEL<font color="#990000">,</font>
+			GTK_STOCK_OPEN<font color="#990000">,</font> GTK_RESPONSE_ACCEPT<font color="#990000">,</font>
+			NULL<font color="#990000">);</font>
+	<b><font color="#000000">gtk_file_chooser_set_filter</font></b><font color="#990000">(</font>
+			<b><font color="#000000">GTK_FILE_CHOOSER</font></b><font color="#990000">(</font>openDialog<font color="#990000">),</font> filter<font color="#990000">);</font>
+
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(</font><b><font color="#000000">gtk_dialog_run</font></b><font color="#990000">(</font><b><font color="#000000">GTK_DIALOG</font></b><font color="#990000">(</font>openDialog<font color="#990000">))</font> <font color="#990000">==</font>
+			GTK_RESPONSE_ACCEPT<font color="#990000">)</font> <font color="#FF0000">{</font>
+		filename <font color="#990000">=</font> <b><font color="#000000">gtk_file_chooser_get_filename</font></b><font color="#990000">(</font><b><font color="#000000">GTK_FILE_CHOOSER</font></b><font color="#990000">(</font>openDialog<font color="#990000">));</font>
+		<b><font color="#000000">cv_stuff_window</font></b><font color="#990000">(</font>filename<font color="#990000">);</font>
+	<font color="#FF0000">}</font>
+
+	<b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>openDialog<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+<font color="#009900">void</font> <b><font color="#000000">menuSave_activate</font></b><font color="#990000">(</font>GtkMenuItem <font color="#990000">*</font>item<font color="#990000">,</font> gpointer data<font color="#990000">)</font> <font color="#FF0000">{</font>
+	GtkWidget		<font color="#990000">*</font>saveDialog<font color="#990000">;</font>
+	GtkFileFilter	<font color="#990000">*</font>filter<font color="#990000">;</font>
+	<font color="#009900">char</font>			<font color="#990000">*</font>filename<font color="#990000">,</font>
+					<font color="#990000">*</font>ext<font color="#990000">;</font>
+	GString			<font color="#990000">*</font>tmp<font color="#990000">;</font>
+
+	filter <font color="#990000">=</font> <b><font color="#000000">gtk_file_filter_new</font></b><font color="#990000">();</font>
+	<b><font color="#000000">gtk_file_filter_add_pattern</font></b><font color="#990000">(</font>filter<font color="#990000">,</font> <font color="#FF0000">"*.jpg"</font><font color="#990000">);</font>
+	<b><font color="#000000">gtk_file_filter_add_pattern</font></b><font color="#990000">(</font>filter<font color="#990000">,</font> <font color="#FF0000">"*.tif"</font><font color="#990000">);</font>
+
+	saveDialog <font color="#990000">=</font> <b><font color="#000000">gtk_file_chooser_dialog_new</font></b><font color="#990000">(</font>
+			<font color="#FF0000">"Save Image"</font><font color="#990000">,</font>
+			<b><font color="#000000">GTK_WINDOW</font></b><font color="#990000">(</font><b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"mainWindow"</font><font color="#990000">)),</font>
+			GTK_FILE_CHOOSER_ACTION_SAVE<font color="#990000">,</font>
+			GTK_STOCK_CANCEL<font color="#990000">,</font> GTK_RESPONSE_CANCEL<font color="#990000">,</font>
+			GTK_STOCK_SAVE<font color="#990000">,</font> GTK_RESPONSE_ACCEPT<font color="#990000">,</font>
+			NULL<font color="#990000">);</font>
+	<b><font color="#000000">gtk_file_chooser_set_filter</font></b><font color="#990000">(</font>
+			<b><font color="#000000">GTK_FILE_CHOOSER</font></b><font color="#990000">(</font>saveDialog<font color="#990000">),</font> filter<font color="#990000">);</font>
+	<b><font color="#000000">gtk_file_chooser_set_do_overwrite_confirmation</font></b><font color="#990000">(</font>
+			<b><font color="#000000">GTK_FILE_CHOOSER</font></b><font color="#990000">(</font>saveDialog<font color="#990000">),</font> TRUE<font color="#990000">);</font>
+
+	<b><font color="#0000FF">if</font></b> <font color="#990000">(</font><b><font color="#000000">gtk_dialog_run</font></b><font color="#990000">(</font><b><font color="#000000">GTK_DIALOG</font></b><font color="#990000">(</font>saveDialog<font color="#990000">))</font> <font color="#990000">==</font>
+			GTK_RESPONSE_ACCEPT<font color="#990000">)</font> <font color="#FF0000">{</font>
+		filename <font color="#990000">=</font> <b><font color="#000000">gtk_file_chooser_get_filename</font></b><font color="#990000">(</font><b><font color="#000000">GTK_FILE_CHOOSER</font></b><font color="#990000">(</font>saveDialog<font color="#990000">));</font>
+		
+		tmp <font color="#990000">=</font> <b><font color="#000000">g_string_new</font></b><font color="#990000">((</font><b><font color="#0000FF">const</font></b> gchar <font color="#990000">*)</font>filename<font color="#990000">);</font>
+
+		ext <font color="#990000">=</font> <font color="#990000">&amp;</font>filename<font color="#990000">[</font><b><font color="#000000">strlen</font></b><font color="#990000">(</font>filename<font color="#990000">)</font> <font color="#990000">-</font> <font color="#993399">4</font><font color="#990000">];</font>
+		<b><font color="#0000FF">if</font></b> <font color="#990000">(</font><b><font color="#000000">strcmp</font></b><font color="#990000">(</font>ext<font color="#990000">,</font> <font color="#FF0000">".jpg"</font><font color="#990000">)</font> <font color="#990000">&amp;&amp;</font> <b><font color="#000000">strcmp</font></b><font color="#990000">(</font>ext<font color="#990000">,</font> <font color="#FF0000">".tif"</font><font color="#990000">))</font>
+			<b><font color="#000000">g_string_append</font></b><font color="#990000">(</font>tmp<font color="#990000">,</font> <font color="#FF0000">".jpg"</font><font color="#990000">);</font>
+		<b><font color="#000000">cv_stuff_save_image</font></b><font color="#990000">(</font>tmp<font color="#990000">-&gt;</font>str<font color="#990000">);</font>
+		<b><font color="#000000">g_string_free</font></b><font color="#990000">(</font>tmp<font color="#990000">,</font> FALSE<font color="#990000">);</font>
+	<font color="#FF0000">}</font>
+
+	<b><font color="#000000">gtk_widget_hide</font></b><font color="#990000">(</font>saveDialog<font color="#990000">);</font>
+<font color="#FF0000">}</font>
+
+</tt></pre>

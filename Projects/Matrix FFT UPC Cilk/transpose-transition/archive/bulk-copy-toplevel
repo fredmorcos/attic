@@ -1,0 +1,40 @@
+shared void *srclist[JLS], *wdstlist[JLS];
+
+void transpose_in(int i0, int i1, int j0, int j1)
+{
+  int i, j;
+  float tmp;
+
+  for (i = i0; i < i1; i++)
+    for (j = j0; j < j1; j++)
+      if (j > i) {
+  	tmp = m[i][j];
+  	m[i][j] = m[j][i];
+  	m[j][i] = tmp;
+  	swaps[T]++;
+      }
+}
+
+void transpose(int i0, int i1, int j0, int j1)
+{
+  int
+    di = i1 - i0,
+    dj = j1 - j0;
+
+  if (di >= dj && di > ILS) {
+    int mi = (i0 + i1) / 2;
+
+    transpose(i0, mi, j0, j1);
+    transpose(mi, i1, j0, j1);
+  }
+  else if (dj > JLS) {
+    int mj = (j0 + j1) / 2;
+
+    transpose(i0, i1, j0, mj);
+    transpose(i0, i1, mj, j1);
+  }
+  else if (i0 == j0)
+    transpose_in(i0, i1, j0, j1);
+  else
+    transpose_remote_out(i0, i1, j0, j1);
+}

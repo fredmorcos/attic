@@ -1,0 +1,30 @@
+<RCC>
+    <qresource prefix="/icons" >
+        <file>about.png</file>
+        <file>new.png</file>
+        <file>open.png</file>
+        <file>quit.png</file>
+        <file>save.png</file>
+        <file>save-as.png</file>
+        <file>zoom-fit-best.png</file>
+        <file>zoom-in.png</file>
+        <file>zoom-original.png</file>
+        <file>zoom-out.png</file>
+        <file>preferences.png</file>
+        <file>document.png</file>
+        <file>opengrafik.svg</file>
+        <file>special.png</file>
+        <file>standard.png</file>
+        <file>properties.png</file>
+        <file>cascade.png</file>
+        <file>tile.png</file>
+        <file>circle.png</file>
+        <file>diamond.png</file>
+        <file>square.png</file>
+        <file>text.png</file>
+        <file>bezier-curve.png</file>
+        <file>line.png</file>
+        <file>image.png</file>
+        <file>cursor.png</file>
+    </qresource>
+</RCC>

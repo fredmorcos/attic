@@ -1,0 +1,78 @@
+/*
+ * This is an example button widget which counts the number of clicks
+ *
+ * It is also showing how you can use inline gtk-doc like documentation
+ * which will be correctly translated and put into the resulting source
+ * file
+ */
+requires 2.0.0
+
+class Gtk:Button:Count from Gtk:Button {
+        public int count = 0;
+        property INT count
+                (nick = _("Count of clicks"),
+                 blurb = _("How many times was the button clicked"),
+                 minimum = 0,
+                 maximum = INT_MAX,
+                 /* initially set to 0, even though we have already
+                  * set the default above */
+                 default_value = 0,
+                 /* links the count property to the count data member */
+                 link);
+
+        init (self)
+        {
+                /* Although we have specified the default in two places
+                 * already, this is an example of where else you can put
+                 * initialization */
+                self->count = 0;
+        }
+
+        /**
+         * new:
+         *
+         * Makes a new #GtkButtonCount widget
+         *
+         * Returns: a new widget
+         **/
+        public
+        GtkWidget *
+        new (void)
+        {
+                /* It's ok to use a normal cast here, as we are sure that we
+                 * have gotten the right type */
+                return (GtkWidget *)GET_NEW;
+        }
+
+        /**
+         * new_with_label:
+         * @label: the label text
+         *
+         * Makes a new #GtkButtonCount widget with a label
+         *
+         * Returns: a new widget
+         **/
+        public
+        GtkWidget *
+        new_with_label (char *label (check null)) onerror NULL
+        {
+                /* It's ok to use a normal cast here, as we are sure that we
+                 * have gotten the right type */
+                GtkWidget *widget = (GtkWidget *)GET_NEW;
+                GtkWidget *label_widget = gtk_label_new (label);
+                gtk_container_add (GTK_CONTAINER (widget), label_widget);
+                gtk_widget_show (label_widget);
+                return widget;
+        }
+
+        override (Gtk:Button)
+        void
+        clicked (Gtk:Button *self (check null type))
+        {
+                GtkButtonCount *bc = GTK_BUTTON_COUNT (self);
+                /* increase count */
+                bc->count++;
+                /* runt he parent class handler for clicked */
+                PARENT_HANDLER (self);
+        }
+}

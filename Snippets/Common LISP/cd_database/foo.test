@@ -1,0 +1,2 @@
+((:TITLE "Baz" :ARTIST "Bazink" :RATING 2 :RIPPED T)
+ (:TITLE "Foo" :ARTIST "Bar" :RATING 5 :RIPPED T)) 

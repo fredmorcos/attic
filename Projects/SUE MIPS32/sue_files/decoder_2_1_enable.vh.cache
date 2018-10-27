@@ -1,0 +1,7 @@
+set NETLIST_CACHE(decoder_2_1_enable,cells) {{icon inverter has_schematic} {icon nand2 has_schematic}}
+set netlist_props verilog
+set netlist_level 1000
+set NETLIST_CACHE(decoder_2_1_enable,version) MMI_SUE4.4.0
+set NETLIST_CACHE(decoder_2_1_enable) {{module decoder_2_1_enable (a, e, out0, out1);} {	input		a;} {	input		e;} {	output		out0;} {	output		out1;} { } {	wire		net_2;} {	wire		net_3;} {	wire		net_1;} { } {	assign #0 net_3 = !(e && net_1);} {	assign #0 net_2 = !(e && a);} {	not #0 inv(out0, net_3);} {	not #0 inv_1(out1, net_2);} {	not #0 inv_2(net_1, a);} {} {endmodule		// decoder_2_1_enable} {}}
+set NETLIST_CACHE(decoder_2_1_enable,names) {{570 310 {0 net_3} {1 net_3}} {480 400 {0 e}} {470 330 {0 net_1}} {600 310 {0 inv}} {390 330 {0 a}} {420 330 {0 inv_2}} {310 440 {1 a}} {480 440 {0 a}} {650 420 {0 out1} {2 out1}} {350 280 {1 e}} {480 330 {0 net_1}} {570 420 {0 net_2} {1 net_2}} {600 420 {0 inv_1}} {480 290 {0 e}} {650 310 {0 out0} {2 out0}}}
+set NETLIST_CACHE(decoder_2_1_enable,wires) {{430 280 430 290 e} {420 280 430 280 e} {350 280 420 280 e} {430 290 480 290 e} {420 400 480 400 e} {420 280 420 400 e} {310 440 350 440 a} {350 440 480 440 a} {470 330 480 330 net_1} {350 330 390 330 a} {350 330 350 440 a}}

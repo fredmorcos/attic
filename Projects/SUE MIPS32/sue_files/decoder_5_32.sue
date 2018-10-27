@@ -1,0 +1,72 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_decoder_5_32 {} {
+  make output -name {out[3:0]} -origin {1020 170}
+  make output -name {out[7:4]} -origin {1020 290}
+  make output -name {out[11:8]} -origin {1020 420}
+  make output -name {out[15:12]} -origin {1020 530}
+  make output -name {out[19:16]} -origin {1020 640}
+  make output -name {out[23:20]} -origin {1020 750}
+  make output -name {out[27:24]} -origin {1020 860}
+  make output -name {out[31:28]} -origin {1020 970}
+  make decoder_3_8 -origin {350 780}
+  make input -name {in[2:0]} -origin {210 700}
+  make input -name {in[4:3]} -origin {200 430}
+  make decoder_2_4 -origin {910 190}
+  make decoder_2_4 -origin {910 310}
+  make decoder_2_4 -origin {910 440}
+  make decoder_2_4 -origin {910 550}
+  make decoder_2_4 -origin {910 660}
+  make decoder_2_4 -origin {910 880}
+  make decoder_2_4 -origin {910 990}
+  make decoder_2_4 -origin {910 770}
+  make name_net_s -name {dec_out[7:0]} -origin {530 700}
+  make name_net_s -name {dec_out[0]} -origin {660 190}
+  make name_net_s -name {dec_out[1]} -origin {660 310}
+  make name_net_s -name {dec_out[2]} -origin {660 440}
+  make name_net_s -name {dec_out[3]} -origin {660 550}
+  make name_net_s -name {dec_out[4]} -origin {660 660}
+  make name_net_s -name {dec_out[5]} -origin {660 770}
+  make name_net_s -name {dec_out[6]} -origin {660 880}
+  make name_net_s -name {dec_out[7]} -origin {660 990}
+  make name_net_s -name {in[4:3]} -origin {660 170}
+  make name_net_s -name {in[4:3]} -origin {660 290}
+  make name_net_s -name {in[4:3]} -origin {660 420}
+  make name_net_s -name {in[4:3]} -origin {660 530}
+  make name_net_s -name {in[4:3]} -origin {660 640}
+  make name_net_s -name {in[4:3]} -origin {660 750}
+  make name_net_s -name {in[4:3]} -origin {660 860}
+  make name_net_s -name {in[4:3]} -origin {660 970}
+  make_wire 210 700 250 700
+  make_wire 660 170 820 170
+  make_wire 660 190 820 190
+  make_wire 660 310 820 310
+  make_wire 660 440 820 440
+  make_wire 660 550 820 550
+  make_wire 660 660 820 660
+  make_wire 660 770 820 770
+  make_wire 660 880 820 880
+  make_wire 660 990 820 990
+  make_wire 450 700 530 700
+  make_wire 660 640 820 640
+  make_wire 660 970 820 970
+  make_wire 660 290 820 290
+  make_wire 660 530 820 530
+  make_wire 660 860 820 860
+  make_wire 660 420 820 420
+  make_wire 660 750 820 750
+}
+
+proc ICON_decoder_5_32 args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-90 10} -name {in[4:0]}
+  icon_term -type output -origin {100 10} -name {out[31:0]}
+  icon_property -origin {-40 140} -type user -name name
+  icon_property -origin {-40 160} -type user -name M
+  icon_property -origin {-40 180} -type user -name dpc
+  icon_line -90 -50 -90 50 100 50 100 -50 -90 -50
+  icon_property -origin {-40 -20} -label {5x32 decoder}
+  icon_property -origin {-80 10} -label {in[4:0]}
+  icon_property -origin {20 10} -label {out[31:0]}
+}
+

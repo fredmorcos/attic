@@ -1,0 +1,7 @@
+set NETLIST_CACHE(DoubleInverter,cells) {{icon inverter has_schematic}}
+set netlist_props verilog
+set netlist_level 1000
+set NETLIST_CACHE(DoubleInverter,version) MMI_SUE4.4.0
+set NETLIST_CACHE(DoubleInverter) {{module DoubleInverter (in, out);} {	input		in;} {	output		out;} { } {	wire		net_1;} { } {	not #0 inv(net_1, in);} {	not #0 inv_1(out, net_1);} {} {endmodule		// DoubleInverter} {}}
+set NETLIST_CACHE(DoubleInverter,names) {{440 390 {0 inv}} {570 390 {0 out} {2 out}} {490 390 {0 net_1} {1 net_1}} {410 390 {0 in} {2 in}} {520 390 {0 inv_1}}}
+set NETLIST_CACHE(DoubleInverter,wires) {}

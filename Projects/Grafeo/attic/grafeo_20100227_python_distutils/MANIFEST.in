@@ -1,0 +1,3 @@
+include grafeo README LICENSE
+recursive-include img *
+

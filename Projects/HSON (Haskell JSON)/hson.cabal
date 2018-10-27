@@ -1,0 +1,21 @@
+name:                hson
+version:             0.1.0
+synopsis:            Haskell library for parsing JSON
+description:         Standalone JSON parser library in Haskell
+homepage:            http://github.com/fredmorcos/hson
+license:             BSD3
+license-file:        LICENSE
+author:              Fred Morcos
+maintainer:          fred.morcos@gmail.com
+category:            Web
+build-type:          Simple
+cabal-version:       >=1.8
+
+library
+  exposed-modules:   HSON
+  build-depends:     base
+
+source-repository    head
+  type:		     git
+  location:	     https://github.com/fredmorcos/hson.git
+  branch:	     master

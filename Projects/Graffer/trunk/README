@@ -1,0 +1,91 @@
+Dependencies:
+-------------
+
+D compiler:
+-----------
+
+dmd - http://digitalmars.com/d/
+
+or
+
+gdc - http://dgcc.sourceforge.net/
+
+Build system:
+-------------
+
+dsss - http://www.dsource.org/projects/dsss
+
+Runtime and standard library:
+-----------------------------
+
+tango - http://www.dsource.org/projects/tango
+
+GUI:
+----
+
+gtkd - http://www.dsource.org/projects/gtkd
+
+Documentation:
+--------------
+
+Doxygen - http://www.doxygen.org/
+Graphviz - http://www.graphviz.org/
+
+---------------------------------------------
+
+Building and running:
+---------------------
+
+Download and extract the tango/gdc/dsss bundle to /usr/local:
+
+$ wget http://downloads.dsource.org/projects/tango/0.99.7/tango-0.99.7-gdcr243-forDSSS-gdc-i686-pc-linux-gnu-withDSSS-withGDC.sh
+$ chmod +x tango-0.99.7-gdcr243-forDSSS-gdc-i686-pc-linux-gnu-withDSSS-withGDC.sh
+$ sudo ./tango-0.99.7-gdcr243-forDSSS-gdc-i686-pc-linux-gnu-withDSSS-withGDC.sh
+$ echo "export PATH=$PATH:/usr/local/bin" >> ~/.bashrc
+$ source ~/.bashrc
+
+Download, build and install GtkD:
+$ svn co http://svn.dsource.org/projects/gtkd/trunk gtkd
+$ cd gtkd
+$ dsss build
+$ sudo dsss install
+
+build and run grafer:
+$ cd <grafer-dir>
+$ dsss build
+$ ./grafer
+
+To run unit tests:
+$ dsss build --test
+
+To generate DDoc documentation:
+$ dsss build --doc
+
+To generate Doxygen documentation:
+$ doxygen Doxyfile
+
+To clean up the directory:
+$ dsss distclean
+
+---------------------------------------------
+
+Configuration and Optimizations:
+--------------------------------
+
+Add -version=sse at the end of the build line to use the SSE square root 
+instructions.
+
+---------------------------------------------
+
+Usage:
+------
+
+Create a graph by setting the number of nodes and clicking "Apply", next set 
+the type of edges and click "Apply". Select the algorithm to use to layout 
+the graph, the constants, enable/disable spring natural length for more 
+consistent edge lengths, damping and timestep values. Enabling "Animate" 
+(recommended) will animate the layouting process, keeping the interface 
+interactive. Disabling "Animate" should be solely used for benchmarking. 
+Enabling "wall" will put limits around the frame so nodes don't bypass it. 
+Information about the graph and algorithm time are shown on the console.
+

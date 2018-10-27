@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h1= app.info.name
+  p Welcome to #{app.info.name}
+  a(href="/register") Register
+
+  if (typeof errors !== typeof undefined)
+    p Errors
+    ul
+      if errors.invalidUsername
+        li Invalid username
+      if errors.invalidPassword
+        li Invalid password
+
+  if (typeof user !== typeof undefined)
+    p
+     | You are already logged in as #{user.username}, click 
+     a(href="/logout") here to logout
+     |  or 
+     a(href="/bookmarks") to view your bookmarks
+  else
+    form(method="post", action="/login")
+      input(type="text", name="username", placeholder="Username")
+      br
+      input(type="password", name="password", placeholder="Password")
+      br
+      input(type="submit", value="Login")

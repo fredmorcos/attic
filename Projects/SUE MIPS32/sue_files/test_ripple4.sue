@@ -1,0 +1,37 @@
+# SUE version MMI_SUE4.2.7
+
+proc SCHEMATIC_test_ripple4 {} {
+  make name_net_s -name {[3:0]} -origin {370 300}
+  make name_net_s -name {[7:4]} -origin {250 300}
+  generate name_net_s name_net -cell name_net
+  make name_net -name {sum[3:0]} -origin {310 640}
+  make flag -orient RX -value 0 -format %b -origin {100 520}
+  make flag -orient RX -value 0110 -format %b -origin {420 360}
+  make flag -orient RX -value 0000 -format %b -origin {200 360}
+  make flag -orient RY -value 6 -origin {310 650}
+  make counter -origin {310 140}
+  make global -name 1'b0 -origin {550 550}
+  make name_net -name {count[7:0]} -origin {310 250}
+  make ripple4 -origin {310 490}
+  make title_bar -owner tutorial -origin {340 770}
+  make_wire 160 530 100 530
+  make_wire 550 530 460 530
+  make_wire 100 520 100 530
+  make_wire 370 360 420 360
+  make_wire 200 360 250 360
+  make_wire 250 360 250 380
+  make_wire 370 300 370 360
+  make_wire 370 360 370 380
+  make_wire 310 640 310 580
+  make_wire 310 640 310 650
+  make_wire 550 530 550 550
+  make_wire 250 250 250 300
+  make_wire 250 300 250 360
+  make_wire 370 250 370 300
+  make_wire 250 250 310 250
+  make_wire 310 250 370 250
+  make_wire 310 190 310 250
+  make_text -origin {90 -10} -text {Test fixture for ripple4 adder} -size large
+  make_text -origin {90 30} -text {See test_ripple4.html for more info (Shift-d or "Display Cell Doc" in "View" menu)}
+}
+

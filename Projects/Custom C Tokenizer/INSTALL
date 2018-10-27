@@ -1,0 +1,15 @@
+=== Dependencies ===
+gcc - GNU C Compiler
+glibc - GNU Standard C Library
+
+=== Building ===
+make -j8
+
+=== Installing ===
+make DEST=/usr/local
+
+=== Testing/Running ===
+./plafoon tests/test1.pf
+
+=== Cleaning ===
+make clean

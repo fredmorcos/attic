@@ -1,0 +1,30 @@
+CACHE MANIFEST
+# MANIFEST FILE BUILD THE DATE
+
+NETWORK:
+*
+
+CACHE:
+/
+/login
+/mitch
+
+# STYLESHEETS
+/stylesheets/app.css
+/stylesheets/app-responsive.css
+
+# JAVASCRIPT
+/javascripts/jquery.js
+/javascripts/app.js
+
+# ICONS
+/apple-touch-icon-144x144-precomposed.png
+/apple-touch-icon-114x114-precomposed.png
+/apple-touch-icon-72x72-precomposed.png
+/apple-touch-icon-57x57-precomposed.png
+/apple-touch-icon-precomposed.png
+/apple-touch-icon.png
+/favicon.ico
+
+# IMAGES
+/images/55mm_ipadr.jpg

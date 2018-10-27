@@ -1,0 +1,10 @@
+{
+    "title":    "Data Memory",
+    "image":    "mem.meta",
+    "mem_name": "DMEM",
+
+    "mem_elements": {
+	"%DATA1%": "DATA",
+	"%DATA2%": "DDATA"
+    }
+}

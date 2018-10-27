@@ -1,0 +1,6 @@
+upcc -O -network=ibv -T=36  -DMATN=13902 -DPSQRT=6 -DBSIZE=94387383 -c -o mt2c+.o mt-2cbuf-cilk+.upc
+icc -O3 -Wall -Werror -axSSE4.2 -axSSE4.2 -DMATN=13902 -DPSQRT=6 -DBSIZE=94387383 -fPIC -c -o cilk+-transpose.o cilk+-transpose.c
+upcc -O -network=ibv -T=36  -link-with=icc -lcilkrts -o mt2c+ mt2c+.o cilk+-transpose.o
+(export CILK_NWORKERS=8;     \
+ export UPC_CILK_NWORKERS=8; \
+ upcrun  -network=ibv -shared-heap=8G -c 1 -n 36 mt2c+)

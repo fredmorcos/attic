@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Movie_database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\Documents and Settings\christine fouad\Desktop\project\project\movie_database_schema.xml">
+<movie id="id1">
+<title> titanic</title>
+<year>1996</year>
+<director>XXX</director>
+<major_actors>
+<actor>Leonardo dicapreo</actor>
+<actriss>kate winslet</actriss>
+</major_actors>
+<country>usa</country>
+<language> english</language>
+<production_company>xxx</production_company>
+</movie>
+
+<user username="christine" password="christy" >
+	<name>
+		<f_name>christine</f_name>
+		<l_name>maher</l_name>
+	</name>
+	<adress>26 tarablus st</adress>
+	<email>kouki510@gmail.com</email>
+</user>
+</Movie_database>

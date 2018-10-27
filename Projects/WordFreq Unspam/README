@@ -1,0 +1,4 @@
+This is a library/implementation file to be used directly and imported
+by another program. Simpy call addSpamMessage(string msg) to add a
+message to the "database" and flag it as spam or call bool
+isMessageSpam(string msg) to get whether the message is spam or not.

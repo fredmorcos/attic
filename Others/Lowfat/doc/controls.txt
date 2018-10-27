@@ -1,0 +1,20 @@
+keyboard:
+F1 - normal mode
+F2 - chaos mode
+F3 - simple mode
+a - sort by aspect
+s - sort by size
+d - sort by date
+Space - pile
+q, esc - quit 
+i - toggle info
+o - original size
+l - load files
+del - get rid of file
+r - reset position/movement
+(shift) up/right - rotate right (in larger steps)
+(shift) down/left - rotate left (in larger steps)
+
+mouse:
+what you would expect from mouse-controls
+left double-click, if you feel lost :)

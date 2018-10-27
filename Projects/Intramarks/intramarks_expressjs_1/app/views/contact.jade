@@ -1,0 +1,23 @@
+extends _layout
+
+block content
+  article.container
+    .row
+      .span3.offset2
+        .inner-container
+          h2.page-title= title
+          p.lead Feel free to contact us if you have any questions regarding your account or other.
+          p Lorem ipsum quis non occaecat amet deserunt dolore cillum. 
+      .span4.offset1
+        .inner-container.navbar-inner
+          form#contact-form
+            .input-prepend.input-block
+              label.add-on(for="name"): i.icon-user
+              input#name(type="text", placeholder="Your name")
+            .input-prepend.input-block
+              label.add-on(for="email"): i.icon-envelope
+              input#email(type="text", placeholder="Your email")
+            .input-block
+              textarea#message(placeholder="Your message")
+            .controls
+              button.btn.btn-large.btn-success(type="submit") Send

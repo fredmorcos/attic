@@ -1,0 +1,17 @@
+#!/bin/bash
+
+function usage {
+    echo "hvlt_fastest <nodes> <processors-per-node>"
+    exit
+}
+
+if [[ "$1" == "--help" ]]; then
+    usage
+fi
+
+if [[ "$1" == "" || "$2" == "" ]]; then
+    usage
+else
+    let procs=$1*$2
+    hvlt_nodelist -n $1 -p $procs -q | sed -re 's/(\s[0-9]+[,]?)/\ /g'
+fi

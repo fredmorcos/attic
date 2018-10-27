@@ -1,0 +1,40 @@
+\documentclass{article}
+
+% \usepackage{listings}
+% \lstset{language=haskell, keepspaces=true, numbersep=15pt, tabsize=2, frame=single}
+
+\title{The Design and Implementation of an Accurate Monadic Parser for the PET File Format}
+\author{Frederic-Gerald Morcos}
+\date{14 August, 2013}
+
+\begin{document}
+	\maketitle
+	\pagebreak
+
+  \section{Goal}
+  \label{sec:goal}
+  
+  The goal of this project is to implement a parser in the Monad category that carries the following set of features
+  
+  \begin{itemize}
+  
+	\item Easily composable using Haskell's \texttt{do}-notation
+	
+	\item General enough to allow arbitrary combinations of sub-parsers
+	
+	\item Have a single function as its engine, partially applied should yield all the flexible building blocks
+	
+	\item Have as many building blocks as is reasonable, implemented as sub-parsers (e.g. Int, Double)
+	
+	\item Efficient parsing, with a look-ahead of 1
+	
+	\item Accurate error reports, in terms of lines and columns
+	
+	\item On the fly construction of the target structures, rather than an intermediate parse tree
+	
+  \end{itemize}
+  
+  The main test-bed for the parser is the Personal Expense Tracker (PET) file format. A format that is simple and as concise as is reasonable.
+
+  % section  (end)
+\end{document}

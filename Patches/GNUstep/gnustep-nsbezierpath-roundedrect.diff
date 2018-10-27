@@ -1,0 +1,99 @@
+Index: Source/NSBezierPath.m
+===================================================================
+--- Source/NSBezierPath.m	(revision 28230)
++++ Source/NSBezierPath.m	(working copy)
+@@ -136,6 +136,20 @@
+   return path;
+ }
+ 
+++ (NSBezierPath *)bezierPathWithRoundedRect: (NSRect)aRect
++                                    xRadius: (CGFloat)xRadius
++                                    yRadius: (CGFloat)yRadius
++{
++  NSBezierPath *path;
++
++  path = [self bezierPath];
++  [path appendBezierPathWithRoundedRect: aRect
++                                xRadius: xRadius
++                                yRadius: yRadius];
++
++  return path;
++}
++
+ + (NSBezierPath *)bezierPathWithOvalInRect: (NSRect)aRect
+ {
+   NSBezierPath *path;
+@@ -865,6 +879,49 @@
+   [self closePath];
+ }
+ 
++- (void)appendBezierPathWithRoundedRect:(NSRect)aRect
++                                xRadius:(CGFloat)xRadius
++                                yRadius:(CGFloat)yRadius
++{
++  NSPoint startp, endp, controlp1, controlp2, topLeft, topRight, bottomRight;
++  xRadius = MIN(xRadius, aRect.size.width);
++  yRadius = MIN(yRadius, aRect.size.height);
++
++  topLeft = NSMakePoint(NSMinX(aRect), NSMaxY(aRect));
++  topRight = NSMakePoint(NSMaxX(aRect), NSMaxY(aRect));
++  bottomRight = NSMakePoint(NSMaxX(aRect), NSMinY(aRect));
++
++  startp = NSMakePoint(aRect.origin.x, aRect.origin.y + yRadius);
++  endp = NSMakePoint(aRect.origin.x + xRadius, aRect.origin.y);
++  controlp1 = NSMakePoint(startp.x, startp.y - (KAPPA * yRadius));
++  controlp2 = NSMakePoint(endp.x - (KAPPA * xRadius), endp.y);
++  [self moveToPoint: startp];
++  [self curveToPoint: endp controlPoint1: controlp1 controlPoint2: controlp2];
++
++  startp = NSMakePoint(bottomRight.x - xRadius, bottomRight.y);
++  endp = NSMakePoint(bottomRight.x, bottomRight.y + yRadius);
++  controlp1 = NSMakePoint(startp.x + (KAPPA * xRadius), startp.y);
++  controlp2 = NSMakePoint(endp.x, endp.y - (KAPPA * yRadius));
++  [self lineToPoint: startp];
++  [self curveToPoint: endp controlPoint1: controlp1 controlPoint2: controlp2];
++
++  startp = NSMakePoint(topRight.x, topRight.y - yRadius);
++  endp = NSMakePoint(topRight.x - xRadius, topRight.y);
++  controlp1 = NSMakePoint(startp.x, startp.y + (KAPPA * yRadius));
++  controlp2 = NSMakePoint(endp.x + (KAPPA * xRadius), endp.y);
++  [self lineToPoint: startp];
++  [self curveToPoint: endp controlPoint1: controlp1 controlPoint2: controlp2];
++
++  startp = NSMakePoint(topLeft.x + xRadius, topLeft.y);
++  endp = NSMakePoint(topLeft.x, topLeft.y - yRadius);
++  controlp1 = NSMakePoint(startp.x - (KAPPA * xRadius), startp.y);
++  controlp2 = NSMakePoint(endp.x, endp.y + (KAPPA * yRadius));
++  [self lineToPoint: startp];
++  [self curveToPoint: endp controlPoint1: controlp1 controlPoint2: controlp2];
++
++  [self closePath];
++}
++
+ - (void)appendBezierPathWithPoints:(NSPoint *)points count:(int)count
+ {
+   int i;
+Index: Headers/AppKit/NSBezierPath.h
+===================================================================
+--- Headers/AppKit/NSBezierPath.h	(revision 28230)
++++ Headers/AppKit/NSBezierPath.h	(working copy)
+@@ -94,6 +94,9 @@
+ //
+ + (NSBezierPath *)bezierPath;
+ + (NSBezierPath *)bezierPathWithRect:(NSRect)aRect;
+++ (NSBezierPath *)bezierPathWithRoundedRect:(NSRect)aRect
++                                    xRadius:(CGFloat)xRadius
++                                    yRadius:(CGFloat)yRadius;
+ + (NSBezierPath *)bezierPathWithOvalInRect:(NSRect)aRect;
+ 
+ //
+@@ -200,6 +203,9 @@
+ //
+ - (void)appendBezierPath:(NSBezierPath *)aPath;
+ - (void)appendBezierPathWithRect:(NSRect)aRect;
++- (void)appendBezierPathWithRoundedRect:(NSRect)aRect
++                                xRadius:(CGFloat)xRadius
++                                yRadius:(CGFloat)yRadius;
+ - (void)appendBezierPathWithPoints:(NSPoint *)points count:(int)count;
+ - (void)appendBezierPathWithOvalInRect:(NSRect)aRect;
+ - (void)appendBezierPathWithArcWithCenter:(NSPoint)center  

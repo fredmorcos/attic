@@ -1,0 +1,8 @@
+{
+	ApplicationName = "sandbox";
+	ApplicationDescription = "Prototype of a Force-Based graph layout algorithm";
+	ApplicationRelease = "0.1";
+	Authors = ("Fred Morcos <fred.morcos@gmail.com>");
+	Copyright = "Copyright (c) 2008 Fred Morcos <fred.morcos@gmail.com>";
+	CopyrightDescription = "This program is released under the GNU GPLv3";
+}

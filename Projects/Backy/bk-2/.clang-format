@@ -1,0 +1,91 @@
+---
+BasedOnStyle: LLVM
+Language: Cpp
+
+Standard: Auto
+PointerAlignment: Right
+AccessModifierOffset: -1
+
+BinPackArguments: false
+BinPackParameters: false
+
+DerivePointerAlignment: false
+
+ColumnLimit: 80
+IndentWidth: 2
+TabWidth:    2
+UseTab:      Never
+
+ContinuationIndentWidth: 4
+MaxEmptyLinesToKeep: 1
+
+ReflowComments: true
+SortIncludes:   true
+
+AlignEscapedNewlinesLeft: false
+
+AlignConsecutiveAssignments:  true
+AlignConsecutiveDeclarations: false
+AlignOperands:                true
+AlignTrailingComments:        true
+AlignAfterOpenBracket:        Align
+
+AllowShortBlocksOnASingleLine:       false
+AllowShortCaseLabelsOnASingleLine:   false
+AllowShortFunctionsOnASingleLine:    None
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine:        false
+
+AllowAllParametersOfDeclarationOnNextLine: true
+
+SpaceAfterCStyleCast: true
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeParens: ControlStatements
+SpaceInEmptyParentheses: false
+SpacesInCStyleCastParentheses: false
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+SpacesInContainerLiterals: false
+
+AlwaysBreakAfterReturnType: None
+PenaltyReturnTypeOnItsOwnLine: 120
+PenaltyBreakBeforeFirstCallParameter: 120
+PenaltyBreakComment: 10
+
+# PenaltyBreakFirstLessLess (for breaking before <<)
+# PenaltyBreakString
+# PenaltyExcessCharacter
+
+IndentCaseLabels: true
+
+# BreakStringLiterals: true
+
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterClass:            false
+  AfterControlStatement: false
+  AfterEnum:             false
+  AfterFunction:         false
+  AfterNamespace:        false
+  AfterObjCDeclaration:  false
+  AfterStruct:           false
+  AfterUnion:            false
+  BeforeCatch:           false
+  BeforeElse:            false
+  IndentBraces:          false
+
+Cpp11BracedListStyle: false
+
+KeepEmptyLinesAtTheStartOfBlocks: false
+
+SpacesBeforeTrailingComments: 4
+
+BreakConstructorInitializersBeforeComma: true
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+
+BreakBeforeTernaryOperators: true
+# BreakBeforeInheritanceComma: true
+BreakBeforeBinaryOperators: None
+
+IndentWrappedFunctionNames: true
+...

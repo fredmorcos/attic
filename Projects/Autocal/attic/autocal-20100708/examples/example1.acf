@@ -1,0 +1,30 @@
+# empty lines and lines starting with # will be ignored
+#
+# the following is an example of the format for a task
+# and below is an example of two tasks, the format needs
+# to be followed exactly since autocal doesn't try to be
+# as flexible as possible about it
+#
+# %task-id {
+# 	description = %one line task description
+# 	deadline = %number representing deadline in UNIX time
+# 	begin = %number representing start time in UNIX time
+# 	duration = %number representing duration time in UNIX time
+# 	fixed = %0 or 1, whether task should be optimized or not
+# }
+
+1 {
+	description = Meeting for something
+	deadline = 5000
+	begin = 1000
+	duration = 2000
+	fixed = 0
+}
+
+2 {
+	description = Another meeting for something
+	deadline = 3000
+	begin = 1000
+	duration = 1000
+	fixed = 0
+}

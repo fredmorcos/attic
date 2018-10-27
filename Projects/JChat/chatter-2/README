@@ -1,0 +1,44 @@
+chatter - chatroom README
+-------------------------
+	Ahmad Hisham
+	Frederic-Gerald Morcos
+
+
+> Requirements:
+	> JDK 1.6
+	> view ./docs/
+
+> Compile:
+	> client:	in dir chatter/ type javac client/client.java
+	> server:	in dir chatter/ type javac server/server.java
+
+> Run:
+	> client:	in dir chatter/ type java client.client
+	> server:	in dir chatter/	type java server.server
+
+> Usage:
+	> Server:	just run the server, it will listen on port 8000
+			and will output any status or error messages.
+			it doesn't require interaction.
+
+	> Client:	when opened, a login dialog will be shown, enter
+			the ip of the server and the nickname you wish to
+			use then click connect or press enter.
+			(by default the nickname box will be focused)
+
+			when logged in, chats are in tabs. there is a public
+			chat, where anyone can talk to everyone. a list of the
+			online clients will be on the right. type your message
+			in the text box at the bottom and press send or enter,
+			this will send your message to everyone (public). the 
+			exit button will just disconnect you from the server
+			and close your client.
+
+			there are private chats, opened in other tabs. whenever
+			someone sends you a message, the tab will be opened and
+			the message will be added there. you can send private
+			message by using the bottom text box and pressing send
+			or enter, the close button will only close the current
+			tab. if you want to message someone, click on his name
+			in the public chat list and a new tab will be opened 
+			with his name.

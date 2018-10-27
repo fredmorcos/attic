@@ -1,0 +1,13 @@
+extends _layout
+
+block content
+  article.container
+    .inner-container.navbar-inner
+      h2.page-title= title
+      :markdown
+        - at this point we list all the user's orgs
+        - user chooses the organization
+        - user get redirected to `/organizations/org-name`
+        - [/organizations/fuborg](/organizations/fuborg)
+        - [/organizations/anything](/organizations/anything)
+        - [/organizations/--](/organizations/--)

@@ -1,0 +1,74 @@
+In file included from /tmp/12364_1169072622_1.cpp:34:
+/usr/include/xorg/assyntax.h:202:1: warning: "CR0" redefined
+In file included from /usr/include/termios.h:40,
+                 from /usr/include/termio.h:5,
+                 from /usr/include/xorg/xf86_OSlib.h:339,
+                 from /tmp/12364_1169072622_1.cpp:29:
+/usr/include/bits/termios.h:94:1: warning: this is the location of the previous definition
+In file included from /tmp/12364_1169072622_1.cpp:34:
+/usr/include/xorg/assyntax.h:203:1: warning: "CR1" redefined
+In file included from /usr/include/termios.h:40,
+                 from /usr/include/termio.h:5,
+                 from /usr/include/xorg/xf86_OSlib.h:339,
+                 from /tmp/12364_1169072622_1.cpp:29:
+/usr/include/bits/termios.h:95:1: warning: this is the location of the previous definition
+In file included from /tmp/12364_1169072622_1.cpp:34:
+/usr/include/xorg/assyntax.h:204:1: warning: "CR2" redefined
+In file included from /usr/include/termios.h:40,
+                 from /usr/include/termio.h:5,
+                 from /usr/include/xorg/xf86_OSlib.h:339,
+                 from /tmp/12364_1169072622_1.cpp:29:
+/usr/include/bits/termios.h:96:1: warning: this is the location of the previous definition
+In file included from /tmp/12364_1169072622_1.cpp:34:
+/usr/include/xorg/assyntax.h:205:1: warning: "CR3" redefined
+In file included from /usr/include/termios.h:40,
+                 from /usr/include/termio.h:5,
+                 from /usr/include/xorg/xf86_OSlib.h:339,
+                 from /tmp/12364_1169072622_1.cpp:29:
+/usr/include/bits/termios.h:97:1: warning: this is the location of the previous definition
+In file included from /tmp/12364_1169072622_1.cpp:34:
+/usr/include/xorg/assyntax.h:268:1: warning: "FILE" redefined
+In file included from /usr/include/xorg/xf86_ansic.h:92,
+                 from /tmp/12364_1169072622_1.cpp:31:
+/usr/include/xorg/xf86_libc.h:537:1: warning: this is the location of the previous definition
+In file included from /tmp/12364_1169072622_1.cpp:87:
+/usr/include/xorg/xorg-server.h:24:1: warning: "COMPILEDDEFAULTFONTPATH" redefined
+In file included from /tmp/12364_1169072622_1.cpp:76:
+/usr/include/xorg/site.h:78:1: warning: this is the location of the previous definition
+In file included from /tmp/12364_1169072622_1.cpp:87:
+/usr/include/xorg/xorg-server.h:201:1: warning: "X_BYTE_ORDER" redefined
+In file included from /usr/include/xorg/pixmapstr.h:52,
+                 from /usr/include/xorg/xf86str.h:41,
+                 from /usr/include/xorg/xf86xv.h:34,
+                 from /usr/include/xorg/xf86xvpriv.h:33,
+                 from /tmp/12364_1169072622_1.cpp:1:
+/usr/include/X11/Xarch.h:120:1: warning: this is the location of the previous definition
+In file included from /tmp/12364_1169072622_1.cpp:87:
+/usr/include/xorg/xorg-server.h:210:1: warning: "_XOPEN_SOURCE" redefined
+In file included from /usr/include/endian.h:22,
+                 from /usr/include/X11/Xarch.h:62,
+                 from /usr/include/xorg/pixmapstr.h:52,
+                 from /usr/include/xorg/xf86str.h:41,
+                 from /usr/include/xorg/xf86xv.h:34,
+                 from /usr/include/xorg/xf86xvpriv.h:33,
+                 from /tmp/12364_1169072622_1.cpp:1:
+/usr/include/features.h:156:1: warning: this is the location of the previous definition
+In file included from /usr/include/xorg/fb.h:150,
+                 from /tmp/12364_1169072622_1.cpp:88:
+/usr/include/xorg/fbrop.h:72:23: error: "and" may not appear in macro parameter list
+/usr/include/xorg/fbrop.h:74:27: error: "and" may not appear in macro parameter list
+In file included from /tmp/12364_1169072622_1.cpp:88:
+/usr/include/xorg/fb.h:226:29: error: "xor" may not appear in macro parameter list
+/usr/include/xorg/fb.h:227:31: error: "xor" may not appear in macro parameter list
+/usr/include/xorg/fb.h:382:40: error: "xor" may not appear in macro parameter list
+/usr/include/xorg/fb.h:383:41: error: "xor" may not appear in macro parameter list
+/usr/include/xorg/fb.h:386:39: error: "and" may not appear in macro parameter list
+/usr/include/xorg/fb.h:414:40: error: "and" may not appear in macro parameter list
+In file included from /tmp/12364_1169072622_1.cpp:133:
+/usr/include/xorg/cfbmskbits.h:403:21: error: "and" may not appear in macro parameter list
+/usr/include/xorg/cfbmskbits.h:405:25: error: "and" may not appear in macro parameter list
+In file included from /tmp/12364_1169072622_1.cpp:143:
+/usr/include/xorg/dri.h:40:21: error: xf86dri.h: No such file or directory
+In file included from /usr/include/xorg/sarea.h:42,
+                 from /tmp/12364_1169072622_1.cpp:145:
+/usr/include/xf86drm.h:41:17: error: drm.h: No such file or directory

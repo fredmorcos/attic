@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE gsmarkup>
+<gsmarkup>
+	<objects>
+		<window id="window" title="OpenGrafik - Untitled Document" 
+			resizable="yes" x="0" y="0">
+			<scrollView id="documentView" halign="wexpand" valign="wexpand">
+			</scrollView>
+		</window>
+	</objects>
+	
+	<connectors>
+		<outlet source="#NSOwner" target="#window" key="window"/>
+		<outlet source="#NSOwner" target="#documentView" key="documentView"/>
+	</connectors>
+</gsmarkup>
+

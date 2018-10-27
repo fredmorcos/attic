@@ -1,0 +1,48 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_LoadStoreModule {} {
+  make Adder3217 -origin {580 420}
+  make input -name {OFFSET[16:0]} -origin {270 390}
+  make input -name {R_BASE_VALUE[31:0]} -origin {270 440}
+  make output -name LS_OVERFLOW -origin {720 390}
+  make output -name {LS_ADDRESS[31:0]} -origin {720 440}
+  make CUMuxSelect -origin {580 600}
+  make input -name T0 -origin {480 600}
+  make input -name T3 -origin {480 620}
+  make output -name {S[1:0]} -origin {680 580}
+  make input -name LOAD -origin {480 560}
+  make input -name STORE -origin {480 580}
+  make_wire 270 390 480 390
+  make_wire 270 440 480 440
+  make_wire 680 390 720 390
+  make_wire 680 440 720 440
+}
+
+proc ICON_LoadStoreModule args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-230 -70} -name {OFFSET[16:0]}
+  icon_term -type input -origin {-230 -140} -name {R_BASE_VALUE[31:0]}
+  icon_term -type output -origin {250 -140} -name {LS_ADDRESS[31:0]}
+  icon_term -type output -origin {250 -70} -name LS_OVERFLOW
+  icon_term -type input -origin {-230 100} -name T0
+  icon_term -type input -origin {-230 120} -name T3
+  icon_term -type output -origin {250 70} -name {S[1:0]}
+  icon_term -type input -origin {-230 60} -name LOAD
+  icon_term -type input -origin {-230 80} -name STORE
+  icon_property -origin {280 230} -type user -name name
+  icon_property -origin {280 250} -type user -name M
+  icon_property -origin {280 270} -type user -name dpc
+  icon_line -230 -210 -230 140 250 140 250 -210 -230 -210
+  icon_property -origin {-60 20} -label {LOAD / STORE}
+  icon_property -origin {-220 -70} -label {OFFSET[16:0]}
+  icon_property -origin {-220 -140} -label {R_BASE_VALUE[31:0]}
+  icon_property -origin {240 -140} -anchor e -label {LS_ADDRESS[31:0]}
+  icon_property -origin {240 -70} -anchor e -label LS_OVERFLOW
+  icon_property -origin {-30 50} -label MODULE
+  icon_property -origin {-220 60} -label L
+  icon_property -origin {-220 80} -label S
+  icon_property -origin {-220 100} -label T0
+  icon_property -origin {-220 120} -label T3
+  icon_property -origin {240 70} -anchor e -label {S[1:0]}
+}
+

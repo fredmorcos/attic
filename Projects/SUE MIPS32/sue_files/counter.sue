@@ -1,0 +1,79 @@
+# SUE version MMI_SUE4.2.6
+
+proc SCHEMATIC_counter {} {
+  make output -name {out[7:0]} -origin {60 -40}
+  make dc_supply -origin {-410 90}
+  make dc_supply -origin {-480 90}
+  make dc_supply -origin {-560 90}
+  make name_net_s -name {[0]} -origin {20 10}
+  make name_net_s -name {[1]} -origin {-70 10}
+  make name_net_s -name {[2]} -origin {-160 10}
+  make name_net_s -name {[3]} -origin {-250 10}
+  make name_net_s -name {[4]} -origin {-340 10}
+  make name_net_s -name {[5]} -origin {-410 10}
+  make name_net_s -name {[6]} -origin {-480 10}
+  make name_net_s -name {[7]} -origin {-560 10}
+  make pulse -origin {-340 90}
+  make counter -origin {190 140}
+  make title_bar -owner tutorial -origin {-270 260}
+  make global -name gnd -origin {-340 140}
+  make global -name gnd -origin {-560 140}
+  make global -name gnd -origin {-480 140}
+  make global -name gnd -origin {-410 140}
+  make global -name gnd -origin {-250 140}
+  make global -name gnd -origin {-160 140}
+  make global -name gnd -origin {-70 140}
+  make global -name gnd -origin {20 140}
+  make dc_supply -voltage vddp -origin {-250 90}
+  make dc_supply -voltage vddp -origin {-160 90}
+  make dc_supply -voltage vddp -origin {-70 90}
+  make dc_supply -voltage vddp -origin {20 90}
+  make_wire -70 120 -70 140
+  make_wire -160 120 -160 140
+  make_wire -250 120 -250 140
+  make_wire -410 120 -410 140
+  make_wire -480 120 -480 140
+  make_wire -560 120 -560 140
+  make_wire -250 -40 -160 -40
+  make_wire -340 -40 -250 -40
+  make_wire -410 -40 -340 -40
+  make_wire -480 -40 -410 -40
+  make_wire -480 -40 -560 -40
+  make_wire 20 -40 60 -40
+  make_wire -340 130 -340 140
+  make_wire -560 -40 -560 10
+  make_wire -160 -40 -70 -40
+  make_wire 20 -40 20 10
+  make_wire -70 -40 20 -40
+  make_wire -70 -40 -70 10
+  make_wire -160 -40 -160 10
+  make_wire -250 -40 -250 10
+  make_wire -340 -40 -340 10
+  make_wire -410 -40 -410 10
+  make_wire -480 -40 -480 10
+  make_wire 20 10 20 50
+  make_wire -480 10 -480 50
+  make_wire -560 10 -560 50
+  make_wire -340 10 -340 50
+  make_wire -410 10 -410 50
+  make_wire -70 10 -70 50
+  make_wire -250 10 -250 50
+  make_wire -160 10 -160 50
+  make_wire 20 120 20 140
+  make_text -origin {-570 -110} -text {In verilog mode, the verilog property in the icon is used and in sim mode, 
+the counter.cmd script is used to drive the simulation.}
+  make_text -origin {-570 -180} -text {counter spice schematic.   Toggles between 0000+1111 and 0001+1111
+to exercise the carry chain.}
+}
+
+proc ICON_counter args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}}}
+  icon_term -type output -origin {0 50} -orient R90 -name {out[7:0]}
+  icon_property -origin {-110 210} -type user -name name
+  icon_line -90 -50 -90 50 100 50 100 -50 -90 -50
+  icon_property -origin {10 -20} -size large -anchor center -label counter
+  icon_property -origin {-40 30} -label {out[7:0]}
+  icon_property -origin {-110 250} -type auto -name verilog -text {counter [unique_name "" $name counter]
+(.out(${out[7:0]}))\;}
+}
+

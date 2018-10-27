@@ -1,0 +1,405 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_Subtractor32bit {} {
+  make Subtractor -origin {680 350}
+  make global -orient RXY -name gnd -origin {730 200}
+  make Subtractor -origin {550 350}
+  make Subtractor -origin {420 350}
+  make Subtractor -origin {280 350}
+  make Subtractor -origin {150 350}
+  make Subtractor -origin {20 350}
+  make Subtractor -origin {-110 350}
+  make Subtractor -origin {-250 350}
+  make Subtractor -origin {-380 350}
+  make Subtractor -origin {-510 350}
+  make Subtractor -origin {-640 350}
+  make Subtractor -origin {-780 350}
+  make Subtractor -origin {-910 350}
+  make Subtractor -origin {-1040 350}
+  make Subtractor -origin {-1170 350}
+  make Subtractor -origin {-1310 350}
+  make Subtractor -origin {-1440 350}
+  make Subtractor -origin {-1570 350}
+  make Subtractor -origin {-1700 350}
+  make Subtractor -origin {-1840 350}
+  make Subtractor -origin {-1970 350}
+  make Subtractor -origin {-2100 350}
+  make Subtractor -origin {-2230 350}
+  make Subtractor -origin {-2370 350}
+  make Subtractor -origin {-2500 350}
+  make Subtractor -origin {-2630 350}
+  make Subtractor -origin {-2760 350}
+  make Subtractor -origin {-2900 350}
+  make Subtractor -origin {-3030 350}
+  make Subtractor -origin {-3160 350}
+  make Subtractor -origin {-3290 350}
+  make Subtractor -origin {-3430 350}
+  make output -orient R90 -name {out[0]} -origin {710 430}
+  make output -orient R90 -name {out[1]} -origin {580 430}
+  make output -orient R90 -name {out[2]} -origin {440 440}
+  make output -orient R90 -name {out[3]} -origin {310 440}
+  make output -orient R90 -name {out[4]} -origin {180 430}
+  make output -orient R90 -name {out[5]} -origin {50 430}
+  make output -orient R90 -name {out[6]} -origin {-80 440}
+  make output -orient R90 -name {out[7]} -origin {-220 440}
+  make output -orient R90 -name {out[8]} -origin {-350 440}
+  make output -orient R90 -name {out[9]} -origin {-480 450}
+  make output -orient R90 -name {out[10]} -origin {-610 450}
+  make output -orient R90 -name {out[11]} -origin {-750 440}
+  make output -orient R90 -name {out[12]} -origin {-880 430}
+  make output -orient R90 -name {out[13]} -origin {-1010 430}
+  make output -orient R90 -name {out[14]} -origin {-1140 440}
+  make output -orient R90 -name {out[15]} -origin {-1280 440}
+  make output -orient R90 -name {out[16]} -origin {-1410 430}
+  make output -orient R90 -name {out[17]} -origin {-1540 430}
+  make output -orient R90 -name {out[18]} -origin {-1680 440}
+  make output -orient R90 -name {out[19]} -origin {-1810 440}
+  make output -orient R90 -name {out[20]} -origin {-1940 430}
+  make output -orient R90 -name {out[21]} -origin {-2070 430}
+  make output -orient R90 -name {out[22]} -origin {-2200 440}
+  make output -orient R90 -name {out[23]} -origin {-2340 440}
+  make output -orient R90 -name {out[24]} -origin {-2470 440}
+  make output -orient R90 -name {out[25]} -origin {-2600 450}
+  make output -orient R90 -name {out[26]} -origin {-2730 450}
+  make output -orient R90 -name {out[27]} -origin {-2870 440}
+  make output -orient R90 -name {out[28]} -origin {-3000 430}
+  make output -orient R90 -name {out[29]} -origin {-3130 430}
+  make output -orient R90 -name {out[30]} -origin {-3260 440}
+  make output -orient R90 -name {out[31]} -origin {-3400 440}
+  make global -orient RXY -name gnd -origin {700 240}
+  make global -orient RXY -name gnd -origin {570 240}
+  make global -orient RXY -name gnd -origin {300 230}
+  make global -orient RXY -name gnd -origin {170 220}
+  make global -orient RXY -name gnd -origin {40 220}
+  make global -orient RXY -name gnd -origin {-230 230}
+  make global -orient RXY -name gnd -origin {-90 230}
+  make global -orient RXY -name gnd -origin {-360 200}
+  make global -orient RXY -name gnd -origin {-490 200}
+  make global -orient RXY -name gnd -origin {-760 230}
+  make global -orient RXY -name gnd -origin {-620 230}
+  make global -orient RXY -name gnd -origin {-890 230}
+  make global -orient RXY -name gnd -origin {-1020 230}
+  make global -orient RXY -name gnd -origin {-1290 230}
+  make global -orient RXY -name gnd -origin {-1150 240}
+  make global -orient RXY -name gnd -origin {-1420 230}
+  make global -orient RXY -name gnd -origin {-1550 230}
+  make global -orient RXY -name gnd -origin {-1950 250}
+  make global -orient RXY -name gnd -origin {-2080 250}
+  make global -orient RXY -name gnd -origin {-2480 250}
+  make global -orient RXY -name gnd -origin {-2610 250}
+  make global -orient RXY -name gnd -origin {-2880 250}
+  make global -orient RXY -name gnd -origin {-3010 240}
+  make global -orient RXY -name gnd -origin {-3140 240}
+  make global -orient RXY -name gnd -origin {-3410 240}
+  make global -orient RXY -name gnd -origin {-3270 240}
+  make global -orient RXY -name gnd -origin {-1680 230}
+  make global -orient RXY -name gnd -origin {-1820 260}
+  make global -orient RXY -name gnd -origin {-2350 260}
+  make global -orient RXY -name gnd -origin {-2210 260}
+  make global -orient RXY -name gnd -origin {-2740 260}
+  make input -orient R90 -name {A[0]} -origin {670 270}
+  make input -orient R90 -name {A[1]} -origin {540 270}
+  make input -orient R90 -name {A[2]} -origin {410 280}
+  make input -orient R90 -name {A[3]} -origin {270 280}
+  make input -orient R90 -name {A[4]} -origin {140 270}
+  make input -orient R90 -name {A[5]} -origin {10 270}
+  make input -orient R90 -name {A[6]} -origin {-120 280}
+  make input -orient R90 -name {A[7]} -origin {-260 280}
+  make input -orient R90 -name {A[8]} -origin {-390 270}
+  make input -orient R90 -name {A[9]} -origin {-520 270}
+  make input -orient R90 -name {A[10]} -origin {-650 280}
+  make input -orient R90 -name {A[11]} -origin {-790 280}
+  make input -orient R90 -name {A[12]} -origin {-920 270}
+  make input -orient R90 -name {A[13]} -origin {-1050 270}
+  make input -orient R90 -name {A[14]} -origin {-1180 280}
+  make input -orient R90 -name {A[15]} -origin {-1320 280}
+  make input -orient R90 -name {A[16]} -origin {-1450 270}
+  make input -orient R90 -name {A[17]} -origin {-1580 270}
+  make input -orient R90 -name {A[18]} -origin {-1710 280}
+  make input -orient R90 -name {A[19]} -origin {-1850 280}
+  make input -orient R90 -name {A[20]} -origin {-1980 270}
+  make input -orient R90 -name {A[21]} -origin {-2110 270}
+  make input -orient R90 -name {A[22]} -origin {-2240 280}
+  make input -orient R90 -name {A[23]} -origin {-2380 280}
+  make input -orient R90 -name {A[24]} -origin {-2510 270}
+  make input -orient R90 -name {A[25]} -origin {-2640 270}
+  make input -orient R90 -name {A[26]} -origin {-2770 280}
+  make input -orient R90 -name {A[27]} -origin {-2910 280}
+  make input -orient R90 -name {A[28]} -origin {-3040 270}
+  make input -orient R90 -name {A[29]} -origin {-3170 270}
+  make input -orient R90 -name {A[30]} -origin {-3300 280}
+  make input -orient R90 -name {A[31]} -origin {-3440 280}
+  make output -orient R90 -name overflow -origin {-3430 440}
+  make global -orient RXY -name vdd -origin {440 250}
+  make_wire 670 270 670 310
+  make_wire 540 270 540 310
+  make_wire 680 380 680 400
+  make_wire 680 400 620 400
+  make_wire 620 400 620 290
+  make_wire 620 290 600 290
+  make_wire 600 290 600 310
+  make_wire 710 430 710 380
+  make_wire 580 430 580 380
+  make_wire 350 410 350 300
+  make_wire 450 380 450 440
+  make_wire 440 440 450 440
+  make_wire 420 380 420 410
+  make_wire 350 410 420 410
+  make_wire 310 380 310 440
+  make_wire 270 280 270 310
+  make_wire 330 300 330 310
+  make_wire 330 300 350 300
+  make_wire 550 380 550 410
+  make_wire 550 410 490 410
+  make_wire 490 410 490 280
+  make_wire 490 280 470 280
+  make_wire 470 280 470 310
+  make_wire 410 280 410 310
+  make_wire 140 270 140 310
+  make_wire 10 270 10 310
+  make_wire 150 380 150 400
+  make_wire 150 400 90 400
+  make_wire 90 400 90 290
+  make_wire 90 290 70 290
+  make_wire 70 290 70 310
+  make_wire 180 430 180 380
+  make_wire 50 430 50 380
+  make_wire -180 410 -180 300
+  make_wire -110 380 -110 410
+  make_wire -180 410 -110 410
+  make_wire -220 380 -220 440
+  make_wire -260 280 -260 310
+  make_wire -200 300 -200 310
+  make_wire -200 300 -180 300
+  make_wire 20 380 20 410
+  make_wire 20 410 -40 410
+  make_wire -40 410 -40 280
+  make_wire -40 280 -60 280
+  make_wire -60 280 -60 310
+  make_wire -120 280 -120 310
+  make_wire 280 380 280 410
+  make_wire 280 410 220 410
+  make_wire 220 410 220 290
+  make_wire 220 290 200 290
+  make_wire 200 290 200 310
+  make_wire -390 270 -390 310
+  make_wire -520 270 -520 310
+  make_wire -380 380 -380 400
+  make_wire -380 400 -440 400
+  make_wire -440 400 -440 290
+  make_wire -440 290 -460 290
+  make_wire -460 290 -460 310
+  make_wire -710 410 -710 300
+  make_wire -640 380 -640 410
+  make_wire -710 410 -640 410
+  make_wire -790 280 -790 310
+  make_wire -730 300 -730 310
+  make_wire -730 300 -710 300
+  make_wire -510 380 -510 410
+  make_wire -510 410 -570 410
+  make_wire -570 410 -570 280
+  make_wire -570 280 -590 280
+  make_wire -590 280 -590 310
+  make_wire -650 280 -650 310
+  make_wire -250 380 -250 410
+  make_wire -250 410 -310 410
+  make_wire -310 410 -310 290
+  make_wire -310 290 -330 290
+  make_wire -330 290 -330 310
+  make_wire -920 270 -920 310
+  make_wire -1050 270 -1050 310
+  make_wire -910 380 -910 400
+  make_wire -910 400 -970 400
+  make_wire -970 400 -970 290
+  make_wire -970 290 -990 290
+  make_wire -990 290 -990 310
+  make_wire -880 430 -880 380
+  make_wire -1010 430 -1010 380
+  make_wire -1240 410 -1240 300
+  make_wire -1170 380 -1170 410
+  make_wire -1240 410 -1170 410
+  make_wire -1280 380 -1280 440
+  make_wire -1320 280 -1320 310
+  make_wire -1260 300 -1260 310
+  make_wire -1260 300 -1240 300
+  make_wire -1040 380 -1040 410
+  make_wire -1040 410 -1100 410
+  make_wire -1100 410 -1100 280
+  make_wire -1100 280 -1120 280
+  make_wire -1120 280 -1120 310
+  make_wire -1180 280 -1180 310
+  make_wire -780 380 -780 410
+  make_wire -780 410 -840 410
+  make_wire -840 410 -840 290
+  make_wire -840 290 -860 290
+  make_wire -860 290 -860 310
+  make_wire -80 380 -80 440
+  make_wire -350 380 -350 440
+  make_wire -610 380 -610 450
+  make_wire -480 380 -480 450
+  make_wire -750 440 -750 380
+  make_wire -1140 380 -1140 440
+  make_wire -1450 270 -1450 310
+  make_wire -1580 270 -1580 310
+  make_wire -1440 380 -1440 400
+  make_wire -1440 400 -1500 400
+  make_wire -1500 400 -1500 290
+  make_wire -1500 290 -1520 290
+  make_wire -1520 290 -1520 310
+  make_wire -1410 430 -1410 380
+  make_wire -1540 430 -1540 380
+  make_wire -1770 410 -1770 300
+  make_wire -1670 380 -1670 440
+  make_wire -1680 440 -1670 440
+  make_wire -1700 380 -1700 410
+  make_wire -1770 410 -1700 410
+  make_wire -1810 380 -1810 440
+  make_wire -1820 260 -1820 310
+  make_wire -1850 280 -1850 310
+  make_wire -1790 300 -1790 310
+  make_wire -1790 300 -1770 300
+  make_wire -1570 380 -1570 410
+  make_wire -1570 410 -1630 410
+  make_wire -1630 410 -1630 280
+  make_wire -1630 280 -1650 280
+  make_wire -1650 280 -1650 310
+  make_wire -1710 280 -1710 310
+  make_wire -1950 250 -1950 310
+  make_wire -1980 270 -1980 310
+  make_wire -2080 250 -2080 310
+  make_wire -2110 270 -2110 310
+  make_wire -1970 380 -1970 400
+  make_wire -1970 400 -2030 400
+  make_wire -2030 400 -2030 290
+  make_wire -2030 290 -2050 290
+  make_wire -2050 290 -2050 310
+  make_wire -1940 430 -1940 380
+  make_wire -2070 430 -2070 380
+  make_wire -2300 410 -2300 300
+  make_wire -2230 380 -2230 410
+  make_wire -2300 410 -2230 410
+  make_wire -2340 380 -2340 440
+  make_wire -2350 260 -2350 310
+  make_wire -2380 280 -2380 310
+  make_wire -2320 300 -2320 310
+  make_wire -2320 300 -2300 300
+  make_wire -2100 380 -2100 410
+  make_wire -2100 410 -2160 410
+  make_wire -2160 410 -2160 280
+  make_wire -2160 280 -2180 280
+  make_wire -2180 280 -2180 310
+  make_wire -2210 260 -2210 310
+  make_wire -2240 280 -2240 310
+  make_wire -1840 380 -1840 410
+  make_wire -1840 410 -1900 410
+  make_wire -1900 410 -1900 290
+  make_wire -1900 290 -1920 290
+  make_wire -1920 290 -1920 310
+  make_wire -2480 250 -2480 310
+  make_wire -2510 270 -2510 310
+  make_wire -2610 250 -2610 310
+  make_wire -2640 270 -2640 310
+  make_wire -2500 380 -2500 400
+  make_wire -2500 400 -2560 400
+  make_wire -2560 400 -2560 290
+  make_wire -2560 290 -2580 290
+  make_wire -2580 290 -2580 310
+  make_wire -2830 410 -2830 300
+  make_wire -2760 380 -2760 410
+  make_wire -2830 410 -2760 410
+  make_wire -2910 280 -2910 310
+  make_wire -2850 300 -2850 310
+  make_wire -2850 300 -2830 300
+  make_wire -2630 380 -2630 410
+  make_wire -2630 410 -2690 410
+  make_wire -2690 410 -2690 280
+  make_wire -2690 280 -2710 280
+  make_wire -2710 280 -2710 310
+  make_wire -2740 260 -2740 310
+  make_wire -2770 280 -2770 310
+  make_wire -2370 380 -2370 410
+  make_wire -2370 410 -2430 410
+  make_wire -2430 410 -2430 290
+  make_wire -2430 290 -2450 290
+  make_wire -2450 290 -2450 310
+  make_wire -3040 270 -3040 310
+  make_wire -3170 270 -3170 310
+  make_wire -3030 380 -3030 400
+  make_wire -3030 400 -3090 400
+  make_wire -3090 400 -3090 290
+  make_wire -3090 290 -3110 290
+  make_wire -3110 290 -3110 310
+  make_wire -3000 430 -3000 380
+  make_wire -3130 430 -3130 380
+  make_wire -3360 410 -3360 300
+  make_wire -3290 380 -3290 410
+  make_wire -3360 410 -3290 410
+  make_wire -3400 380 -3400 440
+  make_wire -3440 280 -3440 310
+  make_wire -3380 300 -3380 310
+  make_wire -3380 300 -3360 300
+  make_wire -3160 380 -3160 410
+  make_wire -3160 410 -3220 410
+  make_wire -3220 410 -3220 280
+  make_wire -3220 280 -3240 280
+  make_wire -3240 280 -3240 310
+  make_wire -3300 280 -3300 310
+  make_wire -2900 380 -2900 410
+  make_wire -2900 410 -2960 410
+  make_wire -2960 410 -2960 290
+  make_wire -2960 290 -2980 290
+  make_wire -2980 290 -2980 310
+  make_wire -2200 380 -2200 440
+  make_wire -2470 380 -2470 440
+  make_wire -2730 380 -2730 450
+  make_wire -2600 380 -2600 450
+  make_wire -2870 440 -2870 380
+  make_wire -3260 380 -3260 440
+  make_wire -1310 400 -1370 400
+  make_wire -1390 290 -1390 310
+  make_wire -1370 290 -1370 400
+  make_wire -1390 290 -1370 290
+  make_wire -1310 380 -1310 400
+  make_wire -3410 240 -3410 310
+  make_wire -3270 240 -3270 310
+  make_wire -3140 240 -3140 310
+  make_wire -3010 240 -3010 310
+  make_wire -2880 250 -2880 310
+  make_wire -1550 230 -1550 310
+  make_wire -1420 230 -1420 310
+  make_wire -1020 230 -1020 310
+  make_wire -890 230 -890 310
+  make_wire -1680 230 -1680 310
+  make_wire -1290 230 -1290 310
+  make_wire -1150 240 -1150 310
+  make_wire -760 230 -760 310
+  make_wire -620 230 -620 310
+  make_wire 40 220 40 310
+  make_wire 170 220 170 310
+  make_wire 300 230 300 310
+  make_wire -360 200 -360 310
+  make_wire -490 200 -490 310
+  make_wire -90 230 -90 310
+  make_wire -230 230 -230 310
+  make_wire 440 250 440 310
+  make_wire 700 240 700 310
+  make_wire 570 240 570 310
+  make_wire 730 200 730 310
+  make_wire -3430 380 -3430 440
+}
+
+proc ICON_Subtractor32bit args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 -20} -name {A[31:0]}
+  icon_term -type output -origin {100 -20} -name {out[31:0]}
+  icon_term -type output -origin {100 20} -name overflow
+  icon_property -origin {-110 60} -type user -name name
+  icon_property -origin {-110 80} -type user -name M
+  icon_property -origin {-110 100} -type user -name dpc
+  icon_line -100 -60 -100 30 100 30 100 -60 -100 -60
+  icon_property -origin {-30 0} -label SubFour
+  icon_property -origin {-100 -20} -label {A[31:0]}
+  icon_property -origin {100 -20} -anchor e -label {out[31:0]}
+  icon_property -origin {90 20} -anchor e -label overflow
+}
+

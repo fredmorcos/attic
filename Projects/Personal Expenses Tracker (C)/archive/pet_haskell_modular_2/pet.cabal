@@ -1,0 +1,22 @@
+name:             pet
+version:          0.4.0
+synopsis:         The Personal Expense Tracker (PET)
+description:      A tool for tracking personal expenses
+homepage:         http://github.com/fredmorcos/pet
+license:          GPL-3
+license-file:     LICENSE
+author:           Fred Morcos
+maintainer:       fred.morcos@gmail.com
+category:         Finance
+build-type:       Simple
+cabal-version:    >=1.8
+
+executable        pet
+  main-is:        Pet/Main.hs
+  build-depends:  base, time, process, directory
+  ghc-options:    -Wall
+
+source-repository head
+  type:           git
+  location:       https://github.com/fredmorcos/pet.git
+  branch:         master

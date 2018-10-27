@@ -1,0 +1,7 @@
+#ifndef AUTOCAL_CONFIG_H
+#define AUTOCAL_CONFIG_H
+
+#define VERSION "@autocal_VERSION@"
+#define INSTALLPATH "@CMAKE_INSTALL_PREFIX@"
+
+#endif

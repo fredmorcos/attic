@@ -1,0 +1,139 @@
+Index: Source/NSFileManager.m
+===================================================================
+--- Source/NSFileManager.m	(revision 28238)
++++ Source/NSFileManager.m	(working copy)
+@@ -400,7 +400,7 @@
+   lpath = [defaultManager fileSystemRepresentationWithPath: path];
+ 
+ #ifndef __MINGW32__
+-  num = [attributes fileOwnerAccountID];
++  num = [[attributes fileOwnerAccountID] unsignedLongValue];
+   if (num != NSNotFound)
+     {
+       if (chown(lpath, num, -1) != 0)
+@@ -455,7 +455,7 @@
+ 	}
+     }
+ 
+-  num = [attributes fileGroupOwnerAccountID];
++  num = [[attributes fileGroupOwnerAccountID] unsignedLongValue];
+   if (num != NSNotFound)
+     {
+       if (chown(lpath, -1, num) != 0)
+@@ -769,7 +769,7 @@
+    * If there is no file owner specified, and we are running setuid to
+    * root, then we assume we need to change ownership to correct user.
+    */
+-  if (attributes == nil || ([attributes fileOwnerAccountID] == NSNotFound
++  if (attributes == nil || ([attributes fileOwnerAccountID] == nil
+     && [attributes fileOwnerAccountName] == nil))
+     {
+       if (geteuid() == 0 && [@"root" isEqualToString: NSUserName()] == NO)
+@@ -932,7 +932,7 @@
+    * If there is no file owner specified, and we are running setuid to
+    * root, then we assume we need to change ownership to correct user.
+    */
+-  if (attributes == nil || ([attributes fileOwnerAccountID] == NSNotFound
++  if (attributes == nil || ([attributes fileOwnerAccountID] == nil
+     && [attributes fileOwnerAccountName] == nil))
+     {
+       if (geteuid() == 0 && [@"root" isEqualToString: NSUserName()] == NO)
+@@ -2404,15 +2404,9 @@
+  * Return the numeric value of the NSFileOwnerAccountID attribute
+  * in the dictionary, or NSNotFound if the attribute is not present.
+  */
+-- (unsigned long) fileOwnerAccountID
++- (NSNumber*) fileOwnerAccountID
+ {
+-  NSNumber	*n = [self objectForKey: NSFileOwnerAccountID];
+-
+-  if (n == nil)
+-    {
+-      return NSNotFound;
+-    }
+-  return [n unsignedIntValue];
++  return [self objectForKey: NSFileOwnerAccountID];
+ }
+ 
+ /**
+@@ -2424,18 +2418,12 @@
+ }
+ 
+ /**
+- * Return the numeric value of the NSFileGroupOwnerAccountID attribute
+- * in the dictionary, or NSNotFound if the attribute is not present.
++ * Return an NSNumber with the numeric value of the NSFileGroupOwnerAccountID 
++ * attribute in the dictionary, or nil if the attribute is not present.
+  */
+-- (unsigned long) fileGroupOwnerAccountID
++- (NSNumber*) fileGroupOwnerAccountID
+ {
+-  NSNumber	*n = [self objectForKey: NSFileGroupOwnerAccountID];
+-
+-  if (n == nil)
+-    {
+-      return NSNotFound;
+-    }
+-  return [n unsignedIntValue];
++  return [self objectForKey: NSFileGroupOwnerAccountID];
+ }
+ 
+ /**
+@@ -2934,9 +2922,9 @@
+   return NO;
+ }
+ 
+-- (unsigned long) fileGroupOwnerAccountID
++- (NSNumber*) fileGroupOwnerAccountID
+ {
+-  return statbuf.st_gid;
++  return [NSNumber numberWithUnsignedLong: statbuf.st_gid];
+ }
+ 
+ - (NSString*) fileGroupOwnerAccountName
+@@ -3091,9 +3079,9 @@
+   return (statbuf.st_mode & ~S_IFMT);
+ }
+ 
+-- (unsigned long) fileOwnerAccountID
++- (NSNumber*) fileOwnerAccountID
+ {
+-  return statbuf.st_uid;
++  return [NSNumber numberWithUnsignedLong: statbuf.st_uid];
+ }
+ 
+ - (NSString*) fileOwnerAccountName
+@@ -3279,7 +3267,7 @@
+       if (key == NSFileGroupOwnerAccountName)
+ 	return [self fileGroupOwnerAccountName];
+       if (key == NSFileGroupOwnerAccountID)
+-	return [NSNumber numberWithInt: [self fileGroupOwnerAccountID]];
++	return [NSNumber numberWithInt: [[self fileGroupOwnerAccountID] unsignedLongValue]];
+       if (key == NSFileHFSCreatorCode)
+ 	return [NSNumber numberWithInt: [self fileHFSCreatorCode]];
+       if (key == NSFileHFSTypeCode)
+@@ -3291,7 +3279,7 @@
+       if (key == NSFileOwnerAccountName)
+ 	return [self fileOwnerAccountName];
+       if (key == NSFileOwnerAccountID)
+-	return [NSNumber numberWithInt: [self fileOwnerAccountID]];
++	return [NSNumber numberWithInt: [[self fileOwnerAccountID] unsignedLongValue]];
+       if (key == NSFilePosixPermissions)
+ 	return [NSNumber numberWithUnsignedInt: [self filePosixPermissions]];
+       if (key == NSFileReferenceCount)
+Index: Headers/Foundation/NSFileManager.h
+===================================================================
+--- Headers/Foundation/NSFileManager.h	(revision 28238)
++++ Headers/Foundation/NSFileManager.h	(working copy)
+@@ -460,9 +460,9 @@
+ - (BOOL) fileIsImmutable;
+ - (unsigned long long) fileSize;
+ - (NSString*) fileType;
+-- (unsigned long) fileOwnerAccountID;
++- (NSNumber*) fileOwnerAccountID;
+ - (NSString*) fileOwnerAccountName;
+-- (unsigned long) fileGroupOwnerAccountID;
++- (NSNumber*) fileGroupOwnerAccountID;
+ - (NSString*) fileGroupOwnerAccountName;
+ - (NSDate*) fileModificationDate;
+ - (NSUInteger) filePosixPermissions;

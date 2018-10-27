@@ -1,0 +1,46 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_Mux4to1 {} {
+  make input -name a -origin {280 260}
+  make input -name b -origin {280 280}
+  make input -name c -origin {290 520}
+  make input -name d -origin {290 540}
+  make Mux -origin {440 340}
+  make Mux -origin {440 600}
+  make Mux -origin {710 470}
+  make output -name y -origin {810 390}
+  make input -name s0 -origin {190 410}
+  make input -name s1 -origin {610 430}
+  make_wire 290 540 340 540
+  make_wire 290 520 340 520
+  make_wire 280 280 340 280
+  make_wire 280 260 340 260
+  make_wire 560 260 560 390
+  make_wire 560 520 560 410
+  make_wire 540 520 560 520
+  make_wire 560 410 610 410
+  make_wire 540 260 560 260
+  make_wire 560 390 610 390
+  make_wire 210 410 210 560
+  make_wire 210 560 340 560
+  make_wire 190 410 210 410
+  make_wire 210 300 340 300
+  make_wire 210 300 210 410
+}
+
+proc ICON_Mux4to1 args {
+  icon_setup $args {{origin {0 0}} {orient R0} {dpc {}} {M {}} {name {}}}
+  icon_term -type input -origin {-100 -80} -name a
+  icon_term -type input -origin {-100 -60} -name b
+  icon_term -type input -origin {-100 -40} -name c
+  icon_term -type input -origin {-100 -20} -name d
+  icon_term -type output -origin {100 -80} -name y
+  icon_term -type input -origin {-50 40} -orient R270 -name s0
+  icon_term -type input -origin {-20 40} -orient R270 -name s1
+  icon_property -origin {-50 110} -type user -name dpc
+  icon_property -origin {-50 90} -type user -name M
+  icon_property -origin {-50 70} -type user -name name
+  icon_line -100 -150 -100 40 100 40 100 -150 -100 -150
+  icon_property -origin {-40 -100} -label {4 to 1 Mux}
+}
+

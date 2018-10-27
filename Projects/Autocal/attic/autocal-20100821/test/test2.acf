@@ -1,0 +1,40 @@
+{
+	begin = 1279899054
+	duration = 21600
+	deadline = 1279920654
+	description = foo4
+	fixed = no
+}
+
+{
+	begin = 1279965600
+	duration = 18000
+	deadline = 1279983600
+	description = foo1
+	fixed = no
+}
+
+{
+	begin = 1279987219
+	duration = 10800
+	deadline = 1279998019
+	description = foo2
+	fixed = no
+}
+
+{
+	begin = 1280084456
+	duration = 7200
+	deadline = 1280091656
+	description = foo5
+	fixed = no
+}
+
+{
+	begin = 1279940450
+	duration = 18000
+	deadline = 1279958450
+	description = foo3
+	fixed = no
+}
+

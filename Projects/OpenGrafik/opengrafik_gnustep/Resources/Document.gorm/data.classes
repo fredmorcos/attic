@@ -1,0 +1,20 @@
+{
+    "## Comment" = "Do NOT change this file, Gorm maintains it";
+    DiagramView = {
+	Actions = (
+	);
+	Outlets = (
+	    diagramModel
+	);
+	Super = NSView;
+    };
+    Document = {
+	Actions = (
+	);
+	Outlets = (
+	    model,
+	    view
+	);
+	Super = NSDocument;
+    };
+}

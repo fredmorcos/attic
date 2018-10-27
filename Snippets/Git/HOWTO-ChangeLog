@@ -1,0 +1,1 @@
+git log --grep="^[cC]hange[lL]og:" --format=format:"%ad %h %aN <%aE>: %s" --date=format:"%Y-%m-%d" | sed -e 's/[Cc]hange[Ll]og: //g'

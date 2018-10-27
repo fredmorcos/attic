@@ -1,0 +1,8 @@
+Background image
+Support CEC input
+Support omxplayer commands
+Load file list into file pane along with info in info pane
+Read configuration from file mediacenter.conf
+Support downloading rating and posters from online services
+Support inotify over selected directory
+Improve performance

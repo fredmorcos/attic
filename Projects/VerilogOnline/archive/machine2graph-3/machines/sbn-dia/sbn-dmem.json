@@ -1,0 +1,13 @@
+{
+    "title":       "Data Memory",
+    "toplevel":    false,
+    "image_file":  "sbn-mem.svg",
+
+    "postprocess": true,
+    "pp_command":  "dia %IN% -t svg -e %OUT%",
+
+    "elements": {
+	"%DATA1%": "__data_mem",
+	"%DATA2%": "__lit_data_mem"
+    }
+}

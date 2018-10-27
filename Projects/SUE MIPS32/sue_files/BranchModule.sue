@@ -1,0 +1,193 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_BranchModule {} {
+  make BranchDecoder -origin {640 220}
+  make input -name BRANCH_ENABLE -origin {540 170}
+  make input -name {BRANCH_TYPE[2:0]} -origin {540 200}
+  make input -orient R270 -name P -origin {1030 560}
+  make input -orient R270 -name N -origin {1050 560}
+  make input -orient R270 -name Z -origin {1070 560}
+  make input -orient R270 -name {IR[2:0]} -origin {860 560}
+  generate nor2 nor3 -ninputs 3
+  make nor3 -orient R90 -WP 4 -origin {1260 580}
+  make output -orient R90 -name SC_RESET_ENABLE -origin {1260 710}
+  make BranchEnable -origin {1060 150}
+  make CallEnable -origin {1060 290}
+  make ReturnEnable -origin {1070 440}
+  make output -name RE -origin {1640 660}
+  make global -name vdd -origin {900 730}
+  make input -name {LS_ADDRESS[31:0]} -origin {1610 -20}
+  make input -name {R31_ADDRESS[31:0]} -origin {1600 250}
+  make input -name T4 -origin {1080 -160}
+  make input -name {MDR_IN[31:0]} -origin {1560 30}
+  make input -name T6 -origin {1090 -90}
+  make Subtractor32bit -origin {1830 270}
+  make nand2 -origin {1940 430}
+  make name_net_s -name RE_int -origin {1320 440}
+  make name_net_s -name RE_int -origin {1850 450}
+  make inverter -origin {2040 430}
+  make name_net_s -name RE_int -origin {1420 660}
+  make DoubleInverter -origin {1540 680}
+  make cell32trans -origin {2270 270}
+  make name_net_s -name {latch[31:0]} -origin {2440 260}
+  make mux42132bbits -origin {2020 70}
+  make name_net_s -name {latch[31:0]} -origin {1530 20}
+  make DoubleInverter -origin {1540 770}
+  make DoubleInverter -origin {1540 860}
+  make output -name CE -origin {1640 750}
+  make output -name BE -origin {1640 840}
+  make name_net_s -name CE_int -origin {1310 270}
+  make name_net_s -name BE_int -origin {1310 70}
+  make name_net_s -name BE_int -origin {1420 840}
+  make name_net_s -name CE_int -origin {1420 750}
+  make name_net_s -name T3_int -origin {1730 370}
+  make nand2 -origin {1180 -250}
+  make name_net_s -name CE_int -origin {1070 -270}
+  make name_net_s -name T3_int -origin {710 -230}
+  make nand2 -origin {1180 -180}
+  make name_net_s -name RE_int -origin {1060 -200}
+  make nand2 -origin {1180 -110}
+  make name_net_s -name RE_int -origin {1060 -130}
+  make nor2 -origin {1540 -130}
+  make nor2 -origin {1540 -200}
+  make name_net_s -name {s[1]} -origin {1650 -200}
+  make name_net_s -name {s[0]} -origin {1650 -130}
+  make name_net_s -name {s[1:0]} -origin {1740 60}
+  make input -name T3 -origin {1560 490}
+  make DoubleInverter -origin {1620 510}
+  make name_net_s -name T3_int -origin {1740 490}
+  make output -name overflow -origin {1930 290}
+  make output -name {BRANCH_TARGET_ADDRESS[31:0]} -origin {2140 -20}
+  make_wire 1930 250 2170 250
+  make_wire 1920 450 1850 450
+  make_wire 2130 290 2170 290
+  make_wire 1480 660 1420 660
+  make_wire 1610 660 1640 660
+  make_wire 2130 290 2130 430
+  make_wire 2090 430 2130 430
+  make_wire 2370 260 2440 260
+  make_wire 1610 250 1730 250
+  make_wire 1610 250 1600 250
+  make_wire 1480 750 1420 750
+  make_wire 1480 840 1420 840
+  make_wire 1610 840 1640 840
+  make_wire 1610 750 1640 750
+  make_wire 1730 410 1920 410
+  make_wire 1730 370 1730 410
+  make_wire 1870 60 1740 60
+  make_wire 2070 -20 2140 -20
+  make_wire 1690 490 1740 490
+  make_wire 900 200 960 200
+  make_wire 900 200 900 350
+  make_wire 800 330 970 330
+  make_wire 900 350 970 350
+  make_wire 810 310 970 310
+  make_wire 1030 370 1030 210
+  make_wire 790 460 970 460
+  make_wire 780 480 970 480
+  make_wire 900 500 970 500
+  make_wire 1050 210 1050 370
+  make_wire 1050 370 1050 510
+  make_wire 1070 370 1070 210
+  make_wire 1070 510 1070 370
+  make_wire 1070 510 1070 560
+  make_wire 1030 370 1030 510
+  make_wire 1030 510 1030 560
+  make_wire 1050 510 1050 560
+  make_wire 960 50 860 50
+  make_wire 860 50 860 220
+  make_wire 860 220 970 220
+  make_wire 860 380 970 380
+  make_wire 860 220 860 380
+  make_wire 860 380 860 560
+  make_wire 1280 70 1280 560
+  make_wire 1260 270 1170 270
+  make_wire 1240 440 1240 560
+  make_wire 900 350 900 500
+  make_wire 900 500 900 730
+  make_wire 1260 710 1260 650
+  make_wire 1260 270 1260 560
+  make_wire 1240 440 1170 440
+  make_wire 1240 440 1320 440
+  make_wire 1260 270 1310 270
+  make_wire 1160 70 1280 70
+  make_wire 1280 70 1310 70
+  make_wire 1070 -270 1160 -270
+  make_wire 1060 -200 1160 -200
+  make_wire 1060 -130 1160 -130
+  make_wire 1520 -150 1420 -150
+  make_wire 1420 -250 1420 -150
+  make_wire 1420 -250 1250 -250
+  make_wire 1250 -180 1520 -180
+  make_wire 1500 -110 1500 -220
+  make_wire 1500 -220 1520 -220
+  make_wire 1500 -110 1520 -110
+  make_wire 1500 -110 1250 -110
+  make_wire 1610 -200 1650 -200
+  make_wire 1610 -130 1650 -130
+  make_wire 1080 -160 1160 -160
+  make_wire 710 -230 1160 -230
+  make_wire 1090 -90 1160 -90
+  make_wire 740 160 960 160
+  make_wire 740 230 800 230
+  make_wire 800 230 800 330
+  make_wire 740 280 780 280
+  make_wire 780 280 780 480
+  make_wire 740 210 810 210
+  make_wire 810 210 810 310
+  make_wire 740 180 960 180
+  make_wire 740 260 790 260
+  make_wire 790 260 790 460
+  make_wire 1560 40 1870 40
+  make_wire 1560 30 1560 40
+  make_wire 1530 20 1870 20
+  make_wire 1610 0 1870 0
+  make_wire 1610 0 1610 250
+  make_wire 1610 -20 1870 -20
+}
+
+proc ICON_BranchModule args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-180 -130} -name BRANCH_ENABLE
+  icon_term -type input -origin {-180 -90} -name {BRANCH_TYPE[2:0]}
+  icon_term -type input -origin {-180 -70} -name {IR[2:0]}
+  icon_term -type input -origin {-180 0} -name N
+  icon_term -type input -origin {-180 -20} -name P
+  icon_term -type input -origin {-180 20} -name Z
+  icon_term -type output -origin {200 -50} -name BE
+  icon_term -type output -origin {200 -30} -name CE
+  icon_term -type output -origin {200 -10} -name RE
+  icon_term -type output -origin {200 100} -name SC_RESET_ENABLE
+  icon_term -type input -origin {-180 100} -name {LS_ADDRESS[31:0]}
+  icon_term -type input -origin {-180 130} -name {R31_ADDRESS[31:0]}
+  icon_term -type input -origin {60 200} -orient R270 -name T4
+  icon_term -type input -origin {-180 170} -name {MDR_IN[31:0]}
+  icon_term -type input -origin {80 200} -orient R270 -name T3
+  icon_term -type input -origin {40 200} -orient R270 -name T6
+  icon_term -type output -origin {200 160} -name overflow
+  icon_term -type output -origin {200 70} -name {BRANCH_TARGET_ADDRESS[31:0]}
+  icon_property -origin {-10 340} -type user -name name
+  icon_property -origin {-10 360} -type user -name M
+  icon_property -origin {-10 380} -type user -name dpc
+  icon_line -180 -170 -180 200 200 200 200 -170 -180 -170
+  icon_property -origin {-170 -130} -label BRANCH_ENABLE
+  icon_property -origin {-170 -90} -label {BRANCH_TYPE[2:0]}
+  icon_property -origin {-170 -70} -label {IR[2:0]}
+  icon_property -origin {-170 0} -label N
+  icon_property -origin {-170 -20} -label P
+  icon_property -origin {-170 20} -label Z
+  icon_property -origin {190 -50} -anchor e -label BE
+  icon_property -origin {190 -30} -anchor e -label CE
+  icon_property -origin {190 -10} -anchor e -label RE
+  icon_property -origin {190 100} -anchor e -label SC_RESET_ENABLE
+  icon_property -origin {-70 10} -label {BRANCH MODULE}
+  icon_property -origin {-170 100} -label {LS_ADDRESS[31:0]}
+  icon_property -origin {-170 130} -label {R31_ADDRESS[31:0]}
+  icon_property -origin {60 190} -anchor e -rotate 1 -label T4
+  icon_property -origin {80 190} -anchor e -rotate 1 -label T3
+  icon_property -origin {40 190} -anchor e -rotate 1 -label T6
+  icon_property -origin {-170 170} -label {MDR_IN[31:0]}
+  icon_property -origin {190 160} -anchor e -label overflow
+  icon_property -origin {190 70} -anchor e -label {BRANCH_TARGET_ADDRESS[31:0]}
+}
+

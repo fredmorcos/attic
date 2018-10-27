@@ -1,0 +1,15 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+target=x11
+
+gtk_binary_version=2.10.0
+gtk_host=i486-pc-linux-gnu
+
+Name: objective-gtk
+Description: gtk+ bindings for Objective-C (${target} target)
+Version: 0.1
+Requires: gtk+-2.0
+Libs: -L${libdir} -lobjective-gtk
+Cflags: -I${includedir}/objective-gtk

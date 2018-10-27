@@ -1,0 +1,7 @@
+Assignment 3
+
+Q1: For simplicity, the user should enter 2 parameters only; T1 and T2. Assume that sigma is always 1. In other words, you do not need to calculate the values inside the Gaussian kernel. You may hard-code the 5x5 Gaussian kernel directly.
+Assignment 3
+
+Typo: Compare your result with the result of applying the OpenCV built-in function cvCanny. (not cvSobel)
+

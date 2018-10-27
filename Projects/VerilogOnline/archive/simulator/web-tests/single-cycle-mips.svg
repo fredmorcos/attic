@@ -1,0 +1,645 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: fig2dev Version 3.2 Patchlevel 5d -->
+<!-- CreationDate: Sun Mar  4 12:03:22 2012 -->
+<!-- Magnification: 1.050 -->
+<svg	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="24.2in" height="11.3in"
+	viewBox="59042 19370 29090 13524">
+<g style="stroke-width:.025in; fill:none">
+<!-- Line -->
+<!--  POLYLINE [CLOSED]  -->
+<polygon points="72969,26915
+73464,26787
+73464,25835
+72969,25710
+72969,26915
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<!--  POLYLINE [CLOSED]  -->
+<polygon points="74528,24506
+75023,24377
+75023,23425
+74528,23300
+74528,24506
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<!--  POLYLINE [CLOSED]  -->
+<polygon points="86575,23372
+87070,23244
+87070,22291
+86575,22166
+86575,23372
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<!--  POLYLINE [CLOSED]  -->
+<polygon points="59929,22946
+60425,22818
+60425,21866
+59929,21741
+59929,22946
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<!--  POLYLINE [CLOSED]  -->
+<polygon points="61346,23183
+61842,23055
+61842,22102
+61346,21977
+61346,23183
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<!--  POLYLINE [CLOSED]  -->
+<polygon points="76204,27779
+77404,28380
+77404,29580
+76204,30179
+76204,29205
+76579,28979
+76204,28754
+76204,27779
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<!--  POLYLINE [CLOSED]  -->
+<polygon points="64015,25984
+65215,26584
+65215,27784
+64015,28384
+64015,27409
+64390,27184
+64015,26959
+64015,25984
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<!--  POLYLINE [CLOSED]  -->
+<polygon points="76157,22015
+77357,22427
+77357,24005
+76157,24415
+76157,23441
+76532,23215
+76157,22991
+76157,22015
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polygon points="62706,21990
+63135,21990
+62916,22323
+62706,21990
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polygon points="62675,21979
+63164,21979
+63164,23190
+62675,23190
+62675,21979
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="62909,21618
+62909,21979
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Text -->
+<text xml:space="preserve" x="62483" y="21566" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">CLK</text>
+<!-- Text -->
+<text xml:space="preserve" x="69968" y="27259" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">WriteReg</text>
+<!-- Text -->
+<text xml:space="preserve" x="71811" y="27354" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="252" text-anchor="start">4:0</text>
+<!-- Text -->
+<!--  TEXT  -->
+<text xml:space="preserve" x="77007" y="29102" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="441" text-anchor="start">+</text>
+<!-- Text -->
+<g transform="translate(60236,21874) rotate(-180.00042092)" >
+<text xml:space="preserve" x="0" y="0" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">0</text>
+</g><!-- Text -->
+<text xml:space="preserve" x="61369" y="23079" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">1</text>
+<!-- Text -->
+<text xml:space="preserve" x="59951" y="22843" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">1</text>
+<!-- Text -->
+<g transform="translate(61653,22110) rotate(-180.00042092)" >
+<text xml:space="preserve" x="0" y="0" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">0</text>
+</g><!-- Line -->
+<polygon points="74503,27779
+75496,27779
+75826,28818
+74787,28818
+74503,27779
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Text -->
+<text xml:space="preserve" x="74787" y="28440" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">&#60;&#60;2</text>
+<!-- Text -->
+<!--  TEXT  -->
+<text xml:space="preserve" x="64818" y="27307" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="441" text-anchor="start">+</text>
+<!-- Text -->
+<text xml:space="preserve" x="63211" y="28087" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">4</text>
+<!-- Line -->
+<polyline points="63165,22818
+64015,22818
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Text -->
+<text xml:space="preserve" x="63259" y="22724" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">PC</text>
+<!-- Text -->
+<text xml:space="preserve" x="69070" y="23811" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">A2</text>
+<!-- Text -->
+<text xml:space="preserve" x="69070" y="24519" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">A3</text>
+<!-- Text -->
+<text xml:space="preserve" x="69070" y="25181" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">WD3</text>
+<!-- Text -->
+<g transform="translate(73275,25889) rotate(-180.00042092)" >
+<text xml:space="preserve" x="0" y="0" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">0</text>
+</g><!-- Text -->
+<text xml:space="preserve" x="72991" y="26811" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">1</text>
+<!-- Text -->
+<g transform="translate(74834,23480) rotate(-180.00042092)" >
+<text xml:space="preserve" x="0" y="0" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">0</text>
+</g><!-- Text -->
+<text xml:space="preserve" x="74550" y="24402" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">1</text>
+<!-- Text -->
+<g transform="translate(86881,22346) rotate(-180.00042092)" >
+<text xml:space="preserve" x="0" y="0" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">0</text>
+</g><!-- Text -->
+<text xml:space="preserve" x="86597" y="23268" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">1</text>
+<!-- Line -->
+<polygon points="68078,31275
+69070,31275
+69401,32314
+68362,32314
+68078,31275
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Text -->
+<text xml:space="preserve" x="68362" y="31937" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">&#60;&#60;2</text>
+<!-- Text -->
+<text xml:space="preserve" x="75732" y="19748" fill="#0000ff"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">ALUControl</text>
+<!-- Text -->
+<text xml:space="preserve" x="78094" y="19842" fill="#0000ff"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="252" text-anchor="start">2:0</text>
+<!-- Circle -->
+<circle cx="67795" cy="22818" r="67"
+ style="fill:#000000;stroke:#000000;stroke-width:8;"/>
+<!-- Circle -->
+<circle cx="67795" cy="23622" r="67"
+ style="fill:#000000;stroke:#000000;stroke-width:8;"/>
+<!-- Circle -->
+<circle cx="73795" cy="23622" r="67"
+ style="fill:#000000;stroke:#000000;stroke-width:8;"/>
+<!-- Circle -->
+<circle cx="63543" cy="22818" r="67"
+ style="fill:#000000;stroke:#000000;stroke-width:8;"/>
+<!-- Circle -->
+<circle cx="67795" cy="26031" r="67"
+ style="fill:#000000;stroke:#000000;stroke-width:8;"/>
+<!-- Circle -->
+<circle cx="67795" cy="26692" r="67"
+ style="fill:#000000;stroke:#000000;stroke-width:8;"/>
+<!-- Circle -->
+<circle cx="61842" cy="29716" r="67"
+ style="fill:#000000;stroke:#000000;stroke-width:8;"/>
+<!-- Circle -->
+<circle cx="60944" cy="29055" r="67"
+ style="fill:#000000;stroke:#000000;stroke-width:8;"/>
+<!-- Circle -->
+<circle cx="67795" cy="28582" r="67"
+ style="fill:#000000;stroke:#000000;stroke-width:8;"/>
+<!-- Circle -->
+<circle cx="74125" cy="28299" r="67"
+ style="fill:#000000;stroke:#000000;stroke-width:8;"/>
+<!-- Circle -->
+<circle cx="81165" cy="23196" r="67"
+ style="fill:#000000;stroke:#000000;stroke-width:8;"/>
+<!-- Circle -->
+<circle cx="65763" cy="29716" r="67"
+ style="fill:#000000;stroke:#000000;stroke-width:8;"/>
+<!-- Line -->
+<polyline points="61847,22582
+62660,22582
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="67795,23622
+68834,23622
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polygon points="68834,28299
+72047,27779
+72047,28818
+68834,28818
+68834,28299
+68929,28299
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="72047,28299
+74645,28299
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="75637,28299
+76204,28299
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="76204,29716
+59433,29716
+59433,22015
+59952,22015
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="60425,22251
+61360,22251
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="74551,24330
+74125,24330
+74125,28299
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="72519,23622
+74528,23622
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="77385,28960
+77905,28960
+77905,30283
+59055,30283
+59055,22724
+59929,22724
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="64015,27921
+63543,27921
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="65196,27165
+65763,27165
+65763,29716
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="67795,28582
+68834,28582
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="61070,29055
+61842,29055
+61842,29716
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 61842 29055 - 60929 29055-->
+<polygon points="61107 29023
+60950 29055
+61107 29086
+61076 29055
+61107 29023
+
+" style="stroke:#000000;stroke-width:8;stroke-miterlimit:8;
+fill:#000000;"/>
+<!-- Line -->
+<polyline points="75023,23905
+76157,23905
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="76157,22535
+72519,22535
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="63543,22818
+63543,26503
+64015,26503
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="67795,26031
+72944,26031
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="67795,26692
+72944,26692
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="73464,26314
+73748,26314
+73748,27401
+67559,27401
+67559,24330
+68834,24330
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="77338,23196
+81685,23196
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line: box -->
+<rect x="81685" y="21921" width="2267" height="3968" rx="0" 
+style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="73795,23622
+73795,25133
+81685,25133
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="82062,21921
+82346,22204
+82629,21921
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="82346,21571
+82346,21931
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="69212,21732
+69496,22015
+69779,21732
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="83952,23149
+86551,23149
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="81165,23196
+81165,20834
+86078,20834
+86078,22488
+86598,22488
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="68834,25039
+67086,25039
+67086,30472
+87307,30472
+87307,22724
+87070,22724
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="69496,21401
+69496,21732
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line: box -->
+<rect x="64015" y="21732" width="2267" height="3968" rx="0" 
+style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="69259,31937
+69826,31937
+69826,32881
+60944,32881
+60944,22960
+61346,22960
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="67795,22535
+67795,31937
+68267,31937
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line: box -->
+<rect x="68834" y="21732" width="3685" height="3968" rx="0" 
+style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="60141,21779
+60141,19842
+" style="stroke:#0000ff;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="61653,22015
+61653,19842
+" style="stroke:#0000ff;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="66283,22818
+67795,22818
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="74740,19842
+74740,23338
+" style="stroke:#0000ff;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="73228,25795
+73228,19842
+" style="stroke:#0000ff;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="70771,21732
+70771,19842
+" style="stroke:#0000ff;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="76771,22204
+76771,19842
+" style="stroke:#0000ff;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="83527,21968
+83527,19842
+" style="stroke:#0000ff;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="86834,22204
+86834,19842
+" style="stroke:#0000ff;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="77338,22535
+78850,22535
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="67795,22535
+68834,22535
+" style="stroke:#000000;stroke-width:8;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Text -->
+<text xml:space="preserve" x="67889" y="23527" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="252" text-anchor="start">20:16</text>
+<!-- Text -->
+<text xml:space="preserve" x="67937" y="25937" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="252" text-anchor="start">20:16</text>
+<!-- Text -->
+<text xml:space="preserve" x="67937" y="26598" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="252" text-anchor="start">15:11</text>
+<!-- Text -->
+<text xml:space="preserve" x="72141" y="28204" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">SignImm</text>
+<!-- Text -->
+<text xml:space="preserve" x="61937" y="22488" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">PC'</text>
+<!-- Text -->
+<text xml:space="preserve" x="65244" y="27070" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">PCPlus4</text>
+<!-- Text -->
+<text xml:space="preserve" x="61937" y="29433" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="252" text-anchor="start">31:28</text>
+<!-- Text -->
+<text xml:space="preserve" x="60188" y="29433" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="252" text-anchor="start">27:0</text>
+<!-- Text -->
+<text xml:space="preserve" x="75118" y="23811" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">SrcB</text>
+<!-- Text -->
+<text xml:space="preserve" x="67937" y="28488" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="252" text-anchor="start">15:0</text>
+<!-- Text -->
+<text xml:space="preserve" x="69070" y="22677" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">A1</text>
+<!-- Text -->
+<text xml:space="preserve" x="71244" y="22677" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">RD1</text>
+<!-- Text -->
+<text xml:space="preserve" x="71244" y="23811" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">RD2</text>
+<!-- Text -->
+<text xml:space="preserve" x="75165" y="22393" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">ScrA</text>
+<!-- Text -->
+<text xml:space="preserve" x="70204" y="22157" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">WE3</text>
+<!-- Text -->
+<text xml:space="preserve" x="81874" y="23338" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">A</text>
+<!-- Text -->
+<text xml:space="preserve" x="83102" y="23338" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">RD</text>
+<!-- Text -->
+<text xml:space="preserve" x="61039" y="26078" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">PCJump</text>
+<!-- Text -->
+<text xml:space="preserve" x="77480" y="28818" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">PCBranch</text>
+<!-- Text -->
+<text xml:space="preserve" x="66425" y="22724" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">Instr</text>
+<!-- Text -->
+<text xml:space="preserve" x="77433" y="22299" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">Zero</text>
+<!-- Text -->
+<text xml:space="preserve" x="77433" y="23102" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">ALUResult</text>
+<!-- Text -->
+<text xml:space="preserve" x="81874" y="25275" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">WD</text>
+<!-- Text -->
+<text xml:space="preserve" x="77480" y="25039" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">Writedata</text>
+<!-- Text -->
+<text xml:space="preserve" x="83102" y="22393" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">WE</text>
+<!-- Text -->
+<text xml:space="preserve" x="81901" y="21471" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">CLK</text>
+<!-- Text -->
+<text xml:space="preserve" x="69050" y="21282" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">CLK</text>
+<!-- Text -->
+<text xml:space="preserve" x="84047" y="23102" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">ReadData</text>
+<!-- Text -->
+<text xml:space="preserve" x="65433" y="22960" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">RD</text>
+<!-- Text -->
+<text xml:space="preserve" x="64204" y="22960" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">A</text>
+<!-- Text -->
+<text xml:space="preserve" x="64110" y="24047" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">Instruction</text>
+<!-- Text -->
+<text xml:space="preserve" x="70204" y="24976" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">Register</text>
+<!-- Text -->
+<text xml:space="preserve" x="70582" y="25559" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">File</text>
+<!-- Text -->
+<text xml:space="preserve" x="69354" y="28724" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">Sign Extend</text>
+<!-- Text -->
+<text xml:space="preserve" x="85984" y="30377" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">Result</text>
+<!-- Text -->
+<text xml:space="preserve" x="82393" y="23952" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">Data</text>
+<!-- Text -->
+<text xml:space="preserve" x="82062" y="24472" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">Memory</text>
+<!-- Text -->
+<text xml:space="preserve" x="64346" y="24614" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">Memory</text>
+<!-- Text -->
+<!--  TEXT  -->
+<g transform="translate(77196,23622) rotate(-90.00021046)" >
+<text xml:space="preserve" x="0" y="0" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">ALU</text>
+</g><!-- Text -->
+<text xml:space="preserve" x="59622" y="19700" fill="#0000ff"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">PCSrc</text>
+<!-- Text -->
+<text xml:space="preserve" x="61228" y="19700" fill="#0000ff"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">Jump</text>
+<!-- Text -->
+<text xml:space="preserve" x="73984" y="19748" fill="#0000ff"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">ALUSrc</text>
+<!-- Text -->
+<text xml:space="preserve" x="72141" y="19748" fill="#0000ff"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">RegDst</text>
+<!-- Text -->
+<text xml:space="preserve" x="69874" y="19748" fill="#0000ff"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">RegWrite</text>
+<!-- Text -->
+<text xml:space="preserve" x="82299" y="19748" fill="#0000ff"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">MemtoWrite</text>
+<!-- Text -->
+<text xml:space="preserve" x="85889" y="19748" fill="#0000ff"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="315" text-anchor="start">MemtoReg</text>
+<!-- Text -->
+<text xml:space="preserve" x="67889" y="22440" fill="#000000"  font-family="AvantGarde" font-style="normal" font-weight="normal" font-size="252" text-anchor="start">25:21</text>
+</g>
+</svg>

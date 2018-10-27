@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/" >
+        <file>error-16.png</file>
+        <file>item-find-24.png</file>
+        <file>item-new-16.png</file>
+        <file>item-new-24.png</file>
+        <file>save-24.png</file>
+        <file>storage-new-16.png</file>
+        <file>storage-new-24.png</file>
+    </qresource>
+</RCC>

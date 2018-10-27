@@ -1,0 +1,77 @@
+#!/bin/sh
+
+# This file is part of powerutils.
+#
+#     powerutils is free software: you can redistribute it and/or modify
+#     it under the terms of the GNU General Public License as published by
+#     the Free Software Foundation, either version 3 of the License, or
+#     (at your option) any later version.
+#
+#     powerutils is distributed in the hope that it will be useful,
+#     but WITHOUT ANY WARRANTY; without even the implied warranty of
+#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#     GNU General Public License for more details.
+#
+#     You should have received a copy of the GNU General Public License
+#     along with powerutils.  If not, see <http://www.gnu.org/licenses/>.
+
+source ./powerutils.conf
+source ./powerutils-common
+
+progname=powerutils
+debug=0
+
+performance () {
+    log_header
+    log_info "performance mode"
+}
+
+powersave () {
+    log_header
+    log_info "powersave mode"
+}
+
+for arg in $@; do
+    if [[ "$arg" == "--help" ]]; then
+	echo "usage: powerutils COMMAND"
+	echo
+	echo "commands:"
+	echo "  --help         show this help"
+	echo "  --version      show version information"
+	echo "  --performance  set to maximum performance"
+	echo "  --powersave    set to maximum powersave"
+	echo
+	echo "Except when --debug is given, only the first"
+	echo "command is effective, examples:"
+	echo
+	echo "\`powerutils --performance --powersave'"
+	echo "  will enable performance mode"
+	echo
+	echo "\`powerutils --performance --debug'"
+	echo "  will NOT show debug information on the console"
+	echo
+	echo "\`powerutils --debug --powersave'"
+	echo "  will do what you expect it to"
+	exit 0
+    elif [[ "$arg" == "--version" ]]; then
+	echo "powerutils v$version"
+	echo "$link"
+	exit 0
+    elif [[ "$arg" == "--performance" ]]; then
+	performance
+	exit 0
+    elif [[ "$arg" == "--powersave" ]]; then
+	powersave
+	exit 0
+    elif [[ "$arg" == "--debug" ]]; then
+	debug=1
+    else
+	echo "unknown argument: $arg, doing nothing"
+	echo "please check \`powerutils --help'"
+	exit 1
+    fi
+done
+
+echo "no commands given, doing nothing"
+echo "please check \`powerutils --help'"
+exit 1

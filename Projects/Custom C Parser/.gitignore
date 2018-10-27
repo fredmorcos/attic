@@ -1,0 +1,16 @@
+*~
+\#*
+.#*
+
+flycheck_*.plist
+compile_commands.json
+
+vgcore.*
+core.*
+
+*.o
+
+findings*
+sync*
+
+rfpfind

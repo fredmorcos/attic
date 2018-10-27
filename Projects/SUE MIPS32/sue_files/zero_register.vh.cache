@@ -1,0 +1,7 @@
+set NETLIST_CACHE(zero_register,cells) {{icon nmos {}}}
+set netlist_props verilog
+set netlist_level 1000
+set NETLIST_CACHE(zero_register,version) MMI_SUE4.4.0
+set NETLIST_CACHE(zero_register) {{module zero_register (out1, out2, r1, r2);} {	input		r1;} {	input		r2;} {	output		out1;} {	output		out2;} { } {	nmos n(out1,1'b0,r1);} {	nmos n_1(out2,1'b0,r2);} {} {endmodule		// zero_register} {}}
+set NETLIST_CACHE(zero_register,names) {{210 320 {1 1'b0}} {220 510 {1 1'b0}} {360 460 {0 out2}} {320 250 {0 n}} {280 460 {0 1'b0}} {420 250 {1 out1}} {320 350 {1 r2}} {320 190 {0 r1}} {410 460 {1 out2}} {360 250 {0 out1}} {320 120 {1 r1}} {280 250 {0 1'b0}} {320 400 {0 r2}} {320 460 {0 n_1}}}
+set NETLIST_CACHE(zero_register,wires) {{360 460 410 460 out2} {360 250 420 250 out1} {220 460 220 510 1'b0} {220 460 280 460 1'b0} {210 250 210 320 1'b0} {210 250 280 250 1'b0} {320 120 320 190 r1} {320 350 320 400 r2}}

@@ -1,0 +1,7 @@
+set NETLIST_CACHE(Mux4to1,cells) {{schematic Mux}}
+set netlist_props verilog
+set netlist_level 1000
+set NETLIST_CACHE(Mux4to1,version) MMI_SUE4.4.0
+set NETLIST_CACHE(Mux4to1) {{module Mux4to1 (a, b, c, d, s0, s1, y);} {	input		a;} {	input		b;} {	input		c;} {	input		d;} {	input		s0;} {	input		s1;} {	output		y;} { } {	wire		net_2;} {	wire		net_1;} { } {	Mux Mux(.y(net_2), .a(a), .b(b), .s(s0));} {	Mux Mux_1(.y(net_1), .b(d), .s(s0), .a(c));} {	Mux Mux_2(.b(net_1), .a(net_2), .s(s1), .y(y));} {} {endmodule		// Mux4to1} {}}
+set NETLIST_CACHE(Mux4to1,names) {{540 520 {0 net_1}} {340 540 {0 d}} {340 280 {0 b}} {540 260 {0 net_2}} {280 260 {1 a}} {340 560 {0 s0}} {710 470 {0 Mux_2}} {610 390 {0 net_2}} {280 280 {1 b}} {810 390 {0 y} {2 y}} {290 520 {1 c}} {340 300 {0 s0}} {610 410 {0 net_1}} {290 540 {1 d}} {440 600 {0 Mux_1}} {610 430 {0 s1} {2 s1}} {340 520 {0 c}} {440 340 {0 Mux}} {190 410 {1 s0}} {340 260 {0 a}}}
+set NETLIST_CACHE(Mux4to1,wires) {{290 540 340 540 d} {290 520 340 520 c} {280 280 340 280 b} {280 260 340 260 a} {560 260 560 390 net_2} {560 410 560 520 net_1} {540 520 560 520 net_1} {560 410 610 410 net_1} {540 260 560 260 net_2} {560 390 610 390 net_2} {210 410 210 560 s0} {210 560 340 560 s0} {190 410 210 410 s0} {210 300 340 300 s0} {210 300 210 410 s0}}

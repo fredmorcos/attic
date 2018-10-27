@@ -1,0 +1,92 @@
+extends layouts/app-layout-full
+
+block variables
+  - title= "Homepage"
+  - pageclass= "home"
+
+block content
+
+  .k-wrap
+    article.kontext
+      .layer.index-push.right.on
+        .container
+          p.lead Lorem ipsum dolore!
+          p.addon
+            +link("zoom-in", "Preview", "#preview").btn.btn-info.btn-large(data-carousel-control=".section-carousel:0")
+            +link("edit", "Register", "#").btn.btn-success.btn-large(data-carousel-control=".section-carousel:1")
+      .layer.login-push.right
+        .container
+          .ico.xxl.icon-lock
+          h2.text-center Login
+          .row
+            .span12
+              form#login-form.form-horizontal(method="post", action="#")
+                fieldset.control-group
+                  label.lead.control-label(for="login-user") Your username or email:
+                  .input-prepend.input-block
+                    label.add-on(for="login-user"): i.icon-user
+                    input#login-user(name="login-user", type="text", placeholder="Username or email")
+                fieldset.control-group
+                  label.lead.control-label(for="login-password") Your password:
+                  .input-prepend.input-block
+                    label.add-on(for="login-password"): i.icon-lock
+                    input#login-password(name="login-password", type="password", placeholder="Password")
+                  a(href="#").text-error Forgot password ?
+                fieldset.text-center
+                  p.addon
+                    button.btn.btn-primary.btn-large(type="submit") Login
+                    button.btn.btn-warning.btn-large(data-kontext-to="0") Cancel
+
+  .section-carousel.flexslider.carousel(data-carousel, data-carousel-opts='{"animation":"fade", "selector":".item", "controlNav":false, "directionNav":false}')
+    .slides
+      .item#preview
+        .container
+          h2.text-center Preview
+          .features: .row
+            .span3
+              p.lead <span class="icon icon-circle-arrow-right"></span> Simple
+              p Lorem ipsum sed culpa cupidatat Ut dolor minim amet do exercitation aliquip veniam laboris aliquip Excepteur sit aute cillum irure proident consectetur veniam ullamco dolor in ullamco magna fugiat exercitation culpa dolor qui
+            .span3
+              p.lead <span class="icon icon-magic"></span> Powerful
+              p Lorem ipsum sed culpa cupidatat Ut dolor minim amet do exercitation aliquip veniam laboris aliquip Excepteur sit aute cillum
+            .span3
+              p.lead <span class="icon icon-money"></span> Free
+              p Lorem ipsum sed culpa cupidatat Ut dolor minim amet do exercitation aliquip veniam laboris aliquip Excepteur sit aute cillum irure proident consectetur veniam ullamco dolor in
+            .span3
+              p.lead <span class="icon icon-lock"></span> Secure
+              p Lorem ipsum sed culpa cupidatat Ut dolor minim amet do exercitation aliquip veniam laboris
+          .features-carousel: .row: .span12: .carousel.flexslider(data-carousel)
+            ul.unstyled.slides
+              li: +image(1170,500)
+              li: +image(1170,500)
+              li: +image(1170,500)
+              li: +image(1170,500)
+      .item#register
+        .container
+          h2.text-center Register
+          .row
+            .span12
+              form#register-form.form-horizontal(method="post", action="#")
+                fieldset.control-group
+                  label.lead.control-label(for="reg-username") Choose your username:
+                  .input-prepend.input-block
+                    label.add-on(for="reg-username"): i.icon-user
+                    input#reg-username(name="reg-username", type="text", placeholder="Username")
+                fieldset.control-group
+                  label.lead.control-label(for="reg-password") Choose a password:
+                  .input-prepend.input-block
+                    label.add-on(for="reg-password"): i.icon-lock
+                    input#reg-password(name="reg-password", type="password", placeholder="Password")
+                fieldset.control-group
+                  label.lead.control-label(for="reg-password-conf") Confirm your password:
+                  .input-prepend.input-block
+                    label.add-on(for="reg-password-conf"): i.icon-lock
+                    input#reg-password-conf(name="reg-password-conf", type="password", placeholder="Password confirmation")
+                fieldset.control-group
+                  label.lead.control-label(for="reg-email") Type your email address:
+                  .input-prepend.input-block
+                    label.add-on(for="reg-email"): i.icon-envelope
+                    input#reg-email(name="reg-email", type="text", placeholder="Email")
+                fieldset.text-center
+                  p by signing up you agree to our <a href="#">terms and conditions</a> and our <a href="#">privacy policy</a>.
+                  button.btn.btn-primary.btn-large(type="submit") Sign-up

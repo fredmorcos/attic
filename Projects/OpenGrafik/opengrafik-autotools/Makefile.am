@@ -1,0 +1,1 @@
+/home/fnm/Workspace/attic/projects/gnome-sidebar/Makefile.am

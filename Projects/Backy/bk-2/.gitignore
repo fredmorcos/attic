@@ -1,0 +1,13 @@
+*~
+\#*
+.#*
+
+flycheck_*.plist
+compile_commands.json
+
+vgcore.*
+
+*.o
+
+bkc
+bkd

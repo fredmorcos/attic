@@ -1,0 +1,1 @@
+../addressbook/manage.py

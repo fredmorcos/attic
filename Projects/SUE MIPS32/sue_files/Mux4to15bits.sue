@@ -1,0 +1,55 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_Mux4to15bits {} {
+  make Mux5bit2to1 -origin {510 230}
+  make Mux5bit2to1 -origin {510 380}
+  make Mux5bit2to1 -origin {810 340}
+  make input -name {s[0]} -origin {290 460}
+  make input -name {s[1]} -origin {290 480}
+  make input -name {a[4:0]} -origin {320 190}
+  make input -name {b[4:0]} -origin {320 210}
+  make input -name {c[4:0]} -origin {320 340}
+  make input -name {d[4:0]} -origin {320 360}
+  make output -name {out[4:0]} -origin {910 300}
+  make_wire 410 340 320 340
+  make_wire 410 360 320 360
+  make_wire 320 210 410 210
+  make_wire 320 190 410 190
+  make_wire 290 460 350 460
+  make_wire 350 280 410 280
+  make_wire 350 430 410 430
+  make_wire 350 430 350 460
+  make_wire 350 430 350 280
+  make_wire 290 480 660 480
+  make_wire 660 390 710 390
+  make_wire 660 390 660 480
+  make_wire 610 340 680 340
+  make_wire 680 340 680 320
+  make_wire 680 320 710 320
+  make_wire 610 190 680 190
+  make_wire 680 190 680 300
+  make_wire 680 300 710 300
+}
+
+proc ICON_Mux4to15bits args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-110 -40} -name {a[4:0]}
+  icon_term -type input -origin {-110 -20} -name {b[4:0]}
+  icon_term -type input -origin {-110 0} -name {c[4:0]}
+  icon_term -type input -origin {-110 20} -name {d[4:0]}
+  icon_term -type output -origin {90 -40} -name {out[4:0]}
+  icon_term -type input -origin {-10 70} -orient R270 -name {s[1:0]}
+  icon_property -origin {-80 190} -type user -name name
+  icon_property -origin {-80 210} -type user -name M
+  icon_property -origin {-80 230} -type user -name dpc
+  icon_line -110 -80 -110 70 90 70 90 -80 -110 -80
+  icon_property -origin {-100 -40} -label {a[4:0]}
+  icon_property -origin {-100 -20} -label {b[4:0]}
+  icon_property -origin {-100 0} -label {c[4:0]}
+  icon_property -origin {-100 20} -label {d[4:0]}
+  icon_property -origin {-30 60} -label {s[1:0]}
+  icon_property -origin {90 -40} -anchor e -label {out[4:0]}
+  icon_property -origin {-40 -10} -label {Mux 4 x 1}
+  icon_property -origin {-20 10} -label {5 Bit}
+}
+

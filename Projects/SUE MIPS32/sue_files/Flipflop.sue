@@ -1,0 +1,86 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_Flipflop {} {
+  make nand2 -origin {370 250}
+  make nand2 -origin {370 360}
+  make nand2 -origin {400 660}
+  make nand2 -origin {560 380}
+  make nand2 -origin {560 490}
+  generate nand2 nand3 -ninputs 3
+  make nand3 -WN 2 -origin {370 510}
+  make input -name clock_in -origin {130 450}
+  make output -name Q -origin {750 380}
+  make input -name D -origin {40 680}
+  make Mux -origin {230 760}
+  make input -name reset_value -origin {50 700}
+  make Flipflop -origin {780 700}
+  make input -name reset -origin {70 720}
+  make_wire 510 400 540 400
+  make_wire 630 490 690 490
+  make_wire 510 470 540 470
+  make_wire 510 400 510 420
+  make_wire 630 380 750 380
+  make_wire 510 450 750 450
+  make_wire 510 450 510 470
+  make_wire 690 420 510 420
+  make_wire 690 420 690 490
+  make_wire 750 450 750 380
+  make_wire 460 250 460 310
+  make_wire 350 340 330 340
+  make_wire 440 250 460 250
+  make_wire 330 310 460 310
+  make_wire 330 310 330 340
+  make_wire 350 270 320 270
+  make_wire 480 360 440 360
+  make_wire 480 360 540 360
+  make_wire 270 230 350 230
+  make_wire 350 490 330 490
+  make_wire 330 490 330 440
+  make_wire 330 440 480 440
+  make_wire 480 290 480 360
+  make_wire 480 360 480 440
+  make_wire 320 290 480 290
+  make_wire 320 270 320 290
+  make_wire 470 510 540 510
+  make_wire 470 510 440 510
+  make_wire 180 510 350 510
+  make_wire 180 380 350 380
+  make_wire 270 230 270 530
+  make_wire 270 530 330 530
+  make_wire 330 530 350 530
+  make_wire 180 450 180 380
+  make_wire 180 450 180 510
+  make_wire 130 450 180 450
+  make_wire 480 570 480 660
+  make_wire 470 510 470 600
+  make_wire 330 570 480 570
+  make_wire 330 530 330 570
+  make_wire 470 660 480 660
+  make_wire 470 600 370 600
+  make_wire 370 600 370 640
+  make_wire 370 640 380 640
+  make_wire 50 700 130 700
+  make_wire 70 720 130 720
+  make_wire 330 680 380 680
+  make_wire 40 680 130 680
+}
+
+proc ICON_Flipflop args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 10} -name clock_in
+  icon_term -type input -origin {-100 -40} -name D
+  icon_term -type output -origin {100 -40} -name Q
+  icon_term -type input -origin {-20 60} -orient R270 -name reset_value
+  icon_term -type input -origin {70 60} -orient R270 -name reset
+  icon_property -origin {-70 230} -type user -name name
+  icon_property -origin {-70 250} -type user -name M
+  icon_property -origin {-70 270} -type user -name dpc
+  icon_line -100 -70 -100 60 100 60 100 -70 -100 -70
+  icon_property -origin {90 -40} -anchor e -label Q
+  icon_property -origin {-90 -40} -label D
+  icon_property -origin {-80 -30} -rotate 1 -label clock_in
+  icon_property -origin {-70 40} -label reset_value
+  icon_property -origin {50 40} -label reset
+  icon_property -origin {-40 -10} -label {D Flipflop}
+}
+

@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title>Welcome to MovieDB</title>
+	</head>
+	<body>
+		<h3>MovieDB</h3><br>
+	 
+	 	<img src="logo2.png" title="logo" />
+		<b>Login:</b><br>
+		<Form action="LoginServlet">
+			Username: <input type='text' name='textUsername' /><br>
+			Password: <input type='password' name='textPassword' /><br><br>
+			<input type='submit' name='buttonLogin' value='Login'/>
+		</Form>
+		
+		<!-- the servlet here should be the 'RegisterServlet' -->
+		<Form action="RegisterServlet">
+			<b> Or </b><br><br>
+			if you're not registered, register now : 
+			
+			<input type='submit' name='buttonRegister' value='Register'/>
+		</Form> 
+		
+	</body>
+</html>
+

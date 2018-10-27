@@ -1,0 +1,3 @@
+#!/usr/bin/python
+from libautocal.autocalqt import qt_start
+qt_start()

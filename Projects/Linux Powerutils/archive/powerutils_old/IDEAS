@@ -1,0 +1,53 @@
+1. Complete migration from old source-base
+2. Check difference features of 
+   1. acpid
+   2. pm-utils
+   3. laptop-mode-tools
+   4. cpupower
+   5. cpufrequtils
+   6. systemd
+   7. upower
+3. Add a dependency system similar to systemd? As an example,
+   processor frequency scaling should depend on certain kernel modules
+   (acpi_cpufreq), putting disks into powersaving MUST come after
+   putting SATA into powersaving since the opposite will spin up the
+   disks
+4. Add smartctl load_cycle_count checks
+5. Add current power consumption checks
+6. Add temperature checks
+7. Add AC online/offline checks
+8. Add current battery level checks
+9. Add current battery capacity checks
+10. Add hdparm -tT benchmark checks
+11. Add cpuload checks
+12. Add avg load checks
+13. Add memory consumption checks
+14. Add dependencies:
+    1. hdparm
+    2. smartctl
+    3. acpid
+    4. ethtool
+    5. iwconfig
+    6. acpi-cpufreq (kernel modules)
+    7. cpufreq_powersave
+    8. cpufreq_ondemand
+15. Interface with acpid for battery and power consumption info
+16. When on low battery, sync disks
+17. Use statistical information (annealing, etc) for spinning disks up
+    and down, setting wifi power saving, etc
+18. compile-time options for enabling/disabling experimental features
+19. have a global struct which contains options and what's supported,
+    this struct should also be saved and restored to a config/state
+    file
+20. when running, if an operation fails, set it as unsupported in the
+    struct, then we don't have to run it everytime
+21. runtime flags:
+    1. --reset for resetting the state struct (ie, in case a new
+       kernel version fixes the problem)
+    2. --restart to restart the daemon (re-read config/state file?)
+    3. --reload to re-read the config file
+    4. --kill to stop the daemon
+    5. --powersave to put into powersave mode
+    6. --performance to put into performance mode
+    7. --ondemand to put into ondemand mode
+22. logging through syslog? or into /tmp?

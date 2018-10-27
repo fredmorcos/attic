@@ -1,0 +1,12 @@
+0.2
+* Optimization dialog
+* About dialog
+* Loading/Saving
+* C++/Qt rewrite
+* Distutils/.desktop/icon files
+* Quick hack of a user interface
+* Schedule widget
+
+0.1
+* Exit on parsing/lexing error
+* Remove XML format and use a simpler (less verbose) one.

@@ -1,0 +1,7 @@
+*.o
+*~
+.#*
+#*
+mediacenter
+gmon.out
+scan_clang

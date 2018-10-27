@@ -1,0 +1,23 @@
+\documentclass{article}
+
+\usepackage[outputdir=out]{minted}
+
+\begin{document}
+
+\title{Testing \LaTeX and Minted}
+\author{Name of Author}
+\date{}
+
+\maketitle
+
+This is the first paragraph.
+
+\inputminted[lastline=7]{rust}{lib.rs}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% TeX-command-extra-options: "-shell-escape"
+%%% End:

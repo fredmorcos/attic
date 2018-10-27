@@ -1,0 +1,402 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: fig2dev Version 3.2 Patchlevel 5c -->
+<!-- CreationDate: Tue Mar 22 10:25:37 2011 -->
+<!-- Magnification: 1.000 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="11.5in" height="8.0in" viewBox="-1201 599 13802 9602">
+<g style="stroke-width:.025in; fill:none">
+<!-- Line: box -->
+<rect x="-1200" y="600" width="13800" height="9600" rx="0" 
+style="stroke:#000000;stroke-width:0;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Text -->
+<text xml:space="preserve" x="1200" y="5400" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">%X%</text>
+<!-- Text -->
+<text xml:space="preserve" x="1200" y="5100" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">X</text>
+<!-- Line -->
+<polyline points="1200,5400
+1200,6600
+1800,6600
+1800,7680
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 1800 6600 - 1800 7815-->
+<polygon points="1747 7685
+1800 7805
+1852 7685
+1747 7685
+
+" style="stroke:#000000;stroke-width:7;stroke-miterlimit:8;
+fill:#000000;"/>
+<!-- Line -->
+<polyline points="3000,5400
+3000,6600
+2400,6600
+2400,7680
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 2400 6600 - 2400 7815-->
+<polygon points="2347 7685
+2400 7805
+2452 7685
+2347 7685
+
+" style="stroke:#000000;stroke-width:7;stroke-miterlimit:8;
+fill:#000000;"/>
+<!-- Line -->
+<polyline points="10500,7200
+10500,7800
+9600,7800
+9600,8280
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 9600 7800 - 9600 8415-->
+<polygon points="9547 8285
+9600 8405
+9652 8285
+9547 8285
+
+" style="stroke:#000000;stroke-width:7;stroke-miterlimit:8;
+fill:#000000;"/>
+<!-- Line -->
+<polyline points="7800,3000
+7800,3780
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 7800 3000 - 7800 3915-->
+<polygon points="7747 3785
+7800 3905
+7852 3785
+7747 3785
+
+" style="stroke:#000000;stroke-width:7;stroke-miterlimit:8;
+fill:#000000;"/>
+<!-- Line -->
+<polyline points="2100,3900
+1200,3900
+1200,4680
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 1200 3900 - 1200 4815-->
+<polygon points="1147 4685
+1200 4805
+1252 4685
+1147 4685
+
+" style="stroke:#000000;stroke-width:7;stroke-miterlimit:8;
+fill:#000000;"/>
+<!-- Line -->
+<polyline points="2100,3900
+3000,3900
+3000,4680
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 3000 3900 - 3000 4815-->
+<polygon points="2947 4685
+3000 4805
+3052 4685
+2947 4685
+
+" style="stroke:#000000;stroke-width:7;stroke-miterlimit:8;
+fill:#000000;"/>
+<!-- Line -->
+<polyline points="2100,3000
+2100,3900
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="7800,5400
+6419,5400
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 7800 5400 - 6285 5400-->
+<polygon points="6415 5347
+6295 5400
+6415 5452
+6415 5347
+
+" style="stroke:#000000;stroke-width:7;stroke-miterlimit:8;
+fill:#000000;"/>
+<!-- Line -->
+<polyline points="7800,7800
+6419,7800
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 7800 7800 - 6285 7800-->
+<polygon points="6415 7747
+6295 7800
+6415 7852
+6415 7747
+
+" style="stroke:#000000;stroke-width:7;stroke-miterlimit:8;
+fill:#000000;"/>
+<!-- Line -->
+<polyline points="7800,6600
+6419,6600
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 7800 6600 - 6285 6600-->
+<polygon points="6415 6547
+6295 6600
+6415 6652
+6415 6547
+
+" style="stroke:#000000;stroke-width:7;stroke-miterlimit:8;
+fill:#000000;"/>
+<!-- Line -->
+<polyline points="7800,7800
+9000,7800
+9000,8280
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 9000 7800 - 9000 8415-->
+<polygon points="8947 8285
+9000 8405
+9052 8285
+8947 8285
+
+" style="stroke:#000000;stroke-width:7;stroke-miterlimit:8;
+fill:#000000;"/>
+<!-- Line -->
+<polyline points="11100,2400
+9119,2400
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 11100 2400 - 8985 2400-->
+<polygon points="9115 2347
+8995 2400
+9115 2452
+9115 2347
+
+" style="stroke:#000000;stroke-width:7;stroke-miterlimit:8;
+fill:#000000;"/>
+<!-- Line -->
+<polyline points="9900,5400
+9900,6180
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 9900 5400 - 9900 6315-->
+<polygon points="9847 6185
+9900 6305
+9952 6185
+9847 6185
+
+" style="stroke:#000000;stroke-width:7;stroke-miterlimit:8;
+fill:#000000;"/>
+<!-- Line -->
+<polyline points="9300,4500
+10500,4500
+9900,5400
+9300,4500
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="9300,9300
+9300,9900
+12300,9900
+12300,900
+11100,900
+11100,1380
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 11100 900 - 11100 1515-->
+<polygon points="11047 1385
+11100 1505
+11152 1385
+11047 1385
+
+" style="stroke:#000000;stroke-width:7;stroke-miterlimit:8;
+fill:#000000;"/>
+<!-- Line -->
+<polyline points="7800,4500
+7800,7800
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line: box -->
+<rect x="7200" y="3900" width="1200" height="600" rx="0" 
+style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line: box -->
+<rect x="900" y="1800" width="2400" height="1200" rx="105" 
+style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line: box -->
+<rect x="6600" y="1800" width="2400" height="1200" rx="105" 
+style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line: box -->
+<rect x="10500" y="1500" width="1200" height="600" rx="0" 
+style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="11100,2100
+11100,6180
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 11100 2100 - 11100 6315-->
+<polygon points="11047 6185
+11100 6305
+11152 6185
+11047 6185
+
+" style="stroke:#000000;stroke-width:7;stroke-miterlimit:8;
+fill:#000000;"/>
+<!-- Line -->
+<polyline points="9600,6300
+10200,7200
+10800,7200
+11400,6300
+9600,6300
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="8400,8400
+10200,8400
+9900,9300
+8700,9300
+8400,8400
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="1200,7800
+1800,8700
+2400,8700
+3000,7800
+1200,7800
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="5100,5700
+5100,7500
+6300,8400
+6300,4800
+5100,5700
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line -->
+<polyline points="5100,6600
+4200,6600
+4200,2400
+3419,2400
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 4200 2400 - 3285 2400-->
+<polygon points="3415 2347
+3295 2400
+3415 2452
+3415 2347
+
+" style="stroke:#000000;stroke-width:7;stroke-miterlimit:8;
+fill:#000000;"/>
+<!-- Line -->
+<polyline points="2100,8700
+2100,9300
+0,9300
+0,2400
+780,2400
+" style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Arrowhead on XXXpoint 0 2400 - 915 2400-->
+<polygon points="785 2452
+905 2400
+785 2347
+785 2452
+
+" style="stroke:#000000;stroke-width:7;stroke-miterlimit:8;
+fill:#000000;"/>
+<!-- Line: box -->
+<rect x="2400" y="4800" width="1200" height="600" rx="0" 
+style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Line: box -->
+<rect x="600" y="4800" width="1200" height="600" rx="0" 
+style="stroke:#000000;stroke-width:7;
+stroke-linejoin:miter; stroke-linecap:butt;
+"/>
+<!-- Text -->
+<text xml:space="preserve" x="6900" y="5400" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">%A%</text>
+<!-- Text -->
+<text xml:space="preserve" x="6900" y="5100" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">A</text>
+<!-- Text -->
+<text xml:space="preserve" x="6900" y="6300" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">B</text>
+<!-- Text -->
+<text xml:space="preserve" x="6900" y="6600" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">%B%</text>
+<!-- Text -->
+<text xml:space="preserve" x="6900" y="7500" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">C</text>
+<!-- Text -->
+<text xml:space="preserve" x="6900" y="7800" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">%C%</text>
+<!-- Text -->
+<text xml:space="preserve" x="8400" y="7500" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">D</text>
+<!-- Text -->
+<text xml:space="preserve" x="8400" y="7800" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">%D%</text>
+<!-- Text -->
+<text xml:space="preserve" x="9900" y="4800" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">1</text>
+<!-- Text -->
+<text xml:space="preserve" x="10800" y="7800" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">%ADDOUT%</text>
+<!-- Text -->
+<text xml:space="preserve" x="7800" y="4500" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">%IR%</text>
+<!-- Text -->
+<text xml:space="preserve" x="7800" y="4200" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">IR</text>
+<!-- Text -->
+<text xml:space="preserve" x="2100" y="2467" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">%DMEM%</text>
+<!-- Text -->
+<text xml:space="preserve" x="7800" y="2467" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">%IMEM%</text>
+<!-- Text -->
+<text xml:space="preserve" x="11100" y="1897" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">PC</text>
+<!-- Text -->
+<text xml:space="preserve" x="10800" y="3600" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">%PC%</text>
+<!-- Text -->
+<text xml:space="preserve" x="10335" y="6892" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="408" text-anchor="start">+</text>
+<!-- Text -->
+<text xml:space="preserve" x="9300" y="8947" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">PC Select</text>
+<!-- Text -->
+<text xml:space="preserve" x="2002" y="8407" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="408" text-anchor="start">-</text>
+<!-- Text -->
+<g transform="translate(5797,6600) rotate(-90.00021046)" >
+<text xml:space="preserve" x="0" y="0" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">Address Select</text>
+</g><!-- Text -->
+<text xml:space="preserve" x="4800" y="4200" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">Address</text>
+<!-- Text -->
+<text xml:space="preserve" x="4800" y="4500" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">%ADDRESS%</text>
+<!-- Text -->
+<text xml:space="preserve" x="-300" y="6300" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">%X-Y%</text>
+<!-- Text -->
+<text xml:space="preserve" x="-300" y="6000" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">X-Y</text>
+<!-- Text -->
+<text xml:space="preserve" x="3000" y="5400" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">%Y%</text>
+<!-- Text -->
+<text xml:space="preserve" x="3000" y="5100" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">Y</text>
+<!-- Text -->
+<text xml:space="preserve" x="375" y="975" fill="#000000"  font-family="Helvetica" font-style="normal" font-weight="normal" font-size="192" text-anchor="middle">%TITLE%</text>
+</g>
+</svg>

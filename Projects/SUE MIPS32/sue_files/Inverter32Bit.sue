@@ -1,0 +1,115 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_Inverter32Bit {} {
+  make inverter -origin {360 -290}
+  make inverter -origin {360 -230}
+  make inverter -origin {360 -170}
+  make inverter -origin {360 -110}
+  make inverter -origin {360 -50}
+  make inverter -origin {360 10}
+  make inverter -origin {360 70}
+  make inverter -origin {360 130}
+  make inverter -origin {360 190}
+  make inverter -origin {360 250}
+  make inverter -origin {360 310}
+  make inverter -origin {360 370}
+  make inverter -origin {360 430}
+  make inverter -origin {360 490}
+  make inverter -origin {360 550}
+  make inverter -origin {360 610}
+  make inverter -origin {360 670}
+  make inverter -origin {360 730}
+  make inverter -origin {360 790}
+  make inverter -origin {360 850}
+  make inverter -origin {360 910}
+  make inverter -origin {360 970}
+  make inverter -origin {360 1030}
+  make inverter -origin {360 1090}
+  make inverter -origin {360 1150}
+  make inverter -origin {360 1210}
+  make inverter -origin {360 1270}
+  make inverter -origin {360 1330}
+  make inverter -origin {360 1390}
+  make inverter -origin {360 1450}
+  make inverter -origin {360 1510}
+  make inverter -origin {360 1570}
+  make output -name {y[0]} -origin {410 -290}
+  make output -name {y[1]} -origin {410 -230}
+  make output -name {y[2]} -origin {410 -170}
+  make output -name {y[3]} -origin {410 -110}
+  make output -name {y[4]} -origin {410 -50}
+  make output -name {y[5]} -origin {410 10}
+  make output -name {y[6]} -origin {410 70}
+  make output -name {y[7]} -origin {410 130}
+  make output -name {y[8]} -origin {410 190}
+  make output -name {y[9]} -origin {410 250}
+  make output -name {y[10]} -origin {410 310}
+  make output -name {y[11]} -origin {410 370}
+  make output -name {y[12]} -origin {410 430}
+  make output -name {y[13]} -origin {410 490}
+  make output -name {y[14]} -origin {410 550}
+  make output -name {y[15]} -origin {410 610}
+  make output -name {y[16]} -origin {410 670}
+  make output -name {y[17]} -origin {410 730}
+  make output -name {y[18]} -origin {410 790}
+  make output -name {y[19]} -origin {410 850}
+  make output -name {y[20]} -origin {410 910}
+  make output -name {y[21]} -origin {410 970}
+  make output -name {y[22]} -origin {410 1030}
+  make output -name {y[23]} -origin {410 1090}
+  make output -name {y[24]} -origin {410 1150}
+  make output -name {y[25]} -origin {410 1210}
+  make output -name {y[26]} -origin {410 1270}
+  make output -name {y[27]} -origin {410 1330}
+  make output -name {y[28]} -origin {410 1390}
+  make output -name {y[29]} -origin {410 1450}
+  make output -name {y[30]} -origin {410 1510}
+  make output -name {y[31]} -origin {410 1570}
+  make input -name {b[0]} -origin {330 -290}
+  make input -name {b[1]} -origin {330 -230}
+  make input -name {b[2]} -origin {330 -170}
+  make input -name {b[3]} -origin {330 -110}
+  make input -name {b[4]} -origin {330 -50}
+  make input -name {b[5]} -origin {330 10}
+  make input -name {b[6]} -origin {330 70}
+  make input -name {b[7]} -origin {330 130}
+  make input -name {b[8]} -origin {330 190}
+  make input -name {b[9]} -origin {330 250}
+  make input -name {b[10]} -origin {330 310}
+  make input -name {b[11]} -origin {330 370}
+  make input -name {b[12]} -origin {330 430}
+  make input -name {b[13]} -origin {330 490}
+  make input -name {b[14]} -origin {330 550}
+  make input -name {b[15]} -origin {330 610}
+  make input -name {b[16]} -origin {330 670}
+  make input -name {b[17]} -origin {330 730}
+  make input -name {b[18]} -origin {330 790}
+  make input -name {b[19]} -origin {330 850}
+  make input -name {b[20]} -origin {330 910}
+  make input -name {b[21]} -origin {330 970}
+  make input -name {b[22]} -origin {330 1030}
+  make input -name {b[23]} -origin {330 1090}
+  make input -name {b[24]} -origin {330 1150}
+  make input -name {b[25]} -origin {330 1210}
+  make input -name {b[26]} -origin {330 1270}
+  make input -name {b[27]} -origin {330 1330}
+  make input -name {b[28]} -origin {330 1390}
+  make input -name {b[29]} -origin {330 1450}
+  make input -name {b[30]} -origin {330 1510}
+  make input -name {b[31]} -origin {330 1570}
+}
+
+proc ICON_Inverter32Bit args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 -80} -name {b[31:0]}
+  icon_term -type output -origin {100 -80} -name {y[31:0]}
+  icon_property -origin {-50 70} -type user -name name
+  icon_property -origin {-50 90} -type user -name M
+  icon_property -origin {-50 110} -type user -name dpc
+  icon_line -100 -160 -100 30 100 30 100 -160 -100 -160
+  icon_property -origin {-50 -120} -label {32-bit
+Inverter}
+  icon_property -origin {-90 -80} -label {b[31:0]}
+  icon_property -origin {30 -80} -label {y[31:0]}
+}
+

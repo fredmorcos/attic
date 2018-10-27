@@ -1,0 +1,525 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_FinalProcessor {} {
+  make name_net_s -name {T[7:0]} -origin {560 -2840}
+  make name_net_s -name {T[1]} -origin {2000 -4100}
+  make output -name MEMORY_READ -origin {2830 -4070}
+  make DoubleInverter -origin {2660 -4050}
+  make name_net_s -name {T[3]} -origin {1490 -3560}
+  make name_net_s -name {reg_out2[31:0]} -origin {1730 -3570}
+  make name_net_s -name {reg_out1[31:0]} -origin {1870 -3590}
+  make name_net_s -name {IR_OUT[31:0]} -origin {560 -2920}
+  make name_net_s -name {IR_OUT[29:27]} -origin {1770 -3490}
+  make name_net_s -name ALU_UNIT_ACTIVATOR -origin {660 -3460}
+  make name_net_s -name BRANCH_UNIT_ACTIVATOR -origin {670 -3410}
+  make name_net_s -name LOAD_UNIT_ACTIVATOR -origin {670 -3360}
+  make name_net_s -name STORE_UNIT_ACTIVATOR -origin {670 -3310}
+  make name_net_s -name ALU_UNIT_ACTIVATOR -origin {1440 -3470}
+  make name_net_s -name {T[4]} -origin {1680 -3430}
+  generate nand2 nand3 -ninputs 3
+  make nand3 -WN 2 -origin {1780 -3450}
+  make name_net_s -name {IR_OUT[11]} -origin {1540 -3450}
+  make inverter -origin {1880 -3450}
+  make ALU_UNIT -origin {2100 -3480}
+  make name_net_s -name {ALU_RESULT[31:0]} -origin {2360 -3430}
+  make name_net_s -name {reg_out2[31:0]} -origin {1490 -2900}
+  make name_net_s -name LOAD_UNIT_ACTIVATOR -origin {1550 -2700}
+  make name_net_s -name STORE_UNIT_ACTIVATOR -origin {1550 -2680}
+  make name_net_s -name {T[0]} -origin {1560 -2660}
+  make name_net_s -name {T[3]} -origin {1600 -2640}
+  make name_net_s -name {ADDRESS_SOURCE_SELECT[1:0]} -origin {-1010 -3200}
+  make name_net_s -name {ADDRESS_SOURCE_SELECT[1:0]} -origin {2420 -2690}
+  make name_net_s -name {LS_ADDRESS[31:0]} -origin {-1110 -3270}
+  make name_net_s -name {LS_ADDRESS[31:0]} -origin {-1110 -3240}
+  make name_net_s -name {LS_ADDRESS[31:0]} -origin {2420 -2900}
+  make name_net_s -name {T[4]} -origin {1700 -4070}
+  make name_net_s -name LOAD_UNIT_ACTIVATOR -origin {1680 -4030}
+  make nand2 -origin {1890 -4050}
+  make DoubleInverter -origin {2530 -3880}
+  make output -name MEMORY_WRITE -origin {2850 -3820}
+  make nand2 -origin {2400 -3900}
+  make name_net_s -name {T[5]} -origin {2210 -3920}
+  make name_net_s -name STORE_UNIT_ACTIVATOR -origin {2190 -3880}
+  make name_net_s -name {MDR_OUT[31:0]} -origin {670 -3150}
+  make name_net_s -name STORE_UNIT_ACTIVATOR -origin {-1680 -3300}
+  make nand2 -origin {-1620 -3320}
+  make name_net_s -name {T[4]} -origin {-1680 -3340}
+  make name_net_s -name {reg_out1[31:0]} -origin {-2140 -3110}
+  make name_net_s -name {IR_OUT[16:0]} -origin {1490 -2830}
+  make nand2 -origin {1620 -3540}
+  make name_net_s -name ALU_UNIT_ACTIVATOR -origin {1490 -3520}
+  make LoadStoreModule -origin {1990 -2760}
+  make name_net_s -name BRANCH_UNIT_ACTIVATOR -origin {1500 -1980}
+  make name_net_s -name {IR_OUT[24:22]} -origin {1490 -1920}
+  make name_net_s -name {IR_OUT[28:26]} -origin {1490 -1940}
+  make name_net_s -name P_OUT -origin {2410 -3600}
+  make name_net_s -name N_OUT -origin {2410 -3560}
+  make name_net_s -name Z_OUT -origin {2410 -3520}
+  make name_net_s -name P_OUT -origin {1620 -1870}
+  make name_net_s -name N_OUT -origin {1620 -1850}
+  make name_net_s -name Z_OUT -origin {1620 -1830}
+  make name_net_s -name BE -origin {2420 -1900}
+  make name_net_s -name CE -origin {2330 -1880}
+  make name_net_s -name RE -origin {2230 -1860}
+  make name_net_s -name {LS_ADDRESS[31:0]} -origin {1620 -1750}
+  make name_net_s -name {reg_out1[31:0]} -origin {1620 -1720}
+  make nand2 -origin {-1510 -2790}
+  make name_net_s -name {T[3]} -origin {-1610 -2770}
+  make name_net_s -name BE -origin {-1610 -2810}
+  make name_net_s -name LOAD_UNIT_ACTIVATOR -origin {-1610 -3000}
+  make nand2 -origin {-1510 -2980}
+  make name_net_s -name {T[3]} -origin {-1610 -2960}
+  make nand2 -origin {-1510 -2880}
+  make name_net_s -name STORE_UNIT_ACTIVATOR -origin {-1610 -2900}
+  make name_net_s -name {T[3]} -origin {-1610 -2860}
+  make nand2 -origin {-1510 -2700}
+  make name_net_s -name {T[3]} -origin {-1610 -2680}
+  make name_net_s -name CE -origin {-1610 -2720}
+  make nand2 -origin {-1510 -2610}
+  make name_net_s -name CE -origin {-1610 -2630}
+  make name_net_s -name {T[5]} -origin {-1610 -2590}
+  make nand2 -origin {-1510 -2520}
+  make name_net_s -name RE -origin {-1610 -2540}
+  make name_net_s -name {T[4]} -origin {-1610 -2500}
+  make nand2 -origin {-1510 -2440}
+  make name_net_s -name RE -origin {-1610 -2460}
+  make name_net_s -name {T[6]} -origin {-1610 -2420}
+  generate nor2 nor7 -ninputs 7
+  make nor7 -WP 4 -origin {-1150 -2730}
+  generate nor2 nor5 -ninputs 5
+  make nor5 -WP 4 -origin {-1110 -2550}
+  make controlunit -origin {-190 -3130}
+  make name_net_s -name {MDR_OUT[31:0]} -origin {1620 -1680}
+  make name_net_s -name {BRANCH_TARGET_ADDRESS[31:0]} -origin {-910 -3470}
+  make name_net_s -name {BRANCH_TARGET_ADDRESS[31:0]} -origin {2380 -1780}
+  make name_net_s -orient R90 -name {T[3]} -origin {2010 -1490}
+  make name_net_s -orient R90 -name {T[6]} -origin {1970 -1580}
+  make name_net_s -orient R90 -name {T[4]} -origin {1990 -1530}
+  make name_net_s -name CE -origin {-1690 -3220}
+  make name_net_s -name {T[4]} -origin {-1690 -3260}
+  make nand2 -origin {-1620 -3240}
+  make nor2 -origin {-1360 -3260}
+  make name_net_s -name {PC_OUT[31:0]} -origin {560 -2880}
+  make name_net_s -name {PC_OUT[31:0]} -origin {-2160 -3090}
+  make mux42132bbits -origin {-1850 -3040}
+  make global -orient RXY -name gnd -origin {-2040 -3130}
+  make name_net_s -name {MDW_S[1]} -origin {-1510 -3350}
+  make name_net_s -orient RXY -name {MDW_S[0]} -origin {-1500 -3210}
+  make name_net_s -orient RXY -name {MDW_S[1:0]} -origin {-2170 -3050}
+  make global -name gnd -origin {-2040 -3010}
+  make DoubleInverter -origin {2510 -3770}
+  make nand2 -origin {2380 -3790}
+  make name_net_s -name {T[5]} -origin {2190 -3810}
+  make name_net_s -name CE -origin {2170 -3770}
+  make nor2 -origin {2710 -3820}
+  generate nor2 nor3 -ninputs 3
+  make nor3 -WP 4 -origin {2450 -4070}
+  make nand2 -origin {2130 -4230}
+  make name_net_s -name {T[5]} -origin {2050 -4250}
+  make name_net_s -name CE -origin {2030 -4210}
+  make inverter -origin {2160 -4090}
+  make name_net_s -name {MAR_OUT[31:0]} -origin {500 -3180}
+  make Register_file_32bits -origin {4780 -2320}
+  make name_net_s -name {reg_out1[31:0]} -origin {5070 -2500}
+  make name_net_s -name {reg_out2[31:0]} -origin {5070 -2480}
+  make nand2 -origin {4240 -1980}
+  make name_net_s -name ALU_UNIT_ACTIVATOR -origin {4100 -1960}
+  make name_net_s -name {T[4]} -origin {4110 -2000}
+  make name_net_s -name {T[5]} -origin {4180 -1930}
+  make nand2 -origin {4240 -1910}
+  make name_net_s -name LOAD_UNIT_ACTIVATOR -origin {4180 -1890}
+  make name_net_s -name {T[4]} -origin {4170 -1860}
+  make name_net_s -name CE -origin {4170 -1820}
+  make nand2 -origin {4240 -1840}
+  make nor3 -WP 4 -origin {4370 -1910}
+  make name_net_s -name ALU_UNIT_ACTIVATOR -origin {210 -2380}
+  make nand2 -orient RXY -origin {50 -2360}
+  make name_net_s -name {T[5]} -origin {160 -2340}
+  make nand2 -orient RXY -origin {50 -2280}
+  make name_net_s -name LOAD_UNIT_ACTIVATOR -origin {210 -2300}
+  make name_net_s -name {T[6]} -origin {160 -2260}
+  make nand2 -orient RXY -origin {50 -2200}
+  make name_net_s -name {T[6]} -origin {160 -2180}
+  make name_net_s -name STORE_UNIT_ACTIVATOR -origin {210 -2220}
+  make nand2 -orient RXY -origin {50 -2120}
+  make name_net_s -name BE -origin {160 -2140}
+  make name_net_s -name {T[4]} -origin {160 -2100}
+  make nand2 -orient RXY -origin {50 -2040}
+  make name_net_s -name {T[6]} -origin {160 -2020}
+  make name_net_s -name CE -origin {160 -2060}
+  make nand2 -orient RXY -origin {50 -1960}
+  make name_net_s -name RE -origin {160 -1980}
+  make name_net_s -name {T[7]} -origin {160 -1940}
+  make name_net_s -name BRANCH_UNIT_RESET_SC -origin {2290 -1750}
+  make name_net_s -name BRANCH_UNIT_RESET_SC -origin {40 -1860}
+  make nor7 -orient RXY -WP 4 -origin {-320 -2330}
+  make name_net_s -name {IR_OUT[16:12]} -origin {4010 -3160}
+  make name_net_s -name BRANCH_UNIT_ACTIVATOR -origin {3480 -3440}
+  make name_net_s -name ALU_UNIT_ACTIVATOR -origin {3470 -3640}
+  make name_net_s -name LOAD_UNIT_ACTIVATOR -origin {3480 -3570}
+  make name_net_s -name STORE_UNIT_ACTIVATOR -origin {3480 -3520}
+  make name_net_s -name {IR_OUT[26:22]} -origin {4010 -3140}
+  make FiveOnes -origin {3840 -3100}
+  make nor2 -origin {3700 -3540}
+  make inverter -origin {3800 -3540}
+  make DoubleInverter -origin {3690 -3620}
+  make DoubleInverter -origin {3710 -3430}
+  make name_net_s -name {REG_FILE_S[0]} -origin {3880 -3640}
+  make name_net_s -name {REG_FILE_S[1]} -origin {3970 -3540}
+  make name_net_s -name {REG_FILE_S[2]} -origin {3900 -3450}
+  make name_net_s -name {REG_FILE_S[2:0]} -origin {4350 -2940}
+  make global -name gnd -origin {4180 -3180}
+  make global -name gnd -origin {4180 -3120}
+  make global -name gnd -origin {4180 -3080}
+  make global -name gnd -origin {4180 -3060}
+  make global -name gnd -origin {4180 -3040}
+  make Mux32Bit8to1 -origin {4240 -2180}
+  make name_net_s -name {REG_FILE_S[2:0]} -origin {4230 -2040}
+  make global -name gnd -origin {4080 -2200}
+  make global -name gnd -origin {4080 -2160}
+  make global -name gnd -origin {4080 -2140}
+  make global -name gnd -origin {4080 -2120}
+  make name_net_s -name {IR_OUT[21:17]} -origin {3780 -2680}
+  make name_net_s -name {IR_OUT[26:22]} -origin {3750 -2490}
+  make FiveOnes -origin {3850 -2450}
+  make name_net_s -name {ALU_RESULT[31:0]} -origin {3910 -2240}
+  make name_net_s -name {MDR_OUT[31:0]} -origin {3760 -2220}
+  make name_net_s -name {MAR_OUT[31:0]} -origin {3310 -2140}
+  make pcincrement -origin {3520 -2130}
+  make output -name BRANCH_MODULE_OVERFLOW -origin {2130 -1690}
+  make BranchModule -origin {1930 -1850}
+  make name_net_s -name {MDW_S[1]} -origin {-1380 -3280}
+  make name_net_s -orient RXY -name {MDW_S[0]} -origin {-1380 -3240}
+  make output -name PC_OVERFLOW -origin {420 -2670}
+  make input -name CLOCK_IN -origin {-870 -2670}
+  make output -name ALU_OVERFLOW -origin {2280 -3390}
+  make output -name LS_OVERFLOW -origin {2240 -2830}
+  make output -name {MDW_TO_MEMORY[31:0]} -origin {460 -3100}
+  make input -name {MDR_FROM_MEMORY[31:0]} -origin {-870 -3060}
+  make input -name MDR_WE_FROM_MEMORY -origin {-870 -3030}
+  make output -name STACKPOINTER_OVERFLOW -origin {3670 -2110}
+  make Mux4to15bits -origin {4240 -2480}
+  make global -name gnd -origin {4080 -2260}
+  make global -name gnd -origin {4100 -2520}
+  make global -name gnd -origin {4100 -2460}
+  make name_net_s -name ALU_UNIT_ACTIVATOR -origin {3250 -2390}
+  make name_net_s -name BRANCH_UNIT_ACTIVATOR -origin {3140 -2280}
+  make name_net_s -name STORE_UNIT_ACTIVATOR -origin {3250 -2430}
+  make name_net_s -name LOAD_UNIT_ACTIVATOR -origin {3260 -2470}
+  make inverter -origin {3520 -2450}
+  make nor3 -WP 4 -origin {3420 -2450}
+  make DoubleInverter -origin {3330 -2260}
+  make name_net_s -name {REG_WRITEADD_S[1]} -origin {3520 -2280}
+  make name_net_s -name {REG_WRITEADD_S[0]} -origin {3660 -2450}
+  make name_net_s -name {REG_WRITEADD_S[1:0]} -origin {4220 -2360}
+  make Mux5bits8to1 -origin {4350 -3100}
+  make name_net_s -name {MAR_OUT[31:0]} -origin {920 -3190}
+  make Inverters32Bit -origin {1190 -3180}
+  make output -name {MAR_OUT[31:0]} -origin {1360 -3190}
+  make_wire 1770 -3490 1930 -3490
+  make_wire 1540 -3450 1760 -3450
+  make_wire 1440 -3470 1760 -3470
+  make_wire 1760 -3430 1680 -3430
+  make_wire 2280 -3430 2360 -3430
+  make_wire 1490 -2900 1760 -2900
+  make_wire 1760 -2700 1550 -2700
+  make_wire 1760 -2660 1560 -2660
+  make_wire 1600 -2640 1760 -2640
+  make_wire 1550 -2680 1760 -2680
+  make_wire 2240 -2900 2420 -2900
+  make_wire 1760 -2830 1490 -2830
+  make_wire 1700 -4070 1870 -4070
+  make_wire 1680 -4030 1870 -4030
+  make_wire 2730 -4070 2830 -4070
+  make_wire 2210 -3920 2380 -3920
+  make_wire 2190 -3880 2380 -3880
+  make_wire 1690 -3540 1930 -3540
+  make_wire 1490 -3520 1600 -3520
+  make_wire 1490 -3560 1600 -3560
+  make_wire 1870 -3590 1930 -3590
+  make_wire 1730 -3570 1930 -3570
+  make_wire 2240 -2690 2420 -2690
+  make_wire 2280 -3600 2410 -3600
+  make_wire 2280 -3560 2410 -3560
+  make_wire 2280 -3520 2410 -3520
+  make_wire -1530 -2810 -1610 -2810
+  make_wire -1530 -2770 -1610 -2770
+  make_wire -1530 -2960 -1610 -2960
+  make_wire -1530 -3000 -1610 -3000
+  make_wire -1530 -2900 -1610 -2900
+  make_wire -1530 -2860 -1610 -2860
+  make_wire -1530 -2680 -1610 -2680
+  make_wire -1610 -2720 -1530 -2720
+  make_wire -1530 -2590 -1610 -2590
+  make_wire -1610 -2630 -1530 -2630
+  make_wire -1530 -2500 -1610 -2500
+  make_wire -1610 -2540 -1530 -2540
+  make_wire -1530 -2420 -1610 -2420
+  make_wire -1610 -2460 -1530 -2460
+  make_wire -1440 -2980 -1330 -2980
+  make_wire -1440 -2880 -1350 -2880
+  make_wire -1440 -2790 -1360 -2790
+  make_wire -1440 -2700 -1390 -2700
+  make_wire -1440 -2520 -1370 -2520
+  make_wire -1440 -2610 -1380 -2610
+  make_wire -1440 -2440 -1170 -2440
+  make_wire -1370 -2690 -1370 -2520
+  make_wire -1380 -2710 -1380 -2610
+  make_wire -1390 -2730 -1390 -2700
+  make_wire -1360 -2790 -1360 -2750
+  make_wire -1350 -2770 -1170 -2770
+  make_wire -1350 -2880 -1350 -2770
+  make_wire -1330 -2790 -1170 -2790
+  make_wire -1330 -2980 -1330 -2790
+  make_wire -1110 -3270 -720 -3270
+  make_wire 340 -3460 660 -3460
+  make_wire 340 -3310 670 -3310
+  make_wire -1110 -3240 -720 -3240
+  make_wire -1010 -3200 -720 -3200
+  make_wire 340 -2840 560 -2840
+  make_wire 340 -2920 560 -2920
+  make_wire 340 -3410 670 -3410
+  make_wire 340 -3360 670 -3360
+  make_wire 340 -3140 670 -3140
+  make_wire 670 -3150 670 -3140
+  make_wire -1080 -2730 -720 -2730
+  make_wire -1200 -2750 -1200 -2590
+  make_wire -1200 -2590 -1130 -2590
+  make_wire -1200 -2750 -1360 -2750
+  make_wire -1210 -2730 -1210 -2570
+  make_wire -1230 -2690 -1230 -2530
+  make_wire -1220 -2710 -1220 -2550
+  make_wire -1170 -2510 -1130 -2510
+  make_wire -1170 -2510 -1170 -2670
+  make_wire -1170 -2510 -1170 -2440
+  make_wire -1210 -2730 -1390 -2730
+  make_wire -1210 -2730 -1170 -2730
+  make_wire -1210 -2570 -1130 -2570
+  make_wire -1220 -2550 -1130 -2550
+  make_wire -1220 -2710 -1380 -2710
+  make_wire -1220 -2710 -1170 -2710
+  make_wire -1230 -2530 -1130 -2530
+  make_wire -1230 -2690 -1370 -2690
+  make_wire -1230 -2690 -1170 -2690
+  make_wire -740 -3440 -740 -2550
+  make_wire -740 -3440 -720 -3440
+  make_wire -1040 -2550 -740 -2550
+  make_wire 2130 -1900 2420 -1900
+  make_wire 1620 -1830 1750 -1830
+  make_wire 1620 -1850 1750 -1850
+  make_wire 1620 -1870 1750 -1870
+  make_wire 1490 -1920 1750 -1920
+  make_wire 1490 -1940 1750 -1940
+  make_wire 1500 -1980 1750 -1980
+  make_wire 1620 -1750 1750 -1750
+  make_wire 1750 -1720 1620 -1720
+  make_wire 1750 -1680 1620 -1680
+  make_wire -910 -3470 -720 -3470
+  make_wire -1200 -2750 -1170 -2750
+  make_wire -1680 -3300 -1640 -3300
+  make_wire -1680 -3340 -1640 -3340
+  make_wire -1690 -3260 -1640 -3260
+  make_wire -1690 -3220 -1640 -3220
+  make_wire -1280 -2920 -720 -2920
+  make_wire 340 -2880 560 -2880
+  make_wire -2160 -3090 -2000 -3090
+  make_wire -790 -2950 -720 -2950
+  make_wire -2140 -3110 -2000 -3110
+  make_wire -2000 -3130 -2040 -3130
+  make_wire -1510 -3320 -1550 -3320
+  make_wire -1800 -3130 -790 -3130
+  make_wire -790 -3130 -790 -2950
+  make_wire 2190 -3810 2360 -3810
+  make_wire 2170 -3770 2360 -3770
+  make_wire 2600 -3900 2650 -3900
+  make_wire 2650 -3900 2650 -3840
+  make_wire 2650 -3840 2690 -3840
+  make_wire 2580 -3790 2640 -3790
+  make_wire 2640 -3790 2640 -3800
+  make_wire 2640 -3800 2690 -3800
+  make_wire 2780 -3820 2850 -3820
+  make_wire 2390 -4070 2430 -4070
+  make_wire 2200 -4230 2390 -4230
+  make_wire 2390 -4230 2390 -4070
+  make_wire 1960 -4050 2430 -4050
+  make_wire 2600 -4070 2520 -4070
+  make_wire 2430 -4090 2210 -4090
+  make_wire 2000 -4090 2130 -4090
+  make_wire 2000 -4100 2000 -4090
+  make_wire 2050 -4250 2110 -4250
+  make_wire 2030 -4210 2110 -4210
+  make_wire 340 -3180 500 -3180
+  make_wire 4990 -2500 5070 -2500
+  make_wire 4990 -2480 5070 -2480
+  make_wire 4100 -1960 4220 -1960
+  make_wire 4110 -2000 4220 -2000
+  make_wire 4180 -1890 4220 -1890
+  make_wire 4180 -1930 4220 -1930
+  make_wire 4310 -1980 4340 -1980
+  make_wire 4340 -1980 4340 -1930
+  make_wire 4340 -1930 4350 -1930
+  make_wire 4310 -1910 4350 -1910
+  make_wire 4310 -1890 4310 -1840
+  make_wire 4310 -1890 4350 -1890
+  make_wire 4170 -1820 4220 -1820
+  make_wire 4170 -1860 4220 -1860
+  make_wire 70 -2380 210 -2380
+  make_wire 70 -2340 160 -2340
+  make_wire 70 -2300 210 -2300
+  make_wire 70 -2260 160 -2260
+  make_wire 70 -2220 210 -2220
+  make_wire 70 -2180 160 -2180
+  make_wire -730 -2630 -720 -2630
+  make_wire 70 -2100 160 -2100
+  make_wire 70 -2140 160 -2140
+  make_wire 70 -2020 160 -2020
+  make_wire 70 -2060 160 -2060
+  make_wire 70 -1940 160 -1940
+  make_wire 70 -1980 160 -1980
+  make_wire 2290 -1750 2130 -1750
+  make_wire 2330 -1880 2130 -1880
+  make_wire 2230 -1860 2130 -1860
+  make_wire -730 -2330 -390 -2330
+  make_wire -730 -2630 -730 -2330
+  make_wire -20 -2360 -190 -2360
+  make_wire -190 -2360 -190 -2390
+  make_wire -190 -2390 -300 -2390
+  make_wire -20 -2280 -200 -2280
+  make_wire -200 -2280 -200 -2370
+  make_wire -200 -2370 -300 -2370
+  make_wire -20 -2200 -210 -2200
+  make_wire -210 -2200 -210 -2350
+  make_wire -210 -2350 -300 -2350
+  make_wire -220 -2120 -220 -2330
+  make_wire -300 -2330 -220 -2330
+  make_wire -220 -2120 -20 -2120
+  make_wire -20 -2040 -230 -2040
+  make_wire -230 -2040 -230 -2310
+  make_wire -230 -2310 -300 -2310
+  make_wire -20 -1960 -240 -1960
+  make_wire -240 -1960 -240 -2290
+  make_wire -240 -2290 -300 -2290
+  make_wire 40 -1860 -250 -1860
+  make_wire -250 -1860 -250 -2270
+  make_wire -250 -2270 -300 -2270
+  make_wire 3480 -3570 3630 -3570
+  make_wire 3630 -3570 3630 -3560
+  make_wire 3630 -3560 3680 -3560
+  make_wire 3480 -3520 3680 -3520
+  make_wire 3470 -3640 3630 -3640
+  make_wire 3650 -3450 3650 -3440
+  make_wire 3480 -3440 3650 -3440
+  make_wire 3760 -3640 3880 -3640
+  make_wire 3850 -3540 3970 -3540
+  make_wire 3780 -3450 3900 -3450
+  make_wire 4010 -3140 4240 -3140
+  make_wire 4180 -3180 4240 -3180
+  make_wire 4240 -3160 4010 -3160
+  make_wire 4180 -3120 4240 -3120
+  make_wire 4180 -3080 4240 -3080
+  make_wire 4180 -3060 4240 -3060
+  make_wire 4180 -3040 4240 -3040
+  make_wire 4230 -2040 4230 -2080
+  make_wire 4140 -2180 3970 -2180
+  make_wire 4080 -2260 4140 -2260
+  make_wire 4140 -2240 3910 -2240
+  make_wire 4080 -2200 4140 -2200
+  make_wire 4080 -2160 4140 -2160
+  make_wire 4080 -2140 4140 -2140
+  make_wire 4080 -2120 4140 -2120
+  make_wire 4440 -1910 4440 -2250
+  make_wire 4440 -2250 4580 -2250
+  make_wire 4390 -2450 4390 -2430
+  make_wire 4390 -2430 4580 -2430
+  make_wire 4390 -2450 4340 -2450
+  make_wire 4340 -2180 4400 -2180
+  make_wire 4400 -2180 4400 -2340
+  make_wire 4400 -2340 4580 -2340
+  make_wire 4460 -2680 4460 -2470
+  make_wire 4460 -2470 4580 -2470
+  make_wire 3780 -2680 4460 -2680
+  make_wire 3760 -2220 4140 -2220
+  make_wire 3420 -2140 3310 -2140
+  make_wire 3620 -2140 3970 -2140
+  make_wire 3970 -2140 3970 -2180
+  make_wire 2010 -1650 2010 -1490
+  make_wire 1990 -1650 1990 -1530
+  make_wire 1970 -1650 1970 -1580
+  make_wire -1510 -3350 -1510 -3320
+  make_wire -1500 -3240 -1500 -3210
+  make_wire -1550 -3240 -1500 -3240
+  make_wire -1290 -3260 -1280 -3260
+  make_wire -1280 -3260 -1280 -2920
+  make_wire -2000 -3070 -2040 -3070
+  make_wire -2170 -3050 -2000 -3050
+  make_wire -2040 -3070 -2040 -3010
+  make_wire 340 -3100 460 -3100
+  make_wire -720 -3030 -870 -3030
+  make_wire 340 -2670 420 -2670
+  make_wire -870 -2670 -720 -2670
+  make_wire 2130 -1780 2380 -1780
+  make_wire -870 -3060 -720 -3060
+  make_wire 3620 -2110 3670 -2110
+  make_wire 3900 -3100 4240 -3100
+  make_wire 3750 -2500 4130 -2500
+  make_wire 3750 -2500 3750 -2490
+  make_wire 3910 -2450 4030 -2450
+  make_wire 4030 -2450 4030 -2480
+  make_wire 4030 -2480 4130 -2480
+  make_wire 4100 -2520 4130 -2520
+  make_wire 4100 -2460 4130 -2460
+  make_wire 3260 -2470 3400 -2470
+  make_wire 3250 -2390 3400 -2390
+  make_wire 3250 -2440 3250 -2430
+  make_wire 3400 -2390 3400 -2430
+  make_wire 3250 -2440 3400 -2440
+  make_wire 3400 -2440 3400 -2450
+  make_wire 3570 -2450 3660 -2450
+  make_wire 3400 -2280 3520 -2280
+  make_wire 3270 -2280 3140 -2280
+  make_wire 4220 -2410 4230 -2410
+  make_wire 4220 -2410 4220 -2360
+  make_wire 4340 -2450 4340 -2520
+  make_wire 4340 -2520 4330 -2520
+  make_wire 4350 -2990 4350 -2940
+  make_wire 4490 -3180 4490 -2510
+  make_wire 4490 -2510 4580 -2510
+  make_wire 4440 -3180 4490 -3180
+  make_wire 1300 -3190 1360 -3190
+  make_wire 920 -3190 1100 -3190
+  make_text -origin {4580 -2590} -text {MAIN REGISTER FILE}
+}
+
+proc ICON_FinalProcessor args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-360 -70} -name CLOCK_IN
+  icon_term -type input -origin {-360 -40} -name {MDR_FROM_MEMORY[31:0]}
+  icon_term -type input -origin {-360 -10} -name MDR_WE_FROM_MEMORY
+  icon_term -type output -origin {350 -120} -name ALU_OVERFLOW
+  icon_term -type output -origin {350 -90} -name BRANCH_MODULE_OVERFLOW
+  icon_term -type output -origin {350 -60} -name LS_OVERFLOW
+  icon_term -type output -origin {350 110} -name {MDW_TO_MEMORY[31:0]}
+  icon_term -type output -origin {350 50} -name MEMORY_READ
+  icon_term -type output -origin {350 80} -name MEMORY_WRITE
+  icon_term -type output -origin {350 -30} -name PC_OVERFLOW
+  icon_term -type output -origin {350 0} -name STACKPOINTER_OVERFLOW
+  icon_term -type output -origin {350 140} -name {MAR_OUT[31:0]}
+  icon_property -origin {-210 580} -type user -name name
+  icon_property -origin {-210 600} -type user -name M
+  icon_property -origin {-210 620} -type user -name dpc
+  icon_property -origin {-350 -70} -label CLOCK_IN
+  icon_property -origin {-350 -40} -label {MDR_FROM_MEMORY[31:0]}
+  icon_property -origin {-350 -10} -label MDR_WE_FROM_MEMORY
+  icon_property -origin {340 -120} -anchor e -label ALU_OVERFLOW
+  icon_property -origin {340 -90} -anchor e -label BRANCH_MODULE_OVERFLOW
+  icon_property -origin {340 -60} -anchor e -label LS_OVERFLOW
+  icon_property -origin {340 110} -anchor e -label {MDW_TO_MEMORY[31:0]}
+  icon_property -origin {340 50} -anchor e -label MEMORY_READ
+  icon_property -origin {340 80} -anchor e -label MEMORY_WRITE
+  icon_property -origin {340 -30} -anchor e -label PC_OVERFLOW
+  icon_property -origin {340 0} -anchor e -label STACKPOINTER_OVERFLOW
+  icon_line -360 -220 -360 230 350 230 350 -220 -360 -220
+  icon_property -origin {-150 -160} -size very-large -label PROCESSOR
+  icon_property -origin {340 140} -anchor e -label {MAR_OUT[31:0]}
+}
+

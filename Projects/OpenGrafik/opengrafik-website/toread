@@ -1,0 +1,40 @@
+#summary relevant and interesting documents to read
+
+= Introduction =
+
+developer documents or articles that might be relevant to read.
+
+= Details =
+
+==gui==
+ * http://library.gnome.org/devel/gtk-tutorial/stable/
+ * http://library.gnome.org/devel/hig-book/stable/
+
+==gnome==
+ * http://library.gnome.org/devel/platform-overview/stable/
+
+==accessibility==
+ * http://developer.gnome.org/projects/gap/guide/gad/
+
+==documentation==
+ * http://library.gnome.org/devel/gnome-doc-make/0.12/
+ * http://library.gnome.org/devel/gdp-style-guide/stable/
+ * http://library.gnome.org/devel/gnome-doc-xslt/0.12/
+ * http://library.gnome.org/devel/gdp-handbook/stable/
+
+==c++==
+ * http://openismus.com/documents/cplusplus/standard_containers.shtml
+
+==autotools==
+ * http://openismus.com/documents/linux/automake/automake.shtml
+ * http://openismus.com/documents/linux/building_libraries/building_libraries.shtml
+ * http://openismus.com/documents/linux/using_libraries/using_libraries.shtml
+
+==cmake==
+ * http://www.insightsoftwareconsortium.org/wiki/index.php/CMake_Tutorial
+ * http://www.cmake.org/Wiki/CMake
+ * http://techbase.kde.org/index.php?title=Development/Tutorials/CMake
+
+==more==
+ * http://library.gnome.org/devel/guides
+ * http://www.openismus.com/

@@ -1,0 +1,157 @@
+sysconf
+=======
+
+Sysconf is a bash script to configure a running Linux-based system. It
+can be used to tune for performance or power-efficiency, among other
+things. Sysconf uses configuration files as profiles and is a
+standalone tool. Combined with pm-utils, sysconf can provide a
+full-featured power management suite for Linux-based systems.
+
+The aim for now is to keep it simple and increase the number of
+supported relevant tunables. I experimented several times with
+different ways to solve the problem of performance/powersaving
+trade-off and my conclusion is that, for now - especially on
+desktop/laptop systems and without any kernel fiddling, only the user
+can make the best decision. sysconf might grow, one day, into a daemon
+which monitors the system and auto-magically tunes it for the current
+workload.
+
+sysconf takes one or more profile filenames as arguments. A sysconf
+profile is a bash script in its own right that is sourced by the main
+sysconf script. The main sysconf script loads (actually, sources) the
+given profile/config files in sequence so that a profile given later
+overrides settings from profiles given earlier. That, combined with
+the *_set knobs (shell variables) provides a very flexible mechanism
+for combining different profiles to adapt to different scenarios.
+
+The special case is when a --version command line argument is given,
+sysconf prints version information and exits, completely ignoring any
+given profiles.
+
+sysconf is developed on an Archlinux system and I don't have access to
+any other systems. That is an invitation saying that bug reports and
+patches are most welcome.
+
+Currently, the following is supported:
+
+1. SysRq
+2. Swappiness
+3. CPU Frequency Scaling
+4. VFS Cache Pressure
+5. Laptop Mode
+6. Scheduler MC and SMT awareness
+7. NMI Watchdog
+8. PCI-Express ASPM
+9. Process killing
+10. Unloading kernel modules
+11. Inhibiting UDisks polling
+12. Wake-on-LAN
+13. SATA ALPM
+14. Putting down Bluetooth interfaces
+15. Putting down network interfaces
+16. Throttling down network adapter speed
+17. Wireless power management (doesn't seem to save power actually)
+18. Audio PM
+19. Runtime PM
+
+You are most welcome to contribute patches to increase the set of
+supported tunables. The following is a rough list of what is planned:
+
+1. HDD spindown timeout and APM using hdparm
+2. Intel CPU performance bias
+3. Filesystem mount options: atime, relatime, diratime, commit, data
+4. VM writeback delay
+5. Transparent Hugepages
+6. USB suspend
+7. Device PM
+
+sysconf is released under the WTFPL version 2. See the file COPYING
+for more information.
+
+HOW TO USE IT
+=============
+
+Create a "configuration profile" by making a copy of
+sysconfrc.conf.example and editing it as it pleases you. I try to keep
+the file very well documented. A good place for the configuration
+profiles is:
+
+/etc/sysconfrc-performance.conf
+/etc/sysconfrc-powersave.conf
+/etc/sysconfrc-dynamic.conf
+/etc/sysconfrc-powerdown-everything-except-wifi.conf
+/etc/sysconfrc-max-performance-everything-but-spin-down-disks.conf
+/etc/sysconfrc-powerdown-wifi.conf
+/etc/sysconfrc-performance-sata-disks.conf
+/etc/sysconfrc-cpufreq-powersave.conf
+etc...
+
+or
+
+/etc/sysconf.d/performance
+/etc/sysconf.d/powersave
+/etc/sysconf.d/dynamic
+/etc/sysconf.d/powerdown-everything-except-wifi
+/etc/sysconf.d/max-performance-everything-but-spin-down-disks
+/etc/sysconf.d/powerdown-wifi
+/etc/sysconf.d/performance-sata-disks
+/etc/sysconf.d/cpufreq-powersave
+etc...
+
+Yes, some of those profiles have annoyingly long filenames but that
+should give you an idea of what I'm trying to achieve with
+sysconf. More sane names would be, "office", "home", "friend1",
+"friend2", "airport", "performance", "ondemand", "powersave",
+etc... including combinations thereof (-wifi, -cpufreq, etc...) or
+whatever pleases you, really.
+
+To run sysconf with one or more profiles (where at least 1 is
+required), execute `sysconf <profile1-filename> <profile2-filename>
+...'. If you are still setting up a profile, it is a good idea to keep
+the log_output to /dev/stderr and only when you're done to change it
+to something in /var/log or /tmp (ie, /var/log/sysconf.log or
+/tmp/sysconf.log).
+
+I usually add sysconf to /etc/rc.local for applying the profile at
+startup and later re-run it manually with another desired set of
+profiles if needed.
+
+It might prove useful to add a sysconf HOOK to pm-utils, ie, to have
+the "powersave" profile applied when a laptop is on battery and the
+"performance" profile applied when the laptop is on AC
+(laptop-mode-tools behavior). In the same way, a HOOK to "fix my disks
+not spinning down before suspend so i will forcefully spin them down
+with sysconf" profile could be loaded before the system goes into
+suspend.
+
+You get the drill.
+
+DEPENDENCIES
+============
+
+1. linux
+2. bash
+3. kmod for modprobe
+4. procps-ng for kill
+5. psmisc for killall
+6. coreutils for id and echo
+7. sysvinit for pidof
+8. bluez for hciconfig [optional]
+9. net-tools for ifconfig [optional]
+10. wireless_tools for iwconfig and iwpriv [optional]
+11. ethtool for wake-on-LAN and down-throttling [optional]
+
+FAQ
+===
+
+1. What about laptop-mode-tools and pm-utils?
+
+- Those are great tools that partially solve the
+  problem. Unfortunately, I didn't like them very much since they only
+  limit performance/powersaving settings to on-AC/on-battery
+  states. What if I would like my laptop to charge faster? With
+  laptop-mode-tools, this is possible to achieve with user
+  intervention (namely, turning laptop-mode-tools off). For any more
+  flexibility, a new tool is needed. sysconf can be combined with
+  pm-utils to apply different profiles for on-AC/on-battery
+  scenarios. sysconf also aims at a much larger feature-set.

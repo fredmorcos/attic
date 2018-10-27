@@ -1,0 +1,363 @@
+#!/bin/bash
+
+# This program is free software. It comes without any warranty, to
+# the extent permitted by applicable law. You can redistribute it
+# and/or modify it under the terms of the Do What The Fuck You Want
+# To Public License, Version 2, as published by Sam Hocevar. See
+# http://sam.zoy.org/wtfpl/COPYING for more details.
+
+# This file alters kernel tunables.
+
+__sc_version="0.5"
+
+__sc_min_value=0
+__sc_max_value=255
+
+__sc_log_output=/dev/stderr
+
+__sc_log () {
+    echo "[$(date)] $1" >>$__sc_log_output
+}
+
+__sc_map_value () {
+    local levels=$1
+    local value=$2
+
+    if [[ $value < $__sc_min_value || $value > __sc_max_value ]]; then
+	__sc_log "__sc_map_value: bad value $value"
+	__sc_log "                $__sc_min_value <= value <= $sc_max_value"
+    fi
+
+    local factor=$(( $__sc_max_value / $levels ))
+    local mapped_value=$(( $value / $factor ))
+
+    return $mapped_value
+}
+
+# sysconf_module_title () {
+#     # $1 is the module name/title
+#     sysconf_log "running sysconf module $1"
+# }
+
+# sysconf_find_program () {
+#     # $1 is the program name to find
+#     bin=$(which $1 2>&1)	# DO NOT CHANGE THIS TO A LOCAL VAR!
+
+#     # for return values, we need to do some shell crap to provide a
+#     # return value and a return code that will not be shadowed by
+#     # running other utilities until the returned data is used (yes, I
+#     # am talking about $?).
+#     if [[ "$?" == "0" ]]; then
+# 	sysconf_log "  found $bin"
+# 	__sysconf_find_program_bin=$bin
+# 	__sysconf_find_program_return=0
+# 	return 0
+#     fi
+#     sysconf_log "  WARNING $1 not found"
+#     __sysconf_find_program_bin=
+#     __sysconf_find_program_return=1
+#     return 0
+# }
+
+# sysconf_main () {
+#     # those are sysconf modules, not kernel modules
+#     local simple_modules="cpufreq sysrq swappiness vfs_cache_pressure
+#       laptop_mode nmi_watchdog pcie_aspm scheduler_mc scheduler_smt
+#       sata_alpm runtime_pm"
+#     local complex_modules="processes_kill udisks_stop_polling wol_disable
+#       network_speed bluetooth_down network_iface_down wifi_power
+#       audio_powersave unload_kmod"
+
+#     for mod in $simple_modules; do
+# 	local module_set=${mod}_set
+# 	local module_set=${!module_set}
+
+# 	if [[ $module_set && $module_set == 1 ]]; then
+# 	    sysconf_module_title "$mod"
+# 	    sysconf_simple_setting $mod
+# 	fi
+#     done
+
+#     for mod in $complex_modules; do
+# 	local module_set=${mod}_set
+# 	local module_set=${!module_set}
+
+# 	if [[ $module_set && $module_set == 1 ]]; then
+# 	    sysconf_module_title "$mod"
+# 	    sysconf_$mod
+# 	fi
+#     done
+# }
+
+# sysconf_write () {
+#     # $1 is the value to be written
+#     # $2 is the file to be written to
+
+#     if [ -w $2 ]; then		# if we can write to the file
+# 	sysconf_log "  setting $2 to $1"
+# 	echo $1 > $2
+#     else			# if not, the we check
+# 	if [ -e $2 ]; then	# if we can find the file
+# 	    sysconf_log "  ERROR cannot write to $2"
+# 	    sysconf_log "  ERROR not sure why, i should be root"
+# 	else			# the file isn't even there
+# 	    sysconf_log "  WARNING cannot find $2"
+# 	    sysconf_log "  WARNING your system might not support it"
+# 	    sysconf_log "  WARNING that may or may not be a big deal"
+# 	fi
+#     fi
+# }
+
+# sysconf_load_kmodules () {
+#     # $1 is the sysconf module name, ie, "cpufreq" so that we load
+#     # kernel modules from the cpufreq_modules variable.
+
+#     local kmodules=${1}_modules	# kmodules = cpufreq_modules
+#     local kmodules=${!kmodules}	# kmodules = $cpufreq_modules
+
+#     for mod in $kmodules; do
+# 	sysconf_log "  loading kernel module $mod"
+# 	modprobe $mod &>/dev/null
+#     done
+# }
+
+# # TODO: also check if udisks is running, since it's pointless to
+# # disable udisks polling if udisks isn't polling in the first place
+# sysconf_udisks_stop_polling () {
+#     sysconf_find_program udisks
+#     local bin=$__sysconf_find_program_bin
+#     if [[ $__sysconf_find_program_return == 0 ]]; then
+# 	sysconf_log "  stopping polling"
+# 	$bin --inhibit-all-polling &>/dev/null &
+#     fi
+# }
+
+# sysconf_wol_disable () {
+#     sysconf_find_program ethtool
+#     local bin=$__sysconf_find_program_bin
+#     if [[ $__sysconf_find_program_return == 0 ]]; then
+# 	for iface in $wol_disable_value; do
+# 	    sysconf_log "  disabling WOL for $iface"
+# 	    $bin -s $iface wol d &>/dev/null
+# 	done
+#     fi
+# }
+
+# sysconf_network_speed () {
+#     sysconf_find_program ethtool
+#     local bin=$__sysconf_find_program_bin
+#     if [[ $__sysconf_find_program_return == 0 ]]; then
+# 	for iface in $network_speed_value; do
+# 	    local iface_value=network_speed_value_${iface}
+# 	    local iface_value=${!iface_value}
+# 	    sysconf_log "  setting $iface speed to $iface_value"
+# 	    if [[ $iface_value == auto ]]; then
+# 		$bin -s $iface autoneg on speed 1000 &>/dev/null
+# 	    elif [[ $iface_value == 1000 ]]; then
+# 		$bin -s $iface autoneg off speed 1000 &>/dev/null
+# 	    elif [[ $iface_value == 100 ]]; then
+# 		$bin -s $iface autoneg off speed 100 &>/dev/null
+# 	    elif [[ $iface_value == 10 ]]; then
+# 		$bin -s $iface autoneg off speed 10 &>/dev/null
+# 	    else
+# 		sysconf_log "  ERROR unknown speed $iface_value"
+# 	    fi
+# 	done
+#     fi
+# }
+
+# sysconf_bluetooth_down () {
+#     sysconf_find_program hciconfig
+#     local bin=$__sysconf_find_program_bin
+#     if [[ $__sysconf_find_program_return == 0 ]]; then
+# 	for iface in $bluetooth_down_value; do
+# 	    sysconf_log "  putting down $iface"
+# 	    $bin $iface down &>/dev/null
+# 	done
+#     fi
+# }
+
+# sysconf_network_iface_down () {
+#     sysconf_find_program ifconfig
+#     local bin=$__sysconf_find_program_bin
+#     if [[ $__sysconf_find_program_return == 0 ]]; then
+# 	for iface in $network_iface_down_value; do
+# 	    sysconf_log "  putting down $iface"
+# 	    $bin $iface down &>/dev/null
+# 	done
+#     fi
+# }
+
+# sysconf_wifi_power () {
+#     # this has to be implemented this way (going over each interface
+#     # for every program) due to the crappiness of the shell in
+#     # returning multiple values from functions (sysconf_find_program).
+#     sysconf_find_program iwpriv
+#     local bin=$__sysconf_find_program_bin
+#     if [[ $__sysconf_find_program_return == 0 ]]; then
+# 	for iface in $wifi_power_value; do
+# 	    local val=wifi_power_pspoll_${iface}
+# 	    local val=${!val}
+# 	    if [[ $val > 0 && $val < 6 ]]; then
+# 		sysconf_log "  setting pspoll $val on $iface"
+# 		$bin $iface set_power $val &>/dev/null
+# 	    elif [[ $val == off ]]; then
+# 		sysconf_log "  turning off pspoll on $iface"
+# 		$bin $iface set_power 6 &>/dev/null
+# 	    else
+# 		sysconf_log "  ERROR unknown pspoll value $val"
+# 	    fi
+# 	done
+#     fi
+
+#     sysconf_find_program iwconfig
+#     local bin=$__sysconf_find_program_bin
+#     if [[ $__sysconf_find_program_return == 0 ]]; then
+# 	for iface in $wifi_power_value; do
+# 	    local val=wifi_power_txradio_${iface}
+# 	    local val=${!val}
+# 	    if [[ $val == on || $val == off ]]; then
+# 		sysconf_log "  turning $val txradio on $iface"
+# 		$bin $iface txpower $val &>/dev/null
+# 	    else
+# 		sysconf_log "  ERROR unknown txradio value $val"
+# 	    fi
+
+# 	    local val=wifi_power_txpower_${iface}
+# 	    local val=${!val}
+# 	    if [[ $val == auto || $val == fixed ]]; then
+# 		sysconf_log "  setting txpower on $iface to $val"
+# 		$bin $iface txpower $val &>/dev/null
+# 	    else
+# 		sysconf_log "  ERROR unknown txpower value $val"
+# 	    fi
+
+# 	    local val=wifi_power_power_${iface}
+# 	    local val=${!val}
+# 	    if [[ $val == on || $val == off ]]; then
+# 		sysconf_log "  turning $val power on $iface"
+# 		$bin $iface power $val &>/dev/null
+# 	    else
+# 		sysconf_log "  ERROR unknown power value $val"
+# 	    fi
+# 	done
+#     fi
+# }
+
+# sysconf_audio_powersave () {
+#     for soundcard in $audio_powersave_files; do
+# 	sysconf_write $audio_powersave_delay $soundcard
+#     done
+
+#     for controller in $audio_powersave_controller_files; do
+# 	local val=$audio_powersave_value
+# 	if [[ $val == on ]]; then
+# 	    sysconf_write "Y" $controller
+# 	elif [[ $val == off ]]; then
+# 	    sysconf_write "N" $controller
+# 	else
+# 	    sysconf_log "  ERROR unknown value $val"
+# 	fi
+#     done
+# }
+
+# sysconf_processes_kill () {
+#     for proc in $processes_kill_value; do
+# 	sysconf_log "  finding $proc pid"
+# 	pid=`pidof $proc`
+
+# 	if [[ $? == 0 ]]; then
+# 	    sysconf_log "  pid is $pid"
+# 	    sysconf_log "  gently terminating $proc"
+# 	    kill -s TERM $pid
+
+# 	    sysconf_log "  waiting for a second"
+# 	    sleep 1
+
+# 	    sysconf_log "  checking if $proc is still running"
+# 	    pid=`pidof $proc`
+
+# 	    if [[ $? == 0 ]]; then
+# 		sysconf_log "  $proc still running, will kill it"
+# 		killall $proc &>/dev/null
+# 	    else
+# 		sysconf_log "  $proc terminated"
+# 	    fi
+# 	else
+# 	    sysconf_log "  $proc is not running, next"
+# 	    continue
+# 	fi
+#     done
+# }
+
+# sysconf_unload_kmod () {
+#     for mod in $unload_kmod_value; do
+# 	sysconf_log "  unloading $mod"
+# 	modprobe -r $mod &>/dev/null
+#     done
+# }
+
+# sysconf_simple_setting () {
+#     # $1 is the module name
+
+#     # this will set the needed variables according to the module name,
+#     # ie, sysrq_set, sysrq_value and sysrq_file.
+#     local module_set=${1}_set
+#     local module_value=${1}_value
+#     local module_files=${1}_files
+#     local module_modules=${1}_modules
+
+#     # here we do some bash magic to dereference sysrq_set, sysrq_value
+#     # and sysrq_file to $sysrq_set, $sysrq_value and $sysrq_file,
+#     # which is what we need.
+#     local module_set=${!module_set}
+#     local module_value=${!module_value}
+#     local module_files=${!module_files}
+#     local module_modules=${!module_modules}
+
+#     sysconf_load_kmodules $1
+
+#     for i in $module_files; do
+# 	sysconf_write $module_value $i
+#     done
+# }
+
+# check_root () {
+#     echo "checking for root" 1>&2
+#     if [ "$(id -u)" != "0" ]; then
+# 	echo "please run as root" 1>&2
+# 	exit 1
+#     else
+# 	echo "i am root, good" 1>&2
+#     fi
+# }
+
+# # check if the --version command line information was given, and if so
+# # then print information and exit
+# for arg in $@; do
+#     if [[ "$arg" == "--version" ]]; then
+# 	echo "sysconf ${sysconf_version}-devel"
+# 	echo "https://github.com/fredmorcos/sysconf"
+# 	exit 0
+#     fi
+# done
+
+# check_root			# first check for root
+# if [[ $# < 1 ]]; then		# if no arguments given
+#     echo "no arguments given" 1>&2
+#     echo "usage: sysconf <profile-filenames> ..." 1>&2
+#     echo "       sysconf --version" 1>&2
+#     exit 1
+# fi
+
+# for arg in $@; do
+#     echo "loading $arg" 1>&2
+#     . $arg 2>/dev/null 		# source the config/profile
+#     if [[ $? != 0 ]]; then	# if sourcing fails
+# 	echo "cannot source $arg" 1>&2
+# 	exit 1
+#     fi
+# done
+
+# sysconf_main
+# exit 0

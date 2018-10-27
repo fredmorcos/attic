@@ -1,0 +1,11 @@
+[package]
+name = "workspaces"
+version = "0.1.0"
+authors = ["Fred Morcos <fred.morcos@gmail.com>"]
+
+[dependencies]
+add-one = { path = "add-one" }
+rand = "0.3.14"
+
+[workspace]
+

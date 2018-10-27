@@ -1,0 +1,43 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_decoder_2_1_enable {} {
+  make input -name a -origin {310 440}
+  make input -name e -origin {350 280}
+  make nand2 -origin {500 310}
+  make nand2 -origin {500 420}
+  make inverter -origin {600 310}
+  make inverter -origin {600 420}
+  make output -name out0 -origin {650 310}
+  make output -name out1 -origin {650 420}
+  make inverter -origin {420 330}
+  make_wire 430 280 430 290
+  make_wire 420 280 430 280
+  make_wire 350 280 420 280
+  make_wire 430 290 480 290
+  make_wire 420 400 480 400
+  make_wire 420 280 420 400
+  make_wire 310 440 350 440
+  make_wire 480 440 350 440
+  make_wire 480 330 470 330
+  make_wire 350 330 390 330
+  make_wire 350 330 350 440
+}
+
+proc ICON_decoder_2_1_enable args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 -20} -name a
+  icon_term -type input -origin {-100 20} -name e
+  icon_term -type output -origin {100 -20} -name out0
+  icon_term -type output -origin {100 10} -name out1
+  icon_property -origin {-50 140} -type user -name name
+  icon_property -origin {-50 160} -type user -name M
+  icon_property -origin {-50 180} -type user -name dpc
+  icon_line -100 -50 -100 50 100 50 100 -50 -100 -50
+  icon_property -origin {-10 -20} -label decoder
+  icon_property -origin {-10 20} -label {1 to 2}
+  icon_property -origin {-90 -20} -label a
+  icon_property -origin {-90 20} -label e
+  icon_property -origin {90 -20} -anchor e -label out0
+  icon_property -origin {90 10} -anchor e -label out1
+}
+

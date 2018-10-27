@@ -1,0 +1,7 @@
+lib_src = ["lib.c"]
+lib_hdr = ["lib.h"]
+hello_src = ["hello.c"]
+
+SharedLibrary("hello", lib_src)
+Program("test", hello_src, LIBS=["hello"], LIBPATH=["."], CPPPATH=["."])
+

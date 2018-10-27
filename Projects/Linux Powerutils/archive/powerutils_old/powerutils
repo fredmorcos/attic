@@ -1,0 +1,261 @@
+#!/bin/bash
+
+# This is the powerutils main executable.
+# View /usr/share/doc/powerutils/README for more information.
+
+# Public domain, use at your own risk.
+# Fred morcos (fred dot morcos at gmail dot com)
+
+# powerutils (PU) configuration filename
+PU_CONF=powerutils.conf
+
+# default log output (stderr or log file)
+LOG_OUTPUT=stderr
+
+# Helper function for logging to stderr or a log file
+log () {
+    if [ $LOG_OUTPUT == stderr ]; then
+        echo $1 >&2
+    else
+        echo $1 > $LOG_OUTPUT
+    fi
+}
+
+# Helper function for logging title "bars"
+log_title () {
+    let l=$((20-4-${#1}))
+
+    echo -n "== $1 "
+
+    while (( $l >= 0 )); do
+        echo -n "="
+        let l--
+    done
+    echo ""
+}
+
+processor () {
+    log_title "Processor"
+
+    modprobe acpi-cpufreq
+    modprobe cpufreq_powersave
+    modprobe cpufreq_ondemand
+
+    governors=/sys/devices/system/cpu/*/cpufreq/scaling_governor
+
+    low_gov=powersave
+    dyn_gov=ondemand
+    max_gov=performance
+
+    for i in $governors; do
+        case $1 in
+            low) echo $low_gov > $i ;;
+            dyn) echo $dyn_gov > $i ;;
+            max) echo $max_gov > $i ;;
+            *)   log "Bad parameter $1" ;;
+        esac
+    done
+}
+
+processes () {
+    log_title "Processes"
+
+    for i in $PROCESSES_KILL; do
+        killall $i
+    done
+}
+
+disks () {
+    log_title "Disks"
+
+    let primary_time_perf=$(($DISKS_PRIMARY_SPIN_TIME_PERF * 60 / 5))
+    let secondary_time_perf=$(($DISKS_SECONDARY_SPIN_TIME_PERF * 60 / 5))
+
+    let primary_time_save=$(($DISKS_PRIMARY_SPIN_TIME_SAVE * 60 / 5))
+    let secondary_time_save=$(($DISKS_SECONDARY_SPIN_TIME_SAVE * 60 / 5))
+
+    if (( $primary_time_perf > 255 )); then
+        let primary_time_perf=255
+    fi
+
+    if (( $secondary_time_perf > 255 )); then
+        let secondary_time_perf=255
+    fi
+
+    if (( $primary_time_save < 0 )); then
+        let primary_time_save=0
+    fi
+
+    if (( $secondary_time_save < 0 )); then
+        let secondary_time_save=0
+    fi
+
+    case $1 in
+        low | dyn)
+            for i in $DISKS_PRIMARY; do
+                if [ -e /dev/$i ]; then
+                    hdparm -a 256 -A 1 -S $primary_time_save -B 200 -K 1 /dev/$i
+                fi
+            done
+
+            for i in $DISKS_SECONDARY; do
+                if [ -e /dev/$i ]; then
+                    hdparm -a 256 -A 1 -S $secondary_time_save -B 200 -K 1 /dev/$i
+                fi
+            done
+            ;;
+        max)
+            for i in $DISKS_PRIMARY; do
+                if [ -e /dev/$i ]; then
+                    hdparm -a 256 -A 1 -S $primary_time_perf -B 255 -K 1 /dev/$i
+                fi
+            done
+
+            for i in $DISKS_SECONDARY; do
+                if [ -e /dev/$i ]; then
+                    hdparm -a 256 -A 1 -S $secondary_time_perf -B 200 -K 1 /dev/$i
+                fi
+            done
+            ;;
+        *) log "Bad parameter $1" ;;
+    esac
+}
+
+vm_writeback () {
+    log_title "VM Writeback"
+
+    writeback=/proc/sys/vm/dirty_writeback_centisecs
+    expire=/proc/sys/vm/dirty_expire_centisecs
+
+    case $1 in
+	low)
+	    echo 6000 >	$writeback # 60 seconds
+	    echo 6000 >	$expire	   # 60 seconds
+	    ;;
+	dyn)
+	    echo 3000 >	$writeback # 30 seconds
+	    echo 3000 >	$expire	   # 30 seconds
+	    ;;
+	max)
+	    echo 1000 >	$writeback # 10 seconds
+	    echo 1000 >	$expire	   # 10 seconds
+	    ;;
+	*) log "Bad parameter $1" ;;
+    esac
+}
+
+nmi_watchdog () {
+    log_title "NMI Watchdog"
+    echo 0 > /proc/sys/kernel/nmi_watchdog # echo 1 for performance?
+}
+
+pcie_aspm () {
+    log_title "PCIe ASPM"
+
+    file=/sys/module/pcie_aspm/parameters/policy
+
+    case $1 in
+        low | dyn) echo powersave   > $file ;;
+        max)       echo performance > $file ;;
+        *)         log  "Bad parameter $1" ;;
+    esac
+}
+
+laptop_mode () {
+    log_title "Laptop Mode"
+
+    file=/proc/sys/vm/laptop_mode
+
+    case $1 in
+        low) echo 5 > $file ;;
+        dyn) echo 3 > $file ;;
+        max) echo 0 > $file ;;
+        *)   log  "Bad parameter $1" ;;
+    esac
+}
+
+udisks () {
+    log_title "UDisks"
+    udisks --inhibit-all-polling &
+}
+
+usb () {
+    log_title "USB"
+
+    usb_power=/sys/bus/usb/devices/*/power/
+
+    for i in $usb_power/control; do
+        case $1 in
+            low | dyn) echo "auto" > $i ;;
+            max)       echo "on"   > $i ;;
+            *)         log  "Bad parameter $1" ;;
+        esac
+    done
+
+    let d=$(($USB_AUTOSUSPEND_DELAY * 1000))
+
+    for i in $usb_power/autosuspend_delay_ms; do
+        echo $d > $i
+    done
+}
+
+wireless () {
+    log_title "Wireless"
+
+    for i in $WLAN_DEVICES; do
+        case $1 in
+            low | dyn)
+                iwconfig $i txpower auto
+                iwconfig $i power on
+                # iwconfig $i power saving 3
+                # iwconfig $i power timeout 100m
+                # iwconfig $i power all
+
+                # iwpriv $i set_power 5
+                ;;
+            max)
+                iwconfig $i txpower fixed
+                iwconfig $i power on
+                # iwconfig $i power saving 1
+                # iwconfig $i power timeout 100m
+                # iwconfig $i power all
+
+                # iwpriv $i set_power 0
+                ;;
+            *) log "Bad parameter $1" ;;
+        esac
+    done
+}
+
+ethernet () {
+    log_title "Ethernet"
+
+    for i in $ETH_DEVICES; do
+        ethtool -s $i wol d
+    done
+}
+
+sata () {
+    log_title "SATA"
+
+    links=/sys/class/scsi_host/host*/link_power_management_policy
+
+    for i in $links; do
+        case $1 in
+	    low | dyn) echo min_power       > $i ;;
+	    max)       echo max_performance > $i ;;
+            *)         log  "Bad parameter $1" ;;
+        esac
+    done
+}
+
+# Script starts here, look for configuration file
+if [ -r $PU_CONF ]; then
+    source $PU_CONF
+    log "Loading configuration from $PU_CONF"
+elif [ -r /etc/$PU_CONF ]; then
+    source /etc/$PU_CONF
+    log "Loading configuration from /etc/$PU_CONF"
+else
+    log "Cannot find configuration file $PU_CONF"
+fi

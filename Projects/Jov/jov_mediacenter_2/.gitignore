@@ -1,0 +1,8 @@
+*.o
+*~
+.#*
+\#*
+jov
+gmon.out
+scan_clang
+callgrind*

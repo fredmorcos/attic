@@ -1,0 +1,26 @@
+version=1
+link="http://github.com/fredmorcos/powerutils"
+
+log_header () {
+    log_info "powerutils starting on $(date)"
+
+    if [[ $debug == 1 ]]; then
+	log_info "debugging enabled"
+    fi
+}
+
+log_info () {
+    if [[ $debug == 1 ]]; then
+	echo $1
+    else
+	echo $1 >> $logfile
+    fi
+}
+
+log_err () {
+    if [[ $debug == 1 ]]; then
+	echo $1 > /dev/stderr
+    else
+	echo $1 >> $logfile
+    fi
+}

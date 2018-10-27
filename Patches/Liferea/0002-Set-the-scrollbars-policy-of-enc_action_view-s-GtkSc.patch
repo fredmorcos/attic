@@ -1,0 +1,25 @@
+From 43efafaf0c9d871f093f60aa36a53c7a5935591a Mon Sep 17 00:00:00 2001
+From: Fred Morcos <fred.morcos@gmail.com>
+Date: Sat, 4 Dec 2010 00:30:14 +0100
+Subject: [PATCH 2/4] Set the scrollbars policy of enc_action_view's GtkScrolledWindow to automatic
+
+---
+ glade/liferea.ui |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
+
+diff --git a/glade/liferea.ui b/glade/liferea.ui
+index 13fa336..d44369c 100644
+--- a/glade/liferea.ui
++++ b/glade/liferea.ui
+@@ -2924,6 +2924,8 @@
+                                 <property name="visible">True</property>
+                                 <property name="can_focus">True</property>
+                                 <property name="shadow_type">in</property>
++                                <property name="hscrollbar_policy">automatic</property>
++                                <property name="vscrollbar_policy">automatic</property>
+                                 <child>
+                                   <object class="GtkTreeView" id="enc_action_view">
+                                     <property name="height_request">100</property>
+-- 
+1.7.3.3
+

@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+// #define cilk
+// #define spawn
+// #define sync
+
+cilk int fib (int);
+
+cilk int main (int argc, char **argv)
+{
+  int res;
+
+  res = spawn fib(40);
+
+  sync;
+
+  printf("%d\n", res);
+  return 0;
+}
+
+cilk int fib (int n)
+{
+  int x, y;
+
+  if (n < 2) return n;
+
+  x = spawn fib (n - 1);
+  y = spawn fib (n - 2);
+
+  sync;
+
+  return x + y;
+}

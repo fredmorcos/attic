@@ -1,0 +1,9 @@
+- Errors should contain:
+  - Type
+  - Message
+  - Exit code
+  - Extra information
+- Import/Export
+- Editing
+- Removing
+- Stats

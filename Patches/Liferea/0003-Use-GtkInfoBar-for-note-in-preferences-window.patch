@@ -1,0 +1,54 @@
+From ed63f2dca2bd396d5360a43267d09364955761b1 Mon Sep 17 00:00:00 2001
+From: Fred Morcos <fred.morcos@gmail.com>
+Date: Mon, 6 Dec 2010 01:53:11 +0100
+Subject: [PATCH 3/4] Use GtkInfoBar for note in preferences window
+
+---
+ glade/liferea.ui |   24 ++++++++++++++++++------
+ 1 files changed, 18 insertions(+), 6 deletions(-)
+
+diff --git a/glade/liferea.ui b/glade/liferea.ui
+index d44369c..91b3057 100644
+--- a/glade/liferea.ui
++++ b/glade/liferea.ui
+@@ -1,6 +1,6 @@
+ <?xml version="1.0"?>
+ <interface>
+-  <requires lib="gtk+" version="2.16"/>
++  <requires lib="gtk+" version="2.18"/>
+   <!-- interface-naming-policy toplevel-contextual -->
+   <object class="GtkListStore" id="liststore1">
+     <columns>
+@@ -1552,12 +1552,24 @@
+                               </packing>
+                             </child>
+                             <child>
+-                              <object class="GtkLabel" id="label135">
++                              <object class="GtkInfoBar" id="infobar1">
+                                 <property name="visible">True</property>
+-                                <property name="xalign">0</property>
+-                                <property name="label" translatable="yes" comments="Feed update interval hint in preference dialog.">Note: &lt;i&gt;Please remember to set a reasonable refresh time. Usually it is a waste of bandwidth to poll feeds more often than each hour.&lt;/i&gt;</property>
+-                                <property name="use_markup">True</property>
+-                                <property name="wrap">True</property>
++                                <property name="message_type">info</property>
++                                <child internal-child="content_area">
++                                  <object class="GtkVBox" id="infobar1_content_area">
++                                    <child>
++                                      <object class="GtkLabel" id="label135">
++                                        <property name="label" translatable="yes" comments="Feed update interval hint in preference dialog.">&lt;b&gt;Note&lt;/b&gt;
++
++Please remember to set a reasonable refresh time. Usually it is a waste of bandwidth to poll feeds more often than each hour.</property>
++                                        <property name="use_markup">True</property>
++                                        <property name="wrap">True</property>
++                                        <property name="visible">True</property>
++                                        <property name="xalign">0</property>
++                                      </object>
++                                    </child>
++                                  </object>
++                                </child>
+                               </object>
+                               <packing>
+                                 <property name="expand">False</property>
+-- 
+1.7.3.3
+

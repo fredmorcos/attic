@@ -1,0 +1,5 @@
+      [paste.app_factory]
+      main = markr:main
+      [console_scripts]
+      initialize_Markr_db = markr.scripts.initializedb:main
+      

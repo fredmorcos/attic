@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<schedule>
+    <task begin="1286969554" duration="0" deadline="1286969554" fixed="0">
+        <description></description>
+    </task>
+    <task begin="1286969550" duration="0" deadline="1286969550" fixed="0">
+        <description></description>
+    </task>
+    <task begin="1286969556" duration="0" deadline="1286969556" fixed="0">
+        <description></description>
+    </task>
+</schedule>

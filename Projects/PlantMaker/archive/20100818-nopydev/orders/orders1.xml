@@ -1,0 +1,13 @@
+<order-list>
+	<order deadline="30" id="1">
+		<recipe degreaser="2" dryer="2" fluxer="2" kettle="2" passivator="2" pickler="2" postrinser="2" quencher="2" rinser="2" stripper="2"/>
+	</order>
+	<order deadline="35" id="2">
+		<recipe degreaser="2" dryer="2" fluxer="2" kettle="2" passivator="2" pickler="2" postrinser="3" quencher="2" rinser="2" stripper="4"/>
+	</order>
+	<!--
+	<order deadline="45" id="3">
+		<recipe degreaser="2" dryer="2" fluxer="2" kettle="2" passivator="2" pickler="2" postrinser="2" quencher="2" rinser="2" stripper="3"/>
+	</order>
+	-->
+</order-list>

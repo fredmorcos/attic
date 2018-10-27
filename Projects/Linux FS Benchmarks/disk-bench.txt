@@ -1,0 +1,78 @@
+single internal read: 66.8 MB/s 65.5 MB/s
+btrfs textfile read to devnull: 6 GB in 45.3 seconds -> 133 MB/s
+btrfs isofile read to devnull: 2.5 GB in 20.9 seconds -> 119 MB/s
+
+[fred@axon ~]$ time bash -c "dd if=/dev/zero of=footest bs=32M count=100 && sync"
+100+0 records in
+100+0 records out
+3355443200 bytes (3.4 GB) copied, 2.85211 s, 1.2 GB/s
+
+real	0m6.826s
+user	0m0.007s
+sys	0m2.797s
+
+[fred@axon ~]$ dd if=/dev/urandom of=/tmp/footest bs=16M count=100
+100+0 records in
+100+0 records out
+1677721600 bytes (1.7 GB) copied, 121.406 s, 13.8 MB/s
+[fred@axon ~]$ sync
+[fred@axon ~]$ time bash -c "dd if=/tmp/footest of=footest && sync"
+3276800+0 records in
+3276800+0 records out
+1677721600 bytes (1.7 GB) copied, 24.5127 s, 68.4 MB/s
+
+real	0m27.091s
+user	0m0.590s
+sys	0m10.847s
+
+[fred@axon ~]$ time bash -c "sudo dd if=/tmp/footest of=/footest && sudo sync"
+3276800+0 records in
+3276800+0 records out
+1677721600 bytes (1.7 GB) copied, 16.2029 s, 104 MB/s
+
+real	0m18.757s
+user	0m0.497s
+sys	0m7.320s
+
+RAW raid read: 131.2 MB/s
+RAW raid write: 105.9 MB/s
+
+ext4 raid read:
+[fred@axon test]$ dd if=footest of=/dev/null
+3276800+0 records in
+3276800+0 records out
+1677721600 bytes (1.7 GB) copied, 8.01363 s, 209 MB/s
+
+ext4 raid write: 
+[fred@axon test]$ time bash -c "dd if=/tmp/footest of=footest && sync"
+3276800+0 records in
+3276800+0 records out
+1677721600 bytes (1.7 GB) copied, 9.42471 s, 178 MB/s
+
+real	0m11.691s
+user	0m0.477s
+sys	0m6.563s
+
+ANOTHER TEST with devzero
+
+[fred@axon test]$ time bash -c "dd if=/dev/zero of=footest bs=32M count=100 && sync"
+100+0 records in
+100+0 records out
+3355443200 bytes (3.4 GB) copied, 18.9947 s, 177 MB/s
+
+real	0m21.037s
+user	0m0.007s
+sys	0m5.143s
+
+btrfs raid read:
+
+
+btrfs raid write:
+[fred@axon test]$ time bash -c "dd if=/tmp/footest of=footest && sync"
+3276800+0 records in
+3276800+0 records out
+1677721600 bytes (1.7 GB) copied, 11.2947 s, 149 MB/s
+
+real	0m13.153s
+user	0m0.560s
+sys	0m8.323s

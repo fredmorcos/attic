@@ -1,0 +1,49 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_programcounter {} {
+  make mux32bit221 -origin {480 400}
+  make output -name {out[31:0]} -origin {900 320}
+  make input -name {BT[31:0]} -origin {300 410}
+  make input -name clock -origin {610 500}
+  make global -name vdd -origin {610 440}
+  make cell32 -origin {750 340}
+  make input -orient R270 -name s -origin {420 460}
+  make output -name overflow -origin {310 350}
+  make pcincrement -origin {210 330}
+  make_wire 900 120 900 320
+  make_wire 70 120 900 120
+  make_wire 860 320 900 320
+  make_wire 650 360 650 500
+  make_wire 660 360 650 360
+  make_wire 610 500 650 500
+  make_wire 350 340 380 340
+  make_wire 420 440 420 460
+  make_wire 660 320 580 320
+  make_wire 310 320 380 320
+  make_wire 70 320 110 320
+  make_wire 70 120 70 320
+  make_wire 300 410 350 410
+  make_wire 350 340 350 410
+  make_wire 610 340 610 440
+  make_wire 610 340 660 340
+}
+
+proc ICON_programcounter args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 -50} -name {BT[31:0]}
+  icon_term -type input -origin {-100 -30} -name clock
+  icon_term -type input -origin {-100 -10} -name s
+  icon_term -type output -origin {100 -50} -name {out[31:0]}
+  icon_term -type output -origin {100 10} -name overflow
+  icon_property -origin {-50 100} -type user -name name
+  icon_property -origin {-50 120} -type user -name M
+  icon_property -origin {-50 140} -type user -name dpc
+  icon_line -100 -90 -100 50 100 50 100 -90 -100 -90
+  icon_property -origin {-80 -80} -label {program counter}
+  icon_property -origin {-90 -50} -size small -label {BT[31:0]}
+  icon_property -origin {-90 -30} -size small -label clock
+  icon_property -origin {-90 -10} -size small -label s
+  icon_property -origin {90 -50} -size small -anchor e -label {out[31:0]}
+  icon_property -origin {90 10} -size small -anchor e -label overflow
+}
+

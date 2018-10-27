@@ -1,0 +1,11 @@
+{
+    "title":    "Data Memory",
+    "image":    "sbn-mem.svg",
+    "is_mem":   true,
+    "mem_name": "DMEM",
+
+    "mem_elements": {
+	"%DATA1%": "DATA",
+	"%DATA2%": "DDATA"
+    }
+}

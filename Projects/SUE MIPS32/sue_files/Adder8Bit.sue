@@ -1,0 +1,29 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_Adder8Bit {} {
+  make ripple4 -origin {280 330}
+  make ripple4 -origin {660 330}
+  make input -orient R90 -name {b[7:4]} -origin {220 220}
+  make input -orient R90 -name {a[7:4]} -origin {340 220}
+  make input -orient R90 -name {b[3:0]} -origin {600 220}
+  make input -orient R90 -name {a[3:0]} -origin {720 220}
+  make input -orient RXY -name cin -origin {810 370}
+  make output -orient RXY -name cout -origin {130 370}
+  make output -orient R90 -name {sum[7:4]} -origin {280 420}
+  make output -orient R90 -name {sum[3:0]} -origin {660 420}
+  make_wire 510 370 430 370
+}
+
+proc ICON_Adder8Bit args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 -80} -name {a[7:0]}
+  icon_term -type input -origin {-100 -60} -name {b[7:0]}
+  icon_term -type input -origin {-100 -40} -name cin
+  icon_term -type output -origin {100 -80} -name cout
+  icon_term -type output -origin {100 -40} -name {sum[7:0]}
+  icon_property -origin {-50 70} -type user -name name
+  icon_property -origin {-50 90} -type user -name M
+  icon_property -origin {-50 110} -type user -name dpc
+  icon_line -100 -170 -100 40 100 40 100 -170 -100 -170
+}
+

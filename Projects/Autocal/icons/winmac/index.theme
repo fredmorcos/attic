@@ -1,0 +1,11 @@
+[Icon Theme]
+Name=WinMac
+Comment=Icons for Windows and Mac
+Inherits=default
+Directories=24x24,32x32
+
+[24x24]
+Size=24
+Type=Fixed
+Context=Applications
+

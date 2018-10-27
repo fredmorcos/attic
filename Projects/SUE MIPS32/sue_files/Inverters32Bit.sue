@@ -1,0 +1,210 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_Inverters32Bit {} {
+  make inverter -orient R90 -origin {160 320}
+  make inverter -orient R90 -origin {160 400}
+  make inverter -orient R90 -origin {230 320}
+  make inverter -orient R90 -origin {230 400}
+  make inverter -orient R90 -origin {300 320}
+  make inverter -orient R90 -origin {300 400}
+  make inverter -orient R90 -origin {370 320}
+  make inverter -orient R90 -origin {370 400}
+  make inverter -orient R90 -origin {440 320}
+  make inverter -orient R90 -origin {440 400}
+  make inverter -orient R90 -origin {510 320}
+  make inverter -orient R90 -origin {510 400}
+  make inverter -orient R90 -origin {580 320}
+  make inverter -orient R90 -origin {580 400}
+  make inverter -orient R90 -origin {650 320}
+  make inverter -orient R90 -origin {650 400}
+  make inverter -orient R90 -origin {730 320}
+  make inverter -orient R90 -origin {730 400}
+  make inverter -orient R90 -origin {800 320}
+  make inverter -orient R90 -origin {800 400}
+  make inverter -orient R90 -origin {870 320}
+  make inverter -orient R90 -origin {870 400}
+  make inverter -orient R90 -origin {940 320}
+  make inverter -orient R90 -origin {940 400}
+  make inverter -orient R90 -origin {1010 320}
+  make inverter -orient R90 -origin {1010 400}
+  make inverter -orient R90 -origin {1080 320}
+  make inverter -orient R90 -origin {1080 400}
+  make inverter -orient R90 -origin {1150 320}
+  make inverter -orient R90 -origin {1150 400}
+  make inverter -orient R90 -origin {1220 320}
+  make inverter -orient R90 -origin {1220 400}
+  make inverter -orient R90 -origin {1290 320}
+  make inverter -orient R90 -origin {1290 400}
+  make inverter -orient R90 -origin {1360 320}
+  make inverter -orient R90 -origin {1360 400}
+  make inverter -orient R90 -origin {1430 320}
+  make inverter -orient R90 -origin {1430 400}
+  make inverter -orient R90 -origin {1500 320}
+  make inverter -orient R90 -origin {1500 400}
+  make inverter -orient R90 -origin {1570 320}
+  make inverter -orient R90 -origin {1570 400}
+  make inverter -orient R90 -origin {1640 320}
+  make inverter -orient R90 -origin {1640 400}
+  make inverter -orient R90 -origin {1710 320}
+  make inverter -orient R90 -origin {1710 400}
+  make inverter -orient R90 -origin {1780 320}
+  make inverter -orient R90 -origin {1780 400}
+  make inverter -orient R90 -origin {1860 320}
+  make inverter -orient R90 -origin {1860 400}
+  make inverter -orient R90 -origin {1930 320}
+  make inverter -orient R90 -origin {1930 400}
+  make inverter -orient R90 -origin {2000 320}
+  make inverter -orient R90 -origin {2000 400}
+  make inverter -orient R90 -origin {2070 320}
+  make inverter -orient R90 -origin {2070 400}
+  make inverter -orient R90 -origin {2140 320}
+  make inverter -orient R90 -origin {2140 400}
+  make inverter -orient R90 -origin {2210 320}
+  make inverter -orient R90 -origin {2210 400}
+  make inverter -orient R90 -origin {2280 320}
+  make inverter -orient R90 -origin {2280 400}
+  make inverter -orient R90 -origin {2350 320}
+  make inverter -orient R90 -origin {2350 400}
+  make input -orient R90 -name {in[0]} -origin {160 220}
+  make input -orient R90 -name {in[1]} -origin {230 220}
+  make input -orient R90 -name {in[2]} -origin {300 220}
+  make input -orient R90 -name {in[3]} -origin {370 220}
+  make input -orient R90 -name {in[4]} -origin {440 220}
+  make input -orient R90 -name {in[5]} -origin {510 220}
+  make input -orient R90 -name {in[6]} -origin {580 220}
+  make input -orient R90 -name {in[7]} -origin {650 220}
+  make input -orient R90 -name {in[8]} -origin {730 220}
+  make input -orient R90 -name {in[9]} -origin {800 220}
+  make input -orient R90 -name {in[10]} -origin {870 220}
+  make input -orient R90 -name {in[11]} -origin {940 220}
+  make input -orient R90 -name {in[12]} -origin {1010 220}
+  make input -orient R90 -name {in[13]} -origin {1080 220}
+  make input -orient R90 -name {in[14]} -origin {1150 220}
+  make input -orient R90 -name {in[15]} -origin {1220 220}
+  make input -orient R90 -name {in[16]} -origin {1290 220}
+  make input -orient R90 -name {in[17]} -origin {1360 220}
+  make input -orient R90 -name {in[18]} -origin {1430 220}
+  make input -orient R90 -name {in[19]} -origin {1500 220}
+  make input -orient R90 -name {in[20]} -origin {1570 220}
+  make input -orient R90 -name {in[21]} -origin {1640 220}
+  make input -orient R90 -name {in[22]} -origin {1710 220}
+  make input -orient R90 -name {in[23]} -origin {1780 220}
+  make input -orient R90 -name {in[24]} -origin {1860 220}
+  make input -orient R90 -name {in[25]} -origin {1930 220}
+  make input -orient R90 -name {in[26]} -origin {2000 220}
+  make input -orient R90 -name {in[27]} -origin {2070 220}
+  make input -orient R90 -name {in[28]} -origin {2140 220}
+  make input -orient R90 -name {in[29]} -origin {2210 220}
+  make input -orient R90 -name {in[30]} -origin {2280 220}
+  make input -orient R90 -name {in[31]} -origin {2350 220}
+  make output -orient R90 -name {out[0]} -origin {160 570}
+  make output -orient R90 -name {out[1]} -origin {230 570}
+  make output -orient R90 -name {out[2]} -origin {300 570}
+  make output -orient R90 -name {out[3]} -origin {370 570}
+  make output -orient R90 -name {out[4]} -origin {440 570}
+  make output -orient R90 -name {out[5]} -origin {510 570}
+  make output -orient R90 -name {out[6]} -origin {580 570}
+  make output -orient R90 -name {out[7]} -origin {650 570}
+  make output -orient R90 -name {out[8]} -origin {730 570}
+  make output -orient R90 -name {out[9]} -origin {800 570}
+  make output -orient R90 -name {out[10]} -origin {870 570}
+  make output -orient R90 -name {out[11]} -origin {940 570}
+  make output -orient R90 -name {out[12]} -origin {1010 570}
+  make output -orient R90 -name {out[13]} -origin {1080 570}
+  make output -orient R90 -name {out[14]} -origin {1150 570}
+  make output -orient R90 -name {out[15]} -origin {1220 570}
+  make output -orient R90 -name {out[16]} -origin {1290 570}
+  make output -orient R90 -name {out[17]} -origin {1360 570}
+  make output -orient R90 -name {out[18]} -origin {1430 570}
+  make output -orient R90 -name {out[19]} -origin {1500 570}
+  make output -orient R90 -name {out[20]} -origin {1570 570}
+  make output -orient R90 -name {out[21]} -origin {1640 570}
+  make output -orient R90 -name {out[22]} -origin {1710 570}
+  make output -orient R90 -name {out[23]} -origin {1780 570}
+  make output -orient R90 -name {out[24]} -origin {1860 570}
+  make output -orient R90 -name {out[25]} -origin {1930 570}
+  make output -orient R90 -name {out[26]} -origin {2000 570}
+  make output -orient R90 -name {out[27]} -origin {2070 570}
+  make output -orient R90 -name {out[28]} -origin {2140 570}
+  make output -orient R90 -name {out[29]} -origin {2210 570}
+  make output -orient R90 -name {out[30]} -origin {2280 570}
+  make output -orient R90 -name {out[31]} -origin {2350 570}
+  make_wire 160 220 160 290
+  make_wire 160 450 160 570
+  make_wire 230 220 230 290
+  make_wire 230 450 230 570
+  make_wire 300 220 300 290
+  make_wire 300 450 300 570
+  make_wire 370 220 370 290
+  make_wire 370 450 370 570
+  make_wire 440 220 440 290
+  make_wire 440 450 440 570
+  make_wire 510 220 510 290
+  make_wire 510 450 510 570
+  make_wire 580 220 580 290
+  make_wire 580 450 580 570
+  make_wire 650 220 650 290
+  make_wire 650 450 650 570
+  make_wire 730 220 730 290
+  make_wire 730 450 730 570
+  make_wire 800 220 800 290
+  make_wire 800 450 800 570
+  make_wire 870 220 870 290
+  make_wire 870 450 870 570
+  make_wire 940 220 940 290
+  make_wire 940 450 940 570
+  make_wire 1010 220 1010 290
+  make_wire 1010 450 1010 570
+  make_wire 1080 220 1080 290
+  make_wire 1080 450 1080 570
+  make_wire 1150 220 1150 290
+  make_wire 1150 450 1150 570
+  make_wire 1220 220 1220 290
+  make_wire 1220 450 1220 570
+  make_wire 1290 220 1290 290
+  make_wire 1290 450 1290 570
+  make_wire 1360 220 1360 290
+  make_wire 1360 450 1360 570
+  make_wire 1430 220 1430 290
+  make_wire 1430 450 1430 570
+  make_wire 1500 220 1500 290
+  make_wire 1500 450 1500 570
+  make_wire 1570 220 1570 290
+  make_wire 1570 450 1570 570
+  make_wire 1640 220 1640 290
+  make_wire 1640 450 1640 570
+  make_wire 1710 220 1710 290
+  make_wire 1710 450 1710 570
+  make_wire 1780 220 1780 290
+  make_wire 1780 450 1780 570
+  make_wire 1860 220 1860 290
+  make_wire 1860 450 1860 570
+  make_wire 1930 220 1930 290
+  make_wire 1930 450 1930 570
+  make_wire 2000 220 2000 290
+  make_wire 2000 450 2000 570
+  make_wire 2070 220 2070 290
+  make_wire 2070 450 2070 570
+  make_wire 2140 220 2140 290
+  make_wire 2140 450 2140 570
+  make_wire 2210 220 2210 290
+  make_wire 2210 450 2210 570
+  make_wire 2280 220 2280 290
+  make_wire 2280 450 2280 570
+  make_wire 2350 220 2350 290
+  make_wire 2350 450 2350 570
+}
+
+proc ICON_Inverters32Bit args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-90 -10} -name {in[31:0]}
+  icon_term -type output -origin {110 -10} -name {out[31:0]}
+  icon_property -origin {-40 120} -type user -name name
+  icon_property -origin {-40 140} -type user -name M
+  icon_property -origin {-40 160} -type user -name dpc
+  icon_line -90 -50 -90 50 110 50 110 -50 -90 -50
+  icon_property -origin {-90 -10} -label {in[31:0]}
+  icon_property -origin {110 -10} -anchor e -label {out[31:0]}
+  icon_property -origin {-70 20} -label {32Bit Double Inverters}
+}
+

@@ -1,0 +1,3 @@
+[submodule "simpleparse"]
+	path = simpleparse
+	url = https://github.com/fredmorcos/simpleparse.git

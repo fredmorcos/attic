@@ -1,0 +1,9 @@
+*.o
+*.p
+*.d
+*.lp
+*.ld
+output
+sbn-asm
+parser.h
+parser.c

@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE gsmarkup>
+<gsmarkup>
+	<objects>
+		<panel id="panel" title="Properties" resizable="yes" x="0" y="0">
+			<vbox>
+				<label>Categories</label>
+				<control instanceOf="NSPopUpButton" id="categoriesPopup" halign="wexpand"/>
+				<label>Properties</label>
+				<scrollView id="categoryView" halign="wexpand" valign="wexpand">
+					<view id="sizeView" halign="wexpand" valign="wexpand">
+						<vbox>
+							<hbox>
+								<label>Width</label>
+								<control instanceOf="NSTextField" id="widthStepper" halign="wexpand"/>
+							</hbox>
+							<hbox>
+								<label>Height</label>
+								<control instanceOf="NSTextField" id="heightStepper" halign="wexpand"/>
+							</hbox>
+						</vbox>
+					</view>
+					<view id="positionView" halign="wexpand" valign="wexpand">
+						<vbox>
+							<hbox>
+								<label>X</label>
+								<control instanceOf="NSTextField" id="xStepper" halign="wexpand"/>
+							</hbox>
+							<hbox>
+								<label>Y</label>
+								<control instanceOf="NSTextField" id="yStepper" halign="wexpand"/>
+							</hbox>
+						</vbox>
+					</view>
+				</scrollView>
+			</vbox>
+		</panel>
+	</objects>
+
+	<connectors>
+		<outlet source="#NSOwner" target="#panel" key="panel"/>
+		<outlet source="#NSOwner" target="#categoriesPopup" key="categoriesPopup"/>
+		<outlet source="#NSOwder" target="#categoryView" key="categoryView"/>
+		<outlet source="#NSOwner" target="#sizeView" key="sizeView"/>
+		<outlet source="#NSOwner" target="#widthStepper" key="widthStepper"/>
+		<outlet source="#NSOwner" target="#heightStepper" key="heightStepper"/>
+	</connectors>
+</gsmarkup>
+

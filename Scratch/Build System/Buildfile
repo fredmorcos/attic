@@ -1,0 +1,266 @@
+(set-groups (:gcc               "GCC"   :private)
+            (:clang             "Clang" :private)
+            (:debug             "Debugging")
+            (:release           "Release")
+            (:profile           "Profiling")
+            (:cppcheck          "CPPCheck")
+            (:pointer-checks    "Pointer/bounds Checks")
+            (:sanitize          "Sanitizing")
+            (:sanitize-thread   "Thread Sanitizer")
+            (:sanitize-mem      "Memory Sanitizer")
+            (:sanitize-leak     "Leak Sanitizer")
+            (:sanitize-address  "Address Sanitizer")
+            (:sanitize-cov-func "Sanitizer Function Coverage")
+            (:sanitize-cov-bb   "Sanitizer Block Coverage")
+            (:sanitize-cov-edge "Sanitizer Edge Coverage"))
+
+(when-env "CC"
+          ("clang" (set-group :clang))
+          ("gcc"   (set-group :gcc))
+          ("cc"    (when-cmd "uname"
+                             ("FreeBSD" (set-group :clang))
+                             (:*        (set-group :gcc)))))
+
+(group-conflicts (:clang    :gcc)
+                 (:release  :profile)
+                 (:release  :debug)
+                 (:cppcheck :*)
+
+                 (:pointer-checks :clang)
+                 (:pointer-checks :release)
+
+                 (:sanitize* :pointer-checks)
+                 (:sanitize* :release)
+
+                 (:sanitize-mem :gcc)
+                 (:sanitize-mem :sanitize-thread)
+
+                 (:sanitize-address :sanitize-mem)
+                 (:sanitize-address :sanitize-thread)
+
+                 (:sanitize-leak :sanitize-address)
+                 (:sanitize-leak :sanitize-thread)
+
+                 ;; Leak  sanitizer doesn't  work  with Mem  sanitizer
+                 ;; only in clang but it works in gcc
+                 (:sanitize-leak :sanitize-mem :clang)
+
+                 ;; gcc does not support sanitizer coverage
+                 (:sanitize-cov* :gcc))
+
+(when-group :debug
+            (append (CFLAGS)
+                    "-DDEBUG"
+                    "-O"
+                    "-fno-omit-frame-pointer"
+                    "-g"
+
+                    "-fstack-protector"
+                    "-fstack-protector-all"
+                    "-fstack-protector-strong"
+                    "-Wstack-protector"
+                    "-fstack-check"
+                    "-ftrapv"))
+
+(when-group :release
+            (append (CFLAGS)
+                    "-DNDEBUG"
+                    "-O3"
+                    "-fomit-frame-pointer")
+            (append (CFLAGS LDFLAGS) "-flto"))
+
+(when-group :profile (append (CFLAGS LDFLAGS) "-pg"))
+
+(when-group :clang
+            (append (CFLAGS)
+                    "-Weverything"
+                    "-Wint-conversion"
+                    "-Wint-to-pointer-cast"
+                    "-Wno-padded"
+                    "-Wno-covered-switch-default"
+                    "-Wno-c++98-compat"
+                    "-Wno-c++98-compat-pedantic"
+                    "-Wno-disabled-macro-expansion"
+                    "-Wdocumentation"
+                    ;; "-Wno-c99-compat"
+                    ;; "-Wno-microsoft"
+                    ;; "-Wno-documentation-unknown-command"
+                    ;; "-Wno-exit-time-destructors"
+                    ))
+
+(when-group :gcc
+            (append (CFLAGS)
+                    "-Wsuggest-attribute=const"
+                    "-Wsuggest-attribute=pure"
+                    "-Wsuggest-attribute=noreturn"
+                    "-Wsuggest-attribute=format"
+                    "-Wno-c90-c99-compat"
+                    ;; "-Wno-c99-c11-compat"
+                    ;; "-fplan9-extensions"
+                    ))
+
+(when-group :pointer-checks
+            (append (CFLAGS)
+                    "-mmpx"
+                    "-fcheck-pointer-bounds"
+                    "-fchkp-check-incomplete-type"
+                    "-fchkp-narrow-bounds"
+                    "-fchkp-narrow-to-innermost-array"
+                    "-fchkp-first-field-has-own-bounds"
+                    "-fchkp-narrow-to-innermost-array"
+                    "-fchkp-optimize"
+                    "-fchkp-use-fast-string-functions"
+                    "-fchkp-use-nochk-string-functions"
+                    "-fchkp-use-static-bounds"
+                    "-fchkp-use-static-const-bounds"
+                    "-fchkp-treat-zero-dynamic-size-as-infinite"
+                    "-fchkp-check-read"
+                    "-fchkp-check-write"
+                    "-fchkp-store-bounds"
+                    "-fchkp-instrument-calls"
+                    "-fchkp-instrument-marked-only"
+                    "-fchkp-use-wrappers"))
+
+;; Hint: Also use MALLOC_PERTURB_=1 when testing
+(when-group :sanitize
+            (append (CFLAGS LDFLAGS)
+                    "-fsanitize=undefined"
+                    "-fsanitize=shift"
+                    "-fsanitize=integer-divide-by-zero"
+                    "-fsanitize=unreachable"
+                    "-fsanitize=vla-bound"
+                    "-fsanitize=null"
+                    "-fsanitize=return"
+                    "-fsanitize=signed-integer-overflow"
+                    "-fsanitize=bounds"
+                    "-fsanitize=alignment"
+                    "-fsanitize=object-size"
+                    "-fsanitize=float-divide-by-zero"
+                    "-fsanitize=float-cast-overflow"
+                    "-fsanitize=nonnull-attribute"
+                    "-fsanitize=returns-nonnull-attribute"
+                    "-fsanitize=bool"
+                    "-fsanitize=enum"
+                    "-fsanitize=vptr")
+
+            (when-group :clang
+                        (append (CFLAGS LDFLAGS)
+                                "-fsanitize=integer"
+                                "-fsanitize=unsigned-integer-overflow"
+                                "-fsanitize=cfi-nvcall"
+                                "-flto"
+                                "-fsanitize=cfi-cast-strict"
+                                "-fsanitize-coverage=func"
+                                ;; "-fsanitize=safe-stack"
+                                )))
+
+(when-group :sanitize-address
+            (append (CFLAGS LDFLAGS) "-fsanitize=address"))
+
+(when-group :sanitize-leak
+            (append (CFLAGS LDFLAGS) "-fsanitize=leak"))
+
+(when-group :sanitize-thread
+            (append (CFLAGS LDFLAGS) "-fsanitize=thread"))
+
+(when-group :sanitize-mem
+            (append (CFLAGS LDFLAGS) "-fsanitize=memory"))
+
+(when-group :clang
+            (when-group :sanitize-cov-bb
+                        (append (CFLAGS LDFLAGS) "-fsanitize-coverage=bb"))
+            (when-group :sanitize-cov-edge
+                        (append (CFLAGS LDFLAGS) "-fsanitize-coverage=edge"))
+            (when-group :sanitize-cov-func
+                        (append (CFLAGS LDFLAGS) "-fsanitize-coverage=func")))
+
+(when-group :cppcheck
+            (append (CPPCHECK_FLAGS)
+                    "--enable=all"
+                    "--suppress=missingIncludeSystem"
+                    "--suppress=readdirCalled"
+                    "--suppress=unmatchedSuppression"
+                    "--std=posix"
+                    "--std=c99"))
+
+(append (CFLAGS)
+        "-D_DEFAULT_SOURCE"
+        "-D_BSD_SOURCE"
+        "-D_FILE_OFFSET_BITS=64"
+        "-D_FORTIFY_SOURCE=2"
+
+        "-std=c99"
+        "-pedantic"
+        "-W"
+
+        "-Wall"
+        "-Wextra"
+        "-Wpedantic"
+        "-Wmissing-include-dirs"
+        "-Wmain"
+        "-Wunreachable-code"
+        "-Wwrite-strings"
+        "-Wpointer-arith"
+        "-Wincompatible-pointer-types"
+        "-Wbad-function-cast"
+        "-Winline"
+        "-Wsign-conversion"
+        "-Wconversion"
+        "-Wuninitialized"
+        "-Winit-self"
+        "-Wunused"
+        "-Wunused-result"
+        "-Wunused-value"
+        "-Wundef"
+        "-Wswitch"
+        "-Wswitch-enum"
+        "-Wswitch-default"
+        "-Wmissing-format-attribute"
+        "-Wshadow"
+        "-Wcast-align"
+        "-Wcast-qual"
+        "-Wfloat-conversion"
+        "-Wfloat-equal"
+        "-Wmissing-prototypes"
+        "-Wstrict-prototypes"
+        "-Wmissing-declarations"
+        "-Wold-style-definition"
+        "-Wnested-externs"
+        "-Wredundant-decls"
+        "-Wunknown-pragmas"
+        "-Wmissing-braces"
+        "-Wmissing-field-initializers"
+
+        "-fno-common"
+        "-ftree-vectorize"
+
+        "-fstrict-aliasing"
+        "-Wstrict-aliasing"
+        "-fstrict-overflow"
+        "-Wstrict-overflow=5"
+        ;; "-fms-extensions"
+        )
+
+(append (LDFLAGS) "-lpthread" "-lm")
+
+(def mods  (mem time vec fs print str num))
+(def bmods (bkc bkd))
+
+(mappend objs  ".o" mods)
+(mappend hdrs  ".h" mods)
+(mappend srcs  ".c" mods)
+(mappend bobjs ".o" bmods)
+(mappend bsrcs ".c" bmods)
+
+(append (hdrs) "attrs.h")
+
+(rule ()
+      ((:depends (each obj objs)  (each src srcs)  hdrs)
+       (:depends (each obj bobjs) (each src bsrcs) hdrs))
+      (CC CFLAGS -o obj -c src))
+
+(rule ()
+      ((:depends (each mod bmods) (each bobj bobjs) objs))
+      (CC LDFLAGS objs bobj -o mod))
+
+(rule ("clean") () (rm -f bmods objs bobjs))

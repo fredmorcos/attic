@@ -1,0 +1,85 @@
+{
+    ProjectManagerVersion = 0.3;
+    ProjectModulesData = {
+	FileManager = {
+	    Files = (
+		{
+		    Contents = (
+		    );
+		    Name = "Class Files";
+		    Type = Category;
+		},
+		{
+		    Contents = (
+		    );
+		    Name = "Header Files";
+		    Type = Category;
+		},
+		{
+		    Contents = (
+		    );
+		    Name = "Other Source Files";
+		    Type = Category;
+		},
+		{
+		    Contents = (
+		    );
+		    Name = Interfaces;
+		    Type = Category;
+		},
+		{
+		    Contents = (
+		    );
+		    Name = "Resource Files";
+		    Type = Category;
+		},
+		{
+		    Contents = (
+		    );
+		    Name = "Localized Resource Files";
+		    Type = Category;
+		},
+		{
+		    Contents = (
+			{
+			    Name = GNUmakefile.preamble;
+			    Type = Plain;
+			},
+			{
+			    Name = GNUmakefile.postamble;
+			    Type = Plain;
+			}
+		    );
+		    Name = "Supporting Files";
+		    Type = Category;
+		},
+		{
+		    Contents = (
+		    );
+		    Name = Frameworks;
+		    Type = Category;
+		}
+	    );
+	};
+	MakeBuilder = {
+	    AllWarnings = <*BN>;
+	    BuildArguments = (
+	    );
+	    VerboseBuild = <*BN>;
+	    Warnings = <*BN>;
+	};
+	SubprojectsManager = {
+	    Subprojects = (
+	    );
+	};
+    };
+    ProjectName = Narcissus;
+    ProjectType = Bundle;
+    ProjectTypeData = {
+	Authors = (
+	);
+	MakefileHash = <*I201383122>;
+    };
+    ProjectWindowFrame = "{x = 220; y = 80; width = 671; height = 564}";
+    Version = 0.2;
+}

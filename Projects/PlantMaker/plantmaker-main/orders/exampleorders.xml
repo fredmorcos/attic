@@ -1,0 +1,26 @@
+<order-list>
+	<order deadline="50" id="1" curMachine="M2" curOvertime="-7">
+		<recipe>
+			<machine name="M1" time="5"/>
+			<machine name="M2" time="12"/>
+			<machine name="M3" time="4"/>
+			<machine name="M4" time="16"/>
+		</recipe>
+	</order>
+	<order deadline="150" id="2" curMachine="" curOvertime="">
+		<recipe>
+			<machine name="M1" time="10"/>
+			<machine name="M2" time="15"/>
+			<machine name="M3" time="5"/>
+			<machine name="M4" time="70"/>
+		</recipe>
+	</order>
+	<order deadline="200" id="3" curMachine="" curOvertime="">
+		<recipe>
+			<machine name="M1" time="30"/>
+			<machine name="M2" time="50"/>
+			<machine name="M3" time="30"/>
+			<machine name="M4" time="30"/>
+		</recipe>
+	</order>
+</order-list>

@@ -1,0 +1,143 @@
+#!/bin/bash
+
+PROFILE=$1
+FORCE=$2
+IF_WLAN=wlan0
+
+function backlight() {
+	xbacklight -set ${1}0
+#	echo $1 >/sys/class/backlight/acpi_video0/brightness
+}
+
+function monitor_power_save() {
+	xset +dpms
+	if [ $1 -eq 0 ]; then
+		backlight 5
+		xset +dpms
+		xset dpms 0 0 600
+	else
+		backlight 0
+		xset dpms 0 0 300
+	fi
+}
+
+function audio_power_save() {
+	echo $1 >/sys/module/snd_hda_intel/parameters/power_save
+}
+
+function kernel_power_save() {
+	nmi_watchdog_path=/proc/sys/kernel/nmi_watchdog
+	writeback_time_path=/proc/sys/vm/dirty_writeback_centisecs
+	laptop_mode_path=/proc/sys/vm/laptop_mode
+	if [ $1 -eq 0 ]; then
+		echo 1 >$nmi_watchdog_path
+		echo 500 >$writeback_time_path
+		echo 0 >$laptop_mode_path
+	else
+		echo 0 >$nmi_watchdog_path
+		echo 1500 >$writeback_time_path
+		echo 5 >$laptop_mode_path
+	fi
+}
+
+function disk_power_save() {
+	sata_linkpm_path=/sys/class/scsi_host/host0/link_power_management_policy
+	if [ $1 -eq 0 ]; then
+		echo max_performance >$sata_linkpm_path
+	else
+		echo min_power >$sata_linkpm_path
+	fi
+}
+
+function peri_power_save() {
+	setpm_par=set_pm
+	if [ $1 -eq 0 ]; then
+		iwpriv $IF_WLAN $setpm_par 0
+	else
+		iwpriv $IF_WLAN $setpm_par 3
+	fi
+}
+
+function acpi_call() {
+	call_path='/proc/acpi/call'
+	if [ ! -f $call_path ]; then
+		modprobe acpi_call
+	fi
+	if ! lsmod | grep -q acpi_call; then
+	    echo "Error: acpi_call module not present"
+	else
+		echo "\_SB.PCI0.P0P4.GFX0.$1" >$call_path
+		acpi_result=$(cat $call_path)
+		case "$acpi_result" in
+			Error*)
+				echo ACPI call returns: $acpi_result 1>&2
+				;;
+			*)
+				;;
+		esac
+	fi
+}
+
+function video_power_save() {
+	if [ -z "$FORCE" ]; then
+		acpi_call _PSC
+		STATE=2
+		case "$acpi_result" in
+			0x0)
+				STATE=0
+				;;
+			0x3)
+				STATE=1
+				;;
+		esac
+		if [ $1 -eq $STATE ]; then
+			echo NVIDIA card is already in specified state 1>&2
+			return
+		fi
+	fi
+
+	if [ $1 -eq 0 ]; then
+		acpi_call _PS0
+	else
+		acpi_call "_DSM {0xF8,0xD8,0x86,0xA4,0xDA,0x0B,0x1B,0x47,0xA7,0x2B,0x60,0x42,0xA6,0xB5,0xBE,0xE0} 0x100 0x1A {0x1,0x0,0x0,0x3}"
+# ON:  '{0x59, 0x00, 0x00, 0x11}'
+# OFF: '{0x41, 0x00, 0x00, 0x11}'
+		acpi_call _PS3
+	fi
+}
+
+#for i in `find /sys/devices/pci* -name control -exec echo {} \;`; do
+#	echo auto > $i
+#done
+
+case "$PROFILE" in
+	performance)
+		monitor_power_save 0
+		audio_power_save 0
+		kernel_power_save 0
+		peri_power_save 0
+		disk_power_save 0
+		pm-powersave false
+		echo performance >/etc/power_profile
+		;;
+	powersave)
+		monitor_power_save 1
+		audio_power_save 1
+		kernel_power_save 1
+		peri_power_save 1
+		disk_power_save 1
+		pm-powersave true
+		echo powersave >/etc/power_profile
+		;;
+	optimus)
+		video_power_save 0
+		;;
+	intel)
+		video_power_save 1
+		;;
+	lid)
+		xscreensaver-command -lock
+		;;
+	*)
+		;;
+esac

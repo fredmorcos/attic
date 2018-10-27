@@ -1,0 +1,11 @@
+graph {
+  graph [label="LB Pad"];
+
+  A [shape=rectangle];
+
+
+  C [shape=rectangle];
+
+  A -- {B C};
+
+}

@@ -1,0 +1,18 @@
+{
+    "name": "intramarks",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node app"
+    },
+    "dependencies": {
+        "express": "*",
+        "jade": "*",
+        "markdown": "*",
+        "mongoose": "*",
+        "express-validator": "*",
+        "grunt-beautify": "*",
+        "underscore": "*",
+        "connect-mongo": "*"
+    }
+}

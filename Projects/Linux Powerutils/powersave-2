@@ -1,0 +1,183 @@
+#!/bin/bash
+
+# Public domain. Fred Morcos (fred dot morcos at gmail dot com)
+# run as root with ./powersave {enable|disable}
+
+modprobe acpi-cpufreq
+
+snd_pm_file_ctrl="/sys/module/snd_hda_intel/parameters/power_save_controller"
+snd_pm_file="/sys/module/snd_hda_intel/parameters/power_save"
+
+case "$1" in
+    enable)
+	echo -n "enabling powersaver: "
+
+	echo -n "modules "
+	modprobe cpufreq_ondemand
+
+	echo -n "log "
+	killall bootlogd &>/dev/null
+	killall minilogd &>/dev/null
+
+	echo -n "cpu "
+	for i in `find /sys/devices/system/cpu/*/cpufreq/scaling_governor`; do
+	    if [ -e $i ]
+	    then
+		echo ondemand > $i;
+	    fi
+	done;
+
+	echo -n "sched "
+	echo 1 > /sys/devices/system/cpu/sched_smt_power_savings
+	# echo 1 > /sys/devices/system/cpu/sched_mc_power_savings &>/dev/null
+
+	echo -n "sata "
+	for i in `find /sys/class/scsi_host/host*/link_power_management_policy`; do
+	    if [ -e $i ]
+	    then
+		echo min_power > $i;
+	    fi
+	done;
+
+	echo -n "runtime "
+	for i in `find /sys/devices/*/power/control`; do echo auto > $i; done;
+
+	echo -n "laptop "
+	echo 5 > /proc/sys/vm/laptop_mode
+
+	echo -n "disks "
+	hdparm -a 256 /dev/sda &>/dev/null
+	hdparm -A 1 /dev/sda &>/dev/null
+	hdparm -S 150 /dev/sda &>/dev/null
+	hdparm -B 254 /dev/sda &>/dev/null
+
+	if [ -e /dev/sdb ]
+	then
+	    hdparm -a 256 /dev/sdb &>/dev/null
+	    hdparm -A 1 /dev/sdb &>/dev/null
+	    hdparm -S 50 /dev/sdb &>/dev/null
+	    hdparm -B 254 /dev/sdb &>/dev/null
+	fi
+
+	echo -n "audio "
+	test -x $snd_pm_file_ctrl && echo Y > $snd_pm_file_ctrl
+	test -x $snd_pm_file && echo 1 > $snd_pm_file
+
+	echo -n "misc "
+	echo 6000 > /proc/sys/vm/dirty_writeback_centisecs
+	echo 0 > /proc/sys/kernel/nmi_watchdog
+
+	echo -n "wol "
+	ethtool -s eth0 wol d
+
+	if [ -n "`iwconfig 2>&1 | grep wlan0`" ]
+	then
+	    echo -n "wireless "
+	    iwconfig wlan0 power on
+	    iwconfig wlan0 txpower off
+	    iwpriv wlan0 set_power 5 &>/dev/null
+	fi
+
+	echo -n "udisks "
+	pidof udisks &>/dev/null && udisks --inhibit-all-polling &>/dev/null &
+
+	echo -n "pci_express "
+	echo "powersave" > /sys/module/pcie_aspm/parameters/policy
+
+	echo -n "devices "
+	for i in `find /sys/bus/*/devices/*/power/control | grep -v usb`; do echo auto > $i; done;
+
+	echo -n "usb "
+	for i in `find /sys/bus/usb/devices/*/power/wakeup`; do echo enabled > $i; done;
+	for i in `find /sys/bus/usb/devices/*/power/control`; do echo auto > $i; done;
+	for i in `find /sys/bus/usb/devices/*/power/autosuspend_delay_ms`; do echo 10000 > $i; done;
+
+	echo ""
+	;;
+    disable)
+	echo -n "disabling powersaver: "
+
+	# echo -n "log "
+	# killall bootlogd
+	# killall minilogd
+
+	echo -n "cpu "
+	for i in `find /sys/devices/system/cpu/*/cpufreq/scaling_governor`; do
+	    if [ -e $i ]
+	    then
+		echo performance > $i;
+	    fi
+	done;
+
+	echo -n "sched "
+	echo 0 > /sys/devices/system/cpu/sched_smt_power_savings
+	# echo 1 > /sys/devices/system/cpu/sched_mc_power_savings &>/dev/null
+
+	echo -n "sata "
+	for i in `find /sys/class/scsi_host/host*/link_power_management_policy`; do
+	    if [ -e $i ]
+	    then
+		echo max_performance > $i;
+	    fi
+	done;
+
+	echo -n "runtime "
+	for i in `find /sys/devices/*/power/control`; do echo on > $i; done;
+
+	echo -n "laptop "
+	echo 0 > /proc/sys/vm/laptop_mode
+
+	echo -n "disks "
+	hdparm -a 256 /dev/sda &>/dev/null
+	hdparm -A 1 /dev/sda &>/dev/null
+	hdparm -S 0 /dev/sda &>/dev/null
+	hdparm -B 255 /dev/sda &>/dev/null
+
+	if [ -e /dev/sdb ]
+	then
+	    hdparm -a 256 /dev/sdb &>/dev/null
+	    hdparm -A 1 /dev/sdb &>/dev/null
+	    hdparm -S 0 /dev/sdb &>/dev/null
+	    hdparm -B 255 /dev/sdb &>/dev/null
+	fi
+
+	echo -n "audio "
+	test -x $snd_pm_file_ctrl && echo N > $snd_pm_file_ctrl
+	test -x $snd_pm_file && echo 0 > $snd_pm_file
+
+	echo -n "misc "
+	echo 6000 > /proc/sys/vm/dirty_writeback_centisecs
+	echo 1 > /proc/sys/kernel/nmi_watchdog
+
+	echo -n "wol "
+	ethtool -s eth0 wol d
+
+	if [ -n "`iwconfig 2>&1 | grep wlan0`" ]
+	then
+	    echo -n "wireless "
+	    iwconfig wlan0 power off
+	    iwconfig wlan0 txpower on
+	    iwpriv wlan0 set_power 0 &>/dev/null
+	fi
+
+	echo -n "udisks "
+	pidof udisks &>/dev/null && killall udisks &>/dev/null
+
+	echo -n "pci_express "
+	echo "performance" > /sys/module/pcie_aspm/parameters/policy
+
+	echo -n "devices "
+	for i in `find /sys/bus/*/devices/*/power/control`; do echo on > $i; done;
+
+	echo -n "usb "
+	for i in `find /sys/bus/usb/devices/*/power/control`; do echo on > $i; done;
+
+	echo -n "modules "
+	lsmod | grep -q cpufreq_ondemand && rmmod cpufreq_ondemand &>/dev/null
+
+	echo ""
+	;;
+    *)
+	echo "usage: $0 {enable|disable}"
+esac
+exit 0

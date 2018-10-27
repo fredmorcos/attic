@@ -1,0 +1,38 @@
+extends _layout
+
+block content
+  article.container
+    .row
+      .span3.offset1
+        .well.account-nav
+          ul.nav.nav-list
+            li(class=acc_nav.overview?'active':null): a(href="/account/overview") Overview
+            li.divider
+            li.nav-header
+              span Profile
+              ul
+                li(class=acc_nav.displayName?'active':null): a(href="/account/profile/display-name") Display name
+                li(class=acc_nav.gravatarEmail?'active':null): a(href="/account/profile/gravatar-email") Gravatar email
+            li.divider
+            li.nav-header
+              span Admin
+              ul
+                li(class=acc_nav.password?'active':null): a(href="/account/admin/password") Change password
+                li(class=acc_nav.username?'active':null): a(href="/account/admin/username") Change username
+                li(class=acc_nav.email?'active':null): a(href="/account/admin/email") Change email
+            li.divider
+            li.nav-header
+              span Plan
+              ul
+                li(class=acc_nav.billing?'active':null): a(href="/account/billing") Billing
+                li(class=acc_nav.payments?'active':null): a(href="/account/payments") Payments
+            li.divider
+            li(class=acc_nav.organizations?'active':null): a(href="/account/organizations") Organizations
+            li.divider
+            li(class=acc_nav.export?'active':null): a(href="/account/export") Export Bookmarks
+            li.divider
+            li.danger(class=acc_nav.terminate?'active':null): a.text-error(href="/account/terminate") Delete account
+
+      .span6.offset1
+        h2.page-title= title
+        block account-tab-content

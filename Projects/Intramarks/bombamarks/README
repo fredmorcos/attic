@@ -1,0 +1,33 @@
+Development
+===========
+
+You will need NodeJS (and NPM) installed. There are two supported ways
+to deploy the project for development purposes:
+
+1) Having node_modules in a system directory like
+/usr/lib/node_modules, in this case you need to install Express
+globally as follows:
+
+sudo npm install -g express
+
+Then, cd into the project directory and install the project
+dependencies (local node_modules) in the project directory by running:
+
+npm install
+
+2) Having node_modules in a non-standard directory like
+~/projects/node_modules, in this case you need to:
+
+a. install all local project dependencies from package.json
+b. edit projectrc and set PROJECT_LIBS to ~/projects
+c. source projectrc
+
+as follows:
+
+cd ~/projects/
+npm install -l express jade  # and others
+cd ~/projects/intramarks
+# edit projectrc as in step b.
+source projectrc
+
+Afterwards, you only need to source projectrc.

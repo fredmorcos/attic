@@ -1,0 +1,8 @@
+pet
+tests/many-expenses
+*.pet
+*~
+*.hi
+*.o
+*.prof
+.#*

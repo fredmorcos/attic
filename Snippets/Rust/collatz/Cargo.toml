@@ -1,0 +1,10 @@
+[package]
+name = "collatz"
+version = "0.1.0"
+authors = ["Fred Morcos <fred.morcos@gmail.com>"]
+
+[profile.release]
+opt-level = 3
+lto = true
+
+[dependencies]

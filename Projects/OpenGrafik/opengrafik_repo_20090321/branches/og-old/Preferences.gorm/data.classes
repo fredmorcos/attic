@@ -1,0 +1,34 @@
+{
+    "## Comment" = "Do NOT change this file, Gorm maintains it";
+    FirstResponder = {
+	Actions = (
+	    "gridGridColorChanged:",
+	    "gridGridSpacingChanged:",
+	    "gridShowGridChanged:",
+	    "gridSnapDistanceChanged:",
+	    "gridSnapToGridChanged:",
+	    "preferencesPopUpChanged:"
+	);
+	Super = NSObject;
+    };
+    PreferencesController = {
+	Actions = (
+	    "gridGridColorChanged:",
+	    "gridGridSpacingChanged:",
+	    "gridShowGridChanged:",
+	    "gridSnapToGridChanged:",
+	    "gridSnapDistanceChanged:",
+	    "preferencesPopUpChanged:"
+	);
+	Outlets = (
+	    gridGridColorWell,
+	    gridGridSpacingField,
+	    gridShowGridButton,
+	    gridSnapToGridButton,
+	    gridSnapDistanceField,
+	    preferencesPopUp,
+	    preferencesWindow
+	);
+	Super = NSObject;
+    };
+}

@@ -1,0 +1,48 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_Mux4Bit2to1 {} {
+  make Mux -origin {370 150}
+  make Mux -origin {370 350}
+  make Mux -origin {370 550}
+  make Mux -origin {370 740}
+  make input -name {a[0]} -origin {270 70}
+  make input -name {b[0]} -origin {270 90}
+  make input -name {a[1]} -origin {270 270}
+  make input -name {b[1]} -origin {270 290}
+  make input -name {a[2]} -origin {270 470}
+  make input -name {b[2]} -origin {270 490}
+  make input -name {a[3]} -origin {270 660}
+  make input -name {b[3]} -origin {270 680}
+  make inverter -origin {60 780}
+  make inverter -origin {-20 780}
+  make input -name s -origin {-90 780}
+  make output -name {y[0]} -origin {470 70}
+  make output -name {y[1]} -origin {470 270}
+  make output -name {y[2]} -origin {470 470}
+  make output -name {y[3]} -origin {470 660}
+  make_wire -90 780 -50 780
+  make_wire 140 780 110 780
+  make_wire 140 110 270 110
+  make_wire 140 310 270 310
+  make_wire 140 310 140 110
+  make_wire 140 510 270 510
+  make_wire 140 510 140 310
+  make_wire 270 700 140 700
+  make_wire 140 700 140 780
+  make_wire 140 700 140 510
+}
+
+proc ICON_Mux4Bit2to1 args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 -80} -name {a[3:0]}
+  icon_term -type input -origin {-100 -60} -name {b[3:0]}
+  icon_term -type output -origin {100 -80} -name {y[3:0]}
+  icon_term -type input -origin {-60 50} -orient R270 -name s
+  icon_property -origin {-50 70} -type user -name name
+  icon_property -origin {-50 90} -type user -name M
+  icon_property -origin {-50 110} -type user -name dpc
+  icon_line -100 -160 -100 50 100 50 100 -160 -100 -160
+  icon_property -origin {-60 -100} -label {2 to 1 Mux
+4-bit}
+}
+

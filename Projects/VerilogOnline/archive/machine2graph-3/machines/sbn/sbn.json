@@ -1,0 +1,31 @@
+{
+    "title":        "SBN Machine",
+    "toplevel":     true,
+    "time_index":   0,
+    "clk_index":    1,
+    "verilog_file": "sbn.v",
+    "image_file":   "sbn.svg",
+    "assembler":    "sbnasm",
+
+    "postprocess":  false,
+    "pp_command":   "",
+
+    "elements": {
+	"%X%":       3,
+	"%Y%":       4,
+	"%PC%":      2,
+	"%IR%":      9,
+	"%ADDOUT%":  12,
+	"%A%":       5,
+	"%B%":       6,
+	"%C%":       7,
+	"%D%":       8,
+	"%ADDRESS%": 10,
+	"%X-Y%":     11
+    },
+
+    "external_elements": {
+	"%DMEM%":    "sbn-dmem.json",
+	"%IMEM%":    "sbn-imem.json"
+    }
+}

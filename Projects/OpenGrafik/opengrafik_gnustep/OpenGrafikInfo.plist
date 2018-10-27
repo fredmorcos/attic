@@ -1,0 +1,27 @@
+{
+	ApplicationName = "OpenGrafik";
+	ApplicationDescription = "A Diagram Editor";
+	ApplicationRelease = "0.1";
+	FullVersionID = 0.10;
+	NSExecutable = OpenGrafik;
+	NSMainNibFile = OpenGrafik.gorm;
+	NSPrincipalClass = NSApplication;
+	NSRole = Application;
+	Authors = ("Fred Morcos <fred.morcos@gmail.com>", "Michael Morckos <mikey.morckos@gmail.com>");
+	Copyright = "Copyright (C) 2008-2009 Fred Morcos <fred.morcos@gmail.com>";
+	CopyrightDescription = "This program is released under the GNU General Public License Version 3.";
+	NSIcon = OpenGrafik.tiff;
+	NSTypes = (
+		{
+			NSName = "GSDiagramDocumentType";
+			NSHumanReadableName = "Open Diagram Document";
+			NSUnixExtensions = ("odd");
+			NSDOSExtensions = ("odd");
+			NSMIMETypes = ("graphics/diagram");
+			NSIcon = opengrafik.tiff;
+			NSRole = Editor;
+			NSDocumentClass = Document;
+		}
+	);
+}
+

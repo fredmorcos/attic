@@ -1,0 +1,12 @@
+=== Dependencies ===
+flex - Fast Lexical Analyzer
+gcc - GNU C Compiler
+
+=== Building ===
+run ./build.sh
+
+=== Testing/Running ===
+./hllc tests/test1.hll
+
+=== Cleaning ===
+run ./clean.sh

@@ -1,0 +1,22 @@
+$def with (showmsg)
+<html>
+	<title>Todo Manager - Welcome</title>
+	<body>
+		Welcome to your Todo Manager<br/><br/>
+		Login:
+		<form method="POST" action="login">
+			$if showmsg:
+				Wrong username or password.<br/>
+			Username <input type="text" name="username"/>
+			<br/>
+			Password <input type="password" name="password"/>
+			<input type="submit" value="Login"/>
+		</form>
+		<a href="./registerpage">Click here to register!</a><br/><br/>
+		Search for users:
+		<form method="POST" action="search">
+			Username <input type="text" name="term"/>
+			<input type="submit" value="Search"/>
+		</form>
+	</body>
+</html>

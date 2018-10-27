@@ -1,0 +1,10 @@
+__sbn*
+*.png
+output/*.*
+.nfs*
+*.pyc
+*.log
+*.bak
+*.js
+*~
+*.key

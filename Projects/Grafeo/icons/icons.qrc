@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>document.png</file>
+        <file>special.png</file>
+        <file>standard.png</file>
+        <file>properties.png</file>
+        <file>circle.png</file>
+        <file>diamond.png</file>
+        <file>square.png</file>
+        <file>text.png</file>
+        <file>bezier-curve.png</file>
+        <file>line.png</file>
+        <file>image.png</file>
+        <file>cursor.png</file>
+        <file>grafeo.svg</file>
+    </qresource>
+</RCC>

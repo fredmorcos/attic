@@ -1,0 +1,393 @@
+diff --git a/ktriominos.pro b/ktriominos.pro
+index 5c559fd..efa2975 100644
+--- a/ktriominos.pro
++++ b/ktriominos.pro
+@@ -10,10 +10,6 @@ DEFINES += VERSION=\\\"0.0.1\\\"
+ CONFIG += silent
+ QT += svg
+ 
+-QMAKE_CFLAGS += -pg -g3
+-QMAKE_CXXFLAGS += -pg -g3
+-QMAKE_LFLAGS += -pg -g3
+-
+ UI_DIR = build
+ OBJECTS_DIR = build
+ MOC_DIR = build
+diff --git a/ktriominos.pro.user b/ktriominos.pro.user
+deleted file mode 100644
+index 7003885..0000000
+--- a/ktriominos.pro.user
++++ /dev/null
+@@ -1,339 +0,0 @@
+-<!DOCTYPE QtCreatorProject>
+-<qtcreator>
+- <data>
+-  <variable>RunConfiguration0-BaseEnvironmentBase</variable>
+-  <value type="int">2</value>
+- </data>
+- <data>
+-  <variable>RunConfiguration0-CommandLineArguments</variable>
+-  <valuelist type="QVariantList"/>
+- </data>
+- <data>
+-  <variable>RunConfiguration0-ProFile</variable>
+-  <value type="QString">ktriominos.pro</value>
+- </data>
+- <data>
+-  <variable>RunConfiguration0-RunConfiguration.name</variable>
+-  <value type="QString">ktriominos</value>
+- </data>
+- <data>
+-  <variable>RunConfiguration0-UseDyldImageSuffix</variable>
+-  <value type="bool">false</value>
+- </data>
+- <data>
+-  <variable>RunConfiguration0-UseTerminal</variable>
+-  <value type="bool">false</value>
+- </data>
+- <data>
+-  <variable>RunConfiguration0-UserEnvironmentChanges</variable>
+-  <valuelist type="QVariantList"/>
+- </data>
+- <data>
+-  <variable>RunConfiguration0-UserSetName</variable>
+-  <value type="bool">false</value>
+- </data>
+- <data>
+-  <variable>RunConfiguration0-UserSetWorkingDirectory</variable>
+-  <value type="bool">false</value>
+- </data>
+- <data>
+-  <variable>RunConfiguration0-UserWorkingDirectory</variable>
+-  <value type="QString"></value>
+- </data>
+- <data>
+-  <variable>RunConfiguration0-type</variable>
+-  <value type="QString">Qt4ProjectManager.Qt4RunConfiguration</value>
+- </data>
+- <data>
+-  <variable>activeRunConfiguration</variable>
+-  <value type="int">0</value>
+- </data>
+- <data>
+-  <variable>activebuildconfiguration</variable>
+-  <value type="QString">Debug</value>
+- </data>
+- <data>
+-  <variable>buildConfiguration-Debug</variable>
+-  <valuemap type="QVariantMap">
+-   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
+-   <value key="QtVersionId" type="int">0</value>
+-   <value key="ToolChain" type="int">0</value>
+-   <value key="addQDumper" type=""></value>
+-   <value key="buildConfiguration" type="int">2</value>
+-  </valuemap>
+- </data>
+- <data>
+-  <variable>buildConfiguration-Release</variable>
+-  <valuemap type="QVariantMap">
+-   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Release</value>
+-   <value key="QtVersionId" type="int">0</value>
+-   <value key="addQDumper" type=""></value>
+-   <value key="buildConfiguration" type="int">0</value>
+-  </valuemap>
+- </data>
+- <data>
+-  <variable>buildconfiguration-Debug-buildstep0</variable>
+-  <valuemap type="QVariantMap">
+-   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
+-   <valuelist key="abstractProcess.Environment" type="QVariantList">
+-    <value type="QString">CLASSPATH=.:/opt/JADE/jade/lib//jade.jar:/opt/JADE/jade/lib//iiop.jar:/opt/JADE/jade/lib//http.jar:/opt/JADE/jade/lib//jadeTools.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//jadex_rt.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//jibx-run.jar\  
+-:/home/mikey/libs/JADEX/jadex-0.96/lib//xpp3.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//nuggets.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//janino.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//jadex_tools.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//GraphLayout.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//jhall.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//jadex_standalone.jar</value>
+-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-2kpmRTJVu4,guid=82978b1d7fe596b1f8b78b4c00000027</value>
+-    <value type="QString">DERBY_HOME=/opt/java/db</value>
+-    <value type="QString">DESKTOP_SESSION=default</value>
+-    <value type="QString">DISPLAY=:0.0</value>
+-    <value type="QString">DM_CONTROL=/var/run/xdmctl</value>
+-    <value type="QString">GPG_AGENT_INFO=/tmp/gpg-ZdWXOi/S.gpg-agent:3956:1</value>
+-    <value type="QString">GS_LIB=/home/mikey/.fonts</value>
+-    <value type="QString">GTK2_RC_FILES=/etc/gtk-2.0/gtkrc:/home/mikey/.gtkrc-2.0::/home/mikey/.kde4/share/config/gtkrc-2.0</value>
+-    <value type="QString">GTK_RC_FILES=/etc/gtk/gtkrc:/home/mikey/.gtkrc::/home/mikey/.kde4/share/config/gtkrc</value>
+-    <value type="QString">G_BROKEN_FILENAMES=1</value>
+-    <value type="QString">HISTCONTROL=erasedups</value>
+-    <value type="QString">HISTSIZE=1000</value>
+-    <value type="QString">HOME=/home/mikey</value>
+-    <value type="QString">INPUTRC=/etc/inputrc</value>
+-    <value type="QString">J2SDKDIR=/opt/java</value>
+-    <value type="QString">JAVA_HOME=/opt/java</value>
+-    <value type="QString">KDE_FULL_SESSION=true</value>
+-    <value type="QString">KDE_MULTIHEAD=false</value>
+-    <value type="QString">KDE_SESSION_UID=1000</value>
+-    <value type="QString">KDE_SESSION_VERSION=4</value>
+-    <value type="QString">LANG=en_US.utf8</value>
+-    <value type="QString">LC_COLLATE=C</value>
+-    <value type="QString">LD_LIBRARY_PATH=/usr/lib/qtcreator:</value>
+-    <value type="QString">LESS=-R</value>
+-    <value type="QString">LOGNAME=mikey</value>
+-    <value type="QString">MOZ_PLUGIN_PATH=/usr/lib/mozilla/plugins</value>
+-    <value type="QString">OOO_FORCE_DESKTOP=gnome</value>
+-    <value type="QString">PATH=/usr/bin:/bin:/usr/bin:/sbin:/usr/sbin:/opt/java/bin:/opt/java/jre/bin:/opt/kde/bin:/usr/bin/perlbin/site:/usr/bin/perlbin/vendor:/usr/bin/perlbin/core:/opt/qt/bin</value>
+-    <value type="QString">PKG_CONFIG_PATH=/usr/lib/pkgconfig:/opt/qt/lib/pkgconfig</value>
+-    <value type="QString">PS3=> </value>
+-    <value type="QString">PS4=+ </value>
+-    <value type="QString">PWD=/home/mikey</value>
+-    <value type="QString">QTDIR=/usr/share/qt</value>
+-    <value type="QString">QT_PLUGIN_PATH=/home/mikey/.kde4/lib/kde4/plugins/:/usr/lib/kde4/plugins/</value>
+-    <value type="QString">QT_XFT=true</value>
+-    <value type="QString">SESSION_MANAGER=local/undertaker:@/tmp/.ICE-unix/4038,unix/undertaker:/tmp/.ICE-unix/4038</value>
+-    <value type="QString">SHELL=/bin/bash</value>
+-    <value type="QString">SHLVL=1</value>
+-    <value type="QString">SSH_AGENT_PID=3959</value>
+-    <value type="QString">SSH_AUTH_SOCK=/tmp/ssh-xGUtQa3958/agent.3958</value>
+-    <value type="QString">USER=mikey</value>
+-    <value type="QString">WINDOWPATH=7</value>
+-    <value type="QString">XCURSOR_THEME=#kde_legacy#</value>
+-    <value type="QString">XDG_CACHE_HOME=/home/mikey/.cache</value>
+-    <value type="QString">XDG_CONFIG_DIRS=/etc/xdg</value>
+-    <value type="QString">XDG_CONFIG_HOME=/home/mikey/.config</value>
+-    <value type="QString">XDG_DATA_DIRS=/usr/share:/usr/local/share:/opt/kde/share</value>
+-    <value type="QString">XDG_DATA_HOME=/home/mikey/.local/share</value>
+-    <value type="QString">XDG_SESSION_COOKIE=91db058a794d246776dc5a504a4ea106-1279063652.37690-2004368169</value>
+-    <value type="QString">XDM_MANAGED=method=classic</value>
+-   </valuelist>
+-   <valuelist key="abstractProcess.arguments" type="QVariantList">
+-    <value type="QString">/personal/workspace/triominos/ktriominos/ktriominos.pro</value>
+-    <value type="QString">-spec</value>
+-    <value type="QString">linux-g++</value>
+-    <value type="QString">-r</value>
+-    <value type="QString">CONFIG+=debug</value>
+-   </valuelist>
+-   <value key="abstractProcess.command" type="QString">/usr/bin/qmake</value>
+-   <value key="abstractProcess.enabled" type="bool">false</value>
+-   <value key="abstractProcess.workingDirectory" type="QString">/personal/workspace/triominos/ktriominos</value>
+-   <value key="buildConfiguration" type=""></value>
+-  </valuemap>
+- </data>
+- <data>
+-  <variable>buildconfiguration-Debug-buildstep1</variable>
+-  <valuemap type="QVariantMap">
+-   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
+-   <valuelist key="abstractProcess.Environment" type="QVariantList">
+-    <value type="QString">CLASSPATH=.:/opt/JADE/jade/lib//jade.jar:/opt/JADE/jade/lib//iiop.jar:/opt/JADE/jade/lib//http.jar:/opt/JADE/jade/lib//jadeTools.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//jadex_rt.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//jibx-run.jar\  
+-:/home/mikey/libs/JADEX/jadex-0.96/lib//xpp3.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//nuggets.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//janino.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//jadex_tools.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//GraphLayout.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//jhall.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//jadex_standalone.jar</value>
+-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-2kpmRTJVu4,guid=82978b1d7fe596b1f8b78b4c00000027</value>
+-    <value type="QString">DERBY_HOME=/opt/java/db</value>
+-    <value type="QString">DESKTOP_SESSION=default</value>
+-    <value type="QString">DISPLAY=:0.0</value>
+-    <value type="QString">DM_CONTROL=/var/run/xdmctl</value>
+-    <value type="QString">GPG_AGENT_INFO=/tmp/gpg-ZdWXOi/S.gpg-agent:3956:1</value>
+-    <value type="QString">GS_LIB=/home/mikey/.fonts</value>
+-    <value type="QString">GTK2_RC_FILES=/etc/gtk-2.0/gtkrc:/home/mikey/.gtkrc-2.0::/home/mikey/.kde4/share/config/gtkrc-2.0</value>
+-    <value type="QString">GTK_RC_FILES=/etc/gtk/gtkrc:/home/mikey/.gtkrc::/home/mikey/.kde4/share/config/gtkrc</value>
+-    <value type="QString">G_BROKEN_FILENAMES=1</value>
+-    <value type="QString">HISTCONTROL=erasedups</value>
+-    <value type="QString">HISTSIZE=1000</value>
+-    <value type="QString">HOME=/home/mikey</value>
+-    <value type="QString">INPUTRC=/etc/inputrc</value>
+-    <value type="QString">J2SDKDIR=/opt/java</value>
+-    <value type="QString">JAVA_HOME=/opt/java</value>
+-    <value type="QString">KDE_FULL_SESSION=true</value>
+-    <value type="QString">KDE_MULTIHEAD=false</value>
+-    <value type="QString">KDE_SESSION_UID=1000</value>
+-    <value type="QString">KDE_SESSION_VERSION=4</value>
+-    <value type="QString">LANG=en_US.utf8</value>
+-    <value type="QString">LC_COLLATE=C</value>
+-    <value type="QString">LD_LIBRARY_PATH=/usr/lib/qtcreator:</value>
+-    <value type="QString">LESS=-R</value>
+-    <value type="QString">LOGNAME=mikey</value>
+-    <value type="QString">MOZ_PLUGIN_PATH=/usr/lib/mozilla/plugins</value>
+-    <value type="QString">OOO_FORCE_DESKTOP=gnome</value>
+-    <value type="QString">PATH=/usr/bin:/bin:/usr/bin:/sbin:/usr/sbin:/opt/java/bin:/opt/java/jre/bin:/opt/kde/bin:/usr/bin/perlbin/site:/usr/bin/perlbin/vendor:/usr/bin/perlbin/core:/opt/qt/bin</value>
+-    <value type="QString">PKG_CONFIG_PATH=/usr/lib/pkgconfig:/opt/qt/lib/pkgconfig</value>
+-    <value type="QString">PS3=> </value>
+-    <value type="QString">PS4=+ </value>
+-    <value type="QString">PWD=/home/mikey</value>
+-    <value type="QString">QTDIR=/usr/share/qt</value>
+-    <value type="QString">QT_PLUGIN_PATH=/home/mikey/.kde4/lib/kde4/plugins/:/usr/lib/kde4/plugins/</value>
+-    <value type="QString">QT_XFT=true</value>
+-    <value type="QString">SESSION_MANAGER=local/undertaker:@/tmp/.ICE-unix/4038,unix/undertaker:/tmp/.ICE-unix/4038</value>
+-    <value type="QString">SHELL=/bin/bash</value>
+-    <value type="QString">SHLVL=1</value>
+-    <value type="QString">SSH_AGENT_PID=3959</value>
+-    <value type="QString">SSH_AUTH_SOCK=/tmp/ssh-xGUtQa3958/agent.3958</value>
+-    <value type="QString">USER=mikey</value>
+-    <value type="QString">WINDOWPATH=7</value>
+-    <value type="QString">XCURSOR_THEME=#kde_legacy#</value>
+-    <value type="QString">XDG_CACHE_HOME=/home/mikey/.cache</value>
+-    <value type="QString">XDG_CONFIG_DIRS=/etc/xdg</value>
+-    <value type="QString">XDG_CONFIG_HOME=/home/mikey/.config</value>
+-    <value type="QString">XDG_DATA_DIRS=/usr/share:/usr/local/share:/opt/kde/share</value>
+-    <value type="QString">XDG_DATA_HOME=/home/mikey/.local/share</value>
+-    <value type="QString">XDG_SESSION_COOKIE=91db058a794d246776dc5a504a4ea106-1279063652.37690-2004368169</value>
+-    <value type="QString">XDM_MANAGED=method=classic</value>
+-   </valuelist>
+-   <value key="abstractProcess.IgnoreReturnValue" type="bool">false</value>
+-   <valuelist key="abstractProcess.arguments" type="QVariantList">
+-    <value type="QString">-w</value>
+-   </valuelist>
+-   <value key="abstractProcess.command" type="QString">/usr/bin/make</value>
+-   <value key="abstractProcess.enabled" type="bool">true</value>
+-   <value key="abstractProcess.workingDirectory" type="QString">/personal/workspace/triominos/ktriominos</value>
+-  </valuemap>
+- </data>
+- <data>
+-  <variable>buildconfiguration-Debug-cleanstep0</variable>
+-  <valuemap type="QVariantMap">
+-   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
+-   <valuelist key="abstractProcess.Environment" type="QVariantList">
+-    <value type="QString">CLASSPATH=.:/opt/JADE/jade/lib//jade.jar:/opt/JADE/jade/lib//iiop.jar:/opt/JADE/jade/lib//http.jar:/opt/JADE/jade/lib//jadeTools.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//jadex_rt.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//jibx-run.jar\  
+-:/home/mikey/libs/JADEX/jadex-0.96/lib//xpp3.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//nuggets.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//janino.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//jadex_tools.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//GraphLayout.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//jhall.jar:/home/mikey/libs/JADEX/jadex-0.96/lib//jadex_standalone.jar</value>
+-    <value type="QString">DERBY_HOME=/opt/java/db</value>
+-    <value type="QString">DISPLAY=:0.0</value>
+-    <value type="QString">G_BROKEN_FILENAMES=1</value>
+-    <value type="QString">HISTCONTROL=erasedups</value>
+-    <value type="QString">HISTSIZE=1000</value>
+-    <value type="QString">HOME=/home/mikey</value>
+-    <value type="QString">INPUTRC=/etc/inputrc</value>
+-    <value type="QString">J2SDKDIR=/opt/java</value>
+-    <value type="QString">JAVA_HOME=/opt/java</value>
+-    <value type="QString">LANG=en_US.utf8</value>
+-    <value type="QString">LC_COLLATE=C</value>
+-    <value type="QString">LD_LIBRARY_PATH=/usr/lib/qtcreator:</value>
+-    <value type="QString">LESS=-R</value>
+-    <value type="QString">LOGNAME=mikey</value>
+-    <value type="QString">MAIL=/var/mail/mikey</value>
+-    <value type="QString">MOZ_PLUGIN_PATH=/usr/lib/mozilla/plugins</value>
+-    <value type="QString">OOO_FORCE_DESKTOP=gnome</value>
+-    <value type="QString">ORBIT_SOCKETDIR=/tmp/orbit-mikey</value>
+-    <value type="QString">PATH=/usr/bin:/bin:/usr/bin:/sbin:/usr/sbin:/opt/java/bin:/opt/java/jre/bin:/opt/kde/bin:/usr/bin/perlbin/site:/usr/bin/perlbin/vendor:/usr/bin/perlbin/core:/opt/qt/bin</value>
+-    <value type="QString">PKG_CONFIG_PATH=/usr/lib/pkgconfig:/opt/qt/lib/pkgconfig</value>
+-    <value type="QString">PS3=> </value>
+-    <value type="QString">PS4=+ </value>
+-    <value type="QString">PWD=/home/mikey</value>
+-    <value type="QString">PYTHONPATH=:/usr/lib/openoffice/basis-link/program/</value>
+-    <value type="QString">QTDIR=/usr/share/qt</value>
+-    <value type="QString">QT_XFT=true</value>
+-    <value type="QString">SESSION_MANAGER=local/undertaker:@/tmp/.ICE-unix/1906,unix/undertaker:/tmp/.ICE-unix/1906</value>
+-    <value type="QString">SHELL=/bin/bash</value>
+-    <value type="QString">SHLVL=0</value>
+-    <value type="QString">TERM=linux</value>
+-    <value type="QString">USER=mikey</value>
+-    <value type="QString">XAUTHORITY=/home/mikey/.Xauthority</value>
+-    <value type="QString">XDG_CACHE_HOME=/home/mikey/.cache</value>
+-    <value type="QString">XDG_CONFIG_DIRS=/etc/xdg</value>
+-    <value type="QString">XDG_CONFIG_HOME=/home/mikey/.config</value>
+-    <value type="QString">XDG_DATA_DIRS=/usr/share:/usr/local/share:/opt/kde/share</value>
+-    <value type="QString">XDG_DATA_HOME=/home/mikey/.local/share</value>
+-    <value type="QString">XDG_SESSION_COOKIE=91db058a794d246776dc5a504a4ea106-1271019830.480154-1209714344</value>
+-   </valuelist>
+-   <value key="abstractProcess.IgnoreReturnValue" type="bool">true</value>
+-   <valuelist key="abstractProcess.arguments" type="QVariantList">
+-    <value type="QString">clean</value>
+-    <value type="QString">-w</value>
+-   </valuelist>
+-   <value key="abstractProcess.command" type="QString">/usr/bin/make</value>
+-   <value key="abstractProcess.enabled" type="bool">true</value>
+-   <value key="abstractProcess.workingDirectory" type="QString">/personal/workspace/triominos/ktriominos</value>
+-   <value key="cleanConfig" type="bool">true</value>
+-   <valuelist key="makeargs" type="QVariantList">
+-    <value type="QString">clean</value>
+-   </valuelist>
+-  </valuemap>
+- </data>
+- <data>
+-  <variable>buildconfiguration-Release-buildstep0</variable>
+-  <valuemap type="QVariantMap">
+-   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Release</value>
+-   <value key="buildConfiguration" type=""></value>
+-  </valuemap>
+- </data>
+- <data>
+-  <variable>buildconfiguration-Release-buildstep1</variable>
+-  <valuemap type="QVariantMap">
+-   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Release</value>
+-  </valuemap>
+- </data>
+- <data>
+-  <variable>buildconfiguration-Release-cleanstep0</variable>
+-  <valuemap type="QVariantMap">
+-   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Release</value>
+-  </valuemap>
+- </data>
+- <data>
+-  <variable>buildconfigurations</variable>
+-  <valuelist type="QVariantList">
+-   <value type="QString">Debug</value>
+-   <value type="QString">Release</value>
+-  </valuelist>
+- </data>
+- <data>
+-  <variable>buildstep0</variable>
+-  <valuemap type="QVariantMap">
+-   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString"></value>
+-   <value key="mkspec" type="QString"></value>
+-  </valuemap>
+- </data>
+- <data>
+-  <variable>buildstep1</variable>
+-  <valuemap type="QVariantMap">
+-   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString"></value>
+-  </valuemap>
+- </data>
+- <data>
+-  <variable>buildsteps</variable>
+-  <valuelist type="QVariantList">
+-   <value type="QString">trolltech.qt4projectmanager.qmake</value>
+-   <value type="QString">trolltech.qt4projectmanager.make</value>
+-  </valuelist>
+- </data>
+- <data>
+-  <variable>cleanstep0</variable>
+-  <valuemap type="QVariantMap">
+-   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString"></value>
+-   <value key="clean" type="bool">true</value>
+-  </valuemap>
+- </data>
+- <data>
+-  <variable>cleansteps</variable>
+-  <valuelist type="QVariantList">
+-   <value type="QString">trolltech.qt4projectmanager.make</value>
+-  </valuelist>
+- </data>
+- <data>
+-  <variable>defaultFileEncoding</variable>
+-  <value type="QByteArray">System</value>
+- </data>
+- <data>
+-  <variable>project</variable>
+-  <valuemap type="QVariantMap"/>
+- </data>
+-</qtcreator>
+diff --git a/src/board/board.cc b/src/board/board.cc
+index 847119c..24f4fa5 100644
+--- a/src/board/board.cc
++++ b/src/board/board.cc
+@@ -189,15 +189,19 @@ void Board::drawForeground(QPainter* painter, const QRectF &rect)
+ {
+     Q_UNUSED(rect);
+ 
+-    QString roundMSG = tr("Round   ");
++    QString roundMSG = tr("Round") + "   ";
+     QPixmap pixmap(QSize(200, 100 * _displayNameList.size()));
+     pixmap.fill(QColor(0, 0, 0, 0));
+     QPainter pixmapPainter(&pixmap);
++    QPen pen(QColor(255, 255, 255, 100));
++    pen.setWidth(2);
+ 
+-    pixmapPainter.setPen(Qt::NoPen);
++    pixmapPainter.setPen(pen);
+     pixmapPainter.setBrush(QColor(0, 0, 0, 100));
+-    pixmapPainter.setRenderHint(QPainter::Antialiasing, true);
+-    pixmapPainter.drawRoundedRect(0, 0, 200, 100 * _displayNameList.size(), 40, 40);
++    // pixmapPainter.setRenderHint(QPainter::HighQualityAntialiasing, true);
++    // pixmapPainter.setRenderHint(QPainter::Antialiasing, true);
++    pixmapPainter.drawRect(0, 0, 200, 100 * _displayNameList.size());
++    // pixmapPainter.drawRoundedRect(0, 0, 200, 100 * _displayNameList.size(), 10, 10);
+ 
+     pixmapPainter.setPen(Qt::white);
+     pixmapPainter.setRenderHint(QPainter::TextAntialiasing, true);
+@@ -223,4 +227,3 @@ void Board::drawForeground(QPainter* painter, const QRectF &rect)
+     painter->resetTransform();
+     painter->drawPixmap(QPointF(viewport()->width() - 220, 20), pixmap);
+ }
+-

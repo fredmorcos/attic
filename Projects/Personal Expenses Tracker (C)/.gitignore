@@ -1,0 +1,8 @@
+*.o
+*~
+.#*
+\#*
+pet
+gmon.out
+scan_clang
+callgrind*

@@ -1,0 +1,11 @@
+This is a 2D implementation of David Baley's FFT using parallel 1D
+FFTs on matrix rows and a cache-oblivious parallel matrix
+transposition using Cilk.
+
+TODO:
+
+1. Currently only the "Four Step" FFT is implemented. Extensions of
+this algorithm as well as more advanced ones can be implemented too.
+
+2. The transposition can be replaced with Martin Polak's
+implementation using UPC and Cilk.

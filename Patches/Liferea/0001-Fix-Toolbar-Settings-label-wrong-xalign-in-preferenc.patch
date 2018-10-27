@@ -1,0 +1,25 @@
+From e7a918424567621ef94cb8571dbbf32dde731cbb Mon Sep 17 00:00:00 2001
+From: Fred Morcos <fred.morcos@gmail.com>
+Date: Fri, 3 Dec 2010 23:32:52 +0100
+Subject: [PATCH 1/4] Fix Toolbar Settings label wrong xalign in preferences dialog
+
+---
+ glade/liferea.ui |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/glade/liferea.ui b/glade/liferea.ui
+index 5936fa7..13fa336 100644
+--- a/glade/liferea.ui
++++ b/glade/liferea.ui
+@@ -2320,7 +2320,7 @@
+                     <child>
+                       <object class="GtkLabel" id="label126">
+                         <property name="visible">True</property>
+-                        <property name="xalign">0.059999998658895493</property>
++                        <property name="xalign">0</property>
+                         <property name="yalign">0.51999998092651367</property>
+                         <property name="label" translatable="yes">Toolbar Settings</property>
+                         <attributes>
+-- 
+1.7.3.3
+

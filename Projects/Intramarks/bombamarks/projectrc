@@ -1,0 +1,32 @@
+PROJECT_LIBS=$HOME/Projects/intramarks_libs
+
+node_modules_dirs=$(find $PROJECT_LIBS -type d -name "node_modules")
+
+if [[ $? -eq 0 ]]; then
+    for nmd in $node_modules_dirs; do
+	echo "NODE_PATH <- $nmd"
+	export NODE_PATH=$NODE_PATH:$nmd
+    done
+
+    echo ""
+    echo "========="
+    echo "NODE_PATH"
+    echo "========="
+    echo "$NODE_PATH"
+    echo "========="
+
+    echo ""
+
+    PROJECT_NODE_MODULES_BIN=$PROJECT_LIBS/node_modules/.bin
+    echo "PATH <- $PROJECT_NODE_MODULES_BIN"
+    export PATH=$PATH:$PROJECT_NODE_MODULES_BIN
+
+    echo ""
+    echo "========="
+    echo "PATH"
+    echo "========="
+    echo "$PATH"
+    echo "========="
+else
+    echo "Error occured. Not going to continue."
+fi

@@ -1,0 +1,59 @@
+shared void *lsrclist[ILS], *rsrclist[JLS];
+
+void transpose_remote_out(int i0, int i1, int j0, int j1)
+{
+  int i, j;
+  void *ldstlist[ILS], *rdstlist[JLS];
+  float ldata[ILS][JLS], rdata[JLS][ILS], tmp;
+
+  /* read in local buffer */
+  for (i = i0; i < i1; i++) {
+    lsrclist[i - i0] = &m[i][j0];
+    ldstlist[i - i0] = &ldata[i - i0][0];
+  }
+
+  upc_memget_ilist(i1 - i0, ldstlist, SO_F * (j1 - j0),
+  		   i1 - i0, lsrclist, SO_F * (j1 - j0));
+
+  /* read in remote buffer */
+  for (j = j0; j < j1; j++) {
+    rsrclist[j - j0] = &m[j][i0];
+    rdstlist[j - j0] = &rdata[j - j0][0];
+  }
+
+  upc_memget_ilist(j1 - j0, rdstlist, SO_F * (i1 - i0),
+  		   j1 - j0, rsrclist, SO_F * (i1 - i0));
+
+  /* debugging */
+  if (T == 1) {
+    printf("local\n");
+    print_matrix(ldata, i1 - i0, j1 - j0);
+    printf("remote\n");
+    print_matrix(rdata, j1 - j0, i1 - i0);
+  }
+
+  /* do out of place transpose */
+  for (i = 0; i < i1 - i0; i++)
+    for (j = 0; j < j1 - j0; j++) {
+  	tmp = ldata[i][j];
+  	ldata[i][j] = rdata[j][i];
+  	rdata[j][i] = tmp;
+  	swaps[T]++;
+      }
+
+  /* debugging */
+  if (T == 1) {
+    printf("local\n");
+    print_matrix(ldata, i1 - i0, j1 - j0);
+    printf("remote\n");
+    print_matrix(rdata, j1 - j0, i1 - i0);
+  }
+
+  /* write out local buffer */
+  upc_memput_ilist(i1 - i0, lsrclist, SO_F * (j1 - j0),
+  		   i1 - i0, ldstlist, SO_F * (j1 - j0));
+
+  /* write out remote buffer */
+  upc_memput_ilist(j1 - j0, rsrclist, SO_F * (i1 - i0),
+  		   j1 - j0, rdstlist, SO_F * (i1 - i0));
+}

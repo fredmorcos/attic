@@ -1,0 +1,12 @@
+myfunction(a, b)
+  x = 5.0 + 5.0
+  y = a + b
+  z = x + y
+  ret z
+end
+
+main
+  a = myfunction(2.0, 2.0)
+  print a
+end
+

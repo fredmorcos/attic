@@ -1,0 +1,37 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_FiveOnes {} {
+  make inverter -orient R270 -origin {440 580}
+  make inverter -orient R270 -origin {440 500}
+  make inverter -orient R270 -origin {510 580}
+  make inverter -orient R270 -origin {510 500}
+  make inverter -orient R270 -origin {580 580}
+  make inverter -orient R270 -origin {580 500}
+  make inverter -orient R270 -origin {650 580}
+  make inverter -orient R270 -origin {650 500}
+  make inverter -orient R270 -origin {720 580}
+  make inverter -orient R270 -origin {720 500}
+  make output -orient R270 -name {out[0]} -origin {440 450}
+  make output -orient R270 -name {out[1]} -origin {510 450}
+  make output -orient R270 -name {out[2]} -origin {580 450}
+  make output -orient R270 -name {out[3]} -origin {650 450}
+  make output -orient R270 -name {out[4]} -origin {720 450}
+  make FiveOnes -origin {870 740}
+  make global -name vdd -origin {440 610}
+  make global -name vdd -origin {510 610}
+  make global -name vdd -origin {580 610}
+  make global -name vdd -origin {650 610}
+  make global -name vdd -origin {720 610}
+}
+
+proc ICON_FiveOnes args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type output -origin {60 0} -name {out[4:0]}
+  icon_property -origin {-50 80} -type user -name name
+  icon_property -origin {-50 100} -type user -name M
+  icon_property -origin {-50 120} -type user -name dpc
+  icon_line -50 -40 -50 40 60 40 60 -40 -50 -40
+  icon_property -origin {-30 -20} -label {Five Ones}
+  icon_property -origin {60 0} -anchor e -label {out[4:0]}
+}
+

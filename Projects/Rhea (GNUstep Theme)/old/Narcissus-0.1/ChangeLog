@@ -1,0 +1,21 @@
+
+17.12.2007
+	- NSScroller theming commented out
+
+4.10.2007
+	- NSTableHeaderCell
+	- Window resize bars
+	- (Sent NSScroller patch to gnustep-dev)
+
+29.9.2007
+	- Scroller looks great now :)
+	- NSMenuItemCell code
+
+28.9.2007
+	- More scroller stuff (needs GNUstep-GUI patch!)
+    
+26.9.2007
+	- Import into SVN
+	- Scroller stuff,
+	- Improved gradient drawing speed
+

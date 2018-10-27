@@ -1,0 +1,67 @@
+N  = 10000000
+NT = 4
+
+   example				BS=1			BS=N/NT
+----------------------------------------------------------------------------------------------------
+-- SINGLE_THREAD			5.689033000000000	5.684932000000000
+-- LOCAL_BLOCKS				0.000324000000000	0.000314000000000
+
+-- FORALL_AFFINITY			0.005219000000000	0.012527000000000
+-- FORALL_AFFINITY_SPLIT		0.005743000000000	0.000307000000000
+
+-- FORALL_ITERATION			0.004584000000000	1.475121000000000
+-x FORALL_ITERATION_SPLIT		0.004989000000000	-
+
+-- FORALL_PARTITIONED			0.004496000000000	5.689444000000000-0.002253000000000
+-x FORALL_PARTITIONED_SPLIT		0.004979000000000	-
+
+-- FOR_SINGLE_ELEMENT_BLOCKS		0.003756000000000	1.496652000000000
+
+-- FOR_BLOCKS_TRAVERSAL			0.003855000000000	0.005836000000000
+-- FOR_BLOCKS_TRAVERSAL_SPLIT		0.003953000000000	0.000322000000000
+
+x- FOR_PARTITIONED			-			0.006093000000000
+x- FOR_PARTITIONED_SPLIT		-			0.000332000000000
+
+-- SINGLE_THREAD_BULK_COPY		5.573873000000000	0.012373000000000
+-- SINGLE_THREAD_BULK_COPY_SPLIT	5.330746000000000	0.012169000000000
+-- SINGLE_THREAD_BULK_COPY_ASYNC	4.032439000000000	0.012418000000000
+-- SINGLE_THREAD_BULK_COPY_ASYNC_SPLIT	4.030731000000000	0.012119000000000
+
+----------------------------------------------------------------------------------------------------
+
+FORALL_AFFINITY
+TODO: Why is the time different for BS=1 and BS=N/NT? Shouldn't be since the mapping of iteration to
+      threads as a data affinity expression should not affect the speed.
+
+FORALL_AFFINITY_SPLIT
+Time is longer between it and FORALL_AFFINITY at BS=1 because of the local addition function call
+overhead. BS=N/NT is faster since the local function is optimized and has a bulk of data to work
+on without a function call for each element in the current block.
+
+FORALL_ITERATION
+BS=N/NT takes longer than BS=1 due to all threads except one having remote accesses to block b. Due
+to non-uniform accesses between threads and blocks.
+
+FORALL_ITERATION_SPLIT
+Doesn't work with BS=N/NT because of non-uniform address and affinity ranges passed to the local
+addition function.
+
+FORALL_PARTITIONED
+TODO: There is a large difference between T0's time (5.689444000000000) and the remaining threads
+(0.002253000000000) because of the map expression i/BS, where T0 has to do all the work when 
+BS >> i.
+
+FOR_SINGLE_ELEMENT_BLOCKS
+Works well only with BS=1 since it loops over the array by NT elements (since it assumes that BS=1).
+Slow for BS=N/NT since this causes non-uniform thread -> "block element affinity" accesses.
+
+FOR_BLOCKS_TRAVERSAL
+TODO: Figure out why BS=1 is faster than BS=N/NT.
+
+FOR_BLOCKS_TRAVERSAL_SPLIT
+Not much faster than FOR_BLOCKS_TRAVERSAL for BS=1 since a function call has to be made for 
+each element. Faster when BS=N/NT due to bulking of addition into optimized local function.
+
+FOR_PARTITIONED and FOR_PARTITIONED_SPLIT
+Goes over blocks of length BS for each thread, starting at T*BS, which thus doesn't work for BS=1.

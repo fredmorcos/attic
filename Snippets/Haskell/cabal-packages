@@ -1,0 +1,7 @@
+Remove ~/.cabal and ~/.ghc
+Do a `cabal update`
+Update cabal: `cabal install -j cabal-install`
+Update happy and alex: `cabal install -j happy alex`
+Install tools: `cabal install -j hare hdevtools hlint ghc-mod hoogle stylish-haskell hindent hasktags present`
+Emacs: haskell-mode company-ghc ghc hindent flycheck-haskell flycheck-hdevtools hi2 hindent
+hoogle data

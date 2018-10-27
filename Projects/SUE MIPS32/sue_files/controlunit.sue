@@ -1,0 +1,141 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_controlunit {} {
+  make name_net_s -name {T[0]} -origin {690 630}
+  make nor2 -origin {790 650}
+  make inverter -origin {890 650}
+  make programcounter -name PC -origin {-60 510}
+  make cell32trans -origin {-160 -450}
+  make cell32trans -origin {490 -440}
+  make cell32trans -origin {490 -280}
+  make cell32trans -origin {1080 460}
+  make output -name {MDR_OUT[31:0]} -origin {670 -450}
+  make input -name {MDR_IN[31:0]} -origin {390 -460}
+  make input -name MDR_WE -origin {390 -420}
+  make input -name MDW_WE -origin {390 -260}
+  make output -name {MDW_OUT[31:0]} -origin {590 -290}
+  make input -name {MDW_IN[31:0]} -origin {390 -300}
+  make input -name CLOCK -origin {-250 -280}
+  make input -name SC_RESET -origin {-250 -240}
+  make input -name {STORE_UNIT_ADDRESS[31:0]} -origin {640 480}
+  make input -name {BRANCH_TARGET[31:0]} -origin {-250 460}
+  make input -name BRANCH_ENABLE -origin {-160 500}
+  make output -name PC_OVERFLOW -origin {40 520}
+  make input -name {LOAD_UNIT_ADDRESS[31:0]} -origin {640 500}
+  make input -name {ADDRESS_SOURCE_SELECT[1:0]} -origin {640 520}
+  make output -orient R270 -name {PC_OUT[31:0]} -origin {70 340}
+  make output -orient R270 -name {MAR_OUT[31:0]} -origin {1250 450}
+  make SequenceCounter -origin {-150 -250}
+  make name_net_s -name {T[7:0]} -origin {110 -260}
+  make name_net_s -name {IR[31:0]} -origin {110 -460}
+  make InstructionDecoder -origin {540 -30}
+  make name_net_s -name {IR[27]} -origin {-30 -40}
+  make name_net_s -name {IR[29]} -origin {50 -20}
+  make name_net_s -name {IR[30]} -origin {140 0}
+  make name_net_s -name {IR[31]} -origin {210 20}
+  make output -name ALU_UNIT_ACTIVATOR -origin {750 -40}
+  make output -name BRANCH_UNIT_ACTIVATOR -origin {750 -20}
+  make output -name LOAD_UNIT_ACTIVATOR -origin {750 0}
+  make output -name STORE_UNIT_ACTIVATOR -origin {750 20}
+  make Inverters32Bit -origin {-310 80}
+  make output -name {IR_OUT[31:0]} -origin {-200 70}
+  make output -name {T_OUT[7:0]} -origin {-200 220}
+  make name_net_s -name {IR[31:0]} -origin {-480 70}
+  make name_net_s -name {T[7:0]} -origin {-490 220}
+  make Inverters8Bits -origin {-300 240}
+  make name_net_s -name {T[2]} -origin {-240 480}
+  make input -name MAR_WE -origin {690 670}
+  make name_net_s -name {T[2]} -origin {-320 -430}
+  make name_net_s -name {MDR_OUT[31:0]} -origin {-410 -470}
+  make mux42132bbits -origin {800 530}
+  make_wire 640 520 650 520
+  make_wire 640 480 650 480
+  make_wire -240 480 -160 480
+  make_wire 330 -40 -30 -40
+  make_wire 330 -20 50 -20
+  make_wire 330 0 140 0
+  make_wire 330 20 210 20
+  make_wire 110 -260 -50 -260
+  make_wire -60 -460 110 -460
+  make_wire -400 70 -480 70
+  make_wire -400 220 -490 220
+  make_wire 1250 450 1210 450
+  make_wire 630 440 650 440
+  make_wire 1210 370 1210 450
+  make_wire 590 -450 670 -450
+  make_wire -260 -430 -320 -430
+  make_wire -410 -470 -260 -470
+  make_wire 640 500 650 500
+  make_wire 70 340 70 460
+  make_wire 70 460 40 460
+  make_wire 70 460 650 460
+  make_wire 940 480 980 480
+  make_wire 940 480 940 650
+  make_wire 1180 450 1210 450
+  make_wire 690 670 770 670
+  make_wire 690 630 770 630
+  make_wire 630 370 1210 370
+  make_wire 630 370 630 440
+  make_wire 850 440 980 440
+  make_wire -250 460 -160 460
+  make_text -origin {400 -510} -text MDR
+  make_text -origin {390 -350} -text MDW
+  make_text -origin {980 400} -text MAR
+  make_text -origin {-260 -520} -text IR
+}
+
+proc ICON_controlunit args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-530 -340} -name {BRANCH_TARGET[31:0]}
+  icon_term -type input -origin {-530 -110} -name {LOAD_UNIT_ADDRESS[31:0]}
+  icon_term -type input -origin {-530 180} -name {MDW_IN[31:0]}
+  icon_term -type input -origin {-530 -140} -name {STORE_UNIT_ADDRESS[31:0]}
+  icon_term -type output -origin {530 -330} -name ALU_UNIT_ACTIVATOR
+  icon_term -type output -origin {530 -280} -name BRANCH_UNIT_ACTIVATOR
+  icon_term -type output -origin {530 210} -name {IR_OUT[31:0]}
+  icon_term -type output -origin {530 -230} -name LOAD_UNIT_ACTIVATOR
+  icon_term -type output -origin {530 -50} -name {MAR_OUT[31:0]}
+  icon_term -type output -origin {530 -10} -name {MDR_OUT[31:0]}
+  icon_term -type output -origin {530 30} -name {MDW_OUT[31:0]}
+  icon_term -type output -origin {530 250} -name {PC_OUT[31:0]}
+  icon_term -type output -origin {530 -180} -name STORE_UNIT_ACTIVATOR
+  icon_term -type output -origin {530 290} -name {T_OUT[7:0]}
+  icon_term -type input -origin {-530 -310} -name BRANCH_ENABLE
+  icon_term -type input -origin {-530 210} -name MDW_WE
+  icon_term -type input -origin {-530 -70} -name {ADDRESS_SOURCE_SELECT[1:0]}
+  icon_term -type input -origin {-530 460} -name CLOCK
+  icon_term -type input -origin {-530 500} -name SC_RESET
+  icon_term -type output -origin {530 460} -name PC_OVERFLOW
+  icon_term -type input -origin {-530 400} -name MAR_WE
+  icon_term -type input -origin {-530 70} -name {MDR_IN[31:0]}
+  icon_term -type input -origin {-530 100} -name MDR_WE
+  icon_property -origin {-30 720} -type user -name name
+  icon_property -origin {-30 680} -type user -name M
+  icon_property -origin {-30 700} -type user -name dpc
+  icon_property -origin {-520 -340} -label {BRANCH_TARGET[31:0]}
+  icon_property -origin {-520 -110} -label {LOAD_UNIT_ADDRESS[31:0]}
+  icon_property -origin {-520 180} -label {MDW_IN[31:0]}
+  icon_property -origin {-520 -140} -label {STORE_UNIT_ADDRESS[31:0]}
+  icon_property -origin {-520 -310} -label BRANCH_ENABLE
+  icon_property -origin {-520 210} -label MDW_WE
+  icon_property -origin {520 -330} -anchor e -label ALU_UNIT_ACTIVATOR
+  icon_property -origin {520 -280} -anchor e -label BRANCH_UNIT_ACTIVATOR
+  icon_property -origin {520 210} -anchor e -label {IR_OUT[31:0]}
+  icon_property -origin {520 -230} -anchor e -label LOAD_UNIT_ACTIVATOR
+  icon_property -origin {520 -50} -anchor e -label {MAR_OUT[31:0]}
+  icon_property -origin {520 -10} -anchor e -label {MDR_OUT[31:0]}
+  icon_property -origin {520 30} -anchor e -label {MDW_OUT[31:0]}
+  icon_property -origin {520 250} -anchor e -label {PC_OUT[31:0]}
+  icon_property -origin {520 -180} -anchor e -label STORE_UNIT_ACTIVATOR
+  icon_property -origin {520 290} -anchor e -label {T_OUT[7:0]}
+  icon_property -origin {-520 460} -label CLOCK
+  icon_property -origin {-520 500} -label SC_RESET
+  icon_property -origin {-520 -70} -label {ADDRESS_SOURCE_SELECT[1:0]}
+  icon_property -origin {520 460} -anchor e -label PC_OVERFLOW
+  icon_line -530 -440 -530 540 530 540 530 -440 -530 -440
+  icon_property -origin {-60 -30} -label {CONTROL UNIT}
+  icon_property -origin {-520 400} -label MAR_WE
+  icon_property -origin {-520 70} -label {MDR_IN[31:0]}
+  icon_property -origin {-520 100} -label MDR_WE
+}
+

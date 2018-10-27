@@ -1,0 +1,146 @@
+SCRIPTLETS="processor processes vm_writeback nmi_watchdog \
+            pcie_aspm laptop_mode udisks usb wireless     \
+            ethernet sata journal_commit disks devices    \
+            audio runtime scheduler atime hugepage"
+
+devices () {
+    device_controls=$(find /sys/bus/*/devices/*/power/control | grep -vi usb)
+
+    for i in $device_controls; do
+    	case $1 in
+    	    low | dyn) echo auto > $i ;;
+    	    max)       echo on   > $i ;;
+    	    *) echo "devices: bad param" ;;
+    	esac
+    done
+}
+
+audio () {
+    controllers=/sys/module/snd_*/parameters/power_save_controller
+    devices=/sys/module/snd_*/parameters/power_save
+
+    case $1 in
+    	low | dyn)
+    	    for i in $controllers; do
+    		echo Y > $i
+    	    done
+
+    	    for i in $devices; do
+    		echo 1 > $i
+    	    done
+    	    ;;
+    	max)
+    	    for i in $controllers; do
+    		echo N > $i
+    	    done
+
+    	    for i in $devices; do
+    		echo 0 > $i
+    	    done
+    	    ;;
+    	*) echo "audio: bad param" ;;
+    esac
+}
+
+runtime () {
+    device_controls=/sys/devices/*/power/control
+
+    for i in $device_controls; do
+    	case $1 in
+    	    low | dyn) echo auto > $i ;;
+    	    max)       echo on   > $i ;;
+    	    *) "runtime: bad param" ;;
+    	esac
+    done
+}
+
+scheduler () {
+    smt=/sys/devices/system/cpu/sched_smt_power_savings
+    mc=/sys/devices/system/cpu/sched_mc_power_savings
+
+    if [ ! -w $smt ]; then
+    	smt=/dev/null
+    fi
+
+    if [ ! -w $mc ]; then
+    	mc=/dev/null
+    fi
+
+    case $1 in
+    	low)
+    	    echo 2 > $smt
+    	    echo 2 > $mc
+    	    ;;
+    	dyn)
+    	    echo 1 > $smt
+    	    echo 1 > $mc
+    	    ;;
+    	max)
+    	    echo 0 > $smt
+    	    echo 0 > $mc
+    	    ;;
+    	*) echo "scheduler: bad param" ;;
+    esac
+}
+
+journal_commit () {
+    while read DEV MOUNT FSTYPE REST; do
+	case $1 in
+	    low)
+		if [ $FSTYPE == ext3 ]; then
+		    mount -o remount,commit=600 $DEV
+		fi
+
+		if [ $FSTYPE == ext4 ]; then
+		    mount -o remount,commit=600 $DEV
+		fi
+		;;
+	    dyn)
+		if [ $FSTYPE == ext3 ]; then
+		    mount -o remount,commit=300 $DEV
+		fi
+
+		if [ $FSTYPE == ext4 ]; then
+		    mount -o remount,commit=300 $DEV
+		fi
+		;;
+	    max)
+		if [ $FSTYPE == ext3 ]; then
+		    mount -o remount,commit=0 $DEV
+		fi
+
+		if [ $FSTYPE == ext4 ]; then
+		    mount -o remount,commit=0 $DEV
+		fi
+		;;
+	    *) echo "journal_commit: bad param" ;;
+	esac
+    done < /proc/mounts
+}
+
+atime () {
+    while read DEV MOUNT FSTYPE REST; do
+	if [ $FSTYPE == ext3 ]; then
+	    mount -o remount,noatime,nodiratime,norelatime $DEV
+	fi
+
+	if [ $FSTYPE == ext4 ]; then
+	    mount -o remount,noatime,nodiratime,norelatime $DEV
+	fi
+    done < /proc/mounts
+}
+
+hugepage () {
+    hugepage_file=/sys/kernel/mm/transparent_hugepage/
+    echo madvise > $hugepage_file/enabled
+    echo madvise > $hugepage_file/defrag
+}
+
+case $1 in
+    low | dyn | max)
+	for i in $SCRIPTLETS; do
+	    $i $1
+	done
+	;;
+    *) echo "bad param: powersave [low|dyn|max]" ;;
+esac

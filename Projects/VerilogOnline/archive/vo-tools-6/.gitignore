@@ -1,0 +1,11 @@
+*.pyc
+*.bak
+*.log
+*.key
+*.swp
+*~
+
+.nfs*
+
+output
+tmp

@@ -1,0 +1,9 @@
+_pet
+dist
+cabal-dev
+*.o
+*.hi
+*.chi
+*.chs.h
+pet
+*~

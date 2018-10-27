@@ -1,0 +1,36 @@
+#footer{
+  margin:30px 0 0;
+  .box-sizing(border-box);
+  .wrap{
+    border-top:1px solid @borderColor;
+    border-bottom:1px solid @borderColor;
+    background-color: #fff;
+    padding:10px 0 0 0;
+    margin-bottom:30px;
+  }
+  .lead{
+    border-bottom:1px dotted @borderColor;
+    padding-bottom:10px;
+    margin-bottom:10px;
+  }
+  ul{text-align: center;}
+  ul,p{margin-bottom:0;}
+  li{
+    border-right:1px solid darken(@borderColor, 10%);
+    padding:0 15px 0 0;
+    margin:0 15px 10px 0;
+    a{
+      &:hover{
+        text-decoration: none;
+      }
+      .ico{
+        color:darken(@borderColor,50%);
+      }
+    }
+    &:last-child{
+      border-right:0;
+      padding:0;
+      margin:0;
+    }
+  }
+}

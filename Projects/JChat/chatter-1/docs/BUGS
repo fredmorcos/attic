@@ -1,0 +1,13 @@
+server:
+	**server_constructor:
+		if a hacker connects to the server and doesn't
+		send a nickname immediately, the server object
+		will hang (waiting for the nickname) at line:
+			String temp_client_name = readers_list.getLast().readLine().trim();
+		
+		this can be overpassed by creating a linkedlist
+		of Socket server_socket so each connecting client
+		can take his time to send the nickname.
+		
+		this is fixed in the chatter's client, but of
+		course a hacker will not use the usual client :D

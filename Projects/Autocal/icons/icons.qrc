@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/icons">
+		<file>winmac/index.theme</file>
+        <file>winmac/24x24/application-exit.png</file>
+        <file>winmac/24x24/document-open.png</file>
+        <file>winmac/24x24/document-save.png</file>
+        <file>winmac/24x24/help-about.png</file>
+        <file>winmac/24x24/list-add.png</file>
+        <file>winmac/24x24/list-remove.png</file>
+        <file>winmac/24x24/system-run.png</file>
+        <file>128x128/autocal.png</file>
+    </qresource>
+</RCC>

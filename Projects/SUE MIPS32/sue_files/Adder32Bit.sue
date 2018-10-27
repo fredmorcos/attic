@@ -1,0 +1,45 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_Adder32Bit {} {
+  make ripple8 -origin {290 270}
+  make ripple8 -origin {910 190}
+  make ripple8 -origin {600 230}
+  make ripple8 -origin {1220 150}
+  make input -name {a[7:0]} -origin {190 190}
+  make input -name {a[15:8]} -origin {500 150}
+  make input -name {a[23:16]} -origin {810 110}
+  make input -name {b[7:0]} -origin {190 210}
+  make input -name {b[15:8]} -origin {500 170}
+  make input -name {b[23:16]} -origin {810 130}
+  make input -name {a[31:24]} -origin {1120 70}
+  make input -name {b[31:24]} -origin {1120 90}
+  make input -name cin -origin {190 230}
+  make output -name {y[7:0]} -origin {390 210}
+  make output -name {y[15:8]} -origin {700 170}
+  make output -name {y[23:16]} -origin {1010 130}
+  make output -name {y[31:24]} -origin {1320 90}
+  make output -name cout -origin {1320 70}
+  make_wire 700 150 810 150
+  make_wire 1010 110 1120 110
+  make_wire 390 190 500 190
+}
+
+proc ICON_Adder32Bit args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 -80} -name {a[31:0]}
+  icon_term -type input -origin {-100 -60} -name {b[31:0]}
+  icon_term -type input -origin {-100 -40} -name cin
+  icon_term -type output -origin {100 -80} -name cout
+  icon_term -type output -origin {100 -60} -name {y[31:0]}
+  icon_property -origin {-50 70} -type user -name name
+  icon_property -origin {-50 90} -type user -name M
+  icon_property -origin {-50 110} -type user -name dpc
+  icon_line -100 -180 -100 50 100 50 100 -180 -100 -180
+  icon_property -origin {-60 -120} -label {32-bit adder}
+  icon_property -origin {50 -80} -label cout
+  icon_property -origin {30 -60} -label {y[31:0]}
+  icon_property -origin {-90 -80} -label {a[31:0]}
+  icon_property -origin {-90 -60} -label {b[31:0]}
+  icon_property -origin {-90 -40} -label cin
+}
+

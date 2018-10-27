@@ -1,0 +1,87 @@
+From d598b8ff27db7d14befffa36a3d00ca68f5e23f1 Mon Sep 17 00:00:00 2001
+From: Fred Morcos <fred.morcos@gmail.com>
+Date: Mon, 6 Dec 2010 09:12:49 +0100
+Subject: [PATCH 4/4] Use hint label for manual browser command
+
+Signed-off-by: Fred Morcos <fred.morcos@gmail.com>
+---
+ glade/liferea.ui  |   26 +++++++++++++++++++++++---
+ src/ui/ui_prefs.c |    4 +++-
+ 2 files changed, 26 insertions(+), 4 deletions(-)
+
+diff --git a/glade/liferea.ui b/glade/liferea.ui
+index 91b3057..6e03ee3 100644
+--- a/glade/liferea.ui
++++ b/glade/liferea.ui
+@@ -2044,7 +2044,7 @@ Please remember to set a reasonable refresh time. Usually it is a waste of bandw
+                         <child>
+                           <object class="GtkTable" id="table6">
+                             <property name="visible">True</property>
+-                            <property name="n_rows">3</property>
++                            <property name="n_rows">4</property>
+                             <property name="n_columns">2</property>
+                             <property name="column_spacing">12</property>
+                             <property name="row_spacing">6</property>
+@@ -2108,8 +2108,7 @@ Please remember to set a reasonable refresh time. Usually it is a waste of bandw
+                               <object class="GtkLabel" id="manuallabel">
+                                 <property name="visible">True</property>
+                                 <property name="xalign">0</property>
+-                                <property name="label" translatable="yes">_Manual:
+-(%s for URL)</property>
++                                <property name="label" translatable="yes">_Manual:</property>
+                                 <property name="use_underline">True</property>
+                                 <property name="mnemonic_widget">browsercmd</property>
+                               </object>
+@@ -2133,6 +2132,27 @@ Please remember to set a reasonable refresh time. Usually it is a waste of bandw
+                                 <property name="y_options"></property>
+                               </packing>
+                             </child>
++                            <child>
++                              <object class="GtkLabel" id="urlhintlabel">
++                                <property name="visible">True</property>
++                                <property name="xalign">0</property>
++                                <property name="label" translatable="yes">&lt;small&gt;(%s for URL)&lt;/small&gt;</property>
++                                <property name="use_markup">True</property>
++                                <property name="use_underline">True</property>
++                                <property name="mnemonic_widget">browsercmd</property>
++                              </object>
++                              <packing>
++                                <property name="left_attach">1</property>
++                                <property name="right_attach">2</property>
++                                <property name="top_attach">3</property>
++                                <property name="bottom_attach">4</property>
++                                <property name="x_options">GTK_FILL</property>
++                                <property name="y_options"></property>
++                              </packing>
++                            </child>
++                            <child>
++                              <placeholder/>
++                            </child>
+                           </object>
+                         </child>
+                       </object>
+diff --git a/src/ui/ui_prefs.c b/src/ui/ui_prefs.c
+index 27d7e99..5e70c29 100644
+--- a/src/ui/ui_prefs.c
++++ b/src/ui/ui_prefs.c
+@@ -198,6 +198,7 @@ on_browser_changed (GtkComboBox *optionmenu, gpointer user_data)
+ 
+ 		gtk_widget_set_sensitive (liferea_dialog_lookup (prefdialog, "browsercmd"), browsers[num].id == NULL);	
+ 		gtk_widget_set_sensitive (liferea_dialog_lookup (prefdialog, "manuallabel"), browsers[num].id == NULL);	
++		gtk_widget_set_sensitive (liferea_dialog_lookup (prefdialog, "urlhintlabel"), browsers[num].id == NULL);
+ 
+ 		if (browsers[num].id == NULL)
+ 			conf_set_str_value (BROWSER_ID, "manual");
+@@ -637,7 +638,8 @@ void on_prefbtn_clicked(void) {
+ 		g_free (browser_command);
+ 
+ 		gtk_widget_set_sensitive(GTK_WIDGET(entry), tmp==manual);
+-		gtk_widget_set_sensitive(liferea_dialog_lookup(prefdialog, "manuallabel"), tmp==manual);	
++		gtk_widget_set_sensitive(liferea_dialog_lookup(prefdialog, "manuallabel"), tmp==manual);
++		gtk_widget_set_sensitive(liferea_dialog_lookup(prefdialog, "urlhintlabel"), tmp==manual);
+ 
+ 		/* ================== panel 4 "GUI" ================ */
+ 
+-- 
+1.7.3.3
+

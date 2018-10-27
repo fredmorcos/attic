@@ -1,0 +1,33 @@
+(use args)
+(use ports)
+(use ansi-escape-sequences)
+
+(define opts
+  (list
+   (args:make-option (h help)    #:none             "Show this help" (usage))
+   (args:make-option (p port)    (required: "PORT") "Port to listen on")
+   (args:make-option (r root)    (required: "DIR")  "Directory to sync onto")
+   (args:make-option (a address) (optional: "ADDR") "Address to listen on")
+   (args:make-option (s safe)    #:none             "Safe (dry-run) execution")
+   (args:make-option (d detach)  #:none             "Detach (fork) a child")
+   (args:make-option (k keep)    #:none             "Keep daemon running")))
+
+(define (usage)
+  (with-output-to-port (current-error-port)
+    (lambda ()
+      (print "Usage: " (car (argv)) " [options...]")
+      (newline)
+      (print "Options:")
+      (print (args:usage opts))))
+  (exit 1))
+
+(receive (options operands) (args:parse (command-line-arguments) opts)
+  (let* ((arrow ">>")
+         (green-arrow (set-text '(fg-green bold) arrow))
+         (red-arrow (set-text '(fg-red bold) arrow))
+         (port-string (alist-ref 'port options))
+         (port (string->number port-string))
+         (port-text (string-append " Port: " port-string)))
+    (if (or (< port 0) (> port 35565))
+        (print "  " red-arrow port-text)
+        (print "  " green-arrow port-text))))

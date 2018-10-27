@@ -1,0 +1,18 @@
+NOTES:
+	** _s = string
+	** commands should always be of length 3
+	** there can be any data between ,, even if the server,
+		doesn't need it, it will be ignored anyways.
+
+protocol format: COM,NICKNAME,DATA
+
+END,,				close the connection
+BYE,,				close the connection
+ACC,,				nickname accepted
+STA,,_s				status message _s
+MSG,_s1,_s2			private message _s2 to _s1
+LST,,_s				list of connected clients,
+					where _s is the list separated
+					by commas.
+MTA,,_s				send message _s to everyone.
+

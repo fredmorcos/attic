@@ -1,0 +1,60 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_register_cell {} {
+  make inverter -origin {610 310}
+  make inverter -orient RXY -origin {640 540}
+  make nmos -orient R90 -origin {810 310}
+  make input -orient R90 -name r1 -origin {810 210}
+  make nmos -orient R270 -origin {820 540}
+  make input -orient R270 -name r2 -origin {820 660}
+  make input -name w -origin {350 280}
+  make output -name out1 -origin {890 310}
+  make output -name out2 -origin {880 540}
+  make inverter -M 4 -origin {260 410}
+  make nmos -orient R90 -M 4 -origin {390 410}
+  make input -name d -origin {160 410}
+  make_wire 310 410 350 410
+  make_wire 430 410 500 410
+  make_wire 500 410 500 310
+  make_wire 500 310 580 310
+  make_wire 590 540 500 540
+  make_wire 500 540 500 410
+  make_wire 660 310 710 310
+  make_wire 670 540 710 540
+  make_wire 710 310 710 540
+  make_wire 770 310 710 310
+  make_wire 810 250 810 210
+  make_wire 780 540 710 540
+  make_wire 820 660 820 600
+  make_wire 850 310 890 310
+  make_wire 880 540 860 540
+  make_wire 390 350 390 280
+  make_wire 390 280 350 280
+  make_wire 160 410 230 410
+}
+
+proc ICON_register_cell args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 -80} -name d
+  icon_term -type input -origin {-100 -60} -name r1
+  icon_term -type input -origin {-100 -40} -name r2
+  icon_term -type input -origin {-100 -20} -name w
+  icon_term -type output -origin {100 -80} -name out1
+  icon_term -type output -origin {100 -60} -name out2
+  icon_property -origin {-100 120} -type user -name name
+  icon_property -origin {-80 140} -type user -name M
+  icon_property -origin {-80 160} -type user -name dpc
+  icon_line -100 -110 -100 0 100 0 100 -110 -100 -110
+  icon_property -origin {-30 -70} -label register
+  icon_property -origin {-20 -50} -label cell
+  icon_property -origin {-90 -80} -label d
+  icon_property -origin {-90 -60} -label r1
+  icon_property -origin {-90 -40} -label r2
+  icon_property -origin {-90 -20} -label w
+  icon_property -origin {60 -80} -label out1
+  icon_property -origin {60 -60} -label out2
+  icon_property -origin {-170 50} -type auto -name verilog -text {register_cell [unique_name "" $name register_cell]
+(.d($d), .r1($r1), .r2($r2), .w($w), 
+.out1($out1), .out2($out2))\;}
+}
+

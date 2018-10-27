@@ -1,0 +1,4 @@
+* Use more restrictive types all over (uint8, etc).
+* Implement assertions for pre-condition and post-condition contracts all over.
+* Unify error handling and printing.
+* Make static all module functions that should not be exported.

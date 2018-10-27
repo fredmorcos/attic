@@ -1,0 +1,7 @@
+* Fix resize handles when parent has transformations (zoom)
+* Fix Cancel action when closing application and message dialog shows
+* DONE Fix select/deselect and focus/unfocus of shapes to show or hide resize handles
+* Get toolbox to work
+* Add a Close All to the main window's close action
+* Improve Handles performance and memory consumption
+* Implement multiple-selection dynamic properties

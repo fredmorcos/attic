@@ -1,0 +1,52 @@
+This is part of the PET File Format Specification.
+Copyright (C) 2013, Fred Morcos <fred.morcos@gmail.com>
+See the file LICENSE for copying conditions.
+
+TABLE OF CONTENTS
+
+:: Rationale
+:: Header and Indexes
+:: Year and Month Sections
+:: Expense Items
+
+RATIONALE
+
+The main goal behind the PET file format is to keep it as compact as possible
+while still human manageable through a text editor. Not that you should need to
+edit it manually, but just in case you hit a bug or the PET tool misbehaves. It
+might also be useful if you only have access to the file on a machine without
+PET installed.
+
+The PET file format is text- and line- based. This means that each line contains
+a new construct.
+
+The format has notions for the following:
+
+* Date of expense.
+* Amount of expense.
+* Person that carried expense [Optional].
+* Shop where expense was carried [Optional].
+* Tags related to the expense [One or more].
+* Note about the expense [Optional].
+
+HEADER AND INDEXES
+
+The header consists of a set of indexes. Indexes are a mapping from an Unsigned
+Integer to a String for storage efficiency reasons.
+
+So far, there are two indexes: on the first line is the index for Persons and on
+the second line is the index for Shops.
+
+An Index is defined on a single line of text, index elements are comma-separated
+strings. Spaces before and after those strings should be ignored (trimmed).
+
+All indexes should contain at least one element, generally a 'None', but that is
+left up to the user or programmer defaults.
+
+YEAR AND MONTH SECTIONS
+
+TODO
+
+EXPENSE ITEMS
+
+TODO

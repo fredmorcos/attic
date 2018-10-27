@@ -1,0 +1,39 @@
+
+- Download and install Tomcat from http://tomcat.apache.org
+
+- Download Eclipse 3.0 or later from www.eclipse.org
+
+- Add the folder as an eclipse project
+
+- Update the classpath for the project
+	(Right click the project -> Properties -> java build path)
+   Add external JARs jsp-api.jar and servlet-api.jar 
+   to the Java Build Path
+   They are in common/lib in the Tomcat installation folder
+
+- Update the classpath for ant so that the new targets
+  can be interpreted.
+  Windows -> Preferences -> Ant Runtime
+  Add external JARs to Ant Home Entries:
+      Add ant.jar from apache-ant/lib in the JWSDP-folder
+	  Add tools.jar from the lib folder inside your jdk folder
+
+- Update the build.properties: set your Tomcat username and password
+
+- update the build.xml-file wherever it says to do so (check "UPDATE THIS" comments inside the file)
+
+- Running the application
+  1. Run Tomcat (check that Tomcat is running by opening http:\\localhost:8080 on the web browser)
+  2. Run the ant-targets compile and install
+  	this can be done by double-clicking build.xml, then right-clicking "Sample" Ant under "Outline"
+  	check for Ant messages on the Console
+  3. Webbrowser: Open
+        "http://localhost:8080/Sample"
+
+- Updating the application
+  If you want to add new Servlets, don't forget to declare this
+  in the WEB-INF/web.xml
+
+- Frustration? Try not to crush the PC. 
+I almost did that the first time I tried to deploy a Java-based web application on Tomcat. 
+Doesn't help. Better send me an e-mail or ask me.

@@ -1,0 +1,46 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_Mux {} {
+  make nand2 -origin {320 270}
+  make nand2 -origin {320 460}
+  make inverter -orient R270 -origin {170 370}
+  make input -name b -origin {80 440}
+  make input -name a -origin {80 250}
+  make input -name s -origin {80 510}
+  make output -name y -origin {710 360}
+  make nand2 -origin {600 360}
+  make_wire 170 320 300 320
+  make_wire 300 320 300 290
+  make_wire 170 510 170 400
+  make_wire 270 480 270 510
+  make_wire 80 440 300 440
+  make_wire 80 250 300 250
+  make_wire 300 480 270 480
+  make_wire 80 510 170 510
+  make_wire 170 510 270 510
+  make_wire 550 380 550 460
+  make_wire 670 360 710 360
+  make_wire 550 270 550 340
+  make_wire 580 340 550 340
+  make_wire 390 270 550 270
+  make_wire 580 380 550 380
+  make_wire 390 460 550 460
+}
+
+proc ICON_Mux args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 -80} -name a
+  icon_term -type input -origin {-100 -60} -name b
+  icon_term -type input -origin {-100 -40} -name s
+  icon_term -type output -origin {100 -80} -name y
+  icon_property -origin {-50 70} -type user -name name
+  icon_property -origin {-50 90} -type user -name M
+  icon_property -origin {-50 110} -type user -name dpc
+  icon_line -100 -140 -100 40 100 40 100 -140 -100 -140
+  icon_property -origin {-40 -70} -label {2 to 1 Mux}
+  icon_property -origin {-90 -80} -label a
+  icon_property -origin {-90 -60} -label b
+  icon_property -origin {80 -80} -label y
+  icon_property -origin {-90 -40} -label s
+}
+

@@ -1,0 +1,310 @@
+/*
+ * This file is part of GasPaint
+ * 
+ * GasPaint OpenGL/Gtk+ based paint-like program.
+ * Copyright (C) 2008  	Frederic-Gerald Morcos
+ 						Andrew Botros Boktor
+ 						Marleine Mounir Daoud
+ * 
+ * GasPaint is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * GasPaint is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with GasPaint.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include "drawing.h"
+#include "config.h"
+
+#include <gtk/gtk.h>
+#include <GL/gl.h>
+#include <GL/glut.h>
+#include <math.h>
+#include <string.h>
+#include <stdlib.h>
+
+#include "drawarea.h"
+#include "public.h"
+
+/* implements various of the drawing functions */
+
+/**
+ * void drawString ( int x, int y, char *string ) - Draws the specified text at the specified position.
+ * @ int x: x position.
+ * @ int y: y position.
+ * @ char *string: The string to be drawn.
+ *
+ * Draws the specified text ate the specified position.
+ **/
+void drawString ( int x, int y, char *string )
+{
+	/* TODO:
+	 * setting the color temporarily, as all text should be in black,
+	 * at least for now. we can set some #define macro for it?
+	 * i think u should put the color back as it was after drawing.
+	 * --> when i remove the color line it gives a runtime error.
+	 */
+	glColor3f (0.0, 0.0, 0.0);
+
+	glRasterPos2i ( x, y );
+	glutBitmapString ( FONT_TYPE_AND_SIZE, string );
+}
+
+/**
+ * void drawCircle ( int x, int y, int radius ) - Draws a circle with the specified radius with the center at the specified point.
+ * @ int x: x position.
+ * @ int y: y position.
+ * @ int radius: The radius of the circle.
+ *
+ * Draws a circle with the specified radius with the center at the specified point.
+ **/
+void drawCircle ( int x0, int y0, int x1, int y1 )
+{
+	int radius = sqrt ( ((x1 - x0)*(x1 - x0)) + ((y1 - y0)*(y1 - y0)));
+	float incr = 50.0/radius;
+	glBegin (GL_LINE_STRIP);
+	float i = 0;
+	float degInRad;
+	while (i <= 1100)
+	{
+		degInRad = (int)(i) * DEG_TO_RAD;
+		glVertex2f (cos (degInRad) * radius + x0, sin (degInRad) * radius + y0);
+		i = i + incr;
+	}
+	glEnd();
+}
+
+void changeColor ( GdkColor color )
+{
+	glColor3f ( color.red/255, color.green/255, color.blue/255 );
+}
+
+
+/**
+ * void fill ( GdkColor initial, GdkColor final, int x, int y )
+ * int RGB0: the RGB of the original point
+ * int RGB1: the new color for all the points around
+ * @ int x: x position.
+ * @ int y: y position.
+ *
+ * fills the area around the x,y that had the initial color with the final color.
+ **/
+void fillh ( int R0, int G0, int B0, int R1, int G1, int B1, int x, int y )
+{
+	
+	GdkColor initial, final;
+	initial.red = R0;
+	initial.green = G0;
+	initial.blue = B0;
+	final.red = R1;
+	final.green = G1;
+	final.blue = B1;
+	/*
+	if	( 
+			( initial.red == final.red && initial.green == final.green && initial.blue == final.blue )
+			||
+			( x<0 || x>300 || y<0 || y>300 )
+		)
+		return;
+	*/
+	
+	
+	float *pixel_color = malloc ( sizeof( float )*3 );
+	
+	glReadPixels( x, y, 1, 1, GL_RGB, GL_FLOAT, pixel_color );
+	
+	
+	if 	(
+			( (int)(pixel_color[0]*255) == initial.red && (int)(pixel_color[1]*255) == initial.green && (int)(pixel_color[2]*255) == initial.blue )
+			&&
+			! ( (int)(pixel_color[0]*255) == final.red && (int)(pixel_color[1]*255) == final.green && (int)(pixel_color[2]*255) == final.blue )
+		)
+	{
+		
+		
+		
+		glBegin ( GL_POINT );
+		glVertex2i ( x, 640-y );
+		glEnd ();
+		
+		
+		fillh ( R0, G0, B0, R1, G1, B1, x+1, y );
+		fillh ( R0, G0, B0, R1, G1, B1, x, y+1 );
+		fillh ( R0, G0, B0, R1, G1, B1, x, y-1 );
+		fillh ( R0, G0, B0, R1, G1, B1, x-1, y );
+	}
+	free ( pixel_color );
+}
+
+/* gets the current color of the pixel clicked and calls fillh to implement filling */
+void fill ( int x, int y )
+{
+	y=640-y;
+	float *pixel_color = malloc ( sizeof( float )*3 );
+	
+	glReadPixels( x, y, 1, 1, GL_RGB, GL_FLOAT, pixel_color );
+	
+	//printf ( "Should be int: %d\n", (int)(pixel_color[0]*255 ));
+	if ( ! ( pixel_color[0]*255 == current_color.red/255 && pixel_color[1]*255 == current_color.green/255 && pixel_color[2]*255 == current_color.blue/256 ) )
+	{
+		fillh ( (int)(pixel_color[0]*255), (int)(pixel_color[1]*255), (int)(pixel_color[2]*255), current_color.red/256, current_color.green/256, current_color.blue/256 , x, y );
+	}
+	free ( pixel_color );
+}
+
+/* OLD Filling Function, please DONOT delete untill the new one COMPLETELY works
+ */
+/*
+void fill ( GdkColor initial, GdkColor final, int x, int y )
+{
+	if ( initial.red == final.red && initial.green == final.green && initial.blue == final.blue )
+		return;
+	
+	float *real_color = malloc ( 3 );
+	int i=0;
+	
+	while (i<110)
+	{	
+		glReadPixels( i, y, 1, 1, GL_RGB, GL_FLOAT, real_color );
+		printf ( "X: %d   Y: %d\n", i, y );
+		printf ( "Color: %f %f %f\n", real_color[0]*255, real_color[1]*255, real_color[2]*255 );
+		
+		i++;
+	}
+	
+	if ( real_color[0]*255.0f == final.red &&real_color[1]*255.0f == final.green && real_color[2]*255.0f == final.blue )
+	{
+		free ( real_color );
+		return;
+	}
+	
+	
+	if ( real_color[0]*255.0f == initial.red &&real_color[1]*255.0f == initial.green && real_color[2]*255.0f == initial.blue )
+	{
+		free ( real_color );
+		
+		glBegin ( GL_POINT );
+		glVertex2i ( x, y );
+		glEnd ();
+		glFlush ();
+		fill ( initial, final, x+1, y );
+		fill ( initial, final, x-1, y );
+		fill ( initial, final, x, y+1 );
+		fill ( initial, final, x, y-1 );
+		
+		printf ( "SHOULD DRAW\n" );
+	}
+}
+* 
+*/
+
+/**
+ * void drawRect ( int x0, int y0, int x1, int y1) - Draws a rectangle with the corners at the specified points.
+ * @ int x0: x position of start point.
+ * @ int y0: y position of start point.
+ * @ int x1: x position of end point.
+ * @ int y1: y position of end point.
+ *
+ * Draws a rectangle with the corners at the specified points.
+ **/
+void drawRect ( int x0, int y0, int x1, int y1)
+{
+	
+	glBegin ( GL_LINE_STRIP );
+		glVertex2i ( x0, y0 );
+		glVertex2i ( x1, y0 );
+		glVertex2i ( x1, y1 );
+		glVertex2i ( x0, y1 );
+		glVertex2i ( x0, y0 );
+	glEnd ();
+		
+	//glRecti(x0,y0,x1,y1);
+}
+
+/**
+ * void drawLine ( int x0, int y0, int x1, int y1) - Draws a line between the 2 points.
+ * @ int x0: x position of start point.
+ * @ int y0: y position of start point.
+ * @ int x1: x position of end point.
+ * @ int y1: y position of end point.
+ *
+ * Draws a line between the 2 points.
+ **/
+void drawLine ( int x0, int y0, int x1, int y1)
+{
+	glBegin ( GL_LINE );
+		glVertex2i ( x0, y0 );
+		glVertex2i ( x1, y1 );
+	glEnd ();
+}
+
+/**
+ * void drawCommand ( char *command ) - Takes a command and send it to the appropriate method to execute it.
+ * @ char *command: string containing the command.
+ *
+ * Takes a command, written in the format we agreed on, and checks it applies to which condition and then send it to 
+ * the appropriate method to execute it and draw what is requested.
+ **/
+void drawCommand ( char *command)
+{	
+	char *tmp = malloc (sizeof (char) * strlen (command) + 2);
+	strcpy (tmp, command);
+	strcat (tmp, "\0");
+	
+	// printf ("Command @ draw Command: %s\n", tmp);
+	
+	char *temp = strtok (tmp, " ");
+	
+	if ( strcmp ( temp, "line" ) == 0)
+	{ 
+		char *temp1 = strtok (NULL, " ");
+		char *temp2 = strtok (NULL, " ");
+		char *temp3 = strtok (NULL, " ");
+		char *temp4 = strtok (NULL, " ");	
+		drawLine (atoi(temp1), atoi(temp2), atoi(temp3), atoi(temp4));
+	}
+	else if ( strcmp ( temp, "point" ) == 0)
+	{
+		char *temp1 = strtok (NULL, " ");
+		char *temp2 = strtok (NULL, " ");
+		//drawPoint (atoi(temp1), atoi(temp2));
+	}
+	else if ( strcmp ( temp, "rect" ) == 0)
+	{
+		char *temp1 = strtok (NULL, " ");
+		char *temp2 = strtok (NULL, " ");
+		char *temp3 = strtok (NULL, " ");
+		char *temp4 = strtok (NULL, " ");
+		drawRect (atoi(temp1), atoi(temp2), atoi(temp3), atoi(temp4));
+	}
+	else if ( strcmp ( temp, "circ" ) == 0)
+	{
+		char *temp1 = strtok (NULL, " ");
+		char *temp2 = strtok (NULL, " ");
+		char *temp3 = strtok (NULL, " ");
+		char *temp4 = strtok (NULL, " ");
+		drawCircle (atoi(temp1), atoi(temp2), atoi(temp3), atoi(temp4));
+	}
+	else if ( strcmp ( temp, "fill" ) == 0)
+	{
+		char *temp1 = strtok (NULL, " ");
+		char *temp2 = strtok (NULL, " ");
+		fill (atoi(temp1), atoi(temp2));
+	}
+	else if ( strcmp ( temp, "color" ) == 0)
+	{
+		/* the color will be saved in format #rrggbb HEX */
+		char *temp1 = strtok (NULL, " ");
+		// printf ("temp1: %s\n", temp1);
+		gdk_color_parse (temp1, &current_color);
+		draw_area_set_color ();
+	}
+	free (temp);
+}

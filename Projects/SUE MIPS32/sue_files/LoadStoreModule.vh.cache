@@ -1,0 +1,7 @@
+set NETLIST_CACHE(LoadStoreModule,cells) {{schematic Adder3217} {schematic CUMuxSelect}}
+set netlist_props verilog
+set netlist_level 1000
+set NETLIST_CACHE(LoadStoreModule,version) MMI_SUE4.4.0
+set NETLIST_CACHE(LoadStoreModule) {{module LoadStoreModule (LOAD, LS_ADDRESS, LS_OVERFLOW, OFFSET, } {		R_BASE_VALUE, S, STORE, T0, T3);} {	input		LOAD;} {	input		STORE;} {	input		T0;} {	input		T3;} {	input	[16:0]	OFFSET;} {	input	[31:0]	R_BASE_VALUE;} {	output		LS_OVERFLOW;} {	output	[31:0]	LS_ADDRESS;} {	output	[1:0]	S;} { } {	Adder3217 Adder3217(.y(LS_ADDRESS[31:0]), .b(R_BASE_VALUE[31:0]), } {		.cout(LS_OVERFLOW), .a(OFFSET[16:0]));} {	CUMuxSelect CUMuxSelect(.L(LOAD), .T0(T0), .S(STORE), .s(S[1:0]), } {		.T3(T3));} {} {endmodule		// LoadStoreModule} {}}
+set NETLIST_CACHE(LoadStoreModule,names) {{480 390 {0 OFFSET[16:0]}} {720 440 {1 LS_ADDRESS[31:0]}} {680 390 {0 LS_OVERFLOW}} {480 600 {0 T0} {2 T0}} {580 600 {0 CUMuxSelect}} {580 420 {0 Adder3217}} {480 620 {0 T3} {2 T3}} {480 440 {0 R_BASE_VALUE[31:0]}} {270 390 {1 OFFSET[16:0]}} {680 440 {0 LS_ADDRESS[31:0]}} {480 560 {0 LOAD} {2 LOAD}} {270 440 {1 R_BASE_VALUE[31:0]}} {480 580 {0 STORE} {2 STORE}} {680 580 {0 S[1:0]} {2 S[1:0]}} {720 390 {1 LS_OVERFLOW}}}
+set NETLIST_CACHE(LoadStoreModule,wires) {{270 390 480 390 OFFSET[16:0]} {270 440 480 440 R_BASE_VALUE[31:0]} {680 390 720 390 LS_OVERFLOW} {680 440 720 440 LS_ADDRESS[31:0]}}

@@ -1,0 +1,16 @@
+$def with (todos)
+<html>
+	<title>Todo Manager - TODOs</title>
+	<body>
+		<a href="./logout">Logout</a>
+		<table border="1">
+			<tr><th>TODO</th></tr>
+			$for t in todos:
+			<tr><td>$t</td></tr>
+		</table>
+		<form method="POST" action="addtodo">
+			New TODO <input type="text" name="todotext"/>
+			<input type="submit" value="Add"/>
+		</form>
+	</body>
+</html>

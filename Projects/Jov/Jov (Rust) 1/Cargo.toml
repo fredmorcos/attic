@@ -1,0 +1,18 @@
+[package]
+name = "jov"
+version = "0.1.0"
+authors = ["Fred Morcos <fred.morcos@gmail.com>"]
+build = "build.rs"
+
+[dependencies]
+chrono = "*"
+humantime = "*"
+humansize = "*"
+
+[dependencies.sdl2]
+version = "0.31.0"
+features = ["ttf", "image", "gfx"]
+
+[build-dependencies]
+bindgen = "*"
+pkg-config = "*"

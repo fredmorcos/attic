@@ -1,0 +1,210 @@
+#!/usr/bin/env python3
+
+from sys import stdin
+from sys import stdout
+from sys import stderr
+from sys import argv
+
+from functools import cmp_to_key as ctk
+from argparse import ArgumentParser as argp
+
+getload  = lambda x:      x[1].count('#')
+getfree  = lambda x:      x[1].count('-')
+getfeat  = lambda x:      x[5]
+getnodes = lambda nl, pf: [i for i in nl if i[0].startswith(pf)]
+
+PREFER_MEM = False
+
+def _die(m): stderr.write(m + '\n'); exit(1)
+
+def _cmp_feat_func(e1, e2):
+    if   getfeat(e1) == getfeat(e2): return  0
+    elif getfeat(e1) == '--':        return  1
+    elif getfeat(e2) == '--':        return -1 
+    elif getfeat(e1) == 'CM':        return -1
+    elif getfeat(e2) == 'CM':        return  1
+    else:
+        if PREFER_MEM:
+            if   getfeat(e1) == '-M': return -1
+            elif getfeat(e2) == '-M': return  1
+            else:                     _die('should not be reached')
+        else:
+            if   getfeat(e1) == 'C-': return -1
+            elif getfeat(e2) == 'C-': return  1
+            else:                     _die('should not be reached')
+
+def _cmp_func(e1, e2):
+    if getload(e1) == getload(e2): return _cmp_feat_func(e1, e2)
+    else:                          return (getload(e1) - getload(e2))
+
+def _group_nodes(nodelist):
+    # group nodes by name, which represents the mappings of neighbors
+    temp_groups = [getnodes(nodelist, 'r1i0'),
+                   getnodes(nodelist, 'r1i1'),
+                   getnodes(nodelist, 'r1i3')]
+
+    groups = []
+    # split each list of nodes into good and bad nodes based on load
+    for group in temp_groups:
+        good    = [i for i in group if getload(i) == 0]
+        bad     = [i for i in group if getload(i) >  0]
+        groups += [dict(good=good, bad=bad)]
+
+    # sort groups by number of good nodes
+    groups.sort(key=lambda x: len(x['good']))
+
+    # sort each subgroup (good and bad) by cpu and mem criteria
+    for group in groups:
+        group['good'].sort(key=ctk(_cmp_func))
+        group['bad'].sort(key=ctk(_cmp_func))
+
+    return groups
+
+def _print_group(group):
+    # good
+    for node in group['good']:
+        for item in node:
+            stdout.write(item + ' ')
+        stdout.write('\n')
+    # bad
+    stdout.write('--\n')
+    for node in group['bad']:
+        for item in node:
+            stdout.write(item + ' ')
+        stdout.write('\n')
+    stdout.write('----\n')
+
+def _get_best_nodes(groups, nodes):
+    # if there is a group that fits, return it
+    for group in groups:
+        if len(group['good']) >= nodes:
+            return group['good'][:nodes]
+
+    # if no group fits, try constructing a list of good neighboring nodes
+    best_nodes = []
+
+    # first the good ones
+    # for group in reversed(groups):
+    for group in groups:
+        for good in group['good']:
+            best_nodes += [good]
+            if len(best_nodes) == nodes:
+                return best_nodes
+    # then the bad
+    # for group in reversed(groups):
+    for group in groups:
+        for bad in group['bad']:
+            best_nodes += [bad]
+            if len(best_nodes) == nodes:
+                return best_nodes
+
+    _die('not enough good nodes')
+
+def _get_best_nodes2(groups, nodes):
+    # keep taking out best nodes from each group, first good then bad
+    best_nodes = []
+
+    # good CM
+    for group in groups:
+        tmp = [i for i in group['good'] if getfeat(i) == 'CM']
+        best_nodes += tmp[:min(nodes-len(best_nodes), len(tmp))]
+        if len(best_nodes) == nodes: return best_nodes
+
+    # good C/M
+    for group in groups:
+        if PREFER_MEM:
+            tmp = [i for i in group['good'] if getfeat(i) == '-M']
+        else:
+            tmp = [i for i in group['good'] if getfeat(i) == 'C-']
+        best_nodes += tmp[:min(nodes-len(best_nodes), len(tmp))]
+        if len(best_nodes) == nodes: return best_nodes
+
+    # good C/M
+    for group in groups:
+        if PREFER_MEM:
+            tmp = [i for i in group['good'] if getfeat(i) == 'C-']
+        else:
+            tmp = [i for i in group['good'] if getfeat(i) == '-M']
+        best_nodes += tmp[:min(nodes-len(best_nodes), len(tmp))]
+        if len(best_nodes) == nodes: return best_nodes
+
+    # good --
+    for group in groups:
+        tmp = [i for i in group['good'] if getfeat(i) == '--']
+        best_nodes += tmp[:min(nodes-len(best_nodes), len(tmp))]
+        if len(best_nodes) == nodes: return best_nodes
+
+    # bad CM
+    for group in groups:
+        tmp = [i for i in group['bad'] if getfeat(i) == 'CM']
+        best_nodes += tmp[:min(nodes-len(best_nodes), len(tmp))]
+        if len(best_nodes) == nodes: return best_nodes
+
+    # bad C/M
+    for group in groups:
+        if PREFER_MEM:
+            tmp = [i for i in group['bad'] if getfeat(i) == '-M']
+        else:
+            tmp = [i for i in group['bad'] if getfeat(i) == 'C-']
+        best_nodes += tmp[:min(nodes-len(best_nodes), len(tmp))]
+        if len(best_nodes) == nodes: return best_nodes
+
+    # bad C/M
+    for group in groups:
+        if PREFER_MEM:
+            tmp = [i for i in group['bad'] if getfeat(i) == 'C-']
+        else:
+            tmp = [i for i in group['bad'] if getfeat(i) == '-M']
+        best_nodes += tmp[:min(nodes-len(best_nodes), len(tmp))]
+        if len(best_nodes) == nodes: return best_nodes
+
+    # bad --
+    for group in groups:
+        tmp = [i for i in group['bad'] if getfeat(i) == '--']
+        best_nodes += tmp[:min(nodes-len(best_nodes), len(tmp))]
+        if len(best_nodes) == nodes: return best_nodes
+
+    _die('not enough good nodes')
+
+if __name__ == '__main__':
+    p = argp(description='Finds the fastest and closests nodes by sorting',
+             prog='hvlt_load | %s' % argv[0])
+    p.add_argument('--prefer-mem', default=False,
+                   action='store_const', const=True,
+                   help='Prefer nodes with more mem than cpu')
+    p.add_argument('--show-full', default=False,
+                   action='store_const', const=True,
+                   help='Show full info list instead of node names')
+    p.add_argument('--nodes', type=int, default=4, metavar='N',
+                   help='Number of nodes to find')
+    p.add_argument('--alt', default=False,
+                   action='store_const', const=True,
+                   help='Use alternative get_best_nodes function')
+    args = p.parse_args()
+    PREFER_MEM = args.prefer_mem
+
+    data = stdin.readline()
+    data = data.split(' ')[:-8]
+    data = [i for i in data if i != '']
+
+    newdata = []
+    for i in range(0, len(data), 6):
+        newdata += [data[i:i+6]]
+    groups = _group_nodes(newdata)
+
+    if args.show_full:
+        for group in groups:
+            _print_group(group)
+
+    if args.alt: best_nodes = _get_best_nodes2(groups, args.nodes)
+    else:        best_nodes = _get_best_nodes(groups, args.nodes)
+
+    if args.show_full:
+        print('best:')
+        for node in best_nodes:
+            for item in node:
+                stdout.write(item + ' ')
+            stdout.write('\n')
+
+    for node in best_nodes:
+        stdout.write(node[0] + ' ')

@@ -1,0 +1,29 @@
+# $Id: PKGBUILD,v 1.43 2007/12/02 14:26:58 jgc Exp $
+# Maintainer: Jan de Groot <jgc@archlinux.org>
+
+pkgname=gedit
+pkgver=2.21.1
+pkgrel=1
+pkgdesc="A text editor for GNOME"
+arch=(i686 x86_64)
+license=('GPL')
+depends=('pygtk>=2.12.0' 'pygtksourceview2>=2.0.0' 'enchant' 'libgnomeui>=2.20.1' 'desktop-file-utils' 'iso-codes' 'gtksourceview2>=2.1.0' 'glade>=2.5.1')
+makedepends=('perlxml' 'pkgconfig' 'gnome-doc-utils>=0.12.0')
+groups=('gnome-extra')
+options=('!libtool' '!emptydirs')
+url="http://www.gnome.org"
+install=gedit.install
+source=(http://ftp.gnome.org/pub/gnome/sources/${pkgname}/2.21/${pkgname}-${pkgver}.tar.gz)
+md5sums=('61b47643e9f05536a0c254ddd3e2de23')
+
+build() {
+	cd ${startdir}/src/${pkgname}-${pkgver}
+	./configure --prefix=/usr --sysconfdir=/etc \
+		--localstatedir=/var --disable-scrollkeeper
+	make || return 1
+	make -j1 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR=${startdir}/pkg install || return 1
+			       
+	mkdir -p ${startdir}/pkg/usr/share/gconf/schemas
+	gconf-merge-schema ${startdir}/pkg/usr/share/gconf/schemas/${pkgname}.schemas ${startdir}/pkg/etc/gconf/schemas/*.schemas
+	rm -f ${startdir}/pkg/etc/gconf/schemas/*.schemas
+}

@@ -1,0 +1,11 @@
+extends _layout
+
+block content
+  article.container
+    .inner-container.navbar-inner
+      h2.page-title= title
+      :markdown
+        - Check if `#{org_title}` is a valid organization name.
+        - Check if the user is logged in.
+        - Check if the user belongs to / own `#{org_title}`.
+        - Display `#{org_title}`'s public page or an error.

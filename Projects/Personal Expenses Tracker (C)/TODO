@@ -1,0 +1,19 @@
+Develop a more elaborate format:
+
+ - Support City/Country of payment
+
+ - Support different accounts with income and outcome to and from each
+   account, this can allow for a wallet (cash) account, a running bank
+   account and a savings account, then you would be able to model the
+   case where you withdraw money from the running account into your
+   wallet, or putting running credit into the savings account or more
+   generally making any transfer from any account to any other account
+
+ - Support a main currency along with secondary currencies, where if
+   you travel to another country, the tool would take care of
+   converting from the secondary currency used in that country to your
+   main currency. This would require storing the currency conversion
+   value of that day into the format.
+
+ - Have an extra field which can contain arbitrary extra attributes
+   (properties and their values)

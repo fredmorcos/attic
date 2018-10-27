@@ -1,0 +1,39 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_cell {} {
+  make inverter -origin {460 -210}
+  make inverter -orient RXY -origin {470 -130}
+  make input -name in -origin {100 -170}
+  make output -name out0 -origin {630 -210}
+  make input -orient R90 -name w -origin {290 -230}
+  make inverter -M 4 -origin {200 -170}
+  make nmos -orient R90 -M 4 -origin {290 -170}
+  make input -orient R90 -name r1 -origin {590 -270}
+  make nmos -orient R90 -origin {590 -210}
+  make_wire 330 -210 430 -210
+  make_wire 420 -130 330 -130
+  make_wire 510 -210 550 -210
+  make_wire 500 -130 550 -130
+  make_wire 330 -210 330 -170
+  make_wire 330 -170 330 -130
+  make_wire 550 -210 550 -130
+  make_wire 100 -170 170 -170
+}
+
+proc ICON_cell args {
+  icon_setup $args {{origin {0 0}} {orient R0} {cell {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 -80} -name in
+  icon_term -type input -origin {-100 -60} -name r1
+  icon_term -type input -origin {-100 -40} -name w
+  icon_term -type output -origin {100 -80} -name out0
+  icon_property -origin {-50 70} -type user -name cell
+  icon_property -origin {-50 90} -type user -name M
+  icon_property -origin {-50 110} -type user -name dpc
+  icon_line -100 -120 -100 10 100 10 100 -120 -100 -120
+  icon_property -origin {-10 -80} -label cell
+  icon_property -origin {-90 -80} -label in
+  icon_property -origin {-90 -60} -label r
+  icon_property -origin {-90 -40} -label w
+  icon_property -origin {60 -80} -label out
+}
+

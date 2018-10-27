@@ -1,0 +1,9 @@
+//- # PLACEHOLDR IMAGE MIXIN
+
+//- A mixin to create placeholders
+//- -----------------------------------------
+
+mixin image(width, height, alt)
+  - var nb = Math.floor(Math.random() * 10) + 1;
+  - if(!alt) alt="Description de l'image.."
+  img(src="http://www.placehold.it/#{width}x#{height}/08c/fff", alt="#{alt}", title="#{alt}", longdesc="datas/extended-description.html", attributes)

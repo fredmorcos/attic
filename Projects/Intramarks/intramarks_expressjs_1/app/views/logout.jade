@@ -1,0 +1,10 @@
+extends _layout
+
+block content
+  article.container
+    .row
+      h2.page-title= title
+      .span4.offset4
+        .inner-container.navbar-inner
+          :markdown
+            - Should logout the user and redirect to homepage

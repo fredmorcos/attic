@@ -1,0 +1,7 @@
+set NETLIST_CACHE(mux42132bbits,cells) {{schematic mux32bit221}}
+set netlist_props verilog
+set netlist_level 1000
+set NETLIST_CACHE(mux42132bbits,version) MMI_SUE4.4.0
+set NETLIST_CACHE(mux42132bbits) {{module mux42132bbits (a, b, c, d, s, y);} {	input	[31:0]	a;} {	input	[31:0]	b;} {	input	[31:0]	c;} {	input	[31:0]	d;} {	input	[1:0]	s;} {	output	[31:0]	y;} { } {	wire	[31:0]	net_2;} {	wire	[31:0]	net_1;} { } {	mux32bit221 mux32bit221(.y(net_1[31:0]), .a(a[31:0]), .b(b[31:0]), } {		.s(s[0]));} {	mux32bit221 mux32bit221_1(.y(net_2[31:0]), .b(d[31:0]), .s(s[0]), } {		.a(c[31:0]));} {	mux32bit221 mux32bit221_2(.a(net_1[31:0]), .b(net_2[31:0]), } {		.y(y[31:0]), .s(s[1]));} {} {endmodule		// mux42132bbits} {}}
+set NETLIST_CACHE(mux42132bbits,names) {{190 510 {1 s[0]}} {410 220 {0 mux32bit221}} {310 140 {0 a[31:0]} {2 a[31:0]}} {410 500 {0 mux32bit221_1}} {310 420 {0 c[31:0]} {2 c[31:0]}} {310 160 {0 b[31:0]} {2 b[31:0]}} {510 140 {0 net_1[31:0]}} {310 440 {0 d[31:0]} {2 d[31:0]}} {510 420 {0 net_2[31:0]}} {710 440 {0 s[1]} {2 s[1]}} {350 260 {0 s[0]}} {350 540 {0 s[0]}} {770 400 {0 mux32bit221_2}} {670 320 {0 net_1[31:0]}} {670 340 {0 net_2[31:0]}} {870 320 {0 y[31:0]} {2 y[31:0]}}}
+set NETLIST_CACHE(mux42132bbits,wires) {{580 340 670 340 net_2[31:0]} {510 420 580 420 net_2[31:0]} {580 340 580 420 net_2[31:0]} {580 140 580 320 net_1[31:0]} {510 140 580 140 net_1[31:0]} {580 320 670 320 net_1[31:0]} {190 280 350 280 s[0]} {350 260 350 280 s[0]} {190 560 350 560 s[0]} {190 280 190 510 s[0]} {190 510 190 560 s[0]} {350 540 350 560 s[0]}}

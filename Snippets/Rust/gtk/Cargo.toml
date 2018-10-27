@@ -1,0 +1,10 @@
+[package]
+name = "ffm"
+description = "Fred's File Manager"
+version = "0.0.1"
+authors = ["Fred Morcos <fred.morcos@gmail.com>"]
+
+[dependencies.gtk]
+version = "0.3.0"
+features = ["v3_22"]
+

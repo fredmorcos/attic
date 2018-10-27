@@ -1,0 +1,86 @@
+<order-list>
+	<order deadline="1950" id="1" current_machine="" current_overtime="0">
+		<recipe>
+			<machine name="stripper" time="15"/>
+			<machine name="degreaser" time="30"/>
+			<machine name="pickler" time="60"/>
+			<machine name="rinser" time="10"/>
+			<machine name="fluxer" time="10"/>
+			<machine name="dryer" time="30"/>
+			<machine name="kettle" time="40"/>
+			<machine name="quencher" time="10"/>
+			<machine name="passivator" time="15"/>
+			<machine name="postrinser" time="10"/>
+		</recipe>
+	</order>
+	<order deadline="1000" id="2" current_machine="" current_overtime="0">
+		<recipe>
+			<machine name="stripper" time="20"/>
+			<machine name="degreaser" time="40"/>
+			<machine name="pickler" time="80"/>
+			<machine name="rinser" time="40"/>
+			<machine name="fluxer" time="10"/>
+			<machine name="dryer" time="20"/>
+			<machine name="kettle" time="50"/>
+			<machine name="quencher" time="10"/>
+			<machine name="passivator" time="10"/>
+			<machine name="postrinser" time="10"/>
+		</recipe>
+	</order>
+	<order deadline="1400" id="3" current_machine="" current_overtime="0">
+		<recipe>
+			<machine name="stripper" time="20"/>
+			<machine name="degreaser" time="40"/>
+			<machine name="pickler" time="60"/>
+			<machine name="rinser" time="10"/>
+			<machine name="fluxer" time="10"/>
+			<machine name="dryer" time="20"/>
+			<machine name="kettle" time="40"/>
+			<machine name="quencher" time="10"/>
+			<machine name="passivator" time="10"/>
+			<machine name="postrinser" time="10"/>
+		</recipe>
+	</order>
+	<order deadline="1850" id="40" current_machine="" current_overtime="0">
+		<recipe>
+			<machine name="stripper" time="10"/>
+			<machine name="degreaser" time="20"/>
+			<machine name="pickler" time="100"/>
+			<machine name="rinser" time="10"/>
+			<machine name="fluxer" time="15"/>
+			<machine name="dryer" time="20"/>
+			<machine name="kettle" time="40"/>
+			<machine name="quencher" time="10"/>
+			<machine name="passivator" time="10"/>
+			<machine name="postrinser" time="10"/>
+		</recipe>
+	</order>
+	<order deadline="1710" id="5" current_machine="" current_overtime="0">
+		<recipe>
+			<machine name="stripper" time="10"/>
+			<machine name="degreaser" time="10"/>
+			<machine name="pickler" time="75"/>
+			<machine name="rinser" time="25"/>
+			<machine name="fluxer" time="15"/>
+			<machine name="dryer" time="10"/>
+			<machine name="kettle" time="40"/>
+			<machine name="quencher" time="10"/>
+			<machine name="passivator" time="10"/>
+			<machine name="postrinser" time="10"/>
+		</recipe>
+	</order>
+	<order deadline="860" id="6" current_machine="" current_overtime="0">
+		<recipe>
+			<machine name="stripper" time="10"/>
+			<machine name="degreaser" time="20"/>
+			<machine name="pickler" time="75"/>
+			<machine name="rinser" time="10"/>
+			<machine name="fluxer" time="15"/>
+			<machine name="dryer" time="10"/>
+			<machine name="kettle" time="40"/>
+			<machine name="quencher" time="10"/>
+			<machine name="passivator" time="10"/>
+			<machine name="postrinser" time="10"/>
+		</recipe>
+	</order>
+</order-list>

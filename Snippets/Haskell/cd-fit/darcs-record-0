@@ -1,0 +1,10 @@
+Use helper functions from main
+***END OF DESCRIPTION***
+
+Place the long patch description above the ***END OF DESCRIPTION*** marker.
+The first line of this file will be the patch name.
+
+
+This patch contains the following changes:
+
+M ./cd-fit.hs -2 +8

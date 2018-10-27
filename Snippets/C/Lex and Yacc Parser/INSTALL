@@ -1,0 +1,16 @@
+=== Dependencies ===
+flex - Fast Lexical Analyzer
+bison - Parser Generator
+gcc - GNU C Compiler
+
+=== Building ===
+run ./build.sh
+
+=== Building with debug ===
+run ./build.sh debug
+
+=== Testing/Running ===
+./hllc tests/basic-functions-integer.hll
+
+=== Cleaning ===
+run ./build.sh clean

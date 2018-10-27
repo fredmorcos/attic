@@ -1,0 +1,99 @@
+# SUE version MMI_SUE4.2.6
+
+proc SCHEMATIC_ripple4 {} {
+  make FA -orient R90 -origin {420 290}
+  make FA -orient R90 -origin {570 290}
+  make FA -orient R90 -origin {120 290}
+  make FA -orient R90 -origin {270 290}
+  make name_net_s -name {[0]} -origin {570 100}
+  make name_net_s -name {[0]} -origin {550 130}
+  make name_net_s -name {[1]} -origin {420 100}
+  make name_net_s -name {[1]} -origin {400 130}
+  make name_net_s -name {[2]} -origin {270 100}
+  make name_net_s -name {[2]} -origin {250 130}
+  make name_net_s -name {[3]} -origin {120 100}
+  make name_net_s -name {[3]} -origin {100 130}
+  make input -orient R90 -name {b[3:0]} -origin {200 10}
+  make input -orient R90 -name {a[3:0]} -origin {470 10}
+  make input -orient RXY -name cin -origin {630 150}
+  make output -orient RXY -name cout -origin {70 440}
+  make title_bar -owner tutorial -origin {390 630}
+  make ripple4 -origin {850 410}
+  make output -orient R90 -name {sum[0]} -origin {580 440}
+  make output -orient R90 -name {sum[1]} -origin {430 440}
+  make output -orient R90 -name {sum[2]} -origin {280 440}
+  make output -orient R90 -name {sum[3]} -origin {130 440}
+  make_wire 550 410 490 410
+  make_wire 490 410 490 160
+  make_wire 440 160 440 190
+  make_wire 400 410 340 410
+  make_wire 340 410 340 160
+  make_wire 290 160 290 190
+  make_wire 250 410 190 410
+  make_wire 190 410 190 160
+  make_wire 140 160 140 190
+  make_wire 270 30 120 30
+  make_wire 570 100 570 30
+  make_wire 550 130 550 60
+  make_wire 550 130 550 190
+  make_wire 420 100 420 30
+  make_wire 420 100 420 190
+  make_wire 400 130 400 60
+  make_wire 400 130 400 190
+  make_wire 270 100 270 30
+  make_wire 270 100 270 190
+  make_wire 250 130 250 60
+  make_wire 250 130 250 190
+  make_wire 120 100 120 30
+  make_wire 120 100 120 190
+  make_wire 100 130 100 60
+  make_wire 100 130 100 190
+  make_wire 550 390 550 410
+  make_wire 250 390 250 410
+  make_wire 290 160 340 160
+  make_wire 400 390 400 410
+  make_wire 440 160 490 160
+  make_wire 140 160 190 160
+  make_wire 580 390 580 440
+  make_wire 430 390 430 440
+  make_wire 280 390 280 440
+  make_wire 130 390 130 440
+  make_wire 70 440 100 440
+  make_wire 100 390 100 440
+  make_wire 570 100 570 190
+  make_wire 400 60 550 60
+  make_wire 590 150 630 150
+  make_wire 590 150 590 190
+  make_wire 200 10 200 60
+  make_wire 200 60 100 60
+  make_wire 200 60 250 60
+  make_wire 400 60 250 60
+  make_wire 470 10 470 30
+  make_wire 470 30 570 30
+  make_wire 420 30 270 30
+  make_wire 420 30 470 30
+  make_text -origin {80 -120} -text {See ripple4.doc for more info.}
+  make_text -origin {80 -160} -text {4-bit ripple-carry adder made from 4 cascaded Fuil Adders (FA)}
+  make_text -origin {80 -210} -text ripple4 -size large
+}
+
+proc ICON_ripple4 args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}}}
+  icon_term -type input -origin {-60 -110} -orient R90X -name {b[3:0]}
+  icon_term -type input -origin {60 -110} -orient R90X -name {a[3:0]}
+  icon_term -type output -origin {0 90} -orient R90X -name {sum[3:0]}
+  icon_term -type input -origin {150 40} -orient RXY -name cin
+  icon_term -type output -origin {-150 40} -orient RXY -name cout
+  icon_property -origin {-170 270} -type user -name name
+  icon_line -150 -110 -150 90 150 90 150 -110 -150 -110
+  icon_property -origin {0 -20} -size large -anchor center -label ripple4
+  icon_property -origin {80 -90} -anchor e -label {a[3:0]}
+  icon_property -origin {-40 -90} -anchor e -label {b[3:0]}
+  icon_property -origin {140 40} -anchor e -label cin
+  icon_property -origin {-140 40} -label cout
+  icon_property -origin {-40 70} -label {sum[3:0]}
+  icon_property -origin {-170 330} -type auto -name verilog -text {ripple4 [unique_name "" $name ripple4]
+(.b(${b[3:0]}), .a(${a[3:0]}), .cin($cin), .sum(${sum[3:0]}), 
+.cout($cout))\;}
+}
+

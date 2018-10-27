@@ -1,0 +1,19 @@
+cac.py
+
+The "Computer Architecture Compiler" which merges the machine datapath
+description file (in .json format) with the generated json image (from
+the datapath fig file) and the verilog code corresponding to that
+machine datapath.
+
+cas.py
+
+The "Computer Architecture Simulator" which basically takes care of
+running and parsing simulation data. Takes a machine filename
+(generated with cac.py), a program file, a data file and some more
+parameters which can be viewed with ./cas.py --help and outputs a
+machine datapath "state" in json format.
+
+Makefile
+
+A GNU make "makefile" used to build "sub-projects" like machine
+description files and install them into appropriate paths.

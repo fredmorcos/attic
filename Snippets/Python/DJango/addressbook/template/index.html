@@ -1,0 +1,14 @@
+{% if blog_posts %}
+	<ul>
+	{% for post in blog_posts %}
+		<li>{{ post.message }}</li>
+	{% endfor %}
+	</ul>
+{% else %}
+	<p>No posts are available.</p>
+{% endif %}
+<form action="/posts/post/" method="post">
+{% csrf_token %}
+Message <input type="text" name="message" value=""/>
+<input type="submit" value="Put Message"/>
+</form>

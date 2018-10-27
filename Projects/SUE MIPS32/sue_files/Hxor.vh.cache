@@ -1,0 +1,7 @@
+set NETLIST_CACHE(Hxor,cells) {{schematic xgate} {icon inverter has_schematic}}
+set netlist_props verilog
+set netlist_level 1000
+set NETLIST_CACHE(Hxor,version) MMI_SUE4.4.0
+set NETLIST_CACHE(Hxor) {{module Hxor (in1, in2, out);} {	input		in1;} {	input		in2;} {	output		out;} { } {	wire		net_2;} {	wire		net_3;} {	wire		net_1;} { } {	not #0 inv(net_3, in1);} {	not #0 inv_1(out, net_2);} {	not #0 inv_2(net_1, in2);} {	xgate xgate(.t2(net_2), .in_L(net_3), .in(in1), .t1(in2));} {	xgate xgate_1(.t1(net_1), .t2(net_2), .in(net_3), .in_L(in1));} {} {endmodule		// Hxor} {}}
+set NETLIST_CACHE(Hxor,names) {{360 340 {0 inv_2}} {470 450 {0 net_3}} {690 410 {1 out}} {410 340 {0 net_1}} {470 370 {0 net_3}} {330 340 {0 in2}} {360 410 {0 inv}} {470 300 {0 in1}} {240 270 {1 in1}} {470 490 {0 xgate}} {660 410 {0 out}} {470 340 {0 xgate_1}} {410 410 {0 net_3}} {580 410 {0 net_2}} {500 490 {0 net_2}} {470 520 {0 in1}} {330 410 {0 in1}} {240 490 {1 in2}} {610 410 {0 inv_1}} {500 340 {0 net_2}} {440 490 {0 in2}} {440 340 {0 net_1}}}
+set NETLIST_CACHE(Hxor,wires) {{300 560 470 560 in1} {470 520 470 560 in1} {300 410 330 410 in1} {500 340 540 340 net_2} {500 490 540 490 net_2} {540 410 580 410 net_2} {660 410 690 410 out} {270 340 330 340 in2} {240 490 270 490 in2} {270 490 440 490 in2} {300 410 300 560 in1} {410 410 470 410 net_3} {410 340 440 340 net_1} {300 270 300 410 in1} {270 340 270 490 in2} {470 270 470 300 in1} {540 340 540 410 net_2} {540 410 540 490 net_2} {470 370 470 410 net_3} {470 410 470 450 net_3} {240 270 300 270 in1} {300 270 470 270 in1}}

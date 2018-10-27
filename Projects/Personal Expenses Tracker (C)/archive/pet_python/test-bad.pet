@@ -1,0 +1,29 @@
+{
+  "2013-04-22":
+  {
+    "amount": 4.0,
+    "tags":   ["drinks", "outing"],
+    "note":   ""
+  },
+  "2013-04-23": [
+    {
+      "amount": 10,
+      "tags":   ["outing", "fun"],
+      "note":   "snooker"
+    }
+  ],
+  "2013-04-01": [
+    {
+      "amount": 10,
+      "tags":   ["outing", "fun"],
+      "note":   "snooker"
+    }
+  ],
+  "2013-04-10": [
+    {
+      "amount": 10,
+      "tags":   ["outing", "fun"],
+      "note":   "snooker"
+    }
+  ]
+}

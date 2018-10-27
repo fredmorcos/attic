@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= app.info.name
+
+  if (typeof errors !== typeof undefined)
+    p Errors
+    ul
+      if errors.usernameExists
+        li Username already in use.
+      if errors.emailExists
+        li Email already in use.
+
+  if (typeof user !== typeof undefined)
+    p You are logged in as #{user.username} and not allowed to register
+    p
+      a(href="/") Go back to the main page
+  else
+    form(method="post", action="/register")
+      input(type="text", name="username", placeholder="Username")
+      br
+      input(type="password", name="password", placeholder="Password")
+      br
+      input(type="email", name="email", placeholder="Email")
+      br
+      input(type="submit", value="Register")

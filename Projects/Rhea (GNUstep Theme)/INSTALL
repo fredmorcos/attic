@@ -1,0 +1,15 @@
+Installation
+------------
+
+Just compile the Rhea bundle : 
+
+	make
+
+You should have now a Rhea.themeEngine bundle. 
+Copy this bundle where you want.
+
+After that, you also need to tell GNUstep where to find the 
+theme bundle, so write : 
+
+	defaults write NSGlobalDomain  GSAppKitUserBundles '( "YourLocationTo/Rhea.themeEngine" )'
+

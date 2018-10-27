@@ -1,0 +1,23 @@
+{
+    "general":     { "debug": true,
+                     "fps": 30
+                   },
+    "font":        { "file": "fonts/NotoSans-Regular.ttf",
+                     "size": 20,
+                     "color": [255, 255, 255, 255]
+                   },
+    "interface":   { "padding": 40,
+                     "box": { "color": [0, 0, 0, 100] },
+                     "select": { "color": [50, 50, 150, 200] }
+                   },
+    "wallpaper":   { "file": "images/wp_small.jpg",
+                     "color": [100, 0, 0, 255]
+                   },
+    "collections": [ { "title": "Workspace Projects",
+                       "dir": "/home/fnm/Workspace/projects"
+                     },
+                     { "title": "MediaCenter Project",
+                       "dir": "/home/fnm/Workspace/projects/mediacenter"
+                     }
+                   ]
+}

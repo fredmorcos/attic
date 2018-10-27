@@ -1,0 +1,22 @@
+{
+	ApplicationName = "OpenGrafik";
+	ApplicationDescription = "A Diagramming Tool";
+	ApplicationRelease = "0.1";
+	Authors = ("Fred Morcos <fred.morcos@gmail.com>");
+	Copyright = "Copyright (c) 2008-2009 Fred Morcos <fred.morcos@gmail.com>";
+	CopyrightDescription = "This program is released under the GNU General Public License Version 3";
+	NSIcon = OpenGrafikIcon;
+	NSTypes = (
+		{
+			NSName = "ogd";
+			NSHumanReadableName = "Open Graph Document";
+			NSUnixExtensions = ("ogd");
+			NSDOSExtensions = ("ogd");
+			NSMIMETypes = ("graphics/ogd");
+			NSIcon = FileIcon_ogd;
+			NSRole = Editor;
+			NSDocumentClass = Document;
+		}
+	);
+}
+

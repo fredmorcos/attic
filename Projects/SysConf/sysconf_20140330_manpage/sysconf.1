@@ -1,0 +1,237 @@
+.TH sysconf 1 "2012-07-10" "" "User Commands"
+
+.SH NAME
+
+sysconf - system configuration and power management for Linux systems
+
+.SH SYNOPSIS
+
+.B sysconf
+[ profile ... ]
+.br
+.B sysconf
+--version
+
+.SH DESCRIPTION
+
+Sysconf is a shell script to configure a running Linux-based
+system. It can be used to tune a system for performance or
+power-efficiency, among other things. Sysconf uses configuration files
+as profiles and is a standalone tool. Combined with pm-utils, sysconf
+can provide a full-featured power management suite for Linux-based
+systems.
+
+The aim for now is to keep it simple and increase the number of
+supported relevant tunables. I experimented several times with
+different ways to solve the problem of performance/powersaving
+trade-off and my conclusion is that, for now - especially on
+desktop/laptop systems and without any kernel fiddling - only the user
+can make the best decision. sysconf might grow, one day, into a daemon
+which monitors the system and auto-magically tunes it for the current
+workload.
+
+sysconf takes one or more profile filenames as arguments. A sysconf
+profile is a bash script in its own right that is sourced by the main
+sysconf script. The main sysconf script loads (actually, sources) the
+given profile/config files in sequence so that a profile given later
+overrides settings from profiles given earlier. That, combined with
+the *_set knobs (which are shell variables in their own rights)
+provides a very flexible mechanism for combining different profiles to
+adapt to different scenarios.
+
+The special case is when the
+.B --version
+command line argument is given, sysconf prints version information and
+exits, completely ignoring any given profiles.
+
+sysconf is developed on an Archlinux system and I don't have access to
+any other systems. That is basically an invitation saying that bug
+reports and patches are most welcome.
+
+.SH USAGE
+
+Create a "configuration profile" by making a copy of
+.B sysconfrc.conf.example
+and editing it as it pleases you. I try to keep the example
+configuration file very well documented. A good place for the profiles
+is:
+
+/etc/sysconf.d/performance
+.br
+/etc/sysconf.d/powersave
+.br
+/etc/sysconf.d/dynamic
+.br
+/etc/sysconf.d/powerdown-everything-except-wifi
+.br
+/etc/sysconf.d/max-performance-everything-but-spin-down-disks
+.br
+/etc/sysconf.d/powerdown-wifi
+.br
+/etc/sysconf.d/performance-sata-disks
+.br
+/etc/sysconf.d/cpufreq-powersave
+.br
+etc...
+
+Yes, some of those profiles have annoyingly long filenames but that
+should give you an idea of what I'm trying to achieve with
+sysconf. More sane names would be
+.B office, home, friend1, friend2, airport, performance, ondemand,
+.B powersave, dynamic,
+etc including combinations thereof (-wifi, -cpufreq, etc...) or
+whatever pleases you, really.
+
+To run sysconf with one or more profiles (where at least 1 is
+required), execute
+.B `sysconf <profile1-filename> <profile2-filename> ...'
+
+If you are still setting up a profile, it is a good idea to keep the
+log_output to
+.B /dev/stderr
+and, only when you're finished with
+configuration, to change it to something in
+.B /var/log
+or
+.B /tmp
+(ie,
+.B /var/log/sysconf.log
+or
+.B ./tmp/sysconf.log
+).
+
+I usually add sysconf to /etc/rc.local for applying the profile at
+startup and later re-run it manually with another desired set of
+profiles if needed.
+
+It might prove useful to add a sysconf HOOK to pm-utils, ie, to have
+the "powersave" profile applied when a laptop is on battery and the
+"performance" profile applied when the laptop is on AC
+(laptop-mode-tools behavior). In the same way, a HOOK to "fix my disks
+not spinning down before suspend so i will forcefully spin them down
+with sysconf" profile could be loaded before the system goes into
+suspend.
+
+You get the drill.
+
+.SH EXAMPLES
+
+.SH FEATURES
+
+Currently, sysconf supports the following:
+
+- SysRq
+.br
+- Swappiness
+.br
+- CPU Frequency Scaling
+.br
+- VFS Cache Pressure
+.br
+- Laptop Mode
+.br
+- Scheduler MC and SMT awareness
+.br
+- NMI Watchdog
+.br
+- PCI-Express ASPM
+.br
+- Process killing
+.br
+- Unloading kernel modules
+.br
+- Inhibiting UDisks polling
+.br
+- Wake-on-LAN
+.br
+- SATA ALPM
+.br
+- Putting down Bluetooth interfaces
+.br
+- Putting down network interfaces
+.br
+- Throttling down network adapter speed
+.br
+- Wireless power management (doesn't seem to save power actually)
+.br
+- Audio PM
+.br
+- Runtime PM
+
+.SH TODO
+
+You are most welcome to contribute patches to increase the set of
+supported tunables. The following is a rough list of what is planned:
+
+- HDD spindown timeout and APM using hdparm
+.br
+- Intel CPU performance bias (msr)
+.br
+- Filesystem mount options: atime, relatime, diratime, commit, data
+.br
+- VM writeback delay
+.br
+- Transparent Hugepages
+.br
+- USB suspend
+.br
+- Device PM
+
+The following is a quick list of potential features or sources to draw
+from:
+
+- hdparm -m to get/set multiple sector count
+.br
+- hdparm -S0 to set spindown timeout
+.br
+- hdparm --idle-unload /dev/sda
+.br
+- modprobe blacklist suggestions
+.br
+- kernel command-line argument suggestions (bootloader)
+.br
+- intel video power savings
+.br
+- intel audio msi
+.br
+- nouveau msi
+.br
+- pulseaudio suggestions (tsched, hz, sampling quality)
+.br
+- irqbalance
+.br
+- https://wiki.archlinux.org/index.php/USB_Storage_Devices#Poor_copy_performance_to_USB_pendrive
+.br
+- http://lesswatts.org/tips/disks.php#alpm
+.br
+- http://lesswatts.org/tips/wireless.php#pm
+.br
+- http://lesswatts.org/tips/wireless.php#bt
+.br
+- http://lesswatts.org/documentation/sw-silicon-features/
+.br
+- https://ols2006.108.redhat.com/2007/Reprints/siddha-Reprint.pdf
+.br
+- http://www3.intel.com/cd/ids/developer/asmo-na/eng/195910.htm
+.br
+- https://ols2006.108.redhat.com/2007/Reprints/pallipadi-Reprint.pdf
+
+.SH DEVELOPMENT
+
+sysconf development takes place at
+https://github.com/fredmorcos/sysconf
+
+.SH AUTHORS
+
+sysconf is primarily developed by Fred Morcos
+<fred.morcos@gmail.com>.
+
+.SH CONTRIBUTORS
+
+None, so far.
+
+.SH COPYING
+
+sysconf is released under the WTFPL version 2. See the file COPYING
+for more information. If, for any reason, you cannot find the COPYING
+file, please take a look at http://sam.zoy.org/wtfpl/

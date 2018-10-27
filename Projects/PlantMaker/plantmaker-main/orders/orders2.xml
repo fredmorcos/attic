@@ -1,0 +1,59 @@
+<order-list>
+	<order deadline="500" id="1" current_machine="" current_overtime="-3">
+		<recipe>
+			<machine name="stripper" time="4"/>
+			<machine name="degreaser" time="40"/>
+			<machine name="pickler" time="40"/>
+			<machine name="rinser" time="40"/>
+			<machine name="fluxer" time="40"/>
+			<machine name="dryer" time="40"/>
+			<machine name="kettle" time="40"/>
+			<machine name="quencher" time="40"/>
+			<machine name="passivator" time="40"/>
+			<machine name="postrinser" time="40"/>
+		</recipe>
+	</order>
+	<order deadline="529" id="2" current_machine="" current_overtime="-2">
+		<recipe>
+			<machine name="stripper" time="40"/>
+			<machine name="degreaser" time="40"/>
+			<machine name="pickler" time="40"/>
+			<machine name="rinser" time="40"/>
+			<machine name="fluxer" time="40"/>
+			<machine name="dryer" time="40"/>
+			<machine name="kettle" time="40"/>
+			<machine name="quencher" time="40"/>
+			<machine name="passivator" time="40"/>
+			<machine name="postrinser" time="40"/>
+		</recipe>
+	</order>
+	<order deadline="940" id="3" current_machine="" current_overtime="0">
+		<recipe>
+			<machine name="stripper" time="40"/>
+			<machine name="degreaser" time="40"/>
+			<machine name="pickler" time="40"/>
+			<machine name="rinser" time="40"/>
+			<machine name="fluxer" time="40"/>
+			<machine name="dryer" time="40"/>
+			<machine name="kettle" time="40"/>
+			<machine name="quencher" time="40"/>
+			<machine name="passivator" time="40"/>
+			<machine name="postrinser" time="40"/>
+		</recipe>
+	</order>
+	<order deadline="500" id="4" current_machine="" current_overtime="-3">
+		<recipe>
+			<machine name="stripper" time="40"/>
+			<machine name="degreaser" time="40"/>
+			<machine name="pickler" time="40"/>
+			<machine name="rinser" time="40"/>
+			<machine name="fluxer" time="40"/>
+			<machine name="dryer" time="40"/>
+			<machine name="kettle" time="40"/>
+			<machine name="quencher" time="40"/>
+			<machine name="passivator" time="40"/>
+			<machine name="postrinser" time="40"/>
+		</recipe>
+	</order>
+
+</order-list>

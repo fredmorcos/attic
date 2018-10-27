@@ -1,0 +1,193 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<!--link rel="stylesheet" type="text/css" title="Default" href="style.css" /-->
+		<link rel="stylesheet" type="text/css" title="Default" href="jquery-ui.css" />
+		<style type="text/css">
+			#viewport {
+				width: 50%;
+				height: 700px;
+				float: left;
+				margin-right: 10px;
+			}
+
+			canvas {
+				border: 1px dashed gray;
+			}
+
+			.dialog canvas {
+				float: none;
+				width: auto;
+				height: auto;
+			}
+
+			textarea {
+				width: 45%;
+				height: 600px;
+				margin-bottom: 10px;
+			}
+
+			table {
+				border-collapse: collapse;
+				min-width: 250px;
+				margin-bottom: 10px;
+			}
+
+			th {
+				background: #ddd;
+			}
+			td, th {
+				border: 1px solid black;
+			}
+
+			.changed {
+				color: red;
+			}
+		</style>
+		<script type="text/javascript" src="jquery.min.js"></script>
+		<script type="text/javascript" src="jquery-ui.min.js"></script>
+		<script type="text/javascript" src="ocanvas-1.0.min.js"></script>
+		<script type="text/javascript" src="render.js"></script>
+	</head>
+	<body>
+		<div id="viewport"></div>
+		<textarea id="code">{
+nodes: [{ id: "canvas1",
+          type: "canvas",
+		  width: 600,
+		  height: 700,
+nodes: [{
+	id: "box1",
+    type: "box",
+    x: 20,
+    y: 20,
+    width: 200,
+    height: 100,
+    click: "toggle(this.label)",
+    label: "Box 1",
+    stroke: "inside 2px red"
+},
+{
+    id: "box2",
+    type: "box",
+    click: "toggle('box1'), toggle('box2')",
+    x: 20,
+    y: 260,
+    fill: "lightyellow",
+	label: ["Title","Value"],
+    enter: "show('box3')",
+	leave: "hide('box3')"
+},
+{
+    id: "box3",
+    type: "box",
+    y: 380,
+    x: 20,
+    opacity: 0,
+    label: "Box 3",
+	width: 300,
+	height: 200
+},
+{
+    id: "line1",
+    type: "line",
+    start: { x: 70, y: 120}, 
+    end: {x: 70, y: 260},
+    label: "Line",
+    strokeColor: "blue",
+    click: 1
+},
+{
+    id: "circle1",
+    type: "circle",
+    x: 190,
+    y: 190,
+    radius: 50,
+    label: "Circle",
+    stroke: "inside 2px green",
+    click: "toggle('window1')",
+    fill: "lightgreen"
+},
+{
+    id: "poly1",
+    type: "polyline",
+    points: [ [ 390, 170 ], [ 390, 350 ], [ 510, 440 ], [ 510, 80 ], [ 390, 170 ] ], 
+    strokeColor: "orange",
+    click: "toggle(this)",
+    label: "Polyline",
+	}
+	]},
+{
+    id: "window1",
+    title: "The Title",
+    type: "window",
+    nodes: [
+    {
+        type: "html",
+        content: '<p><strong style="color:blue;">DATA</strong></p>'
+    },
+    {
+        type: "html",
+        content: '<table><tr><th>Key</th><th>Value</th></tr><tr><td class="changed">key1</td><td>value1</td></tr><tr><td>key2</td><td>value2</td></tr></table>'
+    },
+    {
+        id: "canvas2",
+        type: "canvas",
+        width: 250,
+        height: 200,
+        nodes: [{type: "circle", x: 70, y: 70, radius: 30}]
+    },
+    {
+       type: "html",
+       content: "<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>"
+    }
+    ]
+}
+]
+}
+		</textarea>
+		<button id="render">Render</button>
+		<button id="clear">Clear</button>
+		<button id="foo-test">Foo</button>
+		<div id="dialog" style="display: none;" title="dialog">Empty Dialog</div>
+		<script type="text/javascript">
+			var objects;
+			var root = document.getElementById('viewport');
+			var machine;
+			$(document).ready(function() {
+				objects = $('#code').val();
+				machine = new Machine(root);
+				machine.data = objects;
+				machine.draw();
+
+				$('#clear').click(function() {
+					$('#code').val('');
+				});
+
+				$('#render').click(function() {
+					objects = $('#code').val();
+					machine.data = objects;
+					machine.draw();
+				});
+
+				// Strukturtest
+				function Foo(param) {
+					var str = param;
+					return {
+						run: function() {
+						}
+					};;
+				};
+
+				var foo_test = new Foo("test");
+				$('#foo-test').click(function() {
+					foo_test.run();
+				});
+
+			});
+		</script>
+	</body>
+</html>
+

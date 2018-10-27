@@ -1,0 +1,12 @@
+<plant>
+	<machine canUnhook="False" minDelay="0" name="stripper" quantity="2"/>
+	<machine canUnhook="False" minDelay="0" name="degreaser" quantity="1"/>
+	<machine canUnhook="False" minDelay="0" name="pickler" quantity="1"/>
+	<machine canUnhook="False" minDelay="0" name="rinser" quantity="1"/>
+	<machine canUnhook="False" minDelay="0" name="fluxer" quantity="1"/>
+	<machine canUnhook="False" minDelay="0" name="dryer" quantity="1"/>
+	<machine canUnhook="False" minDelay="0" name="kettle" quantity="1"/>
+	<machine canUnhook="False" minDelay="0" name="quencher" quantity="1"/>
+	<machine canUnhook="False" minDelay="0" name="passivator" quantity="1"/>
+	<machine canUnhook="False" minDelay="0" name="postrinser" quantity="1"/>
+</plant>

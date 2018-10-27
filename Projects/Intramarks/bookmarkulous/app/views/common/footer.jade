@@ -1,0 +1,21 @@
+include ../mixins/all
+
+footer#footer
+  .wrap: .container
+    ul.inline
+      li: +link("question-sign", "FAQ", "index.html")(data-toggle="modal", data-modal-id="faq", data-remote="#preview")
+      li: +link("legal", "Terms", "#")
+      li: +link("eye-open", "Privacy", "#")
+      li: +link("lock", "Security", "#")
+      li: +link("pencil", "Press", "#")
+      li: +link("info-sign", "About", "#")
+      li: +link("envelope", "Contact", "#")
+  p.text-center © 2013 bookmarkulous. All rights reserved.
+
+
+
+| <aside id="default-popup" class="avgrund-popup">
+|   <h2>That's all, folks</h2>
+|   <p>You can hit ESC or click outside</p>
+| </aside>
+| <div class="avgrund-cover"></div>

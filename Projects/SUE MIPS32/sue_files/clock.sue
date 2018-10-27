@@ -1,0 +1,23 @@
+# SUE version MMI_SUE4.2.6
+
+proc SCHEMATIC_clock {} {
+  make pulse -origin {460 380}
+  make global -name gnd -origin {460 440}
+  make clock -origin {610 510}
+  make output -orient RY -name clock_out -origin {490 310}
+  make_wire 460 310 490 310
+  make_wire 460 310 460 340
+  make_wire 460 420 460 440
+}
+
+proc ICON_clock args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}}}
+  icon_term -type output -origin {100 -80} -name clock_out
+  icon_property -origin {-50 70} -type user -name name
+  icon_property -origin {-50 90} -type user -name M
+  icon_line 100 -30 100 -150 -30 -150 -30 -30 100 -30
+  icon_property -origin {0 -120} -size large -label Clock
+  icon_property -origin {-50 140} -type fixed -name verilog -text {clock [unique_name "" $name clock]
+(.clock_out($clock_out))\;}
+}
+

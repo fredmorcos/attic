@@ -1,0 +1,56 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_ALU {} {
+  make Adder32Bit -origin {1190 360}
+  make input -name {s[0]} -origin {1090 320}
+  make Inverter32Bit -origin {420 260}
+  make Mux32Bit2to1 -origin {700 380}
+  make input -orient R270 -name {s[1]} -origin {640 420}
+  make input -name {b[31:0]} -origin {130 180}
+  make input -name {a[31:0]} -origin {970 280}
+  make Logic32Bit -origin {1200 720}
+  make input -orient R270 -name {s[1:0]} -origin {1140 770}
+  make Mux32Bit2to1 -origin {1680 500}
+  make input -orient R270 -name {s[2]} -origin {1620 540}
+  make output -name {ALU_Result[31:0]} -origin {1780 420}
+  make output -name overflow -origin {1320 280}
+  make_wire 130 180 320 180
+  make_wire 800 300 1090 300
+  make_wire 970 280 1090 280
+  make_wire 970 280 970 640
+  make_wire 970 640 1100 640
+  make_wire 130 660 1100 660
+  make_wire 1300 640 1430 640
+  make_wire 1430 640 1430 440
+  make_wire 1430 440 1580 440
+  make_wire 1290 280 1320 280
+  make_wire 1340 420 1580 420
+  make_wire 1340 300 1290 300
+  make_wire 1340 300 1340 420
+  make_wire 600 300 130 300
+  make_wire 130 300 130 180
+  make_wire 130 300 130 660
+  make_wire 560 180 560 320
+  make_wire 520 180 560 180
+  make_wire 560 320 600 320
+}
+
+proc ICON_ALU args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-150 -70} -name {a[31:0]}
+  icon_term -type input -origin {-150 -30} -name {b[31:0]}
+  icon_term -type input -origin {-150 20} -name {s[2:0]}
+  icon_term -type output -origin {140 -40} -name {ALU_Result[31:0]}
+  icon_term -type output -origin {140 0} -name overflow
+  icon_property -origin {-120 110} -type user -name name
+  icon_property -origin {-120 130} -type user -name M
+  icon_property -origin {-120 150} -type user -name dpc
+  icon_property -origin {-140 -70} -label {a[31:0]}
+  icon_property -origin {-140 -30} -label {b[31:0]}
+  icon_property -origin {-140 20} -label {s[2:0]}
+  icon_property -origin {130 -40} -anchor e -label {ALU_Result[31:0]}
+  icon_property -origin {120 0} -anchor e -label overflow
+  icon_line -150 -120 -150 90 140 90 140 -120 -150 -120
+  icon_property -origin {-30 -100} -label ALU
+}
+

@@ -1,0 +1,23 @@
+# Contributor: Fred Morcos <fred.morcos@gmail.com>
+
+pkgname=unique
+pkgver=1.0.6
+pkgrel=1
+pkgdesc="A library for writing single instance applications."
+arch=('i686')
+url="http://live.gnome.org/LibUnique"
+license=('LGPL')
+depends=('dbus-glib' 'gtk-doc')
+provides=('libunique')
+conflicts=()
+replaces=()
+source=("http://www.gnome.org/~ebassi/source/$pkgname-$pkgver.tar.gz")
+md5sums=('90eccdb97722d53f872a8fbdc8255ebb')
+
+build() {
+	cd $startdir/src/$pkgname-$pkgver
+	./configure --prefix=/usr --enable-gtk-doc --enable-debug=no --enable-maintainer-flags=no
+	make || return 1
+	make prefix=$startdir/pkg/usr install
+}
+

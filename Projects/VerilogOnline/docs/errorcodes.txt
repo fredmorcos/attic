@@ -1,0 +1,5 @@
+MGEN ERROR CODES:
+
+0    successful finish
+1    error
+2    premature end, if step argument too large

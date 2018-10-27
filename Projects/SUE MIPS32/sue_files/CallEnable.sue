@@ -1,0 +1,69 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_CallEnable {} {
+  make nand2 -origin {430 420}
+  make inverter -origin {530 420}
+  make inverter -origin {700 440}
+  make nor2 -origin {600 440}
+  make nand2 -origin {770 460}
+  make nand2 -origin {180 350}
+  make input -name Z -origin {160 370}
+  make nand2 -origin {180 420}
+  make input -name N -origin {160 440}
+  make nand2 -origin {180 490}
+  make input -name P -origin {160 510}
+  generate nor2 nor3 -ninputs 3
+  make nor3 -WP 4 -origin {340 400}
+  make inverter -origin {870 460}
+  make input -name {IR[0]} -origin {160 330}
+  make input -name {IR[1]} -origin {160 400}
+  make input -name {IR[2]} -origin {160 470}
+  make input -name CallC -origin {160 540}
+  make input -name CallU -origin {160 560}
+  make output -name CE -origin {920 460}
+  make input -name T3 -origin {160 580}
+  make_wire 270 350 270 380
+  make_wire 250 350 270 350
+  make_wire 270 380 320 380
+  make_wire 270 400 270 420
+  make_wire 250 420 270 420
+  make_wire 270 400 320 400
+  make_wire 250 490 280 490
+  make_wire 280 490 280 420
+  make_wire 280 420 320 420
+  make_wire 410 440 340 440
+  make_wire 160 540 340 540
+  make_wire 340 440 340 540
+  make_wire 370 460 370 560
+  make_wire 580 460 370 460
+  make_wire 160 560 370 560
+  make_wire 390 480 390 580
+  make_wire 750 480 390 480
+  make_wire 160 580 390 580
+}
+
+proc ICON_CallEnable args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-90 20} -name CallC
+  icon_term -type input -origin {-90 40} -name CallU
+  icon_term -type input -origin {-90 -70} -name {IR[2:0]}
+  icon_term -type output -origin {110 -20} -name CE
+  icon_term -type input -origin {-10 80} -orient R270 -name N
+  icon_term -type input -origin {-30 80} -orient R270 -name P
+  icon_term -type input -origin {10 80} -orient R270 -name Z
+  icon_term -type input -origin {-90 60} -name T3
+  icon_property -origin {110 140} -type user -name name
+  icon_property -origin {110 160} -type user -name M
+  icon_property -origin {110 180} -type user -name dpc
+  icon_line -90 -80 -90 80 110 80 110 -80 -90 -80
+  icon_property -origin {-50 -20} -label {Call Enable}
+  icon_property -origin {-90 20} -label CallC
+  icon_property -origin {-90 40} -label CallU
+  icon_property -origin {-90 -70} -label {IR[2:0]}
+  icon_property -origin {-10 80} -anchor e -rotate 1 -label N
+  icon_property -origin {-30 80} -anchor e -rotate 1 -label P
+  icon_property -origin {-90 60} -label T3
+  icon_property -origin {10 80} -anchor e -rotate 1 -label Z
+  icon_property -origin {110 -20} -anchor e -label CE
+}
+

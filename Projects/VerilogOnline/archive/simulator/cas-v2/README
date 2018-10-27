@@ -1,0 +1,45 @@
+This is the Computer Architecture Simulator project directory. This is
+a "version 2" attempt which should provide a simpler way for:
+
+1. Better parsing of fig files [DONE]
+2. Simpler definition of machines [DONE]
+3. Veriwell dumpfile parsing
+4. Output to different "formats" [DONE-PARTIAL]
+   a) For several client-side javascript drawing/UI libraries
+   b) For a "desktop version" of the simulator
+
+docs/
+
+Contains documentation files and diagrams showing the different
+processes (taken from "version 1").
+
+ref/
+
+Most relevant/needed pieces of code from "version 1" for reference.
+
+sbn/
+
+The SBN machine definition files, fig file and Verilog file.
+
+tests/
+
+SBN assembly programs for testing.
+
+cac.py
+
+The "Computer Architecture Compiler" which merges the machine datapath
+description file (in .json format) with the generated json image (from
+the datapath fig file, using fig2json.py - see below) and the verilog
+code corresponding to that machine datapath.
+
+cas.py
+
+The "Computer Architecture Simulator" which basically takes care of
+running and parsing simulation data. Takes a machine filename
+(generated with cac.py), a program file, a data file and some more
+parameters which can be viewed with ./cas.py --help and outputs a
+machine datapath "state" in json format.
+
+fig2json.py
+
+This translates a fig image to a JSON representation.

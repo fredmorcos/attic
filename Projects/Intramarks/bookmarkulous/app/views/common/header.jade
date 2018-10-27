@@ -1,0 +1,12 @@
+include ../mixins/all
+
+header#header
+  .container
+    .row
+      .span6
+        h1
+          a.title(href="/") Bookmarkulous
+          small A simple, yet powerful bookmarks manager!
+      .span6.login
+        span Already have an account ?
+        +link(0, "Login", "#").btn.btn-large.btn-primary(data-kontext-to="1")

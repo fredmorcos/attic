@@ -1,0 +1,8 @@
+{
+foo: [1, 2,3]
+,
+bar: {
+  baz: @foo.bar,
+  badprop: @ref,
+  badprop2: @foo.bar,
+  a: [ { x: 2.44444, y: "fooooo" } ] } }

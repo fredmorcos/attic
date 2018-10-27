@@ -1,0 +1,12 @@
+*~
+\#*
+.#*
+
+flycheck_*.plist
+
+vgcore.*
+
+*.o
+
+bkc
+bkd

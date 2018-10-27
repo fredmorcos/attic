@@ -1,0 +1,1 @@
+ java -cp .:sqlite.jar -Djava.library.path=/usr/local/lib test

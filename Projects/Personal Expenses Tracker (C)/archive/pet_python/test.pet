@@ -1,0 +1,80 @@
+{
+  "2013-04-01": [
+    {
+      "amount": 10.0,
+      "note": "snooker",
+      "tags": [
+        "outing",
+        "fun"
+      ]
+    }
+  ],
+  "2013-04-10": [
+    {
+      "amount": 10.0,
+      "note": "snooker",
+      "tags": [
+        "outing",
+        "fun"
+      ]
+    }
+  ],
+  "2013-04-22": [
+    {
+      "amount": 3.0,
+      "note": "this is a note",
+      "tags": [
+        "food",
+        "groceries"
+      ]
+    },
+    {
+      "amount": 4.0,
+      "note": "",
+      "tags": [
+        "drinks",
+        "outing"
+      ]
+    }
+  ],
+  "2013-04-23": [
+    {
+      "amount": 10.0,
+      "note": "snooker",
+      "tags": [
+        "outing",
+        "fun"
+      ]
+    }
+  ],
+  "2013-05-02": [
+    {
+      "amount": 4.0,
+      "note": "this is a note",
+      "tags": [
+        "test2",
+        "test3"
+      ]
+    }
+  ],
+  "2013-05-03": [
+    {
+      "amount": 10.0,
+      "note": "",
+      "tags": [
+        "test1",
+        "test2"
+      ]
+    }
+  ],
+  "2013-06-02": [
+    {
+      "amount": 55.32,
+      "note": "a note",
+      "tags": [
+        "something1",
+        "somethin2"
+      ]
+    }
+  ]
+}

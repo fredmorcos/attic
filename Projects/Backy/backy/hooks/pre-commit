@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# Redirect output to stderr.
+exec 1>&2
+
+set -e
+set -u
+set -o pipefail
+
+CMD="make checkbuild -j"
+
+echo "Running make checkbuild: checking for errors..."
+$CMD 2>/dev/null 1>/dev/null
+
+if [ $? -ne 0 ]; then
+    echo "  --> make checkbuid has errors"
+    make clean 2>/dev/null 1>/dev/null
+    exit 1
+fi
+echo "  --> OK"
+
+echo "Running make checkbuild: checking for warnings..."
+$CMD 2>&1 | grep -i "warning" 2>/dev/null 1>/dev/null
+
+if [ $? -eq 0 ]; then
+    echo "  --> make checkbuild has warnings"
+    make clean 2>/dev/null 1>/dev/null
+    exit 1
+fi
+echo "  --> OK"
+
+make clean 2>/dev/null 1>/dev/null
+echo "Passed. All good. Commit accepted."

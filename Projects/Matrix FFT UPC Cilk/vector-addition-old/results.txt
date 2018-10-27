@@ -1,0 +1,7 @@
+no-upc-forall					BlockSize=1	BlockSize=N/THREADS
+	integrated body				    2ms		       3ms
+	split body function			    		       70us
+
+upc-forall
+	straight index traversal		    7ms		       4ms
+	thread index traversal split body	    		       70us

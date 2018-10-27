@@ -1,0 +1,19 @@
+# Contributor: Fred Morcos <fred.morcos@gmail.com>
+
+pkgname=clutter-gtk
+pkgver=0.6.0
+pkgrel=1
+pkgdesc="Gtk+ bindings for Clutter"
+arch=('i686')
+url="http://clutter-project.org/"
+license=('LGPL')
+depends=('clutter>=0.6.0' 'gtk2')
+source=(http://www.clutter-project.org/sources/clutter-gtk/0.6/clutter-gtk-$pkgver.tar.bz2)
+md5sums=('0ec0fc942af594b469d9e67361b5131a')
+
+build() {
+	cd $startdir/src/$pkgname-$pkgver
+	./configure --prefix=/usr --enable-gtk-doc
+	make || return 1
+	make DESTDIR=$startdir/pkg install || return 1
+}

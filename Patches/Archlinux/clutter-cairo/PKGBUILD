@@ -1,0 +1,19 @@
+# Contributor: Fred Morcos <fred.morcos@gmail.com>
+
+pkgname=clutter-cairo
+pkgver=0.6.0
+pkgrel=1
+pkgdesc="Cairo bindings for Clutter"
+arch=('i686')
+url="http://clutter-project.org/"
+license=('LGPL')
+depends=('clutter>=0.6.0' 'gtk2')
+source=(http://www.clutter-project.org/sources/clutter-cairo/0.6/clutter-cairo-$pkgver.tar.bz2)
+md5sums=('cfb5f1ffbad16285d7fde712e2042acf')
+
+build() {
+	cd $startdir/src/$pkgname-$pkgver
+	./configure --prefix=/usr 
+	make || return 1
+	make DESTDIR=$startdir/pkg install || return 1
+}

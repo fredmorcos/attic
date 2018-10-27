@@ -1,0 +1,72 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_Mux5bits8to1 {} {
+  make Mux5bit2to1 -origin {670 370}
+  make Mux4to15bits -origin {370 240}
+  make Mux4to15bits -origin {370 410}
+  make input -name {s[1:0]} -origin {180 500}
+  make input -name {s[2]} -origin {180 520}
+  make input -name {a[4:0]} -origin {180 200}
+  make input -name {b[4:0]} -origin {180 220}
+  make input -name {c[4:0]} -origin {180 240}
+  make input -name {d[4:0]} -origin {180 260}
+  make input -name {e[4:0]} -origin {180 370}
+  make input -name {f[4:0]} -origin {180 390}
+  make input -name {g[4:0]} -origin {180 410}
+  make input -name {h[4:0]} -origin {180 430}
+  make output -name {out[4:0]} -origin {770 330}
+  make_wire 260 200 180 200
+  make_wire 260 220 180 220
+  make_wire 260 240 180 240
+  make_wire 260 260 180 260
+  make_wire 260 370 180 370
+  make_wire 260 390 180 390
+  make_wire 260 410 180 410
+  make_wire 260 430 180 430
+  make_wire 180 520 520 520
+  make_wire 520 420 570 420
+  make_wire 520 420 520 520
+  make_wire 180 500 220 500
+  make_wire 220 320 360 320
+  make_wire 360 320 360 310
+  make_wire 220 500 360 500
+  make_wire 220 320 220 500
+  make_wire 360 480 360 500
+  make_wire 460 370 530 370
+  make_wire 530 370 530 350
+  make_wire 530 350 570 350
+  make_wire 460 200 530 200
+  make_wire 530 200 530 330
+  make_wire 530 330 570 330
+}
+
+proc ICON_Mux5bits8to1 args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-110 -80} -name {a[4:0]}
+  icon_term -type input -origin {-110 -60} -name {b[4:0]}
+  icon_term -type input -origin {-110 -40} -name {c[4:0]}
+  icon_term -type input -origin {-110 -20} -name {d[4:0]}
+  icon_term -type input -origin {-110 0} -name {e[4:0]}
+  icon_term -type input -origin {-110 20} -name {f[4:0]}
+  icon_term -type input -origin {-110 40} -name {g[4:0]}
+  icon_term -type input -origin {-110 60} -name {h[4:0]}
+  icon_term -type output -origin {90 -80} -name {out[4:0]}
+  icon_term -type input -origin {0 110} -orient R270 -name {s[2:0]}
+  icon_property -origin {-50 220} -type user -name name
+  icon_property -origin {-50 240} -type user -name M
+  icon_property -origin {-50 260} -type user -name dpc
+  icon_line -110 -100 -110 110 90 110 90 -100 -110 -100
+  icon_property -origin {-100 -80} -label {a[4:0]}
+  icon_property -origin {-100 -60} -label {b[4:0]}
+  icon_property -origin {-100 -40} -label {c[4:0]}
+  icon_property -origin {-100 -20} -label {d[4:0]}
+  icon_property -origin {-100 0} -label {e[4:0]}
+  icon_property -origin {-100 20} -label {f[4:0]}
+  icon_property -origin {-100 40} -label {g[4:0]}
+  icon_property -origin {-100 60} -label {h[4:0]}
+  icon_property -origin {-20 100} -label {s[2:0]}
+  icon_property -origin {80 -80} -anchor e -label {out[4:0]}
+  icon_property -origin {-30 0} -label {Mux 8 x 1}
+  icon_property -origin {-20 20} -label {5 bits}
+}
+

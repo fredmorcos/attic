@@ -1,0 +1,25 @@
+* Disk and Filesystem Benchmark
+1. Provides a set of tests/runs/benchmarks for disks and filesystems.
+2. Those tests include the creation, reading and deletion of files.
+3. In 3 modes:
+   1. Sequentially
+   2. Parallel 5 by 5
+   3. Fully parallel
+   4. Randomly
+4. All tests should run until:
+   1. Partition is half-full
+   2. Partition is completely full
+5. The tests include:
+   1. Small files
+   2. Medium files (4mb)
+   3. Big files (500mb)
+   4. Large files (5GB)
+   5. Huge files (partition size, a single file)
+6. Each step should be benchmarked
+
+* Check Bonnie++ benchmark
+1. Can be used in the script
+
+* Benchmark Elevators
+1. cfq, deadline, noop
+2. on /home/fred and /mult

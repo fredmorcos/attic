@@ -1,0 +1,18 @@
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = false
+indent_style = space
+
+[*.js]
+indent_size = 4
+
+[*.json]
+indent_size = 4
+
+[*.scss]
+indent_size = 2
+
+[*.jade]
+indent_size = 2

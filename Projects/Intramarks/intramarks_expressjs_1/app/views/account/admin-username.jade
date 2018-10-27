@@ -1,0 +1,11 @@
+extends ../account
+
+block account-tab-content
+  p.lead Account username
+  p Lorem ipsum cillum proident aliquip nulla exercitation voluptate mollit.
+  p Your current username: <strong>username</strong>
+  form(method="post", action="#{form_url}")
+    .input-prepend.input-append.input-block
+      label.add-on(for="username"): i.icon-user
+      input(name="username", type="text", placeholder="Your new username")
+      button.btn.btn-medium(type="submit") Update

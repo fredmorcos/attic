@@ -1,0 +1,36 @@
+#+TITLE: Info on =fdup=
+#+LANGUAGE: English
+#+DATE:
+
+#+AUTHOR: Fred Morcos
+#+EMAIL:  fred.morcos@gmail.com
+
+* Requirements
+
+- =fdup= finds duplicate files and directories:
+  + It only deals with directories (=DT_DIR=) and regular files (=DT_REG=).
+  + Hardlinks to regular files must be checked and ignored.
+  + Hardlinks are detected as multiple regular files with similar inodes.
+  + It must be able to create relative symlinks to duplicate files.
+  + It must have a dry-run option to prevent damage to the filesystem.
+  + It must be able to present the user with empty files and directories.
+  + It must be interactive and as protective as possible.
+  + Duplicate files are detected by size, then checksum, then byte-by-byte.
+  + Duplicate dirs are detected when each file is matched.
+  + Almost duplicate dirs should be detected and differences shown.
+  + Ignore =.git=, =.svn= and =CVS= dirs.
+
+* Usage
+
+=fdup= is an interactive command-line utility and supports the following
+arguments (=fdup [-hvnlde] DIRS...=):
+
+- =-h= to show a help message.
+- =-v= to show a version message.
+- =-n= to enable a dry-run:
+  + Disable modifications to the filesystem.
+  + Disable interactivity.
+- =-l= to create relative symlinks to deleted duplicates.
+- =-d= to also try and find duplicate dirs.
+- =-e= to also find empty files and dirs.
+- =DIRS= is the list of dirs to check for duplicates.

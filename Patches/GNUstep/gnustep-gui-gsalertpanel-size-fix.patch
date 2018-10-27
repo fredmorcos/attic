@@ -1,0 +1,18 @@
+Index: Source/NSAlert.m
+===================================================================
+--- Source/NSAlert.m	(revision 28238)
++++ Source/NSAlert.m	(working copy)
+@@ -471,9 +471,11 @@
+     {
+       screen = [NSScreen mainScreen];
+     }
+-  bounds = [screen frame];
+-  bounds = [NSWindow contentRectForFrameRect: bounds styleMask: mask];
++
++  bounds = [NSWindow contentRectForFrameRect: [screen frame] styleMask: mask];
+   ssize = bounds.size;
++  ssize.width *= 0.50;
++  ssize.height *= 0.50;
+ 
+   // Let's size the title.
+   if (useControl(titleField))

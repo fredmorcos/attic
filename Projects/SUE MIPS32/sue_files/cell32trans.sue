@@ -1,0 +1,254 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_cell32trans {} {
+  make input -name w -origin {-460 1240}
+  make input -name {in[0]} -origin {-390 -380}
+  make input -name {in[1]} -origin {-400 -160}
+  make input -name {in[2]} -origin {-400 70}
+  make input -name {in[3]} -origin {-390 290}
+  make input -name {in[4]} -origin {-390 490}
+  make input -name {in[5]} -origin {-390 680}
+  make input -name {in[6]} -origin {-390 870}
+  make input -name {in[7]} -origin {-390 1060}
+  make celltrans -origin {-280 -340}
+  make celltrans -origin {-280 -140}
+  make celltrans -origin {-280 90}
+  make celltrans -origin {-280 310}
+  make celltrans -origin {-280 510}
+  make celltrans -origin {-280 700}
+  make celltrans -origin {-280 890}
+  make celltrans -origin {-280 1080}
+  make celltrans -origin {260 -340}
+  make celltrans -origin {260 -140}
+  make celltrans -origin {260 90}
+  make celltrans -origin {260 310}
+  make celltrans -origin {260 510}
+  make celltrans -origin {260 700}
+  make celltrans -origin {260 890}
+  make celltrans -origin {260 1080}
+  make celltrans -origin {780 -330}
+  make celltrans -origin {780 -130}
+  make celltrans -origin {780 100}
+  make celltrans -origin {780 320}
+  make celltrans -origin {780 520}
+  make celltrans -origin {780 710}
+  make celltrans -origin {780 900}
+  make celltrans -origin {780 1090}
+  make celltrans -origin {1320 -320}
+  make celltrans -origin {1320 -120}
+  make celltrans -origin {1320 110}
+  make celltrans -origin {1320 330}
+  make celltrans -origin {1320 530}
+  make celltrans -origin {1320 720}
+  make celltrans -origin {1320 910}
+  make celltrans -origin {1320 1100}
+  make input -name {in[8]} -origin {150 -380}
+  make input -name {in[9]} -origin {140 -160}
+  make input -name {in[10]} -origin {140 70}
+  make input -name {in[11]} -origin {150 290}
+  make input -name {in[12]} -origin {150 490}
+  make input -name {in[13]} -origin {150 680}
+  make input -name {in[14]} -origin {150 870}
+  make input -name {in[15]} -origin {150 1060}
+  make input -name {in[16]} -origin {670 -370}
+  make input -name {in[17]} -origin {660 -150}
+  make input -name {in[18]} -origin {660 80}
+  make input -name {in[19]} -origin {670 300}
+  make input -name {in[20]} -origin {670 500}
+  make input -name {in[21]} -origin {670 690}
+  make input -name {in[22]} -origin {670 880}
+  make input -name {in[23]} -origin {670 1070}
+  make input -name {in[24]} -origin {1210 -360}
+  make input -name {in[25]} -origin {1200 -140}
+  make input -name {in[26]} -origin {1200 90}
+  make input -name {in[27]} -origin {1210 310}
+  make input -name {in[28]} -origin {1210 510}
+  make input -name {in[29]} -origin {1210 700}
+  make input -name {in[30]} -origin {1210 890}
+  make input -name {in[31]} -origin {1210 1080}
+  make output -name {out[24]} -origin {1440 -340}
+  make output -name {out[25]} -origin {1440 -140}
+  make output -name {out[26]} -origin {1430 90}
+  make output -name {out[27]} -origin {1430 310}
+  make output -name {out[28]} -origin {1430 510}
+  make output -name {out[29]} -origin {1430 700}
+  make output -name {out[30]} -origin {1440 890}
+  make output -name {out[31]} -origin {1430 1080}
+  make output -name {out[16]} -origin {900 -350}
+  make output -name {out[17]} -origin {900 -150}
+  make output -name {out[18]} -origin {890 80}
+  make output -name {out[19]} -origin {890 300}
+  make output -name {out[20]} -origin {890 500}
+  make output -name {out[21]} -origin {890 690}
+  make output -name {out[22]} -origin {900 880}
+  make output -name {out[23]} -origin {890 1070}
+  make output -name {out[8]} -origin {380 -360}
+  make output -name {out[9]} -origin {380 -160}
+  make output -name {out[10]} -origin {370 70}
+  make output -name {out[11]} -origin {370 290}
+  make output -name {out[12]} -origin {370 490}
+  make output -name {out[13]} -origin {370 680}
+  make output -name {out[14]} -origin {380 870}
+  make output -name {out[15]} -origin {370 1060}
+  make output -name {out[0]} -origin {-160 -360}
+  make output -name {out[1]} -origin {-160 -160}
+  make output -name {out[2]} -origin {-170 70}
+  make output -name {out[3]} -origin {-170 290}
+  make output -name {out[4]} -origin {-170 490}
+  make output -name {out[5]} -origin {-170 680}
+  make output -name {out[6]} -origin {-160 870}
+  make output -name {out[7]} -origin {-170 1060}
+  make_wire -460 890 -380 890
+  make_wire -460 1080 -380 1080
+  make_wire -460 700 -380 700
+  make_wire -460 -140 -380 -140
+  make_wire -460 90 -380 90
+  make_wire -460 90 -460 -140
+  make_wire -460 310 -380 310
+  make_wire -460 310 -460 90
+  make_wire -460 510 -380 510
+  make_wire -460 510 -460 310
+  make_wire -460 890 -460 1080
+  make_wire -460 510 -460 700
+  make_wire -460 700 -460 890
+  make_wire -460 1080 -460 1200
+  make_wire -460 1220 -460 1240
+  make_wire 600 1090 600 1200
+  make_wire -460 1200 -460 1220
+  make_wire 80 1080 80 1200
+  make_wire 1140 1100 1140 1220
+  make_wire -460 1200 80 1200
+  make_wire 80 1200 600 1200
+  make_wire -460 1220 1140 1220
+  make_wire -460 -340 -380 -340
+  make_wire -460 -340 -460 -140
+  make_wire -390 -380 -390 -360
+  make_wire -390 -360 -380 -360
+  make_wire -180 -360 -160 -360
+  make_wire -400 -160 -380 -160
+  make_wire -180 -160 -160 -160
+  make_wire -400 70 -380 70
+  make_wire -180 70 -170 70
+  make_wire -390 290 -380 290
+  make_wire -180 290 -170 290
+  make_wire -390 490 -380 490
+  make_wire -180 490 -170 490
+  make_wire -390 680 -380 680
+  make_wire -180 680 -170 680
+  make_wire -390 870 -380 870
+  make_wire -180 870 -160 870
+  make_wire -390 1060 -380 1060
+  make_wire -180 1060 -170 1060
+  make_wire 80 890 160 890
+  make_wire 80 1080 160 1080
+  make_wire 80 700 160 700
+  make_wire 80 -140 160 -140
+  make_wire 80 90 160 90
+  make_wire 80 90 80 -140
+  make_wire 80 310 160 310
+  make_wire 80 310 80 90
+  make_wire 80 510 160 510
+  make_wire 80 510 80 310
+  make_wire 80 890 80 1080
+  make_wire 80 510 80 700
+  make_wire 80 700 80 890
+  make_wire 80 -340 160 -340
+  make_wire 80 -340 80 -140
+  make_wire 150 -380 150 -360
+  make_wire 150 -360 160 -360
+  make_wire 360 -360 380 -360
+  make_wire 140 -160 160 -160
+  make_wire 360 -160 380 -160
+  make_wire 140 70 160 70
+  make_wire 360 70 370 70
+  make_wire 150 290 160 290
+  make_wire 360 290 370 290
+  make_wire 150 490 160 490
+  make_wire 360 490 370 490
+  make_wire 150 680 160 680
+  make_wire 360 680 370 680
+  make_wire 150 870 160 870
+  make_wire 360 870 380 870
+  make_wire 150 1060 160 1060
+  make_wire 360 1060 370 1060
+  make_wire 600 900 680 900
+  make_wire 600 1090 680 1090
+  make_wire 600 710 680 710
+  make_wire 600 -130 680 -130
+  make_wire 600 100 680 100
+  make_wire 600 100 600 -130
+  make_wire 600 320 680 320
+  make_wire 600 320 600 100
+  make_wire 600 520 680 520
+  make_wire 600 520 600 320
+  make_wire 600 900 600 1090
+  make_wire 600 520 600 710
+  make_wire 600 710 600 900
+  make_wire 600 -330 680 -330
+  make_wire 600 -330 600 -130
+  make_wire 670 -370 670 -350
+  make_wire 670 -350 680 -350
+  make_wire 880 -350 900 -350
+  make_wire 660 -150 680 -150
+  make_wire 880 -150 900 -150
+  make_wire 660 80 680 80
+  make_wire 880 80 890 80
+  make_wire 670 300 680 300
+  make_wire 880 300 890 300
+  make_wire 670 500 680 500
+  make_wire 880 500 890 500
+  make_wire 670 690 680 690
+  make_wire 880 690 890 690
+  make_wire 670 880 680 880
+  make_wire 880 880 900 880
+  make_wire 670 1070 680 1070
+  make_wire 880 1070 890 1070
+  make_wire 1140 910 1220 910
+  make_wire 1140 1100 1220 1100
+  make_wire 1140 720 1220 720
+  make_wire 1140 -120 1220 -120
+  make_wire 1140 110 1220 110
+  make_wire 1140 110 1140 -120
+  make_wire 1140 330 1220 330
+  make_wire 1140 330 1140 110
+  make_wire 1140 530 1220 530
+  make_wire 1140 530 1140 330
+  make_wire 1140 910 1140 1100
+  make_wire 1140 530 1140 720
+  make_wire 1140 720 1140 910
+  make_wire 1140 -320 1220 -320
+  make_wire 1140 -320 1140 -120
+  make_wire 1210 -360 1210 -340
+  make_wire 1210 -340 1220 -340
+  make_wire 1420 -340 1440 -340
+  make_wire 1200 -140 1220 -140
+  make_wire 1420 -140 1440 -140
+  make_wire 1200 90 1220 90
+  make_wire 1420 90 1430 90
+  make_wire 1210 310 1220 310
+  make_wire 1420 310 1430 310
+  make_wire 1210 510 1220 510
+  make_wire 1420 510 1430 510
+  make_wire 1210 700 1220 700
+  make_wire 1420 700 1430 700
+  make_wire 1210 890 1220 890
+  make_wire 1420 890 1440 890
+  make_wire 1210 1080 1220 1080
+  make_wire 1420 1080 1430 1080
+}
+
+proc ICON_cell32trans args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 -20} -name {in[31:0]}
+  icon_term -type input -origin {-100 20} -name w
+  icon_term -type output -origin {100 -10} -name {out[31:0]}
+  icon_property -origin {-50 140} -type user -name name
+  icon_property -origin {-50 160} -type user -name M
+  icon_property -origin {-50 180} -type user -name dpc
+  icon_line -100 -40 -100 50 100 50 100 -40 -100 -40
+  icon_property -origin {-30 10} -size small -label {32 cell trans}
+  icon_property -origin {-90 20} -label w
+  icon_property -origin {100 -10} -anchor e -label {out[31:0]}
+  icon_property -origin {-90 -20} -label {in[31:0]}
+}
+

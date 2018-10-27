@@ -1,0 +1,16 @@
+aslc
+
+*.o
+
+*~
+\#*
+.#*
+
+GPATH
+GRTAGS
+GTAGS
+
+massif.out*
+cscope.out
+vgcore.*
+

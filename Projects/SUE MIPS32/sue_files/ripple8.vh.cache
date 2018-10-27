@@ -1,0 +1,7 @@
+set NETLIST_CACHE(ripple8,cells) {{icon ripple4 has_schematic}}
+set netlist_props verilog
+set netlist_level 1000
+set NETLIST_CACHE(ripple8,version) MMI_SUE4.4.0
+set NETLIST_CACHE(ripple8) {{module ripple8 (a, b, cin, cout, y);} {	input		cin;} {	input	[7:0]	a;} {	input	[7:0]	b;} {	output		cout;} {	output	[7:0]	y;} { } {	wire		net_1;} { } {	ripple4 ripple4 (.b(b[7:4]), .a(a[7:4]), .cin(net_1), .sum(y[7:4]), } {		.cout(cout));} {	ripple4 ripple4_1 (.b(b[3:0]), .a(a[3:0]), .cin(cin), .sum(y[3:0]), } {		.cout(net_1));} {} {endmodule		// ripple8} {}}
+set NETLIST_CACHE(ripple8,names) {{300 510 {0 y[7:4]} {2 y[7:4]}} {660 420 {0 ripple4_1}} {240 310 {0 b[7:4]} {2 b[7:4]}} {600 310 {0 b[3:0]} {2 b[3:0]}} {360 310 {0 a[7:4]} {2 a[7:4]}} {720 310 {0 a[3:0]} {2 a[3:0]}} {150 460 {0 cout} {2 cout}} {510 460 {0 net_1}} {300 420 {0 ripple4}} {660 510 {0 y[3:0]} {2 y[3:0]}} {450 460 {0 net_1}} {810 460 {0 cin} {2 cin}}}
+set NETLIST_CACHE(ripple8,wires) {{450 460 510 460 net_1}}

@@ -1,0 +1,13 @@
+extends ../account
+
+block account-tab-content
+  p.lead Delete your account
+  p We are sad to see you go.
+  p are you just trying to <a href="#">stop auto billing</a>?
+  p before you go, would you like to tell us why do you want to close your account?
+  form(method="post", action="#{form_url}")
+  .input-block
+    textarea(name="feedback", type="text", placeholder="Your feedback (optional)")
+  .controls
+    button.btn.btn-danger(type="submit") Send feedback and delete my account
+

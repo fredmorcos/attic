@@ -1,0 +1,103 @@
+<!-- Generator: GNU source-highlight 2.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><i><font color="#9A1900">/*</font></i>
+<i><font color="#9A1900">	This file is part of cv-a1.</font></i>
+
+<i><font color="#9A1900">	Copyright (C) 2008	Frederic-Gerald Morcos </font></i><u><font color="#0000FF">&lt;fred.morcos@gmail.com&gt;</font></u>
+
+<i><font color="#9A1900">	cv-a1 is free software: you can redistribute it and/or modify</font></i>
+<i><font color="#9A1900">	it under the terms of the GNU General Public License as published by</font></i>
+<i><font color="#9A1900">	the Free Software Foundation, either version 3 of the License, or</font></i>
+<i><font color="#9A1900">	(at your option) any later version.</font></i>
+
+<i><font color="#9A1900">	cv-a1 is distributed in the hope that it will be useful,</font></i>
+<i><font color="#9A1900">	but WITHOUT ANY WARRANTY; without even the implied warranty of</font></i>
+<i><font color="#9A1900">	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</font></i>
+<i><font color="#9A1900">	GNU General Public License for more details.</font></i>
+
+<i><font color="#9A1900">	You should have received a copy of the GNU General Public License</font></i>
+<i><font color="#9A1900">	along with cv-a1.  If not, see </font></i><u><font color="#0000FF">&lt;http://www.gnu.org/licenses/&gt;</font></u><i><font color="#9A1900">.</font></i>
+<i><font color="#9A1900">*/</font></i>
+
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"ui-builder.h"</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"callbacks.h"</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">"cv-stuff.h"</font>
+<b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;gtk/gtk.h&gt;</font>
+
+<font color="#009900">int</font> <b><font color="#000000">main </font></b><font color="#990000">(</font><font color="#009900">int</font> argc<font color="#990000">,</font> <font color="#009900">char</font> <font color="#990000">*</font>argv<font color="#990000">[])</font> <font color="#FF0000">{</font>
+	GtkWidget	<font color="#990000">*</font>mainWindow<font color="#990000">,</font>
+				<font color="#990000">*</font>negateButton1<font color="#990000">,</font>
+				<font color="#990000">*</font>negateButton2<font color="#990000">,</font>
+				<font color="#990000">*</font>negateButton3<font color="#990000">,</font>
+				<font color="#990000">*</font>rotateButton<font color="#990000">,</font>
+				<font color="#990000">*</font>rotateButtonCV<font color="#990000">,</font>
+				<font color="#990000">*</font>upsampleButton<font color="#990000">,</font>
+				<font color="#990000">*</font>upsampleButtonCV<font color="#990000">,</font>
+				<font color="#990000">*</font>scaleButton<font color="#990000">,</font>
+				<font color="#990000">*</font>replicationRadio<font color="#990000">;</font>
+	GtkAction	<font color="#990000">*</font>menuOpen<font color="#990000">,</font>
+				<font color="#990000">*</font>menuSave<font color="#990000">,</font>
+				<font color="#990000">*</font>menuQuit<font color="#990000">,</font>
+				<font color="#990000">*</font>menuAbout<font color="#990000">;</font>
+
+	<b><font color="#000000">gtk_init</font></b><font color="#990000">(&amp;</font>argc<font color="#990000">,</font> <font color="#990000">&amp;</font>argv<font color="#990000">);</font>
+
+	<b><font color="#000000">ui_init</font></b><font color="#990000">();</font>
+	mainWindow <font color="#990000">=</font> <b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"mainWindow"</font><font color="#990000">);</font>
+	negateButton1 <font color="#990000">=</font> <b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"negateButton1"</font><font color="#990000">);</font>
+	negateButton2 <font color="#990000">=</font> <b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"negateButton2"</font><font color="#990000">);</font>
+	negateButton3 <font color="#990000">=</font> <b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"negateButton3"</font><font color="#990000">);</font>
+	rotateButton <font color="#990000">=</font> <b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"rotateButton"</font><font color="#990000">);</font>
+	rotateButtonCV <font color="#990000">=</font> <b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"rotateButtonCV"</font><font color="#990000">);</font>
+	upsampleButton <font color="#990000">=</font> <b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"upsampleButton"</font><font color="#990000">);</font>
+	upsampleButtonCV <font color="#990000">=</font> <b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"upsampleButtonCV"</font><font color="#990000">);</font>
+	scaleButton <font color="#990000">=</font> <b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"scaleButton"</font><font color="#990000">);</font>
+	replicationRadio <font color="#990000">=</font> <b><font color="#000000">ui_get_widget</font></b><font color="#990000">(</font><font color="#FF0000">"replicationRadio"</font><font color="#990000">);</font>
+
+	menuOpen <font color="#990000">=</font> <b><font color="#000000">ui_get_action</font></b><font color="#990000">(</font><font color="#FF0000">"menuOpen"</font><font color="#990000">);</font>
+	menuSave <font color="#990000">=</font> <b><font color="#000000">ui_get_action</font></b><font color="#990000">(</font><font color="#FF0000">"menuSave"</font><font color="#990000">);</font>
+	menuQuit <font color="#990000">=</font> <b><font color="#000000">ui_get_action</font></b><font color="#990000">(</font><font color="#FF0000">"menuQuit"</font><font color="#990000">);</font>
+	menuAbout <font color="#990000">=</font> <b><font color="#000000">ui_get_action</font></b><font color="#990000">(</font><font color="#FF0000">"menuAbout"</font><font color="#990000">);</font>
+
+	<i><font color="#9A1900">/* connect signals */</font></i>
+	<b><font color="#000000">g_signal_connect</font></b><font color="#990000">(</font><b><font color="#000000">G_OBJECT</font></b><font color="#990000">(</font>mainWindow<font color="#990000">),</font> <font color="#FF0000">"delete-event"</font><font color="#990000">,</font>
+			<b><font color="#000000">G_CALLBACK</font></b><font color="#990000">(</font>gtk_main_quit<font color="#990000">),</font> NULL<font color="#990000">);</font>
+	<b><font color="#000000">g_signal_connect</font></b><font color="#990000">(</font><b><font color="#000000">G_OBJECT</font></b><font color="#990000">(</font>menuQuit<font color="#990000">),</font> <font color="#FF0000">"activate"</font><font color="#990000">,</font>
+			<b><font color="#000000">G_CALLBACK</font></b><font color="#990000">(</font>gtk_main_quit<font color="#990000">),</font> NULL<font color="#990000">);</font>
+	<b><font color="#000000">g_signal_connect</font></b><font color="#990000">(</font><b><font color="#000000">G_OBJECT</font></b><font color="#990000">(</font>menuOpen<font color="#990000">),</font> <font color="#FF0000">"activate"</font><font color="#990000">,</font>
+			<b><font color="#000000">G_CALLBACK</font></b><font color="#990000">(</font>menuOpen_activate<font color="#990000">),</font> NULL<font color="#990000">);</font>
+	<b><font color="#000000">g_signal_connect</font></b><font color="#990000">(</font><b><font color="#000000">G_OBJECT</font></b><font color="#990000">(</font>menuSave<font color="#990000">),</font> <font color="#FF0000">"activate"</font><font color="#990000">,</font>
+			<b><font color="#000000">G_CALLBACK</font></b><font color="#990000">(</font>menuSave_activate<font color="#990000">),</font> NULL<font color="#990000">);</font>
+	<b><font color="#000000">g_signal_connect</font></b><font color="#990000">(</font><b><font color="#000000">G_OBJECT</font></b><font color="#990000">(</font>menuAbout<font color="#990000">),</font> <font color="#FF0000">"activate"</font><font color="#990000">,</font>
+			<b><font color="#000000">G_CALLBACK</font></b><font color="#990000">(</font>menuAbout_activate<font color="#990000">),</font> NULL<font color="#990000">);</font>
+	<b><font color="#000000">g_signal_connect</font></b><font color="#990000">(</font><b><font color="#000000">G_OBJECT</font></b><font color="#990000">(</font>negateButton1<font color="#990000">),</font> <font color="#FF0000">"clicked"</font><font color="#990000">,</font>
+			<b><font color="#000000">G_CALLBACK</font></b><font color="#990000">(</font>negateButton1_click<font color="#990000">),</font> NULL<font color="#990000">);</font>
+	<b><font color="#000000">g_signal_connect</font></b><font color="#990000">(</font><b><font color="#000000">G_OBJECT</font></b><font color="#990000">(</font>negateButton2<font color="#990000">),</font> <font color="#FF0000">"clicked"</font><font color="#990000">,</font>
+			<b><font color="#000000">G_CALLBACK</font></b><font color="#990000">(</font>negateButton2_click<font color="#990000">),</font> NULL<font color="#990000">);</font>
+	<b><font color="#000000">g_signal_connect</font></b><font color="#990000">(</font><b><font color="#000000">G_OBJECT</font></b><font color="#990000">(</font>negateButton3<font color="#990000">),</font> <font color="#FF0000">"clicked"</font><font color="#990000">,</font>
+			<b><font color="#000000">G_CALLBACK</font></b><font color="#990000">(</font>negateButton3_click<font color="#990000">),</font> NULL<font color="#990000">);</font>
+	<b><font color="#000000">g_signal_connect</font></b><font color="#990000">(</font><b><font color="#000000">G_OBJECT</font></b><font color="#990000">(</font>rotateButton<font color="#990000">),</font> <font color="#FF0000">"clicked"</font><font color="#990000">,</font>
+			<b><font color="#000000">G_CALLBACK</font></b><font color="#990000">(</font>rotateButton_click<font color="#990000">),</font> NULL<font color="#990000">);</font>
+	<b><font color="#000000">g_signal_connect</font></b><font color="#990000">(</font><b><font color="#000000">G_OBJECT</font></b><font color="#990000">(</font>rotateButtonCV<font color="#990000">),</font> <font color="#FF0000">"clicked"</font><font color="#990000">,</font>
+			<b><font color="#000000">G_CALLBACK</font></b><font color="#990000">(</font>rotateButtonCV_click<font color="#990000">),</font> NULL<font color="#990000">);</font>
+	<b><font color="#000000">g_signal_connect</font></b><font color="#990000">(</font><b><font color="#000000">G_OBJECT</font></b><font color="#990000">(</font>upsampleButton<font color="#990000">),</font> <font color="#FF0000">"clicked"</font><font color="#990000">,</font>
+			<b><font color="#000000">G_CALLBACK</font></b><font color="#990000">(</font>upsampleButton_click<font color="#990000">),</font> NULL<font color="#990000">);</font>
+	<b><font color="#000000">g_signal_connect</font></b><font color="#990000">(</font><b><font color="#000000">G_OBJECT</font></b><font color="#990000">(</font>upsampleButtonCV<font color="#990000">),</font> <font color="#FF0000">"clicked"</font><font color="#990000">,</font>
+			<b><font color="#000000">G_CALLBACK</font></b><font color="#990000">(</font>upsampleButtonCV_click<font color="#990000">),</font> NULL<font color="#990000">);</font>
+	<b><font color="#000000">g_signal_connect</font></b><font color="#990000">(</font><b><font color="#000000">G_OBJECT</font></b><font color="#990000">(</font>scaleButton<font color="#990000">),</font> <font color="#FF0000">"clicked"</font><font color="#990000">,</font>
+			<b><font color="#000000">G_CALLBACK</font></b><font color="#990000">(</font>scaleButton_click<font color="#990000">),</font> NULL<font color="#990000">);</font>
+	<b><font color="#000000">g_signal_connect</font></b><font color="#990000">(</font><b><font color="#000000">G_OBJECT</font></b><font color="#990000">(</font>replicationRadio<font color="#990000">),</font> <font color="#FF0000">"clicked"</font><font color="#990000">,</font>
+			<b><font color="#000000">G_CALLBACK</font></b><font color="#990000">(</font>replicationRadio_toggle<font color="#990000">),</font> NULL<font color="#990000">);</font>
+
+	<b><font color="#000000">gtk_widget_show_all</font></b><font color="#990000">(</font>mainWindow<font color="#990000">);</font>
+	<b><font color="#000000">gtk_main</font></b><font color="#990000">();</font>
+
+	<b><font color="#000000">ui_destroy</font></b><font color="#990000">();</font>
+	<b><font color="#000000">cv_stuff_destroy</font></b><font color="#990000">();</font>
+
+	<b><font color="#0000FF">return</font></b> <font color="#993399">0</font><font color="#990000">;</font>
+<font color="#FF0000">}</font>
+
+</tt></pre>

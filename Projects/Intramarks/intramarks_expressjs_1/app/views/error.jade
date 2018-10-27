@@ -1,0 +1,9 @@
+extends _layout
+
+block content
+  article.container
+    .row
+      .span8.offset2
+        h2.page-title Error
+        p.lead #{error_id}
+        p #{error_str}

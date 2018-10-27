@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# This will run the configure script in Berkeley UPC
+# Written to make using multiple versions of UPC easier 
+# to configure for building
+# Try with --help
+
+# Argument 1: prefix directory (without home directory prefix)
+# Argument 2: output log file
+
+# Argument 1 can also be --help
+
+if [[ "$1" == "--help" || "$1" == "" ]]; then
+	echo "upc-configure <upc-prefix> [autotools-log-filename]"
+	exit 1
+fi
+
+HOME_DIR=$HOME # change that to your liking
+
+if [[ "$1" == "" ]]; then
+	BERK_UPC_PREFIX=$HOME_DIR/upc
+else
+	BERK_UPC_PREFIX=$HOME_DIR/$1
+fi
+
+if [[ "$2" == "" ]]; then
+	OUTPUT_LOG_FILE_CONFIGURE=/dev/null
+	OUTPUT_LOG_FILE_MAKE=/dev/null
+	OUTPUT_LOG_FILE_MAKEINSTALL=/dev/null
+else
+	OUTPUT_LOG_FILE_CONFIGURE=$2-configure
+	OUTPUT_LOG_FILE_MAKE=$2-make
+	OUTPUT_LOG_FILE_MAKEINSTALL=$2-makeinstall
+fi
+
+echo "HOME_DIR = $HOME_DIR"
+echo "BERK_UPC_PREFIX = $BERK_UPC_PREFIX"
+echo "OUTPUT_LOG_FILE_CONFIGURE = $OUTPUT_LOG_FILE_CONFIGURE"
+echo "OUTPUT_LOG_FILE_MAKE = $OUTPUT_LOG_FILE_MAKE"
+echo "OUTPUT_LOG_FILE_MAKEINSTALL = $OUTPUT_LOG_FILE_MAKEINSTALL"
+
+# Full/proper configuration
+./configure --disable-aligned-segments --disable-udp --disable-pshm \
+			--disable-mpi --disable-mpi-compat --with-vapi-spawner=ssh \
+			--with-sptr-packed-bits=21,8,35 --disable-shmem \
+			--with-multiconf=+opt_inst,+opt_trace --prefix=$BERK_UPC_PREFIX \
+			CC=icc CFLAGS="-O3 -fast-axSSE4.2 -ipo" \
+			2>&1 | tee $OUTPUT_LOG_FILE_CONFIGURE
+
+# Minimal configuration, for debugging mostly
+# ./configure 	--prefix=$BERK_UPC_PREFIX --without-multiconf \
+# 				--disable-aligned-segments --disable-mpi --disable-mpi-compat \
+# 				2>&1 | tee $OUTPUT_LOG_FILE_CONFIGURE
+
+make 2>&1 | tee $OUTPUT_LOG_FILE_MAKE
+make install 2>&1 | tee $OUTPUT_LOG_FILE_MAKEINSTALL
+
+echo "----DONE----"
+echo "export UPC_SHARED_HEAP_SIZE=10GB"
+echo "export PATH=$BERK_UPC_PREFIX/bin:\$PATH"
+

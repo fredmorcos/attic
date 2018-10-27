@@ -1,0 +1,52 @@
+This file describes how the assembler command line interface should be
+to work properly with the mgen script.
+
+There are two cases for a machine, and for each case, there are two
+cases for the assembler.
+
+Configuration of cases follows what's in the machine's definition file
+[1]. Namely the "assembler", "debug_info" and "single_mem" settings.
+
+The assembler binary should be found in bin/assemblers, a symlink to
+the original source/build dir is a good solution.
+
+ASMBIN	    assembler's binary filename given in the "assembler"
+	    setting in [1].
+ASMFILE	    the input filename (the user's assembly program file).
+PROG	    assembler's program output file.
+DATA	    assembler's data output file.
+DPROG	    assembler's debug program output file.
+DDATA	    assembler's debug data output file.
+
+Cases:
+
+1. MACHINE IS SINGLE MEMORY
+   a. ASSEMBLER SUPPORTS DEBUG OUTPUT
+      command: ASMBIN ASMFILE PROG LPROG
+
+   b. ASSEMBLER DOESN'T SUPPORT DEBUG OUTPUT
+      command: ASMBIN ASMFILE PROG
+
+2. MACHINE IS DUAL MEMORY
+   a. ASSEMBLER SUPPORTS DEBUG OUTPUT
+      command: ASMBIN ASMFILE PROG DATA LPROG LDATA
+
+   b. ASSEMBLER DOESN'T SUPPORT DEBUG OUTPUT
+      command: ASMBIN ASMFILE PROG DATA
+
+The mgen script expects the assembler to follow this convention for
+the command line arguments and expects the assembler to output to the
+respective (given) files.
+
+If an assembler is not given in the definition file, the machine is
+assumed to accept program and data file(s) with extensions .p and .d
+for program and data respectively in case of double memory and .p only
+in case of single memory. Debug data is not treated.
+
+As explained in [2], the command line argument to the mgen script is
+--program PROGRAM.s in case of an existing assembler, --program
+PROGRAM.p in case of single memory and --program PROGRAM.p,DATA.d in
+case of double memory.
+
+[1] docs/definition.txt
+[2] docs/overview.txt

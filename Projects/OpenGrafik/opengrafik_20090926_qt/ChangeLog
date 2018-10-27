@@ -1,0 +1,676 @@
+2009-08-26  Fred Morcos <fred.morcos@gmail.com>
+
+  * ui/mainwindow.cc: added toolbox as dockwidget
+
+2009-08-25  Fred Morcos <fred.morcos@gmail.com>
+
+  * ChangeLog: changelog
+
+  * canvas/resizehandle.cc, canvas/resizehandle.h: more generic handle size
+
+2009-08-25  mikey <mikey.morckos@gmail.com>
+
+  * canvas/resizehandle.cc: Enhancing handles appearance on shapes by adjusting
+  them on edge's center
+
+2009-08-24  Fred Morcos <fred.morcos@gmail.com>
+
+  * canvas/resizehandle.cc, canvas/resizehandle.h, gmon.out, opengrafik.pro:
+  profiled optimization: added instance variables in resizehandle instead of
+  calling parentItem and boundingRect in resizehandle::adjust()
+  resizehandle::mousemoveevent() everytime, since both methods are called a
+  lot.
+
+  * ChangeLog, TODO, shapes/shape.cc.orig, ui/mainwindow.cc, ui/mainwindow.h,
+  widgets/propertyview.cc, widgets/singlepropertyview.cc: profiled
+  optimization: we were calling mainwindow::quit() twice. some other small
+  fixes
+
+2009-08-23  mikey <mikey.morckos@gmail.com>
+
+  * shapes/shape.cc: Fixed erroneous handles behavior in shape
+
+2009-08-23  Fred Morcos <fred.morcos@gmail.com>
+
+  * extra/colorbutton.cc, extra/colorbutton.h, opengrafik.pro, shapes/shape.cc,
+  shapes/shape.h, widgets/singlepropertyview.cc, widgets/singlepropertyview.h:
+  added some more writing of dynamic properties
+
+2009-08-22  Fred Morcos <fred.morcos@gmail.com>
+
+  * widgets/propertyview.cc, widgets/singlepropertyview.cc,
+  widgets/singlepropertyview.h: partial writing of dynamic properties
+
+  * ChangeLog, TODO, shapes/shape.cc, widgets/propertyview.cc,
+  widgets/propertyview.h, widgets/propertyview.ui,
+  widgets/singlepropertyview.cc, widgets/singlepropertyview.h,
+  widgets/widgets.pri: some more work on reading dynamic properties
+
+  * canvas/diagramscene.cc, canvas/diagramscene.h, extra/colorbutton.cc,
+  extra/colorbutton.h, extra/extra.pri, opengrafik.pro, shapes/ellipse.cc,
+  shapes/ellipse.h, shapes/rectangle.cc, shapes/rectangle.h, shapes/shape.cc,
+  shapes/shape.h, shapes/svg.cc, shapes/svg.h, shapes/text.cc,
+  widgets/maintoolbox.cc, widgets/maintoolbox.h, widgets/propertyview.cc,
+  widgets/propertyview.h, widgets/propertyview.ui: added some work for dynamic
+  properties
+
+  * canvas/diagramview.cc, canvas/resizehandle.cc, shapes/shape.cc,
+  shapes/shape.h, ui/mainwindow.cc, widgets/propertyview.cc,
+  widgets/propertyview.h: cleanup
+
+2009-08-22  mikey <mikey.morckos@gmail.com>
+
+  * canvas/diagramview.cc, canvas/resizehandle.cc, canvas/resizehandle.h,
+  shapes/shape.cc, shapes/shape.h: Refactored resize handles visibility code
+  out of shape into resizehandle
+
+2009-08-21  Fred Morcos <fred.morcos@gmail.com>
+
+  * core/core.pri, core/property.cc, core/property.h, opengrafik.pro,
+  ui/mainwindow.cc, ui/mainwindow.h, widgets/maintoolbox.cc,
+  widgets/maintoolbox.h, widgets/maintoolbox.ui, widgets/propertyview.cc,
+  widgets/propertyview.h, widgets/propertyview.ui, widgets/toolbox.cc,
+  widgets/toolbox.h, widgets/toolbox.ui, widgets/widgets.pri: more preliminary
+  work for dynamic properties
+
+  * ChangeLog: changelog
+
+  * canvas/diagramview.cc, core/core.pri, core/property.cc, core/property.h,
+  shapes/shape.cc, shapes/shape.h, widgets/propertyview.cc,
+  widgets/propertyview.h: implemented selection on canvas
+
+  * core/core.pri, core/property.cc, core/property.h, widgets/propertyview.cc,
+  widgets/propertyview.h, widgets/propertyview.ui, widgets/widgets.pri:
+  redesign everything for dynamic properties and property view, preliminary
+  work for new design
+
+  * canvas/resizehandle.cc, canvas/resizehandle.h, core/property.cc,
+  core/property.h, shapes/shape.cc, shapes/shape.h: property
+
+  * ChangeLog: changelog
+
+  * ChangeLog, TODO, canvas/resizehandle.cc, dev/gitlog2changelog.py,
+  shapes/shape.cc: trials
+
+2009-08-20  Fred Morcos <fred.morcos@gmail.com>
+
+  * shapes/shapes.pri: some changes
+
+  * shapes/shape.cc: focus in/out trial
+
+  * core/core.pri, core/property.cc, core/property.h, opengrafik.pro: added
+  preliminary work for properties
+
+  * canvas/diagramscene.cc, canvas/diagramscene.h, canvas/resizehandle.cc,
+  canvas/resizehandle.h: cleanup dynamic properties and signals in diagramscene
+  for grid
+
+  * shapes/shape.cc: refactor dynamic property setting
+
+2009-08-20  mikey <mikey.morckos@gmail.com>
+
+  * canvas/resizehandle.cc, canvas/resizehandle.h, shapes/shape.cc,
+  shapes/shape.h: Refactoring in resizehandle and handle related code in shape
+
+2009-08-19  Fred Morcos <fred.morcos@gmail.com>
+
+  * canvas/resizehandle.cc: resize handle cursors
+
+2009-08-19  mikey <mikey.morckos@gmail.com>
+
+  * canvas/resizehandle.cc: Tiny fix in resizehandle's itemChange
+
+2009-08-19  Fred Morcos <fred.morcos@gmail.com>
+
+  * canvas/diagramscene.cc, canvas/diagramscene.h, canvas/diagramview.cc,
+  canvas/diagramview.h, canvas/resizehandle.cc, canvas/resizehandle.h, main.cc,
+  shapes/ellipse.cc, shapes/ellipse.h, shapes/rectangle.cc, shapes/rectangle.h,
+  shapes/shape.cc, shapes/shape.h, shapes/svg.cc, shapes/svg.h, shapes/text.cc,
+  shapes/text.h, ui/mainwindow.cc, ui/mainwindow.h, ui/preferencesdialog.cc,
+  ui/preferencesdialog.h, widgets/toolbox.cc, widgets/toolbox.h: licenses
+
+  * canvas/diagramview.cc: test text
+
+  * canvas/diagramview.cc, shapes/svg.cc, shapes/svg.h: fix svg
+
+  * canvas/diagramview.cc, shapes/baseshape.cc, shapes/baseshape.h,
+  shapes/ellipse.cc, shapes/ellipse.h, shapes/ellipseitem.cc,
+  shapes/ellipseitem.h, shapes/rectangle.cc, shapes/rectangle.h,
+  shapes/rectangleitem.cc, shapes/rectangleitem.h, shapes/shape.cc,
+  shapes/shape.h, shapes/shapes.pri, shapes/svg.cc, shapes/svg.h,
+  shapes/svgitem.cc, shapes/svgitem.h, shapes/text.cc, shapes/text.h,
+  shapes/textitem.cc, shapes/textitem.h: name changes and put handle
+  adjustments in a resizeEvent
+
+2009-08-18  mikey <mikey.morckos@gmail.com>
+
+  * canvas/resizehandle.cc: Fixed the erroneous behavior of handles when
+  zooming in/out, the problem of handles scaled with shape remains.
+
+  * shapes/baseshape.h: Tiny refactor
+
+2009-08-18  Fred Morcos <fred.morcos@gmail.com>
+
+  * shapes/baseshape.h: cleanup
+
+  * canvas/resizehandle.cc, shapes/baseshape.cc, shapes/baseshape.h: trying to
+  fix handles with zooming
+
+  * ui/mainwindow.cc, ui/mainwindow.ui: trying out using a toolbar for the
+  toolbox with a resize grip
+
+2009-08-14  Fred Morcos <fred.morcos@gmail.com>
+
+  * canvas/resizehandle.cc: better positioning of resize handles
+
+  * canvas/resizehandle.cc, canvas/resizehandle.h: no need for offset in resize
+  handle
+
+  * canvas/canvas.pri, shapes/shapes.pri: added source and header files to pri
+  files correctly
+
+  * canvas/resizehandle.cc, canvas/resizehandle.h, icons/icons.qrc,
+  shapes/baseshape.cc, shapes/baseshape.h, shapes/resizehandle.cc,
+  shapes/resizehandle.h: changes
+
+2009-08-12  Fred Morcos <fred.morcos@gmail.com>
+
+  * shapes/baseshape.cc, shapes/resizehandle.cc: set more flags for shapes and
+  resize items
+
+2009-08-12  mikey <mikey.morckos@gmail.com>
+
+  * shapes/baseshape.cc, shapes/baseshape.h, shapes/rectangleitem.cc,
+  shapes/rectangleitem.h, shapes/resizehandle.cc, shapes/resizehandle.h:
+  Refactoring of resizing handle functionalities out of baseshape
+
+2009-08-12  Fred Morcos <fred.morcos@gmail.com>
+
+  * canvas/diagramview.cc, opengrafik.pro, shapes/baseshape.cc,
+  shapes/baseshape.h, shapes/ellipseitem.cc, shapes/ellipseitem.h,
+  shapes/rectangleitem.cc, shapes/rectangleitem.h, shapes/shapes.pri,
+  shapes/svgitem.cc, shapes/svgitem.h: added svg item
+
+  * shapes/baseshape.cc, shapes/baseshape.h, shapes/ellipseitem.cc,
+  shapes/rectangleitem.cc: some refactoring
+
+  * canvas/diagramview.cc, shapes/ellipseitem.cc, shapes/ellipseitem.h,
+  shapes/rectangleitem.cc, shapes/rectangleitem.h, shapes/shapes.pri: added
+  ellipse item
+
+  * shapes/resizehandle.cc: removed TODO for color changes
+
+  * canvas/diagramscene.cc, canvas/diagramscene.h, opengrafik.pro,
+  shapes/resizehandle.cc, shapes/resizehandle.h, ui/mainwindow.cc: fixed handle
+  color changing to adapt with scene
+
+  * shapes/rectangleitem.cc: reverted minimum size in rectangle, should go in
+  baseshape with dynamic changes
+
+2009-08-12  mikey <mikey.morckos@gmail.com>
+
+  * shapes/rectangleitem.cc: Set minimum dimentions for rectangleitem
+
+  * shapes/baseshape.cc: Tiny fix in baseshape, returning the widget event
+  instead of false in the event function
+
+2009-08-12  Fred Morcos <fred.morcos@gmail.com>
+
+  * canvas/diagramscene.cc, canvas/diagramview.cc, shapes/resizehandle.cc,
+  shapes/resizehandle.h: resize handles now get scene grid colors
+
+2009-08-11  Fred Morcos <fred.morcos@gmail.com>
+
+  * opengrafik.pro.user: removed unused file
+
+  * canvas/canvas.pri, canvas/diagramscene.cc, canvas/diagramscene.h,
+  canvas/diagramview.cc, canvas/diagramview.h, opengrafik.pro,
+  opengrafik.pro.user, shapes/baseshape.cc, shapes/baseshape.h,
+  shapes/rectangleitem.cc, shapes/rectangleitem.h, shapes/resizehandle.cc,
+  shapes/shapes.pri, shapes/textitem.cc, shapes/textitem.h, ui/mainwindow.cc:
+  refactoring to baseshape
+
+2009-08-10  Fred Morcos <fred.morcos@gmail.com>
+
+  * canvas/canvas.pri, canvas/diagramscene.cc, canvas/diagramscene.h,
+  canvas/diagramview.cc, canvas/diagramview.h, shapes/textitem.cc: complete
+  refactoring of diagramview into diagramscene and diagramview, cleaner
+  implementation
+
+  * ui/mainwindow.cc: added version number display in about dialog
+
+2009-08-09  mikey <mikey.morckos@gmail.com>
+
+  * shapes/resizehandle.cc: Handle color change to blue
+
+  * canvas/diagramview.cc, shapes/rectangleitem.cc, shapes/rectangleitem.h,
+  shapes/resizehandle.cc, shapes/resizehandle.h, shapes/shapes.pri: Resize
+  handles and experimental design for the rectangleitem for retrofitting of
+  handles
+
+2009-08-09  Fred Morcos <fred.morcos@gmail.com>
+
+  * canvas/diagramview.h, opengrafik.pro, shapes/rectangleitem.cc,
+  shapes/rectangleitem.h, shapes/shapes.pri: added rectangleitem to list of
+  sources in shapes.pri
+
+2009-08-09  mikey <mikey.morckos@gmail.com>
+
+  * shapes/resizehandle.cc, shapes/resizehandle.h: Created trials branch
+
+  * shapes/rectangleitem.cc, shapes/rectangleitem.h: Wrote the rectangle/square
+  item.
+
+2009-08-06  Fred Morcos <fred.morcos@gmail.com>
+
+  * canvas/diagramview.cc, canvas/diagramview.h, shapes/textitem.cc,
+  ui/mainwindow.cc: cleaned up the diagramview from the lost focus items and
+  implemented it in the item itself
+
+  * canvas/diagramview.cc: changes
+
+  * canvas/diagramview.cc, icons/icons.qrc, main.cc, opengrafik.pro,
+  shapes/textitem.cc, ui/mainwindow.cc, ui/mainwindow.h, ui/mainwindow.ui,
+  ui/preferencesdialog.cc, ui/preferencesdialog.h, ui/preferencesdialog.ui,
+  ui/ui.pri, widgets/toolbox.cc, widgets/toolbox.h, widgets/toolbox.ui,
+  widgets/widgets.pri: finished changing the source tree
+
+  * DiagramView.cpp, DiagramView.h, MainToolBox.cpp, MainToolBox.h,
+  MainToolBox.ui, MainWindow.cpp, MainWindow.h, MainWindow.ui,
+  PreferencesDialog.cpp, PreferencesDialog.h, PreferencesDialog.ui,
+  TextItem.cpp, TextItem.h, canvas/canvas.pri, canvas/diagramview.cc,
+  canvas/diagramview.h, icons.qrc, icons/icons.pri, icons/icons.qrc, main.cc,
+  main.cpp, obsolete/DiagramScene.cpp, obsolete/DiagramScene.h,
+  obsolete/DiagramView.cpp, obsolete/DiagramView.h,
+  obsolete/DocumentManager.cpp, obsolete/DocumentManager.h, obsolete/Grid.cpp,
+  obsolete/Grid.h, obsolete/MainWindow.cpp, obsolete/MainWindow.h,
+  opengrafik.pro, opengrafik.pro.user, shapes/shapes.pri, shapes/textitem.cc,
+  shapes/textitem.h, ui/mainwindow.cc, ui/mainwindow.h, ui/mainwindow.ui,
+  ui/preferencesdialog.cc, ui/preferencesdialog.h, ui/preferencesdialog.ui,
+  ui/ui.pri, widgets/toolbox.cc, widgets/toolbox.h, widgets/toolbox.ui,
+  widgets/widgets.pri: first stage of changing the source tree structure
+
+  * DiagramView.cpp, DiagramView.h, MainWindow.cpp, MainWindow.h,
+  PreferencesDialog.h, TextItem.cpp, TextItem.h, main.cpp, opengrafik.pro.user:
+  use forward class declarations and specific includes for faster compilation
+
+  * DiagramView.cpp, DiagramView.h, PreferencesDialog.cpp, TextItem.cpp,
+  opengrafik.pro.user: some cleanup
+
+  * DiagramView.h, opengrafik.pro.user: revert of include file changes which
+  broke compilation
+
+  * DiagramView.h: removed unused include
+
+  * DiagramView.cpp: changes
+
+  * DiagramView.cpp: some changes to be reverted
+
+2009-08-05  Fred Morcos <fred.morcos@gmail.com>
+
+  * DiagramView.cpp, DiagramView.h, TextItem.cpp, TextItem.h,
+  opengrafik.pro.user: some cleanups and set the document window to modified
+  when item is added or removed
+
+  * MainToolBox.ui, PreferencesDialog.ui, icons.qrc, icons/bezier-curve.png,
+  icons/circle.png, icons/cursor.png, icons/diamond.png, icons/image.png,
+  icons/line.png, icons/square.png, icons/text.png: added standard toolbox
+  buttons
+
+2009-08-05  mikey <mikey.morckos@gmail.com>
+
+  * TextItem.cpp, TextItem.h: Implemented the rich text item and some
+  adjustments in DocumentView. Text can be selected, edited and dragged along
+  the scene. No text button in the UI yet and extra enhacements are to be
+  implemented.
+
+  * DiagramView.cpp, DiagramView.h, opengrafik.pro, opengrafik.pro.user:
+  Implemented the rich text item and some adjustments in DocumentView. Text can
+  be selected, edited and dragged along the scene. No text button in the UI yet
+  and extra enhacements are to be implemented.
+
+2009-08-05  Fred Morcos <fred.morcos@gmail.com>
+
+  * MainWindow.cpp, MainWindow.h: splitter sizes are saved now
+
+  * MainToolBox.cpp, MainToolBox.h, MainToolBox.ui, MainWindow.cpp,
+  MainWindow.h, opengrafik.pro: implemented the main toolbox in qt designer
+
+  * MainWindow.cpp, MainWindow.h, PreferencesDialog.cpp, PreferencesDialog.h,
+  PreferencesDialog.ui: added support for mac unified toolbar and titlebar with
+  a preference option, only works on mac
+
+  * MainWindow.cpp, MainWindow.h, MainWindow.ui, icons.qrc, icons/cascade.png,
+  icons/tile.png: added tiling and cascading of subwindows
+
+  * MainWindow.cpp, MainWindow.h, MainWindow.ui, icons.qrc,
+  icons/properties.png, icons/special.png, icons/standard.png: added splitter
+  in main window and toolbox icons
+
+  * DiagramView.cpp: changed property names to fit the dynamic property viewer
+
+  * DiagramView.cpp, DiagramView.h, MainWindow.cpp, MainWindow.h,
+  icons/document.png, opengrafik.pro.user: some tweaks
+
+2009-08-03  Fred Morcos <fred.morcos@gmail.com>
+
+  * DiagramView.cpp, MainWindow.cpp, PreferencesDialog.h, opengrafik.pro.user:
+  added preferences qsettings saving and loading and added document name to
+  save dialog
+
+  * DiagramView.cpp, MainWindow.cpp, MainWindow.h, main.cpp: added use of
+  qsettings for main window settings saving
+
+  * MainWindow.cpp, MainWindow.ui, icons.qrc, icons/close.png,
+  icons/opengrafik.svg: about dialog and new application icon
+
+  * DiagramView.cpp, DiagramView.h, MainWindow.cpp, MainWindow.h,
+  MainWindow.ui, opengrafik.pro.user: finished all dialogs for open, save, save
+  as
+
+  * DiagramView.cpp, DiagramView.h, MainWindow.cpp, MainWindow.h,
+  MainWindow.ui, opengrafik.pro.user: temporary changes to fix a crash
+
+2009-08-01  Fred Morcos <fred.morcos@gmail.com>
+
+  * DiagramView.cpp, DiagramView.h: file naming stuff in diagramview along with
+  some cleanups
+
+  * DiagramView.cpp: added showGrid property to DiagramView
+
+  * MainWindow.ui, opengrafik.pro.user: revert disabled zoom buttons in ui file
+  to being enabled again since updateMenus() will disable them anyways
+
+2009-07-31  Fred Morcos <fred.morcos@gmail.com>
+
+  * DiagramView.cpp, opengrafik.pro.user: fix subwindow icon bug
+
+2009-07-31  mikey <mikey.morckos@gmail.com>
+
+  * MainWindow.cpp, MainWindow.ui: Tiny fix in the ui behavior.
+
+2009-07-31  Fred Morcos <fred.morcos@gmail.com>
+
+  * DiagramView.cpp, DiagramView.h, icons.qrc: document edited titlebar status
+  and titlebar icon which still needs fixing
+
+  * MainWindow.cpp, MainWindow.h, MainWindow.ui, PreferencesDialog.cpp,
+  PreferencesDialog.h, PreferencesDialog.ui, icons.qrc, icons/preferences.png,
+  obsolete/DiagramView.cpp, obsolete/DiagramView.h, opengrafik.pro: preferences
+  dialog, still a lot to do
+
+  * DiagramView.cpp, DiagramView.h, MainWindow.cpp, MainWindow.h,
+  MainWindow.ui: finished mdiarea code, still some minor things to finish,
+  rewrote zooming and cleaned up (removed) 230 lines of code
+
+  * DiagramView.cpp, DiagramView.h, DocumentView.cpp, DocumentView.h,
+  MainWindow.cpp, MainWindow.h, Scene.cpp, Scene.h, main.cpp,
+  obsolete/DiagramScene.cpp, obsolete/DiagramScene.h, opengrafik.pro: some more
+  changes for the mdiarea
+
+  * DocumentManager.cpp, DocumentManager.h, DocumentView.cpp, MainToolBox.cpp,
+  MainToolBox.h, MainWindow.cpp, MainWindow.ui, Scene.cpp, Scene.h,
+  obsolete/DocumentManager.cpp, obsolete/DocumentManager.h, opengrafik.pro:
+  some preliminary cleanups for mdi
+
+2009-07-29  Fred Morcos <fred.morcos@gmail.com>
+
+  * DocumentManager.cpp, DocumentView.cpp, DocumentView.h, Scene.cpp, Scene.h:
+  preliminay work for selection rectangle
+
+  * DocumentManager.cpp, DocumentManager.h, DocumentView.cpp, DocumentView.h,
+  Scene.h: document edited or saved state with ui change
+
+2009-07-28  Fred Morcos <fred.morcos@gmail.com>
+
+  * DocumentManager.cpp: some cleanup and avoid warning
+
+  * DocumentManager.cpp, MainWindow.cpp: zooming bug fixed
+
+  * DocumentManager.cpp, DocumentManager.h, DocumentView.cpp, DocumentView.h,
+  MainWindow.cpp, MainWindow.h, Makefile, opengrafik.pro.user: zooming
+  implemented, a bug still remains when a new document is added
+
+2009-07-27  Fred Morcos <fred.morcos@gmail.com>
+
+  * DocumentView.cpp, DocumentView.h, MainToolBox.cpp, MainWindow.cpp,
+  MainWindow.h, MainWindow.ui, Makefile, Scene.cpp, icons.qrc,
+  icons/zoom-fit-best.png, icons/zoom-in.png, icons/zoom-original.png,
+  icons/zoom-out.png, opengrafik.pro.user: preliminary zooming implementation,
+  remains signal to be emitted when document is zoomed
+
+  * DocumentView.cpp, DocumentView.h, MainWindow.ui, Makefile, Scene.cpp,
+  icons.qrc, icons/about.png, icons/close.png, icons/close.svg, icons/new.png,
+  icons/new.svg, icons/open.png, icons/open.svg, icons/quit.png,
+  icons/quit.svg, icons/save-as.png, icons/save-as.svg, icons/save.png,
+  icons/save.svg, opengrafik.pro.user: some cleanup of the canvas and some new
+  better-sized icons
+
+  * DocumentManager.cpp, DocumentManager.h, MainToolBox.cpp, MainWindow.cpp,
+  MainWindow.h, opengrafik.pro.user: shared document manager and minor change
+  in toolbox categories
+
+  * Makefile, Scene.cpp: some cleaning up
+
+  * Makefile, opengrafik: removed incorrectly added binary
+
+2009-07-27  mikey <mikey.morckos@gmail.com>
+
+  * DocumentView.cpp, DocumentView.h, Makefile, Scene.cpp, Scene.h, opengrafik:
+  Resizing of grid with scroll. Needs fixing
+
+2009-07-26  Fred Morcos <fred.morcos@gmail.com>
+
+  * MainWindow.cpp, MainWindow.h, MainWindow.ui, Makefile, icons.qrc,
+  icons/application-quit.svg, icons/close.svg, icons/document-close.svg,
+  icons/document-new.svg, icons/document-open.svg, icons/document-save-as.svg,
+  icons/document-save.svg, icons/new.svg, icons/open.svg, icons/quit.svg,
+  icons/save-as.svg, icons/save.svg, obsolete/MainWindow.cpp,
+  obsolete/MainWindow.h, opengrafik.pro, opengrafik.pro.user: move mainwindow
+  ui to qt designer and use icons resources to be included in binary for
+  cross-platform
+
+2009-07-25  Fred Morcos <fred.morcos@gmail.com>
+
+  * DocumentView.cpp, MainWindow.cpp, Makefile, Scene.cpp, Scene.h,
+  opengrafik.pro, opengrafik.pro.user: grid dynamic properties
+
+2009-07-24  Fred Morcos <fred.morcos@gmail.com>
+
+  * Makefile, Scene.cpp: factored grid drawing code
+
+  * DocumentView.cpp, DocumentView.h, Makefile, Scene.cpp, Scene.h,
+  obsolete/Grid.cpp, obsolete/Grid.h, opengrafik.pro, opengrafik.pro.user:
+  scene and scene background as grid
+
+2009-07-23  Fred Morcos <fred.morcos@gmail.com>
+
+  * DocumentView.cpp, DocumentView.h, Makefile: scene resizing and changed grid
+  color
+
+2009-07-23  mikey <mikey.morckos@gmail.com>
+
+  * DocumentView.cpp, DocumentView.h, Makefile, opengrafik.pro: Implemented
+  grid. Tiny optimizations in DocumentViewer
+
+2009-07-23  Fred Morcos <fred.morcos@gmail.com>
+
+  * Document.cpp, Document.h, DocumentManager.cpp, DocumentView.cpp,
+  DocumentView.h, MainWindow.cpp, Makefile, opengrafik.pro,
+  opengrafik.pro.user: Added graphics scene to document and document view and
+  fixed some document manager behavior
+
+  * MainWindow.cpp, Makefile, icons/application-quit.svg,
+  icons/document-close.svg, icons/document-new.svg, icons/document-open.svg,
+  icons/document-save-as.svg, icons/document-save.svg, opengrafik.pro.user:
+  icons
+
+2009-07-22  Fred Morcos <fred.morcos@gmail.com>
+
+  * MainWindow.cpp, MainWindow.h, Makefile, opengrafik.pro.user: Added Actions,
+  Menus and Toolbars, still need some icons though
+
+  * DocumentManager.cpp, DocumentManager.h, Makefile: Fixed some QObject errors
+  and added Closable Tabs to the DocumentManager
+
+  * Document.cpp, Document.h, DocumentManager.cpp, DocumentManager.h,
+  MainWindow.cpp, MainWindow.h, Makefile, opengrafik.pro, opengrafik.pro.user:
+  document manager and document classes, still need some more work
+
+2009-07-20  Fred Morcos <fred.morcos@gmail.com>
+
+  * .project, .pydevproject, AUTHORS, BaseObject.py, Document.py,
+  DocumentManager.py, MainToolBox.cpp, MainToolBox.h, MainWindow.cpp,
+  MainWindow.h, MainWindow.py, Makefile, PropertiesPane.py, PropertiesTest.py,
+  SettingsManager.py, Shapes.py, TODO, main.cpp, opengrafik.pro,
+  opengrafik.pro.user, tests/SVGTest.svg, tests/SettingsManagerTest.py,
+  ui.glade: preparations to move to qt and cpp
+
+2009-07-17  Fred Morcos <fred.morcos@gmail.com>
+
+  * AUTHORS, Document.py, DocumentManager.py, MainWindow.py,
+  SettingsManager.py, Shapes.py, TODO: Major overhaul, refactoring of code,
+  fixing of some gtk warnings and added todo list
+
+2009-07-17  mikey <mikey.morckos@gmail.com>
+
+  * DocumentManager.py: Layout for the file manager.
+
+  * Document.py, MainWindow.py, ui.glade: Upgrades to the ui. Layout for the
+  file manager. Several additions for Document.
+
+2009-07-15  Fred Morcos <fred.morcos@gmail.com>
+
+  * AUTHORS: Missed the project files
+
+  * AUTHORS, COPYING, SVGTest.svg, SettingsManagerTest.py, tests/SVGTest.svg,
+  tests/SettingsManagerTest.py: Put older test programs into tests dir and add
+  license and author files
+
+  * BaseObject.py, Document.py, MainWindow.py, PropertiesPane.py,
+  PropertiesTest.py, SVGTest.svg, SettingsManager.py, SettingsManagerTest.py,
+  Shapes.py, src/BaseObject.py, src/Document.py, src/MainWindow.py,
+  src/PropertiesPane.py, src/PropertiesTest.py, src/SVGTest.svg,
+  src/SettingsManager.py, src/SettingsManagerTest.py, src/Shapes.py,
+  src/ui.glade, ui.glade: Restructuring of project dir structure
+
+  * src/BaseObject.py, src/Document.py, src/PropertiesPane.py,
+  src/PropertiesTest.py, src/Shapes.py: Shape properties saving/writing
+
+  * src/BaseObject.py, src/PropertiesPane.py, src/PropertiesTest.py,
+  src/Shapes.py: Properties reading completed except for IMAGE and IMAGES
+
+2009-07-13  Fred Morcos <fred.morcos@gmail.com>
+
+  * src/BaseObject.py, src/MainWindow.py, src/PropertiesPane.py,
+  src/PropertiesTest.py, src/SettingsManager.py, src/SettingsManagerTest.py,
+  src/Shapes.py, src/ui.glade: Preliminary work for editing and saving
+  properties of shapes dynamically
+
+  * src/BaseObject.py, src/Shapes.py: Much simpler base shape
+
+  * src/BaseObject.py, src/Document.py, src/ObjectID.py, src/Property.py:
+  simpler re-implementation of the base object and base shape
+
+  * src/Document.py, src/MainWindow.py: some changes in document
+
+2009-07-11  mikey <mikey.morckos@gmail.com>
+
+  * src/Document.py: Tiny fix in grid.
+
+  * src/BaseObject.py, src/ObjectID.py, src/Property.py: Simple prototype for
+  BaseObject class.
+
+2009-07-09  Fred Morcos <fred.morcos@gmail.com>
+
+  * src/Document.py, src/MainWindow.py: added grid
+
+  * .pydevproject, src/Document.py, src/DocumentTest.py, src/MainWindow.py,
+  src/Primitives.py, src/Selection.py, src/SettingsManager.py, src/ui.glade:
+  added scrolled area and goo canvas
+
+2009-07-05  Fred Morcos <fred.morcos@gmail.com>
+
+  * src/DocumentTest.py, src/Primitives.py, src/SVGTest.svg: added SVG support
+  with librsvg but is still broken
+
+  * src/DocumentTest.py, src/Primitives.py, src/Primitives.pyc,
+  src/Selection.py, src/Selection.pyc: removed rotation due to too much trouble
+  and added new selection square
+
+2009-07-01  Fred Morcos <fred.morcos@gmail.com>
+
+  * src/Document.py, src/Primitives.py, src/Selection.py: Added new way for
+  selection, still has rough edges though
+
+  * src/Document.py, src/MainWindow.py, src/ui.glade, src/ui/WindowTest.py,
+  src/ui/ui.glade: Some fixes, refactoring, and GtkClutterEmbed in tabs
+
+2009-06-29  Fred Morcos <fred.morcos@gmail.com>
+
+  * src/ui/ui.glade: some changes and additions in the ui
+
+  * : some minor changes in ui filenames and imports
+
+  * src/UI/UI.glade, src/UI/WindowTest.py, src/ui/WindowTest.py,
+  src/ui/ui.glade: some minor changes in ui filenames and imports
+
+2009-06-27  ahisham <ahmadmhisham@gmail.com>
+
+  * src/UI/UI.glade, src/UI/WindowTest.py: New Diagram Function
+
+  * src/UI/UI.glade, src/UI/WindowTest.py: Preferences Window and Drawing Area
+
+  * src/UI/UI.glade, src/UI/WindowTest.py: initial window with menubar
+
+2009-06-25  Fred Morcos <fred.morcos@gmail.com>
+
+  * src/DocumentTest.py, src/Primitives.py: Implemented handles for resizing
+  and rotating, still need some work to put into a separate actor and use
+  ClutterTexture and ClutterTextureClone
+
+2009-06-24  Fred Morcos <fred.morcos@gmail.com>
+
+  * src/DocumentTest.py, src/Primitives.py: Ellipses work now, thanks to Andrew
+  Botros http://andrewbotros.blogspot.com/
+
+2009-06-23  Fred Morcos <fred.morcos@gmail.com>
+
+  * src/DocumentTest.py, src/Primitives.py: Rotation implementation and some
+  improvements to Cairo drawing, ellipses need fixing
+
+  * src/Document.py, src/DocumentTest.py, src/Primitives.py: Working primitives
+  with a Clutter canvas
+
+  * .pydevproject: changes in project structure
+
+  * .project, .pydevproject, Document.py, DocumentTest.py, Primitives.py,
+  SettingsManager.py, SettingsManagerTest.py, src/Document.py,
+  src/DocumentTest.py, src/Primitives.py, src/SettingsManager.py,
+  src/SettingsManagerTest.py: Created the eclipse project
+
+2009-06-22  Fred Morcos <fred.morcos@gmail.com>
+
+  * Document.py, DocumentTest.py, Primitives.py: primitive shapes work
+
+  * Document.py, Primitives.py: Added missing implementations
+
+  * Document.py: complete Document data structure
+
+2009-06-21  Fred Morcos <fred.morcos@gmail.com>
+
+  * DocumentTest.py, Primitives.py, PrimitivesTest.py: Temporary Document data
+  structure
+
+  * Primitives.py, PrimitivesTest.py: Primitive shapes and Base object
+
+  * SettingsManager.py, SettingsManagerTest.py: Settings Manager completed and
+  removed PyINotify from the code
+
+  * SettingsManager.py, main.py: settings manager
+
+2009-06-20  Fred Morcos <fred.morcos@gmail.com>
+
+  * main.py: created settings branch
+
+  * main.py: testing

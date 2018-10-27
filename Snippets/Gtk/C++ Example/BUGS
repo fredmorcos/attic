@@ -1,0 +1,2 @@
+* if bling support is enabled, when switching from composited 
+	to non-composited and vice versa, gnome-sidebar will crash X.

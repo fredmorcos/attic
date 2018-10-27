@@ -1,0 +1,19 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+  Pierre Cholhot -- Developer
+  Fred Morcos    -- Developer
+
+# THANKS
+
+  Philippe Maurice
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    jQuery, Modernizr
+    NodeJS, Express
+    Grunt, JavaScript
+    MongoDB

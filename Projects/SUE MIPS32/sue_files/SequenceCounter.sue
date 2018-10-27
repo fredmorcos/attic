@@ -1,0 +1,99 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_SequenceCounter {} {
+  make global -name vdd -origin {940 470}
+  make global -name gnd -origin {1200 480}
+  make global -name gnd -origin {1480 480}
+  make global -name gnd -origin {1760 480}
+  make input -orient R270 -name reset -origin {1030 480}
+  make output -orient R270 -name {T[0]} -origin {1090 270}
+  make output -orient R270 -name {T[1]} -origin {1370 270}
+  make output -orient R270 -name {T[2]} -origin {1640 270}
+  make output -orient R270 -name {T[3]} -origin {1930 270}
+  make output -orient R270 -name {T[4]} -origin {2230 270}
+  make global -name gnd -origin {2050 480}
+  make Flipflop -origin {960 310}
+  make Flipflop -origin {1220 310}
+  make Flipflop -origin {1500 310}
+  make Flipflop -origin {1780 310}
+  make Flipflop -origin {2070 310}
+  make global -name gnd -origin {2370 480}
+  make Flipflop -origin {2390 310}
+  make global -name gnd -origin {2700 480}
+  make Flipflop -origin {2720 310}
+  make global -name gnd -origin {3060 480}
+  make Flipflop -origin {3080 310}
+  make output -orient R270 -name {T[5]} -origin {2550 270}
+  make output -orient R270 -name {T[6]} -origin {2880 270}
+  make output -orient R270 -name {T[7]} -origin {3240 270}
+  make input -name CLOCK -origin {790 320}
+  make_wire 830 270 860 270
+  make_wire 1200 370 1200 480
+  make_wire 1480 370 1480 480
+  make_wire 1570 370 1570 420
+  make_wire 1290 420 1030 420
+  make_wire 1290 370 1290 420
+  make_wire 1760 370 1760 480
+  make_wire 1850 370 1850 420
+  make_wire 1290 420 1570 420
+  make_wire 1570 420 1850 420
+  make_wire 1030 370 1030 420
+  make_wire 1030 420 1030 480
+  make_wire 940 370 940 470
+  make_wire 1090 270 1060 270
+  make_wire 1090 270 1120 270
+  make_wire 1370 270 1320 270
+  make_wire 1370 270 1400 270
+  make_wire 1640 270 1600 270
+  make_wire 1640 270 1680 270
+  make_wire 1880 270 1930 270
+  make_wire 1970 270 1930 270
+  make_wire 2140 420 2140 370
+  make_wire 2050 370 2050 480
+  make_wire 1120 320 860 320
+  make_wire 1400 320 1120 320
+  make_wire 1680 320 1400 320
+  make_wire 2460 420 2460 370
+  make_wire 2370 370 2370 480
+  make_wire 2170 270 2230 270
+  make_wire 2230 270 2290 270
+  make_wire 830 180 3370 180
+  make_wire 830 180 830 270
+  make_wire 2790 420 2790 370
+  make_wire 2700 370 2700 480
+  make_wire 2490 270 2550 270
+  make_wire 2550 270 2620 270
+  make_wire 3240 270 3180 270
+  make_wire 3150 420 3150 370
+  make_wire 3060 370 3060 480
+  make_wire 2820 270 2880 270
+  make_wire 2880 270 2980 270
+  make_wire 3370 270 3240 270
+  make_wire 3370 180 3370 270
+  make_wire 2140 420 1850 420
+  make_wire 2140 420 2460 420
+  make_wire 2460 420 2790 420
+  make_wire 3150 420 2790 420
+  make_wire 1680 320 1970 320
+  make_wire 1970 320 2290 320
+  make_wire 2290 320 2620 320
+  make_wire 2620 320 2980 320
+  make_wire 790 320 860 320
+}
+
+proc ICON_SequenceCounter args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 -30} -name CLOCK
+  icon_term -type input -origin {-100 10} -name reset
+  icon_term -type output -origin {100 -10} -name {T[7:0]}
+  icon_property -origin {-50 110} -type user -name name
+  icon_property -origin {-50 130} -type user -name M
+  icon_property -origin {-50 150} -type user -name dpc
+  icon_line -100 -70 -100 50 100 50 100 -70 -100 -70
+  icon_property -origin {-30 -30} -label Sequence
+  icon_property -origin {-30 -10} -label Counter
+  icon_property -origin {-90 -30} -label CLOCK
+  icon_property -origin {-90 10} -label reset
+  icon_property -origin {90 -10} -anchor e -label {T[7:0]}
+}
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<user_db>
+	<user username="christine" password="christy">
+		<name>
+			<f_name>christine</f_name>
+			<l_name>maher</l_name>
+		</name>
+		<address>26 tarablus st</address>
+		<age>19</age>
+		<type>administrator</type>
+		<email>kouki510@gmail.com</email>
+	</user>
+	<user username="nardine" password="narnarnar">
+		<name>
+			<f_name>nardine</f_name>
+			<l_name>basta</l_name>
+		</name>
+		<address>somewhere fel korba</address>
+		<age>21</age>
+		<type>administrator</type>
+		<email>nardine.basta@gmail.com</email>
+	</user>
+	<user username="fred" password="fredfredfred">
+		<name>
+			<f_name>fred</f_name>
+			<l_name>morcos</l_name>
+		</name>
+		<address>somewhere :P</address>
+		<age>20</age>
+		<type>administration</type>
+		<email>fred.morcos@gmail.com</email>
+	</user>
+</user_db>

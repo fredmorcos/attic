@@ -1,0 +1,102 @@
+diff --git a/ktriominos.pro b/ktriominos.pro
+index efa2975..92b6411 100644
+--- a/ktriominos.pro
++++ b/ktriominos.pro
+@@ -8,7 +8,6 @@ unix: !macx {
+ 
+ DEFINES += VERSION=\\\"0.0.1\\\"
+ CONFIG += silent
+-QT += svg
+ 
+ UI_DIR = build
+ OBJECTS_DIR = build
+diff --git a/src/game/gamemanager.cc b/src/game/gamemanager.cc
+index 39baab4..5fd7be9 100644
+--- a/src/game/gamemanager.cc
++++ b/src/game/gamemanager.cc
+@@ -82,6 +82,8 @@ void GameManager::initRound(bool flag)
+     QList<QString> nameList;
+     QList<short *> scoreList;
+ 
++    tilesWell = new Well(_gameConfig);
++
+     for (short i = 0; i < _gamersNo; i++) {
+         Tuple t; t.a = 0; t.b = 0; t.c = 0;
+         nameList.append(_gamers[i]->name);
+@@ -96,14 +98,13 @@ void GameManager::initRound(bool flag)
+         _gamers[i]->setVisible(false);
+ 
+         for (short j = 0; j < _startTiles; j++)
+-            //_gamers[i]->newTile(tilesWell->takeFirst());
+-            _gamers[i]->newTile(t);
++	    _gamers[i]->newTile(tilesWell->takeFirst());
++	    //_gamers[i]->newTile(t);
+     }
+ 
+     _turn = _gamersNo - 1;
+     _activeGamer = _gamers[0];
+ 
+-    tilesWell = new Well(_gameConfig);
+     gameBoard = new Board(flag ? ++round : round, &_turn, tilesWell, nameList, scoreList);
+ 
+     connect(gameBoard, SIGNAL(scoreUpdate(short, short)), this, SLOT(scoreUpdate(short, short)));
+diff --git a/src/game/well.cc b/src/game/well.cc
+index 8d4910a..c94b918 100644
+--- a/src/game/well.cc
++++ b/src/game/well.cc
+@@ -38,17 +38,9 @@ Well::Well(short gameConfig)
+     shuffle();
+ }
+ 
++//knuth shuffle
+ void Well::shuffle()
+ {
+-    short index = 0;
+-
+-    for (short i = 0; i < size(); i++) {
+-        index = rand() % 100;
+-
+-        while (index >= size())
+-            index = rand() % 100;
+-
+-        swap(i, index);
+-    }
++    for (short i = length() - 1; i >= 1; i--)
++	swap(i, rand() % i);
+ }
+-
+diff --git a/src/ui/mainwindow.cc b/src/ui/mainwindow.cc
+index 8955559..666ec70 100644
+--- a/src/ui/mainwindow.cc
++++ b/src/ui/mainwindow.cc
+@@ -97,7 +97,7 @@ void MainWindow::on_action_New_triggered()
+         _gameManager = 0;
+     }
+     else {
+-        _gameManager = new GameManager(2, 3, &names, &colors, this);
++	_gameManager = new GameManager(10, 3, &names, &colors, this);
+         connect(_gameManager, SIGNAL(closeRound(QString)), this, SLOT(closeRound(QString)));
+         connect(_gameManager, SIGNAL(statusUpdate(QString, QString)), this,
+                 SLOT(refreshStatusDisplay(QString, QString)));
+diff --git a/src/ui/mainwindow.ui b/src/ui/mainwindow.ui
+index 59522ac..4cffdd8 100644
+--- a/src/ui/mainwindow.ui
++++ b/src/ui/mainwindow.ui
+@@ -16,7 +16,7 @@
+    </font>
+   </property>
+   <property name="windowTitle">
+-   <string>MainWindow</string>
++   <string>KTriominos</string>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+diff --git a/src/ui/ui.pri b/src/ui/ui.pri
+index fdc9e9e..5a7f607 100644
+--- a/src/ui/ui.pri
++++ b/src/ui/ui.pri
+@@ -2,4 +2,3 @@ DEPENDPATH += src/ui
+ SOURCES += mainwindow.cc
+ HEADERS += mainwindow.h
+ FORMS += mainwindow.ui
+-

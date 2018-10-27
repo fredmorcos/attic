@@ -1,0 +1,30 @@
+# SUE version MMI_SUE4.4.0
+
+proc SCHEMATIC_ripple8 {} {
+  make ripple4 -origin {300 420}
+  make ripple4 -origin {660 420}
+  make output -orient R90 -name {y[7:4]} -origin {300 510}
+  make output -orient R90 -name {y[3:0]} -origin {660 510}
+  make input -orient R90 -name {a[3:0]} -origin {720 310}
+  make input -orient R90 -name {b[3:0]} -origin {600 310}
+  make input -orient R90 -name {b[7:4]} -origin {240 310}
+  make input -orient R90 -name {a[7:4]} -origin {360 310}
+  make input -orient RXY -name cin -origin {810 460}
+  make output -orient RXY -name cout -origin {150 460}
+  make_wire 510 460 450 460
+}
+
+proc ICON_ripple8 args {
+  icon_setup $args {{origin {0 0}} {orient R0} {name {}} {M {}} {dpc {}}}
+  icon_term -type input -origin {-100 -80} -name {a[7:0]}
+  icon_term -type input -origin {-100 -60} -name {b[7:0]}
+  icon_term -type input -origin {-100 -40} -name cin
+  icon_term -type output -origin {100 -80} -name cout
+  icon_term -type output -origin {100 -60} -name {y[7:0]}
+  icon_property -origin {-50 70} -type user -name name
+  icon_property -origin {-50 90} -type user -name M
+  icon_property -origin {-50 110} -type user -name dpc
+  icon_line -100 -170 -100 60 100 60 100 -170 -100 -170
+  icon_property -origin {-40 -120} -label ripple8
+}
+

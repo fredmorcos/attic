@@ -1,0 +1,13 @@
+NOTE: 	this project will not work on windows unless you compile the 
+	sqlite java wrapper with the ms c++ compiler.
+
+- build:
+		cd sqlite/sqlite-3.3.10
+		./configure && make
+		su
+		make install
+
+- run:	
+		cd gui
+		javac *.java
+		java -cp .:sqlite.jar -Djava.library.path=/usr/local/lib login

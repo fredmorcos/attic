@@ -1,0 +1,6 @@
+*.o
+
+backyc
+backyd
+
+_minted-*

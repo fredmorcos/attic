@@ -1,0 +1,94 @@
+#labels Featured,Phase-Support
+How to build and run OpenGrafik:
+
+=Dependencies=
+
+On a Mac OS-X machine, you will only need gnustep-make and Renaissance. Not sure about Windows though.
+
+Build and install these in order:
+
+gnustep-make 2.0.8
+ftp://ftp.gnustep.org/pub/gnustep/core/gnustep-make-2.0.8.tar.gz
+
+{{{
+./configure --prefix=/opt/GNUstep
+make
+sudo -E make install
+}}}
+
+and then add:
+{{{
+. /opt/GNUstep/System/Library/Makefiles/GNUstep.sh
+}}}
+to your $HOME/.bashrc file and restart/relogin to your shell/terminal/console.
+
+gnustep-base 1.18
+ftp://ftp.gnustep.org/pub/gnustep/core/gnustep-base-1.18.0.tar.gz
+
+{{{
+make
+sudo -E make install
+}}}
+
+gnustep-gui 0.16
+ftp://ftp.gnustep.org/pub/gnustep/core/gnustep-gui-0.16.0.tar.gz
+
+{{{
+make
+sudo -E make install
+}}}
+
+gnustep-back 0.16
+ftp://ftp.gnustep.org/pub/gnustep/core/gnustep-back-0.16.0.tar.gz
+
+{{{
+make
+sudo -E make install
+}}}
+
+add: (no need on Mac OS-X)
+{{{
+gpbs
+}}}
+to your $HOME/.bashrc file and restart/relogin to your shell/terminal/console.
+
+Renaissance 0.9.0
+http://www.gnustep.it/Renaissance/Download/Renaissance-0.9.0.tar.gz
+
+{{{
+make
+sudo -E make install
+}}}
+
+=Download, build and run OG=
+{{{
+svn checkout http://opengrafik.googlecode.com/svn/trunk/ opengrafik
+}}}
+
+{{{
+cd opengrafik
+make
+}}}
+
+{{{
+openapp ./OpenGrafik.app
+}}}
+
+=Run OG in a different language=
+{{{
+openapp ./OpenGrafik.app -NSLanguages '(French)'
+}}}
+
+{{{
+openapp ./OpenGrafik.app -NSLanguages '(Arabic)'
+}}}
+
+=Install OG=
+{{{
+sudo -E make install
+}}}
+
+=Run after install=
+{{{
+openapp OpenGrafik
+}}}
