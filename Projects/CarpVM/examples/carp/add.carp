@@ -1,6 +1,0 @@
-main:
-	push 5
-	push 6
-	add
-	ptop
-	halt 0
