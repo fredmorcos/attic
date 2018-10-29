@@ -1,3 +1,0 @@
-* Test on the server when the target path of a symlink does not exist
-* Rework the protocol and parsing to have TYPE then PATH to factor out path parsing as a common
-* Rework and get rid of array module and use intrusive lists instead, even for strings
