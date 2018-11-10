@@ -1,0 +1,7 @@
+[
+  {
+    "directory": "/home/fred/Workspace/attic/Snippets/C++/oop",
+    "command": "clang++ -Wall -Winvalid-pch -Weffc++ -Wnon-virtual-dtor -Wextra -Wpedantic -std=c++17 -ferror-limit=0 -o 'test.o' -c ../test.cpp",
+    "file": "../test.cpp"
+  }
+]
