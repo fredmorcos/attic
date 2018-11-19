@@ -1,0 +1,19 @@
+[package]
+name = "fastwalkdir"
+version = "0.1.0"
+authors = ["Fred Morcos <fred.morcos@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+structopt = "*"
+# rayon = "*"
+
+[dev-dependencies]
+criterion = "*"
+
+[[bin]]
+name = "fastwalkdir"
+
+[[bench]]
+name = "info_new"
+harness = false
