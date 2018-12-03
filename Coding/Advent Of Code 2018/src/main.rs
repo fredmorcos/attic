@@ -3,8 +3,10 @@ use std::io::{BufRead, BufReader};
 use std::str::FromStr;
 use std::path::Path;
 use std::fmt::Debug;
-use std::collections::BTreeSet;
-use std::collections::HashMap as Map;
+use std::collections::{BTreeSet, HashMap as Map, HashSet as Set};
+use std::num::ParseIntError;
+use std::iter::Peekable;
+use std::convert::From;
 
 fn read_lines<P, T>(path: P) -> impl Iterator<Item = T>
   where <T as std::str::FromStr>::Err: Debug,
@@ -124,9 +126,165 @@ fn d2_2() {
   }
 }
 
+#[derive(Debug)]
+struct Square {
+  id: usize,
+
+  x: usize,
+  y: usize,
+  w: usize,
+  h: usize,
+}
+
+#[derive(Debug)]
+enum ParseSquareError {
+  ParseInt(ParseIntError),
+  UnexpectedEOF,
+  Other(String),
+}
+
+impl From<ParseIntError> for ParseSquareError {
+  fn from(e: ParseIntError) -> Self {
+    ParseSquareError::ParseInt(e)
+  }
+}
+
+impl FromStr for Square {
+  type Err = ParseSquareError;
+
+  fn from_str(s: &str) -> Result<Self, Self::Err> {
+    fn skip_ws<I>(iter: &mut Peekable<I>)
+      where I: Iterator<Item = char>,
+    {
+      while let Some(&c) = iter.peek() {
+        if c.is_whitespace() {
+          iter.next();
+        } else {
+          break;
+        }
+      }
+    }
+
+    fn single<I>(iter: &mut Peekable<I>, c: char) -> Result<(), ParseSquareError>
+      where I: Iterator<Item = char>,
+    {
+      if let Some(&c_) = iter.peek() {
+        if c_ != c {
+          return Err(ParseSquareError::Other(
+            format!("Expected a '{}', found a '{}'", c, c_)));
+        }
+        iter.next();
+      } else {
+        return Err(ParseSquareError::UnexpectedEOF);
+      }
+
+      Ok(())
+    }
+
+    fn multi<T, I>(iter: &mut Peekable<I>) -> Result<T, <T as FromStr>::Err>
+      where T: FromStr,
+            I: Iterator<Item = char>,
+    {
+      let mut id = String::new();
+
+      while let Some(&c) = iter.peek() {
+        if c.is_digit(10) {
+          id.push(c);
+          iter.next();
+        } else {
+          break;
+        }
+      }
+
+      Ok(T::from_str(&id)?)
+    }
+
+    let mut iter = s.chars().peekable();
+
+    single(&mut iter, '#')?;
+
+    let id = multi::<usize, _>(&mut iter)?;
+
+    skip_ws(&mut iter);
+    single(&mut iter, '@')?;
+    skip_ws(&mut iter);
+
+    let x = multi::<usize, _>(&mut iter)?;
+
+    single(&mut iter, ',')?;
+
+    let y = multi::<usize, _>(&mut iter)?;
+
+    single(&mut iter, ':')?;
+    skip_ws(&mut iter);
+
+    let w = multi::<usize, _>(&mut iter)?;
+
+    single(&mut iter, 'x')?;
+
+    let h = multi::<usize, _>(&mut iter)?;
+
+    Ok(Square { id, x, y, w, h })
+  }
+}
+
+fn d3_1_2() {
+  let squares: Vec<Square> = read_lines("day3").collect();
+  let mut overlaps: Set<(usize, usize)> = Set::new();
+
+  for (idx, i) in squares.iter().enumerate() {
+    for j in &squares[idx + 1 ..] {
+      let i_left = i.x;
+      let i_right = i.x + i.w;
+      let i_top = i.y;
+      let i_bot = i.y + i.h;
+
+      let j_left = j.x;
+      let j_right = j.x + j.w;
+      let j_top = j.y;
+      let j_bot = j.y + j.h;
+
+      let right = i_right.min(j_right);
+      let left = i_left.max(j_left);
+      let bot = i_bot.min(j_bot);
+      let top = i_top.max(j_top);
+
+      for i in left .. right {
+        for j in top .. bot {
+          if !overlaps.contains(&(i ,j)) {
+            overlaps.insert((i, j));
+          }
+        }
+      }
+    }
+  }
+
+  println!("d3_1 {}", overlaps.len());
+
+  let mut id = None;
+
+  'outer: for s in squares {
+    for i in s.x .. s.x + s.w {
+      for j in s.y .. s.y + s.h {
+        if overlaps.contains(&(i, j)) {
+          continue 'outer;
+        }
+      }
+    }
+
+    id = Some(s.id);
+    break;
+  }
+
+  if let Some(id) = id {
+    println!("d3_2 {}", id);
+  }
+}
+
 fn main() {
   d1_1();
   d1_2();
   d2_1();
   d2_2();
+  d3_1_2();
 }
