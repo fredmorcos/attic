@@ -137,69 +137,69 @@ struct Square {
 }
 
 #[derive(Debug)]
-enum ParseSquareError {
+enum ParseError {
   ParseInt(ParseIntError),
   UnexpectedEOF,
   Other(String),
 }
 
-impl From<ParseIntError> for ParseSquareError {
+impl From<ParseIntError> for ParseError {
   fn from(e: ParseIntError) -> Self {
-    ParseSquareError::ParseInt(e)
+    ParseError::ParseInt(e)
   }
 }
 
+fn skip_ws<I>(iter: &mut Peekable<I>)
+  where I: Iterator<Item = char>,
+{
+  while let Some(&c) = iter.peek() {
+    if c.is_whitespace() {
+      iter.next();
+    } else {
+      break;
+    }
+  }
+}
+
+fn single<I>(iter: &mut Peekable<I>, c: char) -> Result<(), ParseError>
+  where I: Iterator<Item = char>,
+{
+  if let Some(&c_) = iter.peek() {
+    if c_ != c {
+      return Err(ParseError::Other(
+        format!("Expected a '{}', found a '{}'", c, c_)));
+    }
+    iter.next();
+  } else {
+    return Err(ParseError::UnexpectedEOF);
+  }
+
+  Ok(())
+}
+
+fn multi<T, I>(iter: &mut Peekable<I>) -> Result<T, <T as FromStr>::Err>
+  where T: FromStr,
+        I: Iterator<Item = char>,
+{
+  let mut id = String::new();
+
+  while let Some(&c) = iter.peek() {
+    if c.is_digit(10) {
+      id.push(c);
+      iter.next();
+    } else {
+      break;
+    }
+  }
+
+  Ok(T::from_str(&id)?)
+}
+
 impl FromStr for Square {
-  type Err = ParseSquareError;
+  type Err = ParseError;
 
-  fn from_str(s: &str) -> Result<Self, Self::Err> {
-    fn skip_ws<I>(iter: &mut Peekable<I>)
-      where I: Iterator<Item = char>,
-    {
-      while let Some(&c) = iter.peek() {
-        if c.is_whitespace() {
-          iter.next();
-        } else {
-          break;
-        }
-      }
-    }
-
-    fn single<I>(iter: &mut Peekable<I>, c: char) -> Result<(), ParseSquareError>
-      where I: Iterator<Item = char>,
-    {
-      if let Some(&c_) = iter.peek() {
-        if c_ != c {
-          return Err(ParseSquareError::Other(
-            format!("Expected a '{}', found a '{}'", c, c_)));
-        }
-        iter.next();
-      } else {
-        return Err(ParseSquareError::UnexpectedEOF);
-      }
-
-      Ok(())
-    }
-
-    fn multi<T, I>(iter: &mut Peekable<I>) -> Result<T, <T as FromStr>::Err>
-      where T: FromStr,
-            I: Iterator<Item = char>,
-    {
-      let mut id = String::new();
-
-      while let Some(&c) = iter.peek() {
-        if c.is_digit(10) {
-          id.push(c);
-          iter.next();
-        } else {
-          break;
-        }
-      }
-
-      Ok(T::from_str(&id)?)
-    }
-
-    let mut iter = s.chars().peekable();
+  fn from_str(input: &str) -> Result<Self, Self::Err> {
+    let mut iter = input.chars().peekable();
 
     single(&mut iter, '#')?;
 
@@ -281,10 +281,14 @@ fn d3_1_2() {
   }
 }
 
+fn d4_1() {
+}
+
 fn main() {
   d1_1();
   d1_2();
   d2_1();
   d2_2();
   d3_1_2();
+  d4_1();
 }
