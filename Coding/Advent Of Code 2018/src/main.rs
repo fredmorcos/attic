@@ -1,7 +1,7 @@
 #![warn(clippy::all)]
 
 use std::cmp::Ordering;
-use std::fs::File;
+use std::fs::{self, File};
 use std::io::{BufRead, BufReader};
 use std::str::FromStr;
 use std::string::ParseError as ParseStringError;
@@ -382,7 +382,7 @@ impl FromStr for Event {
   }
 }
 
-fn d4_1() {
+fn d4_1_2() {
   let mut events: Vec<Event> = read_lines("day4").collect();
   events.sort();
 
@@ -463,7 +463,92 @@ fn d4_1() {
     }
   }
 
-  println!("d4_1 ID={} * Minute={} = {}", res_guard, res_minute, res_guard * res_minute);
+  println!("d4_2 ID={} * Minute={} = {}", res_guard, res_minute, res_guard * res_minute);
+}
+
+fn react_polymer(data: &mut Vec<u8>) {
+  let mut delete: Vec<usize> = vec![];
+  let mut found: bool = false;
+
+  loop {
+    let mut skip = false;
+
+    for (i, c) in data[.. data.len() - 1].iter().enumerate() {
+      if skip {
+        skip = false;
+        continue;
+      }
+
+      if
+        ((c.is_ascii_lowercase() && data[i + 1].is_ascii_uppercase()) ||
+         (c.is_ascii_uppercase() && data[i + 1].is_ascii_lowercase())) &&
+        c.to_ascii_lowercase() == data[i + 1].to_ascii_lowercase()
+      {
+        found = true;
+        delete.push(i);
+        skip = true;
+      }
+    }
+
+    if !found {
+      break;
+    }
+
+    for i in delete.iter().rev() {
+      data.remove(i + 1);
+      data.remove(*i);
+    }
+
+    delete.clear();
+    found = false;
+  }
+}
+
+fn find_all_units(data: &[u8]) -> Set<u8> {
+  let mut units = Set::new();
+
+  for c in data {
+    units.insert(c.to_ascii_lowercase());
+  }
+
+  units
+}
+
+fn remove_unit(unit: u8, data: &[u8]) -> Vec<u8> {
+  data.iter().filter(|&&c| c != unit && c != unit.to_ascii_uppercase())
+             .cloned()
+             .collect()
+}
+
+fn d5_1() {
+  let data: String = fs::read_to_string("day5").unwrap();
+  let mut data: Vec<u8> = data.trim_end().to_string().into_bytes();
+
+  react_polymer(&mut data);
+
+  println!("d5_1 {}", data.len());
+}
+
+fn d5_2() {
+  let data: String = fs::read_to_string("day5").unwrap();
+  let data: Vec<u8> = data.trim_end().to_string().into_bytes();
+
+  let mut shortest = None;
+
+  for unit in find_all_units(&data) {
+    let mut new_data = remove_unit(unit, &data);
+    react_polymer(&mut new_data);
+
+    if let Some(ref mut shortest) = shortest {
+      if *shortest > new_data.len() {
+        *shortest = new_data.len();
+      }
+    } else {
+      shortest = Some(new_data.len());
+    }
+  }
+
+  println!("d5_2 {:?}", shortest);
 }
 
 fn main() {
@@ -472,5 +557,7 @@ fn main() {
   d2_1();
   d2_2();
   d3_1_2();
-  d4_1();
+  d4_1_2();
+  d5_1();
+  d5_2();
 }
