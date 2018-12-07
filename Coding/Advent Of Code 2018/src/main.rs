@@ -551,6 +551,188 @@ fn d5_2() {
   println!("d5_2 {:?}", shortest);
 }
 
+struct Coord {
+  x: usize,
+  y: usize,
+}
+
+impl FromStr for Coord {
+  type Err = ParseError;
+
+  fn from_str(input: &str) -> Result<Self, Self::Err> {
+    let mut iter = input.chars().peekable();
+
+    let x = multi::<usize, _, _>(&mut iter, |c| c.is_digit(10))?;
+
+    single(&mut iter, ',')?;
+    skip_ws(&mut iter);
+
+    let y = multi::<usize, _, _>(&mut iter, |c| c.is_digit(10))?;
+
+    Ok(Coord { x, y })
+  }
+}
+
+impl Coord {
+  fn dist(&self, x: usize, y: usize) -> usize {
+    let dx = self.x.max(x) - self.x.min(x);
+    let dy = self.y.max(y) - self.y.min(y);
+    dx + dy
+  }
+}
+
+#[derive(Clone, Copy)]
+enum Cell {
+  Neutral,
+  Belongs(usize),
+  Coord(usize),
+}
+
+fn minmax(coords: &[Coord]) -> (usize, usize, usize, usize) {
+  let mut min_x = coords[0].x;
+  let mut max_x = coords[0].x;
+  let mut min_y = coords[0].y;
+  let mut max_y = coords[0].y;
+
+  for c in coords {
+    if c.x < min_x { min_x = c.x; }
+    if c.x > max_x { max_x = c.x; }
+    if c.y < min_y { min_y = c.y; }
+    if c.y > max_y { max_y = c.y; }
+  }
+
+  (min_x, max_x, min_y, max_y)
+}
+
+fn d6_1() {
+  let coords: Vec<Coord> = read_lines::<_, Coord>("day6").collect();
+
+  let (min_x, max_x, min_y, max_y) = minmax(&coords);
+
+  let mut table: Vec<Vec<Cell>> =
+    vec![vec![Cell::Neutral; (max_x - min_x) + 1]; (max_y - min_y) + 1];
+
+  for (j, row) in table.iter_mut().enumerate().take((max_y - min_y) + 1) {
+    'i: for (i, cell) in row.iter_mut().enumerate().take((max_x - min_x) + 1) {
+      for (idx, c) in coords.iter().enumerate() {
+        if i + min_x == c.x && j + min_y == c.y {
+          *cell = Cell::Coord(idx);
+          continue 'i;
+        }
+      }
+
+      let mut dists: Vec<(usize, usize)> =
+        coords.iter()
+              .enumerate()
+              .map(|(idx, c)| (idx, c.dist(i + min_x, j + min_y)))
+              .collect();
+
+      dists.sort_by(|a, b| a.1.cmp(&b.1));
+
+      if dists[0].1 == dists[1].1 {
+        continue 'i;
+      }
+
+      *cell = Cell::Belongs(dists[0].0);
+    }
+  }
+
+  // for j in &table {
+  //   for i in j {
+  //     match i {
+  //       Cell::Belongs(idx) => print!("{}", idx),
+  //       Cell::Neutral => print!("."),
+  //       Cell::Coord(_) => print!("X"),
+  //     }
+  //   }
+
+  //   println!();
+  // }
+
+  let mut infinites: Set<usize> = Set::new();
+
+  for cell in &table[0] {
+    match cell {
+      Cell::Belongs(idx) |
+      Cell::Coord(idx) => { infinites.insert(*idx); },
+      Cell::Neutral => {},
+    }
+  }
+
+  for cell in &table[max_y - min_y] {
+    match cell {
+      Cell::Belongs(idx) |
+      Cell::Coord(idx) => { infinites.insert(*idx); },
+      Cell::Neutral => {},
+    }
+  }
+
+  for row in &table {
+    let cell = row[0];
+
+    match cell {
+      Cell::Belongs(idx) |
+      Cell::Coord(idx) => { infinites.insert(idx); },
+      Cell::Neutral => {},
+    }
+
+    let cell = row[max_x - min_x];
+
+    match cell {
+      Cell::Belongs(idx) |
+      Cell::Coord(idx) => { infinites.insert(idx); },
+      Cell::Neutral => {},
+    }
+  }
+
+  let mut counts: Map<usize, usize> = Map::new();
+
+  for row in table.iter_mut().take((max_y - min_y) + 1) {
+    for cell in row.iter_mut().take((max_x - min_x) + 1) {
+      match cell {
+        Cell::Belongs(idx) |
+        Cell::Coord(idx) => {
+          if !infinites.contains(&idx) {
+            *counts.entry(*idx).or_insert(0) += 1;
+          }
+        },
+        Cell::Neutral => {},
+      }
+    }
+  }
+
+  // for (k, v) in &counts {
+  //   println!("{} => {} cells", k, v);
+  // }
+
+  let max = counts.values().max().unwrap();
+
+  println!("d6_1 {}", max);
+}
+
+fn d6_2() {
+  let coords: Vec<Coord> = read_lines::<_, Coord>("day6").collect();
+
+  let (min_x, max_x, min_y, max_y) = minmax(&coords);
+
+  let mut table: Vec<Vec<Cell>> =
+    vec![vec![Cell::Neutral; (max_x - min_x) + 1]; (max_y - min_y) + 1];
+
+  let mut n_points: usize = 0;
+
+  for (j, row) in table.iter_mut().enumerate().take((max_y - min_y) + 1) {
+    for (i, _) in row.iter_mut().enumerate().take((max_x - min_x) + 1) {
+      let total_dist: usize = coords.iter().map(|c| c.dist(i + min_x, j + min_y)).sum();
+
+      if total_dist < 10000 {
+        n_points += 1;
+      }
+    }
+  }
+
+  println!("d6_2 {}", n_points);
+}
+
 fn main() {
   d1_1();
   d1_2();
@@ -560,4 +742,6 @@ fn main() {
   d4_1_2();
   d5_1();
   d5_2();
+  d6_1();
+  d6_2();
 }
