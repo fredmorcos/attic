@@ -579,48 +579,34 @@ impl Coord {
     let dy = self.y.max(y) - self.y.min(y);
     dx + dy
   }
-}
 
-#[derive(Clone, Copy)]
-enum Cell {
-  Neutral,
-  Belongs(usize),
-  Coord(usize),
-}
+  fn minmax(coords: &[Coord]) -> (usize, usize, usize, usize) {
+    let mut min_x = coords[0].x;
+    let mut max_x = coords[0].x;
+    let mut min_y = coords[0].y;
+    let mut max_y = coords[0].y;
 
-fn minmax(coords: &[Coord]) -> (usize, usize, usize, usize) {
-  let mut min_x = coords[0].x;
-  let mut max_x = coords[0].x;
-  let mut min_y = coords[0].y;
-  let mut max_y = coords[0].y;
+    for c in coords {
+      if c.x < min_x { min_x = c.x; }
+      if c.x > max_x { max_x = c.x; }
+      if c.y < min_y { min_y = c.y; }
+      if c.y > max_y { max_y = c.y; }
+    }
 
-  for c in coords {
-    if c.x < min_x { min_x = c.x; }
-    if c.x > max_x { max_x = c.x; }
-    if c.y < min_y { min_y = c.y; }
-    if c.y > max_y { max_y = c.y; }
+    (min_x, max_x, min_y, max_y)
   }
-
-  (min_x, max_x, min_y, max_y)
 }
 
 fn d6_1() {
   let coords: Vec<Coord> = read_lines::<_, Coord>("day6").collect();
 
-  let (min_x, max_x, min_y, max_y) = minmax(&coords);
+  let (min_x, max_x, min_y, max_y) = Coord::minmax(&coords);
 
-  let mut table: Vec<Vec<Cell>> =
-    vec![vec![Cell::Neutral; (max_x - min_x) + 1]; (max_y - min_y) + 1];
+  let mut infinites: Set<usize> = Set::new();
+  let mut counts: Vec<usize> = vec![0; coords.len()];
 
-  for (j, row) in table.iter_mut().enumerate().take((max_y - min_y) + 1) {
-    'i: for (i, cell) in row.iter_mut().enumerate().take((max_x - min_x) + 1) {
-      for (idx, c) in coords.iter().enumerate() {
-        if i + min_x == c.x && j + min_y == c.y {
-          *cell = Cell::Coord(idx);
-          continue 'i;
-        }
-      }
-
+  for j in 0 ..= max_y - min_y {
+    for i in 0 ..= max_x - min_x {
       let mut dists: Vec<(usize, usize)> =
         coords.iter()
               .enumerate()
@@ -629,99 +615,28 @@ fn d6_1() {
 
       dists.sort_by(|a, b| a.1.cmp(&b.1));
 
-      if dists[0].1 == dists[1].1 {
-        continue 'i;
+      if dists[0].1 != dists[1].1 {
+        counts[dists[0].0] += 1;
       }
 
-      *cell = Cell::Belongs(dists[0].0);
-    }
-  }
-
-  // for j in &table {
-  //   for i in j {
-  //     match i {
-  //       Cell::Belongs(idx) => print!("{}", idx),
-  //       Cell::Neutral => print!("."),
-  //       Cell::Coord(_) => print!("X"),
-  //     }
-  //   }
-
-  //   println!();
-  // }
-
-  let mut infinites: Set<usize> = Set::new();
-
-  for cell in &table[0] {
-    match cell {
-      Cell::Belongs(idx) |
-      Cell::Coord(idx) => { infinites.insert(*idx); },
-      Cell::Neutral => {},
-    }
-  }
-
-  for cell in &table[max_y - min_y] {
-    match cell {
-      Cell::Belongs(idx) |
-      Cell::Coord(idx) => { infinites.insert(*idx); },
-      Cell::Neutral => {},
-    }
-  }
-
-  for row in &table {
-    let cell = row[0];
-
-    match cell {
-      Cell::Belongs(idx) |
-      Cell::Coord(idx) => { infinites.insert(idx); },
-      Cell::Neutral => {},
-    }
-
-    let cell = row[max_x - min_x];
-
-    match cell {
-      Cell::Belongs(idx) |
-      Cell::Coord(idx) => { infinites.insert(idx); },
-      Cell::Neutral => {},
-    }
-  }
-
-  let mut counts: Map<usize, usize> = Map::new();
-
-  for row in table.iter_mut().take((max_y - min_y) + 1) {
-    for cell in row.iter_mut().take((max_x - min_x) + 1) {
-      match cell {
-        Cell::Belongs(idx) |
-        Cell::Coord(idx) => {
-          if !infinites.contains(&idx) {
-            *counts.entry(*idx).or_insert(0) += 1;
-          }
-        },
-        Cell::Neutral => {},
+      if j == 0 || j == max_y - min_y || i == 0 || i == max_x - min_x {
+        infinites.insert(dists[0].0);
       }
     }
   }
 
-  // for (k, v) in &counts {
-  //   println!("{} => {} cells", k, v);
-  // }
-
-  let max = counts.values().max().unwrap();
-
-  println!("d6_1 {}", max);
+  println!("d6_1 {}", counts.iter().max().unwrap());
 }
 
 fn d6_2() {
   let coords: Vec<Coord> = read_lines::<_, Coord>("day6").collect();
 
-  let (min_x, max_x, min_y, max_y) = minmax(&coords);
-
-  let mut table: Vec<Vec<Cell>> =
-    vec![vec![Cell::Neutral; (max_x - min_x) + 1]; (max_y - min_y) + 1];
+  let (min_x, max_x, min_y, max_y) = Coord::minmax(&coords);
 
   let mut n_points: usize = 0;
 
-  for (j, row) in table.iter_mut().enumerate().take((max_y - min_y) + 1) {
-    for (i, _) in row.iter_mut().enumerate().take((max_x - min_x) + 1) {
+  for j in 0 ..= max_y - min_y {
+    for i in 0 ..= max_x - min_x {
       let total_dist: usize = coords.iter().map(|c| c.dist(i + min_x, j + min_y)).sum();
 
       if total_dist < 10000 {
