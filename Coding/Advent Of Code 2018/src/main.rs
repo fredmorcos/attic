@@ -599,7 +599,6 @@ impl Coord {
 
 fn d6_1() {
   let coords: Vec<Coord> = read_lines::<_, Coord>("day6").collect();
-
   let (min_x, max_x, min_y, max_y) = Coord::minmax(&coords);
 
   let mut infinites: Set<usize> = Set::new();
@@ -625,7 +624,18 @@ fn d6_1() {
     }
   }
 
-  println!("d6_1 {}", counts.iter().max().unwrap());
+  println!("d6_1 {}", counts
+           .iter()
+           .max_by(|e1, e2| {
+             if infinites.contains(&e1) {
+               Ordering::Less
+             } else if infinites.contains(&e2) {
+               Ordering::Greater
+             } else {
+               e1.cmp(e2)
+             }
+           })
+           .unwrap());
 }
 
 fn d6_2() {
