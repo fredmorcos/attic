@@ -175,6 +175,32 @@ fn skip_ws<I>(iter: &mut Peekable<I>)
   }
 }
 
+fn skip_n<I>(iter: &mut Peekable<I>, n: usize)
+             -> Result<(), ParseError>
+  where I: Iterator<Item = char>,
+{
+  for _ in 0 .. n {
+    if iter.peek().is_some() {
+      iter.next();
+    } else {
+      return Err(ParseError::UnexpectedEOF);
+    }
+  }
+
+  Ok(())
+}
+
+fn single_char<I>(iter: &mut Peekable<I>)
+                  -> Result<char, ParseError>
+  where I: Iterator<Item = char>,
+{
+  if let Some(c) = iter.next() {
+    Ok(c)
+  } else {
+    Err(ParseError::UnexpectedEOF)
+  }
+}
+
 fn single<I>(iter: &mut Peekable<I>, c: char)
              -> Result<(), ParseError>
   where I: Iterator<Item = char>,
@@ -658,6 +684,91 @@ fn d6_2() {
   println!("d6_2 {}", n_points);
 }
 
+#[derive(Debug, Clone, Copy)]
+struct Dep(char, char);
+
+impl FromStr for Dep {
+  type Err = ParseError;
+
+  fn from_str(input: &str) -> Result<Self, Self::Err> {
+    let mut iter = input.chars().peekable();
+
+    skip_ws(&mut iter);
+    skip_n(&mut iter, "Step".len())?;
+    skip_ws(&mut iter);
+    let c1 = single_char(&mut iter)?;
+    skip_ws(&mut iter);
+    skip_n(&mut iter, "must be finished before step".len())?;
+    skip_ws(&mut iter);
+    let c2 = single_char(&mut iter)?;
+    skip_ws(&mut iter);
+    skip_n(&mut iter, "can begin.".len())?;
+    skip_ws(&mut iter);
+
+    Ok(Dep(c1, c2))
+  }
+}
+
+fn d7_1() {
+  let deps: Vec<Dep> = read_lines::<_, Dep>("day7").collect();
+  let mut tree: Map<char, Set<char>> = Map::new();
+  let mut queue: Vec<char> = Vec::new();
+
+  for dep in deps {
+    tree.entry(dep.1).or_insert_with(Set::new).insert(dep.0);
+    queue.push(dep.0);
+    queue.push(dep.1);
+  }
+
+  queue.sort();
+  queue.dedup();
+
+  for c in tree.keys() {
+    if let Ok(idx) = queue.binary_search(c) {
+      queue.remove(idx);
+    }
+  }
+
+  let mut res: Vec<char> = Vec::new();
+
+  loop {
+    if queue.is_empty() {
+      break;
+    }
+
+    let e = queue[0];
+
+    queue.remove(0);
+
+    let mut remove = vec![];
+
+    for (k, v) in &mut tree {
+      v.remove(&e);
+
+      if v.is_empty() {
+        queue.push(*k);
+        remove.push(*k);
+      }
+    }
+
+    for r in remove {
+      tree.remove(&r);
+    }
+
+    queue.sort();
+    res.push(e);
+  }
+
+  print!("d7_1 ");
+  for i in res {
+    print!("{}", i);
+  }
+  println!();
+}
+
+fn d7_2() {
+}
+
 fn main() {
   d1_1();
   d1_2();
@@ -669,4 +780,6 @@ fn main() {
   d5_2();
   d6_1();
   d6_2();
+  d7_1();
+  d7_2();
 }
