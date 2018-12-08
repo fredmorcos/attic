@@ -605,12 +605,12 @@ fn d6_1() {
   let mut infinites: Set<usize> = Set::new();
   let mut counts: Vec<usize> = vec![0; coords.len()];
 
-  for j in 0 ..= max_y - min_y {
-    for i in 0 ..= max_x - min_x {
+  for j in min_y ..= max_y {
+    for i in min_x ..= max_x {
       let mut dists: Vec<(usize, usize)> =
         coords.iter()
               .enumerate()
-              .map(|(idx, c)| (idx, c.dist(i + min_x, j + min_y)))
+              .map(|(idx, c)| (idx, c.dist(i, j)))
               .collect();
 
       dists.sort_by(|a, b| a.1.cmp(&b.1));
@@ -619,7 +619,7 @@ fn d6_1() {
         counts[dists[0].0] += 1;
       }
 
-      if j == 0 || j == max_y - min_y || i == 0 || i == max_x - min_x {
+      if j == 0 || j == max_y || i == 0 || i == max_x {
         infinites.insert(dists[0].0);
       }
     }
@@ -635,9 +635,9 @@ fn d6_2() {
 
   let mut n_points: usize = 0;
 
-  for j in 0 ..= max_y - min_y {
-    for i in 0 ..= max_x - min_x {
-      let total_dist: usize = coords.iter().map(|c| c.dist(i + min_x, j + min_y)).sum();
+  for j in min_y ..= max_y {
+    for i in min_x ..= max_x {
+      let total_dist: usize = coords.iter().map(|c| c.dist(i, j)).sum();
 
       if total_dist < 10000 {
         n_points += 1;
