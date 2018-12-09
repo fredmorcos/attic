@@ -712,39 +712,19 @@ impl FromStr for Dep {
 fn d7_1() {
   let deps: Vec<Dep> = read_lines::<_, Dep>("day7").collect();
   let mut tree: Map<char, Set<char>> = Map::new();
-  let mut queue: Vec<char> = Vec::new();
 
   for dep in deps {
     tree.entry(dep.1).or_insert_with(Set::new).insert(dep.0);
-    queue.push(dep.0);
-    queue.push(dep.1);
+    tree.entry(dep.0).or_insert_with(Set::new);
   }
 
-  queue.sort();
-  queue.dedup();
-
-  for c in tree.keys() {
-    if let Ok(idx) = queue.binary_search(c) {
-      queue.remove(idx);
-    }
-  }
-
+  let mut queue: Vec<char> = Vec::new();
   let mut res: Vec<char> = Vec::new();
 
   loop {
-    if queue.is_empty() {
-      break;
-    }
-
-    let e = queue[0];
-
-    queue.remove(0);
-
     let mut remove = vec![];
 
     for (k, v) in &mut tree {
-      v.remove(&e);
-
       if v.is_empty() {
         queue.push(*k);
         remove.push(*k);
@@ -755,14 +735,22 @@ fn d7_1() {
       tree.remove(&r);
     }
 
+    if queue.is_empty() {
+      break;
+    }
+
     queue.sort();
+    let e = queue[0];
     res.push(e);
+    queue.remove(0);
+
+    for v in tree.values_mut() {
+      v.remove(&e);
+    }
   }
 
   print!("d7_1 ");
-  for i in res {
-    print!("{}", i);
-  }
+  res.iter().for_each(|i| print!("{}", i));
   println!();
 }
 
