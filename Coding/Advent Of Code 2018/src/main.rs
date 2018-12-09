@@ -754,7 +754,154 @@ fn d7_1() {
   println!();
 }
 
+#[derive(Debug, Clone, Copy)]
+struct Task {
+  name: char,
+  time: usize,
+}
+
+impl PartialEq for Task {
+  fn eq(&self, other: &Self) -> bool {
+    self.name == other.name
+  }
+}
+
+impl Eq for Task {}
+
+impl PartialOrd for Task {
+  fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+    self.name.partial_cmp(&other.name)
+  }
+}
+
+impl Ord for Task {
+  fn cmp(&self, other: &Self) -> Ordering {
+    self.name.cmp(&other.name)
+  }
+}
+
+enum TaskStatus {
+  Finished(char),
+  Running,
+}
+
+impl Task {
+  fn new(name: char) -> Self {
+    let time: usize = 60 +
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      .chars()
+      .enumerate()
+      .find(|(_, c)| *c == name)
+      .map(|(i, _)| i + 1)
+      .unwrap();
+
+    Self { name, time }
+  }
+
+  fn step(&mut self) -> TaskStatus {
+    self.time -= 1;
+
+    if self.time == 0 {
+      TaskStatus::Finished(self.name)
+    } else {
+      TaskStatus::Running
+    }
+  }
+}
+
+enum WorkerStatus {
+  Idle,
+  Running,
+  Finished(char),
+}
+
+#[derive(Debug, Clone, Copy)]
+struct Worker {
+  task: Option<Task>,
+}
+
+impl Worker {
+  fn new() -> Self {
+    Self { task: None }
+  }
+
+  fn step(&mut self, queue: &mut Vec<Task>) -> WorkerStatus {
+    if let Some(ref mut task) = self.task {
+      match task.step() {
+        TaskStatus::Running => WorkerStatus::Running,
+        TaskStatus::Finished(name) => {
+          self.task = None;
+          WorkerStatus::Finished(name)
+        },
+      }
+    } else if queue.is_empty() {
+      WorkerStatus::Idle
+    } else {
+      self.task = Some(queue[0]);
+      queue.remove(0);
+      self.step(queue)
+    }
+  }
+}
+
 fn d7_2() {
+  let deps: Vec<Dep> = read_lines::<_, Dep>("day7").collect();
+  let mut tree: Map<char, Set<char>> = Map::new();
+  let mut workers: Vec<Worker> = vec![Worker::new(); 5];
+  let mut time: usize = 0;
+
+  for dep in deps {
+    tree.entry(dep.1).or_insert_with(Set::new).insert(dep.0);
+    tree.entry(dep.0).or_insert_with(Set::new);
+  }
+
+  let mut queue: Vec<Task> = Vec::new();
+
+  loop {
+    let mut remove = vec![];
+
+    for (k, v) in &mut tree {
+      if v.is_empty() {
+        queue.push(Task::new(*k));
+        remove.push(*k);
+      }
+    }
+
+    for r in &remove {
+      tree.remove(&r);
+    }
+
+    queue.sort();
+
+    let mut any_running = false;
+
+    for worker in &mut workers {
+      remove.clear();
+
+      match worker.step(&mut queue) {
+        WorkerStatus::Idle => {},
+        WorkerStatus::Running => any_running = true,
+        WorkerStatus::Finished(name) => {
+          any_running = true;
+          remove.push(name);
+        },
+      }
+
+      for v in tree.values_mut() {
+        for r in &remove {
+          v.remove(&r);
+        }
+      }
+    }
+
+    if !any_running {
+      break;
+    }
+
+    time += 1;
+  }
+
+  println!("d7_2 {}", time);
 }
 
 fn main() {
