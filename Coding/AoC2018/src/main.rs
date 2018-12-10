@@ -957,7 +957,7 @@ impl Node {
   }
 }
 
-fn d8_1() {
+fn d8_1_2() {
   let data: Vec<usize> = fs::read_to_string("day8")
     .unwrap()
     .split_whitespace()
@@ -970,6 +970,9 @@ fn d8_1() {
 
   println!("d8_1 {}", root.metadata_sum());
   println!("d8_2 {}", root.value());
+}
+
+fn d9_1() {
 }
 
 fn main() {
@@ -985,5 +988,6 @@ fn main() {
   d6_2();
   d7_1();
   d7_2();
-  d8_1();
+  d8_1_2();
+  d9_1();
 }
