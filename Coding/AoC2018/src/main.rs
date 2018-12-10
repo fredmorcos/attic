@@ -935,6 +935,26 @@ impl Node {
     self.metadata.iter().sum::<usize>() +
       self.children.iter().map(|c| c.metadata_sum()).sum::<usize>()
   }
+
+  fn value(&self) -> usize {
+    if self.children.is_empty() {
+      self.metadata_sum()
+    } else {
+      let mut sum = 0;
+
+      for &i in &self.metadata {
+        if i != 0 {
+          let i = i - 1;
+
+          if i < self.children.len() {
+            sum += self.children[i].value();
+          }
+        }
+      }
+
+      sum
+    }
+  }
 }
 
 fn d8_1() {
@@ -949,6 +969,7 @@ fn d8_1() {
   assert!(input.is_empty());
 
   println!("d8_1 {}", root.metadata_sum());
+  println!("d8_2 {}", root.value());
 }
 
 fn main() {
