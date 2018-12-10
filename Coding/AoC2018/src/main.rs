@@ -904,6 +904,53 @@ fn d7_2() {
   println!("d7_2 {}", time);
 }
 
+#[derive(Debug, Clone)]
+struct Node {
+  metadata: Vec<usize>,
+  children: Vec<Node>,
+}
+
+impl Node {
+  fn new(mut input: Vec<usize>) -> (Self, Vec<usize>) {
+    let n_children: usize = input.remove(0);
+    let n_metadata: usize = input.remove(0);
+
+    let mut children: Vec<Node> = Vec::new();
+    let mut metadata: Vec<usize> = Vec::new();
+
+    for _ in 0 .. n_children {
+      let (node, new_input) = Node::new(input);
+      children.push(node);
+      input = new_input;
+    }
+
+    for _ in 0 .. n_metadata {
+      metadata.push(input.remove(0));
+    }
+
+    (Self { metadata, children }, input)
+  }
+
+  fn metadata_sum(&self) -> usize {
+    self.metadata.iter().sum::<usize>() +
+      self.children.iter().map(|c| c.metadata_sum()).sum::<usize>()
+  }
+}
+
+fn d8_1() {
+  let data: Vec<usize> = fs::read_to_string("day8")
+    .unwrap()
+    .split_whitespace()
+    .map(|w| usize::from_str(w).unwrap())
+    .collect();
+
+  let (root, input) = Node::new(data);
+
+  assert!(input.is_empty());
+
+  println!("d8_1 {}", root.metadata_sum());
+}
+
 fn main() {
   d1_1();
   d1_2();
@@ -917,4 +964,5 @@ fn main() {
   d6_2();
   d7_1();
   d7_2();
+  d8_1();
 }
