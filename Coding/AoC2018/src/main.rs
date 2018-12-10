@@ -247,31 +247,26 @@ impl FromStr for Square {
 
     single(&mut iter, '#')?;
 
-    let id = multi::<usize, _, _>
-      (&mut iter, |c| c.is_digit(10))?;
+    let id: usize = multi(&mut iter, |c| c.is_digit(10))?;
 
     skip_ws(&mut iter);
     single(&mut iter, '@')?;
     skip_ws(&mut iter);
 
-    let x = multi::<usize, _, _>
-      (&mut iter, |c| c.is_digit(10))?;
+    let x: usize = multi(&mut iter, |c| c.is_digit(10))?;
 
     single(&mut iter, ',')?;
 
-    let y = multi::<usize, _, _>
-      (&mut iter, |c| c.is_digit(10))?;
+    let y: usize = multi(&mut iter, |c| c.is_digit(10))?;
 
     single(&mut iter, ':')?;
     skip_ws(&mut iter);
 
-    let w = multi::<usize, _, _>
-      (&mut iter, |c| c.is_digit(10))?;
+    let w: usize = multi(&mut iter, |c| c.is_digit(10))?;
 
     single(&mut iter, 'x')?;
 
-    let h = multi::<usize, _, _>
-      (&mut iter, |c| c.is_digit(10))?;
+    let h: usize = multi(&mut iter, |c| c.is_digit(10))?;
 
     Ok(Square { id, x, y, w, h })
   }
@@ -588,12 +583,12 @@ impl FromStr for Coord {
   fn from_str(input: &str) -> Result<Self, Self::Err> {
     let mut iter = input.chars().peekable();
 
-    let x = multi::<usize, _, _>(&mut iter, |c| c.is_digit(10))?;
+    let x: usize = multi(&mut iter, |c| c.is_digit(10))?;
 
     single(&mut iter, ',')?;
     skip_ws(&mut iter);
 
-    let y = multi::<usize, _, _>(&mut iter, |c| c.is_digit(10))?;
+    let y: usize = multi(&mut iter, |c| c.is_digit(10))?;
 
     Ok(Coord { x, y })
   }
@@ -973,6 +968,38 @@ fn d8_1_2() {
 }
 
 fn d9_1() {
+  let data: String = fs::read_to_string("day9")
+    .unwrap()
+    .trim()
+    .to_string();
+
+  let mut iter = data.chars().peekable();
+
+  let n_players: usize = multi(&mut iter, |c| c.is_digit(10)).unwrap();
+
+  skip_ws(&mut iter);
+  skip_n(&mut iter, "players;".len()).unwrap();
+  skip_ws(&mut iter);
+  skip_n(&mut iter, "last".len()).unwrap();
+  skip_ws(&mut iter);
+  skip_n(&mut iter, "marble".len()).unwrap();
+  skip_ws(&mut iter);
+  skip_n(&mut iter, "is".len()).unwrap();
+  skip_ws(&mut iter);
+  skip_n(&mut iter, "worth".len()).unwrap();
+  skip_ws(&mut iter);
+
+  let last_marble: usize = multi(&mut iter, |c| c.is_digit(10)).unwrap();
+
+  skip_ws(&mut iter);
+  skip_n(&mut iter, "points".len()).unwrap();
+  skip_ws(&mut iter);
+
+  let mut board: Vec<usize> = vec![0];
+  let mut scores: Vec<usize> = vec![0; n_players];
+  let mut current: usize = 0;
+  let mut marble: usize = 1;
+  let mut player: usize = 1;
 }
 
 fn main() {
