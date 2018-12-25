@@ -1,0 +1,12 @@
+[package]
+name = "strest"
+description = "Stress-test REST"
+version = "0.1.0"
+authors = ["Fred Morcos <fred.morcos@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+reqwest = "*"
+time = "*"
+rayon = "*"
+structopt = "*"

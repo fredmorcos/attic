@@ -1,0 +1,7 @@
+[package]
+name = "merkel-trees"
+version = "0.1.0"
+authors = ["Fred Morcos <fred.morcos@gmail.com>"]
+edition = "2018"
+
+[dependencies]
