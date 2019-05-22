@@ -1,0 +1,241 @@
+diff --git a/mapred.c b/mapred.c
+index e0b7fd7..f36afa9 100644
+--- a/mapred.c
++++ b/mapred.c
+@@ -96,6 +96,97 @@ void ti_diff(struct time_info *const ti) {
+   assert(ti->wc >= 0);
+ }
+ 
++/* Vector of size_t elements. */
++struct size_vec {
++  size_t  *ptr;                 /* pointer */
++  size_t  len;                  /* length */
++  size_t  cap;                  /* capacity */
++  size_t  chunk;                /* chunk size */
++};
++
++/* Vector prototypes. */
++struct size_vec size_vec_init(const size_t chunk);
++void size_vec_free(struct size_vec *const self);
++size_t *size_vec_add(struct size_vec *const self, const size_t n);
++void size_vec_rev(struct size_vec *const self, const size_t n);
++
++struct size_vec size_vec_init(const size_t chunk) {
++  struct size_vec self;
++
++  self.ptr = NULL;
++  self.len = 0;
++  self.cap = 0;
++  self.chunk = chunk;
++
++  return self;
++}
++
++void size_vec_free(struct size_vec *const self) {
++  assert(self != NULL);
++
++  if (self->ptr == NULL) {
++    assert(self->len == 0);
++    assert(self->cap == 0);
++    return;
++  }
++
++  assert(self->cap > 0);
++  free(self->ptr);
++  self->ptr = NULL;
++  self->len = 0;
++  self->cap = 0;
++}
++
++size_t *size_vec_add(struct size_vec *const self, const size_t n) {
++  assert(self != NULL);
++  assert(self->len <= self->cap);
++
++  void *new_ptr = NULL;
++
++  if (SIZE_MAX - n < self->len) {
++    goto err_overflow;
++  }
++
++  if (self->len + n > self->cap) {
++    if (SIZE_MAX / 2 < self->cap) {
++      goto err_overflow;
++    }
++
++    size_t new_cap = 0;
++
++    new_cap = (self->len + n) > (self->cap * 2) ?
++      (self->len + n) : (self->cap * 2);
++    new_cap = new_cap > self->chunk ?
++      new_cap : self->chunk;
++
++    assert(new_cap > self->cap);
++    assert(new_cap >= self->len + n);
++
++    new_ptr = realloc(self->ptr, new_cap * sizeof(size_t));
++
++    if (new_ptr == NULL) {
++      return NULL;
++    }
++
++    self->ptr = new_ptr;
++    self->cap = new_cap;
++  }
++
++  self->len += n;
++
++  return self->ptr + (self->len - n) * sizeof(size_t);
++
++ err_overflow:
++  errno = EOVERFLOW;
++  return NULL;
++}
++
++void size_vec_rev(struct size_vec *const self, const size_t n) {
++  assert(self != NULL);
++  assert(self->len >= n);
++  self->len -= n;
++}
++
+ /* Declare and define hashmap functions from strings -> size_t. */
+ HASHMAP_FUNCS_DECLARE(word, char, size_t)
+ HASHMAP_FUNCS_CREATE(word, char, size_t)
+@@ -110,6 +201,7 @@ struct word {
+    function. */
+ struct count_params {
+   struct hashmap *words;       /* Words list in a hashmap. */
++  struct size_vec occs;        /* Occurrences of words. */
+   char *buf_ptr;               /* Pointer to nul-terminated buffer. */
+   int tl_errno;                /* Thread-local errno. */
+ };
+@@ -121,7 +213,9 @@ typedef void *(*tfunc)(void *);
+ /* Prototypes. */
+ int countcmp(const struct word *w1, const struct word *w2);
+ struct count_params *count(struct count_params *const params);
+-struct hashmap *merge(struct hashmap *const m1, const struct hashmap *const m2);
++struct hashmap *merge(struct hashmap *const m1,
++                      const struct hashmap *const m2,
++                      struct size_vec *const occs);
+ 
+ /* Compare two words according to their occurrences. */
+ int countcmp(const struct word *w1, const struct word *w2) {
+@@ -145,8 +239,9 @@ struct count_params *count(struct count_params *const params) {
+     return NULL;
+   }
+ 
+-  /* Initialize the hashmap. */
++  /* Initialize the hashmap and the occurrences vector. */
+   hashmap_init(params->words, hashmap_hash_string, hashmap_compare_string, 10000);
++  params->occs = size_vec_init(1000);
+ 
+   while (true) {
+     /* Nullify any spaces and punctuation. */
+@@ -179,8 +274,8 @@ struct count_params *count(struct count_params *const params) {
+       params->buf_ptr++;
+     }
+ 
+-    /* Allocate the occurrence for this word, so far = 1. */
+-    size_t *occ = malloc(sizeof(size_t));
++    /* Allocate the occurrence for this word. */
++    size_t *occ = size_vec_add(&params->occs, 1);
+ 
+     if (occ == NULL) {
+       return NULL;
+@@ -194,14 +289,14 @@ struct count_params *count(struct count_params *const params) {
+     size_t *res = word_hashmap_put(params->words, w, occ);
+ 
+     if (res == NULL) {
+-      free(occ);
++      size_vec_rev(&params->occs, 1);
+       return NULL;
+     }
+ 
+     /* The word already existed in the hashmap. */
+     if (res != occ) {
+-      /* Free the new occurrence = 1 we created. */
+-      free(occ);
++      /* Free the new occurrence we created. */
++      size_vec_rev(&params->occs, 1);
+       /* Increment the already existing occurrence value. */
+       *res += 1;
+     }
+@@ -211,7 +306,10 @@ struct count_params *count(struct count_params *const params) {
+ }
+ 
+ /* Merge the second hashmap `m2` into into the first one `m1`. */
+-struct hashmap *merge(struct hashmap *const m1, const struct hashmap *const m2) {
++struct hashmap *merge(struct hashmap *const m1,
++                      const struct hashmap *const m2,
++                      struct size_vec *const occs)
++{
+   /* Iterate over the words in the second hashmap, and insert each of
+      them into the first one if it doesn't already exist. If it
+      already exist in the first hashmap, then increment its occurrence
+@@ -224,7 +322,7 @@ struct hashmap *merge(struct hashmap *const m1, const struct hashmap *const m2)
+       size_t *const occ = word_hashmap_iter_get_data(iter);
+ 
+       /* Allocate the occurrence for this word. */
+-      size_t *const new_occ = malloc(sizeof(size_t));
++      size_t *const new_occ = size_vec_add(occs, 1);
+ 
+       if (new_occ == NULL) {
+         return NULL;
+@@ -238,7 +336,7 @@ struct hashmap *merge(struct hashmap *const m1, const struct hashmap *const m2)
+       size_t *res = word_hashmap_put(m1, word, new_occ);
+ 
+       if (res == NULL) {
+-        free(new_occ);
++        size_vec_rev(occs, 1);
+         return NULL;
+       }
+ 
+@@ -248,7 +346,7 @@ struct hashmap *merge(struct hashmap *const m1, const struct hashmap *const m2)
+         *res += *new_occ;
+         /* Increment the already existing occurrence value with the
+            occurrence value from the second hashmap. */
+-        free(new_occ);
++        size_vec_rev(occs, 1);
+       }
+     }
+ 
+@@ -464,16 +562,16 @@ struct hashmap *reduce(struct reduce_params *const rps) {
+       return NULL;
+     }
+ 
+-    return merge(t1_ret, t2_ret);
++    return merge(t1_ret, t2_ret, &rps->ps->occs);
+   }
+ 
+   if (rps->n >= 2) {
+-    if (merge(rps->ps[0].words, rps->ps[1].words) == NULL) {
++    if (merge(rps->ps[0].words, rps->ps[1].words, &rps->ps[0].occs) == NULL) {
+       return NULL;
+     }
+ 
+     if (rps->n == 3) {
+-      if (merge(rps->ps[0].words, rps->ps[2].words) == NULL) {
++      if (merge(rps->ps[0].words, rps->ps[2].words, &rps->ps[0].occs) == NULL) {
+         return NULL;
+       }
+     }
+@@ -644,13 +742,14 @@ int main(int argc, char *argv[]) {
+       break;
+     }
+ 
+-    for (struct hashmap_iter *iter = hashmap_iter(ps[i].words);
+-         iter;
+-         iter = hashmap_iter_next(ps[i].words, iter))
+-      {
+-        free(word_hashmap_iter_get_data(iter));
+-      }
++    /* for (struct hashmap_iter *iter = hashmap_iter(ps[i].words); */
++    /*      iter; */
++    /*      iter = hashmap_iter_next(ps[i].words, iter)) */
++    /*   { */
++    /*     free(word_hashmap_iter_get_data(iter)); */
++    /*   } */
+ 
++    size_vec_free(&ps[i].occs);
+     hashmap_destroy(ps[i].words);
+     free(ps[i].words);
+   }

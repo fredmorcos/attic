@@ -1,0 +1,293 @@
+diff --git a/Makefile b/Makefile
+index 2b15bc8..a4b9c4e 100644
+--- a/Makefile
++++ b/Makefile
+@@ -157,6 +157,12 @@ CFLAGS_SAN_THREAD += -fsanitize=thread
+ LDFLAGS_RELEASE += -flto
+ LDFLAGS         += -lpthread
+ 
++# Dependencies
++CFLAGS  += -Ihashmap/src/
++LDFLAGS += -Lhashmap/build/
++LDFLAGS += -lhashmap
++LDFLAGS += -lxxhash
++
+ SRC   = mapred.c
+ OBJS  = mapred.o
+ OBJS += mapred_debug.o
+diff --git a/mapred.c b/mapred.c
+index cb31d3c..3681ee7 100644
+--- a/mapred.c
++++ b/mapred.c
+@@ -98,6 +98,8 @@
+ #include <time.h>
+ #include <sys/stat.h>
+ #include <sys/time.h>
++#include <xxhash.h>
++#include <hashmap.h>
+ 
+ struct time_info {
+   clock_t begin_cpu;
+@@ -170,15 +172,25 @@ void ti_diff(struct time_info *const ti) {
+   assert(ti->wc >= 0);
+ }
+ 
++HASHMAP_FUNCS_DECLARE(word, char, size_t)
++HASHMAP_FUNCS_CREATE(word, char, size_t)
++
++unsigned long long xxhash(const char* buffer);
++
++unsigned long long xxhash(const char* buffer) {
++    unsigned long long const seed = 0;   /* or any other value */
++    unsigned long long const hash = XXH64(buffer, strlen(buffer), seed);
++    return hash;
++}
++
+ struct word {
+-  char *ptr;                    /* Nul-terminated string. */
++  const char *ptr;              /* Nul-terminated string. */
+   size_t occ;                   /* Number of occurrences. */
+ };
+ 
+ struct count_params {
++  struct hashmap words;         /* Words list. */
+   char *buf_ptr;                /* Nul-terminated buffer. */
+-  struct word *words;           /* List of accumulated words. */
+-  size_t n;                     /* Number of accumulated words. */
+   int tl_errno;                 /* Thread-local errno. */
+ };
+ 
+@@ -187,16 +199,10 @@ typedef int (*cmpfunc)(const void *, const void *);
+ typedef void *(*tfunc)(void *);
+ 
+ /* Prototypes. */
+-int wordcmp(const struct word *w1, const struct word *w2);
+ int countcmp(const struct word *w1, const struct word *w2);
+ struct count_params *count(struct count_params *const params);
+ struct count_params *reduce(const size_t n, struct count_params *const ps);
+ 
+-/* Compare two words. */
+-int wordcmp(const struct word *w1, const struct word *w2) {
+-  return strcmp(w1->ptr, w2->ptr);
+-}
+-
+ /* Compare two words according to their occurrences. */
+ int countcmp(const struct word *w1, const struct word *w2) {
+   /* Occurrences are encoded as `size_t` and must not be subtracted
+@@ -206,7 +212,7 @@ int countcmp(const struct word *w1, const struct word *w2) {
+     /* Return 0 instead of `return wordcmp(w1, w2)` because the list
+      * should already be sorted by word (for the bsearch() calls).
+      */
+-    return 0;
++    return strcmp(w1->ptr, w2->ptr);
+   } else if (w1->occ > w2->occ) {
+     return -1;
+   } else {
+@@ -217,6 +223,8 @@ int countcmp(const struct word *w1, const struct word *w2) {
+ struct count_params *count(struct count_params *const params) {
+   typedef unsigned char uchar;
+ 
++  hashmap_init(&params->words, hashmap_hash_string, hashmap_compare_string, 10000);
++
+   while (true) {
+     /* Nullify any spaces and punctuation. */
+     while (*params->buf_ptr != '\0' && !isalnum((uchar) *params->buf_ptr)) {
+@@ -249,110 +257,58 @@ struct count_params *count(struct count_params *const params) {
+       params->buf_ptr++;
+     }
+ 
+-    /* Refer to an already existing copy of the word in `w` - the one
+-     * just uncovered - in case it can be found in the accumulated
+-     * list of words.
+-     */
+-    struct word *found = NULL;
++    size_t *occ = malloc(sizeof(size_t));
+ 
+-    if (params->words != NULL) {
+-      /* The list of words is not empty, do the search. */
+-      found = bsearch(&w.ptr,
+-                      params->words,
+-                      params->n,
+-                      sizeof(struct word),
+-                      (cmpfunc) wordcmp);
++    if (occ == NULL) {
++      return NULL;
+     }
+ 
+-    if (found != NULL) {
+-      /* Increment the occurrence of the instance in the list and move
+-       * on to reading the next word from the buffer.
+-       */
+-      found->occ += 1;
+-      continue;
+-    }
++    *occ = 1;
+ 
+-    /* If the word was not found in the list (has not been seen
+-     * before), allocate space for an extra element in the list and
+-     * add the word referred to by `w` to it. An array is not ideal,
+-     * so a pre-allocating vector would amortize the cost of
+-     * reallocations (however the operating system still preallocates
+-     * in page sizes so that does amortize the cost to a certain
+-     * degree).
+-     *
+-     * https://github.com/fredmorcos/rdiff/blob/master/vec.h
+-     * https://github.com/fredmorcos/rdiff/blob/master/vec.c
+-     */
+-    struct word *const new = (struct word *)
+-      realloc(params->words, (params->n + 1) * sizeof(struct word));
++    size_t *res = word_hashmap_put(&params->words, w.ptr, occ);
+ 
+-    if (new == NULL) {
+-      assert(errno != 0);
+-      params->tl_errno = errno;
++    if (res == NULL) {
++      free(occ);
+       return NULL;
+     }
+ 
+-    params->words = new;
+-    memcpy(&params->words[params->n], &w, sizeof(struct word));
+-    params->n++;
+-
+-    /* With a new element in the list, re-sort it by words to take
+-     * advantage of the bsearch() lookup. Maybe insertion sort would
+-     * be more efficient.
+-     */
+-    qsort(params->words, params->n, sizeof(struct word), (cmpfunc) wordcmp);
++    if (res != occ) {
++      *res += 1;
++    }
+   }
+ 
+   return params;
+ }
+ 
++struct hashmap *merge(struct hashmap *const m1, const struct hashmap *const m2);
++
++struct hashmap *merge(struct hashmap *const m1, const struct hashmap *const m2) {
++  for (struct hashmap_iter *iter = hashmap_iter(m2); iter; iter = hashmap_iter_next(m2, iter)) {
++    const char *word = word_hashmap_iter_get_key(iter);
++    size_t *const occ = word_hashmap_iter_get_data(iter);
++
++    size_t *res = word_hashmap_put(m1, word, occ);
++
++    if (res == NULL) {
++      return NULL;
++    }
++
++    if (res != occ) {
++      *res += *occ;
++    }
++  }
++
++  return m1;
++}
++
+ struct count_params *reduce(const size_t n, struct count_params *const ps) {
+-  /* the `reduce` phase: we will use the first accumulated list as the
+-   * result, so sort it by word to be able to use bsearch() on it
+-   */
+-  qsort(ps[0].words, ps[0].n, sizeof(struct word), (cmpfunc) wordcmp);
+-
+   /* go over the accumulated lists from each chunk (except list 0) */
+   for (size_t i = 1; i < n; i++) {
+-    /* go over each word in the list */
+-    for (size_t j = 0; j < ps[i].n; j++) {
+-      /* try to find the word in the result list (list 0) */
+-      struct word *const found = bsearch(&ps[i].words[j].ptr,
+-                                         ps[0].words,
+-                                         ps[0].n,
+-                                         sizeof(struct word),
+-                                         (cmpfunc) wordcmp);
+-
+-      if (found != NULL) {
+-        /* if we found the word, increment its count by the
+-         * occurrences of the new word
+-         */
+-        found->occ += ps[i].words[j].occ;
+-      } else {
+-        /* if we didnt find it, then it is a new word, make space for
+-         * it and insert it into the result list, then sort the
+-         * list by words for use with bsearch()
+-         */
+-        struct word *const new =
+-          realloc(ps[0].words, (ps[0].n + 1) * sizeof(struct word));
+-
+-        if (new == NULL) {
+-          warn("cannot allocate space for result list");
+-          return NULL;
+-        }
+-
+-        ps[0].words = new;
+-        memcpy(&ps[0].words[ps[0].n], &ps[i].words[j], sizeof(struct word));
+-        ps[0].n++;
+-
+-        qsort(ps[0].words, ps[0].n, sizeof(struct word), (cmpfunc) wordcmp);
+-      }
++    if (merge(&ps[0].words, &ps[i].words) == NULL) {
++      return NULL;
+     }
+   }
+ 
+-  /* when we're done reducing, sort the list by occurrences */
+-  qsort(ps[0].words, ps[0].n, sizeof(struct word), (cmpfunc) countcmp);
+-
+   return ps;
+ }
+ 
+@@ -580,6 +536,27 @@ int main(int argc, char *argv[]) {
+     goto end_threads;
+   }
+ 
++  const size_t n_words = hashmap_size(&ps[0].words);
++  struct word *words = malloc(sizeof(struct word) * n_words);
++
++  if (words == NULL) {
++    ret = EX_UNAVAILABLE;
++    goto end_threads;
++  }
++
++  size_t word_idx = 0;
++
++  for (struct hashmap_iter *iter = hashmap_iter(&ps[0].words);
++       iter;
++       iter = hashmap_iter_next(&ps[0].words, iter), word_idx++)
++    {
++      words[word_idx].ptr = word_hashmap_iter_get_key(iter);
++      words[word_idx].occ = *word_hashmap_iter_get_data(iter);
++    }
++
++  /* when we're done reducing, sort the list by occurrences */
++  qsort(words, n_words, sizeof(struct word), (cmpfunc) countcmp);
++
+ #if !defined(NDEBUG)
+   ti_diff(&ti_red);
+   warnx("reduced words in %.2Lfs cpu, %.2Lfs rt, %.2Lfs wc",
+@@ -591,19 +568,19 @@ int main(int argc, char *argv[]) {
+ #endif
+ 
+   /* print the list of words and their occurrences */
+-  for (size_t i = 0; i < ps[0].n; i++) {
+-    printf("%s=%zu\n", ps[0].words[i].ptr, ps[0].words[i].occ);
++  for (size_t i = 0; i < n_words; i++) {
++    printf("%s=%zu\n", words[i].ptr, words[i].occ);
+   }
+ 
+  end_threads:
+   free(ts);
+ 
+   /* free word lists that have been allocated */
+-  for (size_t i = 0; i < n; i++) {
+-    if (ps[i].words != NULL) {
+-      free(ps[i].words);
+-    }
+-  }
++  /* for (size_t i = 0; i < n; i++) { */
++  /*   if (ps[i].words != NULL) { */
++  /*     free(ps[i].words); */
++  /*   } */
++  /* } */
+  end_params:
+   free(ps);
+  end_fp:

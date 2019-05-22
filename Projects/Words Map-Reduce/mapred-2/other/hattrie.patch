@@ -1,0 +1,393 @@
+diff --git a/Makefile b/Makefile
+index 2b15bc8..2604cd2 100644
+--- a/Makefile
++++ b/Makefile
+@@ -169,6 +169,9 @@ OBJS += mapred_santhread.o
+ OBJS += mapred_sanint.o
+ BINS  = $(OBJS:.o=)
+ 
++CFLAGS   += -Ihat-trie/src
++TRIE_OBJ += hat-trie/src/.libs/libhat-trie.a
++
+ .PHONY: all clean cppcheck
+ .PRECIOUS: %.o
+ 
+@@ -177,30 +180,30 @@ all: $(BINS)
+ %.o: %.c
+ 	$(CC) $(CFLAGS) $(CFLAGS_RELEASE) -c -o $@ $<
+ 
+-mapred: %: %.o
++mapred: %: %.o $(TRIE_OBJ)
+ 	$(CC) $(LDFLAGS) $(LDFLAGS_RELEASE) $^ -o $@
+ 
+ %_debug.o: %.c
+ 	$(CC) $(CFLAGS) $(CFLAGS_DEBUG) -c -o $@ $<
+ 
+-mapred_debug: %: %.o
+-mapred_ptrcheck: %: %.o
+-mapred_sanleak: %: %.o
++mapred_debug: %: %.o $(TRIE_OBJ)
++mapred_ptrcheck: %: %.o $(TRIE_OBJ)
++mapred_sanleak: %: %.o $(TRIE_OBJ)
+ 	$(CC) $(LDFLAGS) $^ -o $@
+ 
+-mapred_sanint: %: %.o
++mapred_sanint: %: %.o $(TRIE_OBJ)
+ 	$(CC) $(CFLAGS_SAN_INT) $(LDFLAGS) $^ -o $@
+ 
+-mapred_san: %: %.o
++mapred_san: %: %.o $(TRIE_OBJ)
+ 	$(CC) $(CFLAGS_SAN) $(LDFLAGS) $^ -o $@
+ 
+-mapred_sanaddr: %: %.o
++mapred_sanaddr: %: %.o $(TRIE_OBJ)
+ 	$(CC) $(CFLAGS_SAN_ADDR) $(LDFLAGS) $^ -o $@
+ 
+-mapred_santhread: %: %.o
++mapred_santhread: %: %.o $(TRIE_OBJ)
+ 	$(CC) $(CFLAGS_SAN_THREAD) $(LDFLAGS) $^ -o $@
+ 
+-mapred_sanmem: %: %.o
++mapred_sanmem: %: %.o $(TRIE_OBJ)
+ 	$(CC) $(CFLAGS_SAN_MEM) $(LDFLAGS) $^ -o $@
+ 
+ %_ptrcheck.o: %.c
+diff --git a/mapred.c b/mapred.c
+index 410a0b7..5dca9d8 100644
+--- a/mapred.c
++++ b/mapred.c
+@@ -5,6 +5,10 @@
+  */
+ 
+ /*
++ * This program uses the hat-trie, see .gitmodules for more
++ * information. Despite the questionable quality of this library, it
++ * gets the job done for this purpose.
++ *
+  * Building and running:
+  *
+  * Running `make` will build all variants of this program. A release
+@@ -96,16 +100,16 @@
+ #include <ctype.h>
+ #include <signal.h>
+ #include <sys/stat.h>
++#include <hat-trie.h>
+ 
+ struct word {
+-  char *ptr;                    /* Nul-terminated string. */
++  const char *ptr;              /* Nul-terminated string. */
+   size_t occ;                   /* Number of occurrences. */
+ };
+ 
+ struct count_params {
++  hattrie_t *words;             /* List of words. */
+   char *buf_ptr;                /* Nul-terminated buffer. */
+-  struct word *words;           /* List of accumulated words. */
+-  size_t n;                     /* Number of accumulated words. */
+   int tl_errno;                 /* Thread-local errno. */
+ };
+ 
+@@ -144,6 +148,9 @@ int countcmp(const struct word *w1, const struct word *w2) {
+ struct count_params *count(struct count_params *const params) {
+   typedef unsigned char uchar;
+ 
++  /* hattrie_create() dies on malloc() failure. */
++  params->words = hattrie_create();
++
+   while (true) {
+     /* Nullify any spaces and punctuation. */
+     while (*params->buf_ptr != '\0' && !isalnum((uchar) *params->buf_ptr)) {
+@@ -158,11 +165,13 @@ struct count_params *count(struct count_params *const params) {
+ 
+     /* Found the start of a word. */
+     const struct word w = { .ptr = params->buf_ptr, .occ = 1 };
++    size_t w_len = 1;
+ 
+     /* Lowercase and consume the characters of the word. */
+     while (isalnum((uchar) *params->buf_ptr)) {
+       *params->buf_ptr = (char) tolower(*params->buf_ptr);
+       params->buf_ptr++;
++      w_len++;
+     }
+ 
+     /* Reached a non-alphanumeric: if the current character is the end
+@@ -176,111 +185,146 @@ struct count_params *count(struct count_params *const params) {
+       params->buf_ptr++;
+     }
+ 
+-    /* Refer to an already existing copy of the word in `w` - the one
+-     * just uncovered - in case it can be found in the accumulated
+-     * list of words.
+-     */
+-    struct word *found = NULL;
++    value_t *occ = hattrie_tryget(params->words, w.ptr, w_len);
+ 
+-    if (params->words != NULL) {
+-      /* The list of words is not empty, do the search. */
+-      found = bsearch(&w.ptr,
+-                      params->words,
+-                      params->n,
+-                      sizeof(struct word),
+-                      (cmpfunc) wordcmp);
+-    }
+-
+-    if (found != NULL) {
++    if (occ != NULL) {
+       /* Increment the occurrence of the instance in the list and move
+        * on to reading the next word from the buffer.
+        */
+-      found->occ += 1;
++      *occ += 1;
+       continue;
+     }
+ 
+-    /* If the word was not found in the list (has not been seen
+-     * before), allocate space for an extra element in the list and
+-     * add the word referred to by `w` to it. An array is not ideal,
+-     * so a pre-allocating vector would amortize the cost of
+-     * reallocations (however the operating system still preallocates
+-     * in page sizes so that does amortize the cost to a certain
+-     * degree).
+-     *
+-     * https://github.com/fredmorcos/rdiff/blob/master/vec.h
+-     * https://github.com/fredmorcos/rdiff/blob/master/vec.c
+-     */
+-    struct word *const new = (struct word *)
+-      realloc(params->words, (params->n + 1) * sizeof(struct word));
++    /* If the word was not found, insert it and set its occ to 1. */
++    occ = hattrie_get(params->words, w.ptr, w_len);
++    *occ = 1;
+ 
+-    if (new == NULL) {
+-      assert(errno != 0);
+-      params->tl_errno = errno;
+-      return NULL;
+-    }
++    /* /\* Refer to an already existing copy of the word in `w` - the one */
++    /*  * just uncovered - in case it can be found in the accumulated */
++    /*  * list of words. */
++    /*  *\/ */
++    /* struct word *found = NULL; */
+ 
+-    params->words = new;
+-    memcpy(&params->words[params->n], &w, sizeof(struct word));
+-    params->n++;
++    /* if (params->words != NULL) { */
++    /*   /\* The list of words is not empty, do the search. *\/ */
++    /*   found = bsearch(&w.ptr, */
++    /*                   params->words, */
++    /*                   params->n, */
++    /*                   sizeof(struct word), */
++    /*                   (cmpfunc) wordcmp); */
++    /* } */
+ 
+-    /* With a new element in the list, re-sort it by words to take
+-     * advantage of the bsearch() lookup. Maybe insertion sort would
+-     * be more efficient.
+-     */
+-    qsort(params->words, params->n, sizeof(struct word), (cmpfunc) wordcmp);
++    /* if (found != NULL) { */
++    /*   /\* Increment the occurrence of the instance in the list and move */
++    /*    * on to reading the next word from the buffer. */
++    /*    *\/ */
++    /*   found->occ += 1; */
++    /*   continue; */
++    /* } */
++
++    /* /\* If the word was not found in the list (has not been seen */
++    /*  * before), allocate space for an extra element in the list and */
++    /*  * add the word referred to by `w` to it. An array is not ideal, */
++    /*  * so a pre-allocating vector would amortize the cost of */
++    /*  * reallocations (however the operating system still preallocates */
++    /*  * in page sizes so that does amortize the cost to a certain */
++    /*  * degree). */
++    /*  * */
++    /*  * https://github.com/fredmorcos/rdiff/blob/master/vec.h */
++    /*  * https://github.com/fredmorcos/rdiff/blob/master/vec.c */
++    /*  *\/ */
++    /* struct word *const new = (struct word *) */
++    /*   realloc(params->words, (params->n + 1) * sizeof(struct word)); */
++
++    /* if (new == NULL) { */
++    /*   assert(errno != 0); */
++    /*   params->tl_errno = errno; */
++    /*   return NULL; */
++    /* } */
++
++    /* params->words = new; */
++    /* memcpy(&params->words[params->n], &w, sizeof(struct word)); */
++    /* params->n++; */
++
++    /* /\* With a new element in the list, re-sort it by words to take */
++    /*  * advantage of the bsearch() lookup. Maybe insertion sort would */
++    /*  * be more efficient. */
++    /*  *\/ */
++    /* qsort(params->words, params->n, sizeof(struct word), (cmpfunc) wordcmp); */
+   }
+ 
+   return params;
+ }
+ 
+-struct count_params *reduce(const size_t n, struct count_params *const ps) {
+-  /* the `reduce` phase: we will use the first accumulated list as the
+-   * result, so sort it by word to be able to use bsearch() on it
+-   */
+-  qsort(ps[0].words, ps[0].n, sizeof(struct word), (cmpfunc) wordcmp);
+-
+-  /* go over the accumulated lists from each chunk (except list 0) */
++struct count_params *reduce(const size_t n, struct count_params *const params) {
+   for (size_t i = 1; i < n; i++) {
+-    /* go over each word in the list */
+-    for (size_t j = 0; j < ps[i].n; j++) {
+-      /* try to find the word in the result list (list 0) */
+-      struct word *const found = bsearch(&ps[i].words[j].ptr,
+-                                         ps[0].words,
+-                                         ps[0].n,
+-                                         sizeof(struct word),
+-                                         (cmpfunc) wordcmp);
++    for (hattrie_iter_t *j = hattrie_iter_begin(params[i].words, false);
++         !hattrie_iter_finished(j);
++         hattrie_iter_next(j))
++      {
++        size_t w_len;
++        const value_t *const w_occ = hattrie_iter_val(j);
++        const char *const w = hattrie_iter_key(j, &w_len);
+ 
+-      if (found != NULL) {
+-        /* if we found the word, increment its count by the
+-         * occurrences of the new word
+-         */
+-        found->occ += ps[i].words[j].occ;
+-      } else {
+-        /* if we didnt find it, then it is a new word, make space for
+-         * it and insert it into the result list, then sort the
+-         * list by words for use with bsearch()
+-         */
+-        struct word *const new =
+-          realloc(ps[0].words, (ps[0].n + 1) * sizeof(struct word));
++        size_t *occ = hattrie_tryget(params[0].words, w, w_len);
+ 
+-        if (new == NULL) {
+-          warn("cannot allocate space for result list");
+-          return NULL;
++        if (occ != NULL) {
++          *occ += *w_occ;
++          continue;
+         }
+ 
+-        ps[0].words = new;
+-        memcpy(&ps[0].words[ps[0].n], &ps[i].words[j], sizeof(struct word));
+-        ps[0].n++;
+-
+-        qsort(ps[0].words, ps[0].n, sizeof(struct word), (cmpfunc) wordcmp);
++        occ = hattrie_get(params[0].words, w, w_len);
++        *occ = *w_occ;
+       }
+-    }
+   }
+ 
+-  /* when we're done reducing, sort the list by occurrences */
+-  qsort(ps[0].words, ps[0].n, sizeof(struct word), (cmpfunc) countcmp);
++  /* /\* the `reduce` phase: we will use the first accumulated list as the */
++  /*  * result, so sort it by word to be able to use bsearch() on it */
++  /*  *\/ */
++  /* qsort(ps[0].words, ps[0].n, sizeof(struct word), (cmpfunc) wordcmp); */
+ 
+-  return ps;
++  /* /\* go over the accumulated lists from each chunk (except list 0) *\/ */
++  /* for (size_t i = 1; i < n; i++) { */
++  /*   /\* go over each word in the list *\/ */
++  /*   for (size_t j = 0; j < ps[i].n; j++) { */
++  /*     /\* try to find the word in the result list (list 0) *\/ */
++  /*     struct word *const found = bsearch(&ps[i].words[j].ptr, */
++  /*                                        ps[0].words, */
++  /*                                        ps[0].n, */
++  /*                                        sizeof(struct word), */
++  /*                                        (cmpfunc) wordcmp); */
++
++  /*     if (found != NULL) { */
++  /*       /\* if we found the word, increment its count by the */
++  /*        * occurrences of the new word */
++  /*        *\/ */
++  /*       found->occ += ps[i].words[j].occ; */
++  /*     } else { */
++  /*       /\* if we didnt find it, then it is a new word, make space for */
++  /*        * it and insert it into the result list, then sort the */
++  /*        * list by words for use with bsearch() */
++  /*        *\/ */
++  /*       struct word *const new = */
++  /*         realloc(ps[0].words, (ps[0].n + 1) * sizeof(struct word)); */
++
++  /*       if (new == NULL) { */
++  /*         warn("cannot allocate space for result list"); */
++  /*         return NULL; */
++  /*       } */
++
++  /*       ps[0].words = new; */
++  /*       memcpy(&ps[0].words[ps[0].n], &ps[i].words[j], sizeof(struct word)); */
++  /*       ps[0].n++; */
++
++  /*       qsort(ps[0].words, ps[0].n, sizeof(struct word), (cmpfunc) wordcmp); */
++  /*     } */
++  /*   } */
++  /* } */
++
++  /* /\* when we're done reducing, sort the list by occurrences *\/ */
++  /* qsort(ps[0].words, ps[0].n, sizeof(struct word), (cmpfunc) countcmp); */
++
++  return params;
+ }
+ 
+ int main(int argc, char *argv[]) {
+@@ -488,9 +532,35 @@ int main(int argc, char *argv[]) {
+     goto end_threads;
+   }
+ 
++  /* transform the trie into a list of words. */
++  size_t total_words = hattrie_size(ps[0].words);
++
++  struct word *all_words =
++    (struct word *const) malloc(sizeof(struct word) * total_words);
++
++  if (all_words == NULL) {
++    ret = EX_UNAVAILABLE;
++    goto end_threads;
++  }
++
++  size_t j = 0;
++
++  for (hattrie_iter_t *i = hattrie_iter_begin(ps[0].words, false);
++       !hattrie_iter_finished(i);
++       hattrie_iter_next(i), j++)
++    {
++      size_t w_len;
++      const value_t *const w_occ = hattrie_iter_val(i);
++      const char *w = hattrie_iter_key(i, &w_len);
++
++      all_words[j] = (struct word) { .ptr = w, .occ = *w_occ };
++    }
++
++  qsort(all_words, j, sizeof(struct word), (cmpfunc) countcmp);
++
+   /* print the list of words and their occurrences */
+-  for (size_t i = 0; i < ps[0].n; i++) {
+-    printf("%s=%zu\n", ps[0].words[i].ptr, ps[0].words[i].occ);
++  for (size_t i = 0; i < j; i++) {
++    printf("%s=%zu\n", all_words[i].ptr, all_words[i].occ);
+   }
+ 
+  end_threads:
+@@ -498,9 +568,11 @@ int main(int argc, char *argv[]) {
+ 
+   /* free word lists that have been allocated */
+   for (size_t i = 0; i < n; i++) {
+-    if (ps[i].words != NULL) {
+-      free(ps[i].words);
++    if (ps[i].words == NULL) {
++      break;
+     }
++
++    hattrie_free(ps[i].words);
+   }
+  end_params:
+   free(ps);
