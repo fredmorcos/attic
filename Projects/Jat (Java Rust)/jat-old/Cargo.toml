@@ -1,0 +1,9 @@
+[package]
+name = "jat"
+description = "Java Analysis Tools"
+version = "0.1.0"
+authors = ["Fred Morcos <fred.morcos@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+j4rs = { git = "https://github.com/astonbitecode/j4rs.git" }

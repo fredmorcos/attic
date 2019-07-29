@@ -1,0 +1,10 @@
+[package]
+name = "fantoccini-example"
+version = "0.1.0"
+authors = ["Fred Morcos <fred.morcos@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+fantoccini = "0.11.7"
+futures = "0.1.27"
+tokio = "0.1.21"

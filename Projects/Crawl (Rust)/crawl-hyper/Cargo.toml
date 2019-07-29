@@ -1,0 +1,9 @@
+[package]
+name = "crawler"
+version = "0.1.0"
+authors = ["Fred Morcos <fred.morcos@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+hyper = "0.12.29"
+futures = "0.1.27"

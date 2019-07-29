@@ -1,0 +1,51 @@
+[2019-06-12T20:36:10Z INFO  rust_reqwest] Fetched https://maikklein.github.io/futures-rs/
+[2019-06-12T20:36:10Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:10Z INFO  rust_reqwest] Fetched https://maikklein.github.io/
+[2019-06-12T20:36:10Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/rss.xml
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/pyro-ecs/
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/rlsl-update2/
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/rlsl-progress-report/
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/rlsl-milestone-1/
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/rust-compiler/
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/geometric-algebra/
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/traversing-ast/
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/shading-language-part1/
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/update-ash2/
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/version-trait/
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/soa-rust/
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/update-ash/
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/nom/
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/impression-rust-part2/
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/soa-d/
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/2016-01-14-entity-component-system/
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/2016-03-01-metaprogramming-typeobject/
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/impression-rust/
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/2015-11-14-converting-strings-to-types/
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/post/soa-d/
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/post/impression-rust/
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] Fetched https://maikklein.github.io/post/shading-language-part1/
+[2019-06-12T20:36:11Z WARN  html5ever::tree_builder::actions] stop_parsing not implemented, full speed ahead!
+[2019-06-12T20:36:11Z INFO  rust_reqwest] DB = Mutex { data: {"https://maikklein.github.io/": true, "https://maikklein.github.io/impression-rust-part2/": true, "https://maikklein.github.io/2015-11-14-converting-strings-to-types/": true, "https://maikklein.github.io/soa-rust/": true, "https://maikklein.github.io/rust-compiler/": true, "https://maikklein.github.io/2016-03-01-metaprogramming-typeobject/": true, "https://maikklein.github.io/post/shading-language-part1/": true, "https://maikklein.github.io/rss.xml": true, "https://maikklein.github.io/shading-language-part1/": true, "https://maikklein.github.io/futures-rs/": true, "https://maikklein.github.io/traversing-ast/": true, "https://maikklein.github.io/2016-01-14-entity-component-system/": true, "https://maikklein.github.io/nom/": true, "https://maikklein.github.io/rlsl-progress-report/": true, "https://maikklein.github.io/update-ash/": true, "https://maikklein.github.io/rlsl-update2/": true, "https://maikklein.github.io/version-trait/": true, "https://maikklein.github.io/update-ash2/": true, "https://maikklein.github.io/post/impression-rust/": true, "https://maikklein.github.io/geometric-algebra/": true, "https://maikklein.github.io/soa-d/": true, "https://maikklein.github.io/impression-rust/": true, "https://maikklein.github.io/rlsl-milestone-1/": true, "https://maikklein.github.io/pyro-ecs/": true, "https://maikklein.github.io/post/soa-d/": true} }
