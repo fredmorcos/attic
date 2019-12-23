@@ -1,0 +1,14 @@
+0000000000000000000000000000000000000000 661ad88213779f95160191dc04689dbb9f4b8bdd Fred Morcos <fred.morcos@gmail.com> 1575828465 +0100	clone: from git@github.com:fredmorcos/aoc2019.git
+661ad88213779f95160191dc04689dbb9f4b8bdd 1ce198e8733187b16a15fed98f3e4420cb45168d Fred Morcos <fred.morcos@gmail.com> 1575880121 +0100	pull: Fast-forward
+1ce198e8733187b16a15fed98f3e4420cb45168d 4972b28c7498e9ab32a387b23b5a8b2da7ebe42f Fred Morcos <fred.morcos@gmail.com> 1575910553 +0100	commit (amend): Day 2
+4972b28c7498e9ab32a387b23b5a8b2da7ebe42f 969ccb6509aa4a46b2bf7c0ae09d041c1f5340af Fred Morcos <fred.morcos@gmail.com> 1575921452 +0100	commit: Day 3-1
+969ccb6509aa4a46b2bf7c0ae09d041c1f5340af 1ce198e8733187b16a15fed98f3e4420cb45168d Fred Morcos <fred.morcos@gmail.com> 1575921495 +0100	rebase: checkout origin/master
+1ce198e8733187b16a15fed98f3e4420cb45168d 8c154e4645174e38bcead6263f3c3cadf7136cad Fred Morcos <fred.morcos@gmail.com> 1575921527 +0100	rebase: Day 2
+8c154e4645174e38bcead6263f3c3cadf7136cad 1de7fb30b8cb318a0f7f25ab0285e4e8fd662fa1 Fred Morcos <fred.morcos@gmail.com> 1575921527 +0100	rebase: Day 3-1
+1de7fb30b8cb318a0f7f25ab0285e4e8fd662fa1 1de7fb30b8cb318a0f7f25ab0285e4e8fd662fa1 Fred Morcos <fred.morcos@gmail.com> 1575921527 +0100	rebase finished: returning to refs/heads/master
+1de7fb30b8cb318a0f7f25ab0285e4e8fd662fa1 1ce198e8733187b16a15fed98f3e4420cb45168d Fred Morcos <fred.morcos@gmail.com> 1575921554 +0100	rebase -i (start): checkout ff828d9^
+1ce198e8733187b16a15fed98f3e4420cb45168d 99a4b385eed9875a5751201f5b2d208b2f64e491 Fred Morcos <fred.morcos@gmail.com> 1575921554 +0100	rebase -i (squash): Day 2
+99a4b385eed9875a5751201f5b2d208b2f64e491 3eb5794627b5962d77bf50449078fa4e181a32b5 Fred Morcos <fred.morcos@gmail.com> 1575921557 +0100	rebase -i (pick): Day 3-1
+3eb5794627b5962d77bf50449078fa4e181a32b5 3eb5794627b5962d77bf50449078fa4e181a32b5 Fred Morcos <fred.morcos@gmail.com> 1575921557 +0100	rebase -i (finish): returning to refs/heads/master
+3eb5794627b5962d77bf50449078fa4e181a32b5 44cd810906541dc56f6f108a93c589310bad58e2 Fred Morcos <fred.morcos@gmail.com> 1576002914 +0100	commit: Day 3-1 faster implementation
+44cd810906541dc56f6f108a93c589310bad58e2 3cab0274ceb7d296482c13b78c19e6af0ade655f Fred Morcos <fred.morcos@gmail.com> 1576053192 +0100	pull: Fast-forward

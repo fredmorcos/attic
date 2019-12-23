@@ -1,0 +1,26 @@
+Introduce a postgresql database
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 1 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# Changes to be committed:
+#	new file:   .env
+#	modified:   Cargo.lock
+#	modified:   Cargo.toml
+#	new file:   diesel.toml
+#	new file:   migrations/.gitkeep
+#	new file:   migrations/00000000000000_diesel_initial_setup/down.sql
+#	new file:   migrations/00000000000000_diesel_initial_setup/up.sql
+#	new file:   migrations/2019-10-28-211306_userlist/down.sql
+#	new file:   migrations/2019-10-28-211306_userlist/up.sql
+#	new file:   migrations/2019-10-29-201611_triplist/down.sql
+#	new file:   migrations/2019-10-29-201611_triplist/up.sql
+#	modified:   src/main.rs
+#	new file:   src/models.rs
+#	new file:   src/schema.rs
+#
