@@ -1,0 +1,39 @@
+graph "lb_pad" {
+  graph [rankdir=LR, label="lb_pad", landscape=true];
+
+  c1 [label="et_pa_lb", shape=triangle, fixedsize=true, orientation=-90, rank=1];
+  c2 [label="lna_b12", shape=square, rank=2];
+  c3 [
+
+
+//   root_clock [shape=none];
+//   clock1 [shape=none, label="Clock 1"];
+//   clock2 [shape=none, label="Clock 2"];
+//   clock3 [shape=none, label="Clock 3"];
+//   n1 [shape=square, label="HM_CDIV"];
+//   n2 [shape=square, label="HM_CDIV"];
+//   n3 [shape=square, label="HM_CDIV"];
+
+//   subgraph X {
+//     rank=same;
+//     v1 [shape=point, width=0];
+//     v2 [shape=point, width=0];
+//     v1 -- v2 [dir=none];
+//   }
+
+//   subgraph Y {
+//     rank = same;
+//     v3 [shape=point, width=0];
+//     v4 [shape=point, width=0];
+//     v3 -- v4 [dir=none];
+//   }
+
+//   root_clock -- n1;
+//   n1 -- v1 [dir=none];
+//   v1 -- clock1[minlen=2];
+//   v2 -- n2;
+//   n2 -- v3 [dir=none];
+//   v3 -- clock2[minlen=2];
+//   v4 -- n3;
+//   n3 -- clock3 [minlen=2];
+}
