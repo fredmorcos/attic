@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    bson (4.3.0)
     bson (4.3.0-java)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
@@ -14,7 +15,8 @@ GEM
       bson (>= 4.3.0, < 5.0.0)
     mustermann (1.0.3)
     netrc (0.11.0)
-    puma (3.12.0-java)
+    puma (3.12.4)
+    puma (3.12.4-java)
     rack (2.0.6)
     rack-protection (2.0.4)
       rack
@@ -28,10 +30,14 @@ GEM
       rack-protection (= 2.0.4)
       tilt (~> 2.0)
     tilt (2.0.8)
+    unf (0.1.4)
+      unf_ext
     unf (0.1.4-java)
+    unf_ext (0.0.7.6)
 
 PLATFORMS
   java
+  ruby
 
 DEPENDENCIES
   haversine
