@@ -1,0 +1,19 @@
+[package]
+name = "sdl-windows"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+log = "*"
+env_logger = "*"
+thiserror = "*"
+derive_more = "*"
+
+[dependencies.sdl2]
+version = "*"
+features = ["gfx", "image", "ttf", "bundled"]
+
+[profile.release]
+lto = true
+panic = 'abort'
+codegen-units = 1
