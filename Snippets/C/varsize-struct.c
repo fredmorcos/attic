@@ -16,12 +16,6 @@ struct baz {
   long c[2];
 };
 
-struct primitive_struct {
-    int field1;
-    char field2;
-    long field3;
-};
-
 void test(struct foo *f,   struct bar *b,  struct baz *z) {
   printf("f = %zu\n", f->c[1]);
   printf("b = %zu\n", b->c[2]);
@@ -36,6 +30,4 @@ int main() {
   printf("sizeof(f) = %zu\n", sizeof(f));
   printf("sizeof(b) = %zu\n", sizeof(b));
   printf("sizeof(z) = %zu\n", sizeof(z));
-
-  printf("sizeof(primitive_struct) = %zu\n", sizeof(struct primitive_struct));
 }
