@@ -8,7 +8,6 @@
     "dependencies": {
         "express": "*",
         "jade": "*",
-        "markdown": "*",
         "mongoose": "*",
         "express-validator": "*",
         "grunt-beautify": "*",
