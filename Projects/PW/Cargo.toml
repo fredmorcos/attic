@@ -1,0 +1,21 @@
+[package]
+name = "pw"
+version = "0.1.0"
+authors = ["Fred Morcos <fred.morcos@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+structopt = "0.3.7"
+log = "0.4.8"
+env_logger = "0.7.1"
+thiserror = "1.0"
+dirs = "2.0.2"
+zeroize = "1.1.0"
+# derive_more = "0.15.0"
+
+[profile.release]
+lto = true
+panic = "abort"
+codegen-units = 1

@@ -1,0 +1,3 @@
+;; -*- mode: Emacs-Lisp; coding: utf-8; -*-
+;;; file-format: 9
+["Foo" "Bar" nil nil ("Foo OrgFoo") (["+43 234242 342342" "+23123 123 123 123"]) (["home" ("Eibenweg 5/5") "Linz" "" "4040" "Emacs"]) ("foo@org.com") ((notes . "This is a note")) "a1010c22-e918-4c6e-a834-6858c488b320" "2020-09-23 19:57:53 +0000" "2020-09-23 19:59:01 +0000" nil]
