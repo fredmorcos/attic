@@ -11,6 +11,7 @@ RUN rm -rf /app/*
 RUN cp /tvdotcom /app/.
 RUN rustup uninstall stable
 RUN rm -rf ~/.cargo
+RUN rm -rf ~/.rustup
 
 EXPOSE 8000
 CMD ["/app/tvdotcom", "-vvvv"]
