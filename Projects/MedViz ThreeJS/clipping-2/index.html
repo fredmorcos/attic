@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Volume Rendering Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="main.css">
+  </head>
+
+  <body>
+    <div id="info">Float volume render test (MIP/ISOsurface/AIP)</div>
+    <div id="inset"></div>
+
+    <!--
+     !-- <script type="x-shader/x-vertex" id="vertexShader" src="shader.vert"></script>
+     !-- <script type="x-shader/x-fragment" id="fragmentShader" src="shader.frag"></script>
+      -->
+
+    <script type="module">
+      import * as THREE from './build/three.module.js';
+      import { GUI } from './jsm/libs/dat.gui.module.js';
+      import { OrbitControls } from './jsm/controls/OrbitControls.js';
+      import { NRRDLoader } from './jsm/loaders/NRRDLoader.js';
+      import { VolumeRenderShader1 } from './jsm/shaders/VolumeShader.js';
+      import { WEBGL } from './jsm/WebGL.js';
+
+      if (WEBGL.isWebGL2Available() === false) {
+	  document.body.appendChild( WEBGL.getWebGL2ErrorMessage() );
+      }
+
+      let renderer,
+	  scene,
+	  camera,
+	  controls,
+	  material,
+	  volconfig,
+	  cmtextures,
+          clippingPlaneX1,
+          clippingPlaneX2,
+          clippingPlaneY1,
+          clippingPlaneY2,
+          clippingPlaneZ1,
+          clippingPlaneZ2,
+          volumeXLength,
+          volumeYLength,
+          volumeZLength;
+
+      init();
+
+      function init() {
+	  scene = new THREE.Scene();
+
+	  // Create renderer
+	  renderer = new THREE.WebGLRenderer();
+	  renderer.setPixelRatio( window.devicePixelRatio );
+	  renderer.setSize( window.innerWidth, window.innerHeight );
+          renderer.localClippingEnabled = true;
+          // renderer.clippingPlanes = [];
+	  document.body.appendChild( renderer.domElement );
+
+	  // Create camera (The volume renderer does not work very well with perspective yet)
+	  const h = 512; // frustum height
+	  const aspect = window.innerWidth / window.innerHeight;
+	  camera = new THREE.OrthographicCamera(- h * aspect / 2, h * aspect / 2, h / 2, - h / 2, 1, 1000);
+	  camera.position.set(0, 0, 128);
+	  camera.up.set(0, 0, 1); // In our data, z is up
+
+	  // Create controls
+	  controls = new OrbitControls(camera, renderer.domElement);
+	  controls.addEventListener('change', render);
+	  controls.target.set( 64, 64, 128 );
+	  controls.minZoom = 0.5;
+	  controls.maxZoom = 4;
+	  controls.update();
+
+	  // scene.add(new AxesHelper(128));
+
+	  // Lighting is baked into the shader a.t.m.
+	  // let dirLight = new DirectionalLight(0xffffff);
+
+	  // The gui for interaction
+	  volconfig = {
+              clim1: 0,
+              clim2: 1,
+              renderstyle: 'iso',
+              isothreshold: 0.15,
+              colormap: 'viridis',
+              xclip1: 0,
+              xclip2: 0,
+              yclip1: 0,
+              yclip2: 0,
+              zclip1: 0,
+              zclip2: 0
+          };
+
+	  const gui = new GUI();
+	  gui.add(volconfig, 'clim1', 0, 1, 0.01).onChange(updateUniforms);
+	  gui.add(volconfig, 'clim2', 0, 1, 0.01).onChange(updateUniforms);
+	  gui.add(volconfig, 'colormap', { gray: 'gray', viridis: 'viridis' }).onChange(updateUniforms);
+	  gui.add(volconfig, 'renderstyle', { mip: 'mip', iso: 'iso', aip: 'aip' }).onChange(updateUniforms);
+	  gui.add(volconfig, 'isothreshold', 0, 1, 0.01).onChange(updateUniforms);
+
+	  // Load the data ...
+	  new NRRDLoader().load( "models/nrrd/stent.nrrd", function (volume) {
+	      // Texture to hold the volume. We have scalars, so we put our data in the red channel.
+	      // THREEJS will select R32F (33326) based on the THREE.RedFormat and THREE.FloatType.
+	      // Also see https://www.khronos.org/registry/webgl/specs/latest/2.0/#TEXTURE_TYPES_FORMATS_FROM_DOM_ELEMENTS_TABLE
+	      // TODO: look the dtype up in the volume metadata
+	      const texture = new THREE.DataTexture3D( volume.data, volume.xLength, volume.yLength, volume.zLength );
+	      texture.format = THREE.RedFormat;
+	      texture.type = THREE.FloatType;
+	      texture.minFilter = texture.magFilter = THREE.LinearFilter;
+	      texture.unpackAlignment = 1;
+
+	      // Colormap textures
+	      cmtextures = {
+		  viridis: new THREE.TextureLoader().load( 'textures/cm_viridis.png', render ),
+		  gray: new THREE.TextureLoader().load( 'textures/cm_gray.png', render )
+	      };
+
+              volumeXLength = volume.xLength;
+              volumeYLength = volume.yLength;
+              volumeZLength = volume.zLength;
+
+              // Clipping sliders. We needed to do that here because we need volume information.
+              gui.add(volconfig, 'xclip1', -volume.xLength, volume.xLength, 0.1).onChange(updateClipping);
+              gui.add(volconfig, 'xclip2', -volume.xLength, volume.xLength, 0.1).onChange(updateClipping);
+              gui.add(volconfig, 'yclip1', -volume.yLength, volume.yLength, 0.1).onChange(updateClipping);
+              gui.add(volconfig, 'yclip2', -volume.yLength, volume.yLength, 0.1).onChange(updateClipping);
+              gui.add(volconfig, 'zclip1', -volume.zLength, volume.zLength, 0.1).onChange(updateClipping);
+              gui.add(volconfig, 'zclip2', -volume.zLength, volume.zLength, 0.1).onChange(updateClipping);
+
+	      // Material
+              // VolumeRenderShader1.vertexShader = document.getElementById('vertexShader').textContent;
+              // VolumeRenderShader1.fragmentShader = document.getElementById('fragmentShader').textContent;
+              const loader = new THREE.FileLoader();
+              loader.load('shader.vert', function(vertex_shader) {
+                  VolumeRenderShader1.vertexShader = vertex_shader;
+                  loader.load('shader.frag', function(fragment_shader) {
+                      VolumeRenderShader1.fragmentShader = fragment_shader;
+                      const shader = VolumeRenderShader1;
+
+	              const uniforms = THREE.UniformsUtils.clone( shader.uniforms );
+
+	              uniforms[ "u_data" ].value = texture;
+	              uniforms[ "u_size" ].value.set(volume.xLength, volume.yLength, volume.zLength);
+       	              uniforms[ "u_clim" ].value.set(volconfig.clim1, volconfig.clim2);
+
+                      if (volconfig.renderstyle == 'mip') {
+                          uniforms[ "u_renderstyle" ].value = 0; // MIP
+                      } else if (volconfig.renderstyle == 'iso') {
+                          uniforms[ "u_renderstyle" ].value = 1; // ISO
+                      } else {
+                          uniforms[ "u_renderstyle" ].value = 2; // AIP
+                      }
+
+	              uniforms[ "u_renderthreshold" ].value = volconfig.isothreshold; // For ISO renderstyle
+	              uniforms[ "u_cmdata" ].value = cmtextures[volconfig.colormap]; // Colormap
+
+                      // Create clipping planes.
+                      clippingPlaneX1 = new THREE.Plane(new THREE.Vector3( 1,  0,  0), volume.xLength);
+                      clippingPlaneX2 = new THREE.Plane(new THREE.Vector3(-1,  0,  0), volume.xLength);
+                      clippingPlaneY1 = new THREE.Plane(new THREE.Vector3( 0,  1,  0), volume.yLength);
+                      clippingPlaneY2 = new THREE.Plane(new THREE.Vector3( 0, -1,  0), volume.yLength);
+                      clippingPlaneZ1 = new THREE.Plane(new THREE.Vector3( 0,  0,  1), volume.zLength);
+                      clippingPlaneZ2 = new THREE.Plane(new THREE.Vector3( 0,  0, -1), volume.zLength);
+
+                      // Create plane helpers to color the planes and their normals for debugging.
+                      const clippingPlaneX1Helper = new THREE.PlaneHelper(clippingPlaneX1, 50, 0xff0000);
+                      const clippingPlaneX2Helper = new THREE.PlaneHelper(clippingPlaneX2, 50, 0xffff00);
+                      const clippingPlaneY1Helper = new THREE.PlaneHelper(clippingPlaneY1, 50, 0x00ff00);
+                      const clippingPlaneY2Helper = new THREE.PlaneHelper(clippingPlaneY2, 50, 0x00ffff);
+                      const clippingPlaneZ1Helper = new THREE.PlaneHelper(clippingPlaneZ1, 50, 0x0000ff);
+                      const clippingPlaneZ2Helper = new THREE.PlaneHelper(clippingPlaneZ2, 50, 0xff00ff);
+
+                      // Add the helpers to the scene. Comment this out to disable the display of helpers.
+                      scene.add(clippingPlaneX1Helper);
+                      scene.add(clippingPlaneX2Helper);
+                      scene.add(clippingPlaneY1Helper);
+                      scene.add(clippingPlaneY2Helper);
+                      scene.add(clippingPlaneZ1Helper);
+                      scene.add(clippingPlaneZ2Helper);
+
+	              material = new THREE.ShaderMaterial({
+		          uniforms: uniforms,
+		          vertexShader: shader.vertexShader,
+		          fragmentShader: shader.fragmentShader,
+		          side: THREE.BackSide, // The volume shader uses the backface as its "reference point"
+                          clipping: true,
+                          clippingPlanes: [clippingPlaneX1,
+                                           clippingPlaneX2,
+                                           clippingPlaneY1,
+                                           clippingPlaneY2,
+                                           clippingPlaneZ1,
+                                           clippingPlaneZ2]
+	              });
+
+	              // THREE.Mesh
+	              const geometry = new THREE.BoxGeometry(volume.xLength, volume.yLength, volume.zLength);
+	              geometry.translate(volume.xLength / 2 - 0.5, volume.yLength / 2 - 0.5, volume.zLength / 2 - 0.5);
+
+	              const mesh = new THREE.Mesh(geometry, material);
+	              scene.add(mesh);
+
+	              render();
+                  });
+              });
+          });
+
+	  window.addEventListener( 'resize', onWindowResize );
+      }
+
+      function updateClipping() {
+          clippingPlaneX1.constant = -volconfig.xclip1;
+          clippingPlaneX2.constant = volumeXLength - volconfig.xclip2;
+          clippingPlaneY1.constant = -volconfig.yclip1;
+          clippingPlaneY2.constant = volumeYLength - volconfig.yclip2;
+          clippingPlaneZ1.constant = -volconfig.zclip1;
+          clippingPlaneZ2.constant = volumeZLength - volconfig.zclip2;
+
+          render();
+      }
+
+      function updateUniforms() {
+	  material.uniforms[ "u_clim" ].value.set( volconfig.clim1, volconfig.clim2 );
+
+          if (volconfig.renderstyle == 'mip') {
+              material.uniforms[ "u_renderstyle" ].value = 0; // MIP
+          } else if (volconfig.renderstyle == 'iso') {
+              material.uniforms[ "u_renderstyle" ].value = 1; // ISO
+          } else {
+              material.uniforms[ "u_renderstyle" ].value = 2; // AIP
+          }
+
+	  material.uniforms[ "u_renderthreshold" ].value = volconfig.isothreshold; // For ISO renderstyle
+	  material.uniforms[ "u_cmdata" ].value = cmtextures[ volconfig.colormap ]; // Colormap
+
+	  render();
+      }
+
+      function onWindowResize() {
+	  renderer.setSize( window.innerWidth, window.innerHeight );
+
+	  const aspect = window.innerWidth / window.innerHeight;
+
+	  const frustumHeight = camera.top - camera.bottom;
+
+	  camera.left = - frustumHeight * aspect / 2;
+	  camera.right = frustumHeight * aspect / 2;
+
+	  camera.updateProjectionMatrix();
+
+	  render();
+      }
+
+      function render() {
+	  renderer.render( scene, camera );
+      }
+    </script>
+  </body>
+</html>
