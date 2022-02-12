@@ -25,7 +25,6 @@
   "dependencies": {
     "express": "*",
     "jade": "*",
-    "markdown": "*",
     "grunt-beautify": "*",
     "underscore": "*"
   }
