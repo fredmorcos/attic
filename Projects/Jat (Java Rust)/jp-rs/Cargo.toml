@@ -5,6 +5,6 @@ authors = ["Fred Morcos <fred.morcos@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-regex = "1.1.5"
-walkdir = "2.2.7"
-structopt = "0.2.15"
+regex = "1.1"
+walkdir = "2.2"
+structopt = "0.2"

@@ -5,5 +5,5 @@ authors = ["Fred Morcos <fred.morcos@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-structopt = "0.2.15"
+structopt = "0.2"
 j4rs = { git = "https://github.com/astonbitecode/j4rs.git" }
