@@ -7,14 +7,14 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-actix-web = "1.0"
-listenfd = "0.3"
-serde = "1.0"
-log = "0.4"
-flexi_logger = "0.14"
-derive_more = "0.15"
-diesel = { version = "1.4", features = ["postgres", "extras", "numeric"] }
-diesel_migrations = "1.4"
-migrations_macros = "1.4"
-r2d2 = "0.8"
-dotenv = "0.15"
+actix-web = "*"
+listenfd = "*"
+serde = "*"
+log = "*"
+flexi_logger = "*"
+derive_more = "*"
+diesel = { version = "*", features = ["postgres", "extras", "numeric"] }
+diesel_migrations = "*"
+migrations_macros = "*"
+r2d2 = "*"
+dotenv = "*"
