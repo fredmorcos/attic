@@ -9,8 +9,8 @@ edition = "2018"
 
 [dependencies]
 structopt = "0.3"
-env_logger = "0.7"
+env_logger = "0.9"
 log = "0.4"
 derive_more = "0.99"
 derive-new = "0.5"
-either = "1.6"
+either = "1.8"
