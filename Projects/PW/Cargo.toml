@@ -9,11 +9,11 @@ edition = "2018"
 [dependencies]
 structopt = "0.3"
 log = "0.4"
-env_logger = "0.7"
+env_logger = "0.9"
 thiserror = "1.0"
-dirs = "2.0"
+dirs = "4.0"
 zeroize = "1.1"
-# derive_more = "0.15"
+# derive_more = "0.99"
 
 [profile.release]
 lto = true
