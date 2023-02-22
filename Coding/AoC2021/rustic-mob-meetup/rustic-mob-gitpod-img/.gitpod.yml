@@ -1,0 +1,12 @@
+# Checkout the docs => https://www.gitpod.io/docs/config-gitpod-file
+---
+image:
+  file: .gitpod.dockerfile
+
+tasks:
+  - init: |
+      cargo build
+
+vscode:
+  extensions:
+    - matklad.rust-analyzer

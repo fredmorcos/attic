@@ -1,0 +1,86 @@
+---
+name: Lint, formatting, documentation, builds and tests
+
+on:
+  push:
+    branches: ['**', '!mob/**']
+  pull_request:
+    branches: ['**', '!mob/**']
+
+env:
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: -Dwarnings
+
+jobs:
+  lint-docs-build-tests:
+    name: >-
+      Lint/Docs/Build/Tests on ${{matrix.os}}
+      with the ${{matrix.toolchain}} Toolchain
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+        toolchain: [stable]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Toolchain (${{matrix.toolchain}})
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: ${{matrix.toolchain}}
+          override: true
+          components: rustfmt, clippy
+
+      - name: Code Formatting
+        uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+          args: --all -- --check -l
+
+      - name: Debug Lint
+        uses: actions-rs/cargo@v1
+        with:
+          command: clippy
+          args: --all-targets --all-features
+      - name: Debug Documentation
+        uses: actions-rs/cargo@v1
+        env:
+          RUSTDOCFLAGS: -Dwarnings
+        with:
+          command: doc
+          args: --all-features --no-deps --document-private-items
+      - name: Debug Build
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --all-features
+      - name: Debug Tests
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+          args: --all-features
+
+      - name: Release Lint
+        uses: actions-rs/cargo@v1
+        with:
+          command: clippy
+          args: --all-targets --all-features --release
+      - name: Release Documentation
+        uses: actions-rs/cargo@v1
+        env:
+          RUSTDOCFLAGS: -Dwarnings
+        with:
+          command: doc
+          args: --all-features --no-deps --document-private-items --release
+      - name: Release Build
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --all-features --release
+      - name: Release Tests
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+          args: --all-features --release
+...

@@ -1,0 +1,5 @@
+{
+    "redhat.telemetry.enabled": true,
+    "gitpod.openInStable.neverPrompt": true,
+    "rust-analyzer.checkOnSave.command": "clippy"
+}
