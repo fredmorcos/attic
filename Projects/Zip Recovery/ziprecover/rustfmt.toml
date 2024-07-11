@@ -1,0 +1,12 @@
+max_width = 110
+chain_width = 80
+array_width = 60
+# struct_lit_width = 80
+# comment_width = 97
+# wrap_comments = true
+use_small_heuristics = "Max"
+tab_spaces = 2
+edition = "2018"
+# newline_style = "Unix"
+use_field_init_shorthand = true
+single_line_if_else_max_width = 0
