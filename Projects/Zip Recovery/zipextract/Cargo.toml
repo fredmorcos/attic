@@ -10,5 +10,5 @@ libflate = "2.1.0"
 log = { version = "0.4.21", features = ["std"] }
 rand = "0.8.5"
 structopt = "0.3.26"
-zip = "2.1.1"
+zip = "2.3.0"
 zune-inflate = "0.2.54"
