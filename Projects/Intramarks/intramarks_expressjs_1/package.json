@@ -11,7 +11,7 @@
         "mongoose": "*",
         "express-validator": "*",
         "grunt-beautify": "*",
-        "underscore": "*",
+        "underscore": ">=1.13.8",
         "connect-mongo": "*"
     }
 }

@@ -13,7 +13,7 @@
         "grunt-beautify": "*",
         "grunt-docco": "*",
         "grunt-styleguide": "*",
-        "underscore": "*",
+        "underscore": ">=1.13.8",
         "grunt-shell": "*",
         "connect-mongo": "*"
     }

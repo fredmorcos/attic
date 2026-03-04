@@ -26,6 +26,6 @@
     "express": "*",
     "jade": "*",
     "grunt-beautify": "*",
-    "underscore": "*"
+    "underscore": ">=1.13.8"
   }
 }
