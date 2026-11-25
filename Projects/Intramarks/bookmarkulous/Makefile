@@ -1,2 +1,0 @@
-clean:
-	git clean -Xfd

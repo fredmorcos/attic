@@ -1,8 +1,0 @@
-.sass-cache
-.DS_Store
-.#*
-.log
-node_modules/
-db/
-dist/
-public/
